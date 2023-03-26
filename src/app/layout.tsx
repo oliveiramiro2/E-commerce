@@ -1,3 +1,4 @@
+import React from "react";
 import "./globals.css";
 
 export const metadata = {
@@ -5,14 +6,16 @@ export const metadata = {
     description: "A fake e-commerce create with next app",
 };
 
-export default function RootLayout({
+const RootLayout = ({
     children,
 }: {
     children: React.ReactNode;
-}) {
+}) => {
     return (
         <html lang="pt-br">
             <body>{children}</body>
         </html>
     );
 }
+
+export default RootLayout
