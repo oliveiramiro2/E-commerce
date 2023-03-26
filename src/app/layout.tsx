@@ -1,18 +1,18 @@
-import './globals.css'
+import "./globals.css";
 
 export const metadata = {
-  title: 'RM E-commerce',
-  description: 'A fake e-commerce create with next app',
-}
+    title: "RM E-commerce",
+    description: "A fake e-commerce create with next app",
+};
 
 export default function RootLayout({
-  children,
+    children,
 }: {
-  children: React.ReactNode
+    children: React.ReactNode;
 }) {
-  return (
-    <html lang="pt-br">
-      <body>{children}</body>
-    </html>
-  )
+    return (
+        <html lang="pt-br">
+            <body>{children}</body>
+        </html>
+    );
 }
