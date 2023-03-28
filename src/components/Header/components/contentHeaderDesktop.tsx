@@ -47,9 +47,9 @@ export const ContentHeaderDesktop: React.FC<IPropsContentHeaderDesktop> = ({
                 type="button"
                 className="bg-pallet-orange hover:bg-[#ff9748] transition-colors shadow-md shadow-pallet-orange absolute right-5 h-5 p-8 pt-4 pb-4 rounded-md flex justify-center items-center max-md:hidden"
             >
-                <span className="text-pallet-white font-bold tracking-wider">
+                <Link href="/" className="text-pallet-white font-bold tracking-wider">
                     Login
-                </span>
+                </Link>
             </button>
             {showMenu ? (
                 <AiOutlineClose

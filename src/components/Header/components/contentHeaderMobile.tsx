@@ -37,9 +37,9 @@ export const ContentHeaderMobile: React.FC = () => {
                         className="bg-pallet-orange hover:bg-[#ff9748] transition-colors shadow shadow-pallet-white h-5 p-20 mt-2 mb-2 pt-4 pb-4 rounded-lg flex justify-center items-center"
                         type="button"
                     >
-                        <p className="text-pallet-white font-bold tracking-wider">
+                        <Link href="/" className="text-pallet-white font-bold tracking-wider">
                             Login
-                        </p>
+                        </Link>
                     </button>
                 </ul>
             </nav>
