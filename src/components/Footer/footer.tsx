@@ -40,12 +40,12 @@ export const Footer: React.FC = () => {
                 <ul className="flex h-20 gap-x-8 items-center">
                     <li>
                         <Link href="/">
-                            <AiFillInstagram color="#fff" size={25} />
+                            <AiFillInstagram color="#fff" size={25} className="hover:shadow-lg hover:shadow-[#eecdfa] hover:transition-shadow" />
                         </Link>
                     </li>
                     <li>
                         <Link href="/">
-                            <AiFillFacebook color="#fff" size={25} />
+                            <AiFillFacebook color="#fff" size={25} className="hover:shadow-lg hover:shadow-[#eecdfa] hover:transition-shadow" />
                         </Link>
                     </li>
                 </ul>
