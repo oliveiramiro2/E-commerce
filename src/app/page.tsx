@@ -1,8 +1,10 @@
 import React from "react";
+import { Header } from "@/components/Header";
 
 const Home: React.FC = () => (
-    <main className="h-screen w-screen bg-black flex justify-center items-center">
-        <div className="text-white">teste papai</div>
+    <main className="bg-pallet-white h-screen w-screen flex flex-col items-center">
+        <Header />
+        <div className="">teste papai</div>
     </main>
 );
 
