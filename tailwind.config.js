@@ -8,6 +8,7 @@ module.exports = {
             "pallet-purple": "#a226d0",
             "pallet-black": "#160b30",
             "pallet-blue": "#00baff",
+            "pallet-orange": "#f0791b",
         }
     },
   },
