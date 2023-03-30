@@ -7,9 +7,9 @@ const tiro = Tiro_Devanagari_Hindi({ subsets: ["latin"], weight: "400" });
 
 export const Footer: React.FC = () => {
     return (
-        <footer className="w-screen h-20 bg-pallet-purple flex relative bottom-0 justify-between">
-            <nav>
-                <ul className="flex h-20 gap-x-8 items-center pl-10">
+        <footer className="w-screen min-h-[100px] bg-pallet-purple flex relative bottom-0 justify-between items-center">
+            <nav className="h-full">
+                <ul className="flex h-full gap-x-8 items-center pl-10 max-md:flex-col max-md:gap-y-5 max-md:pt-3 max-md:pb-3">
                     <li>
                         <Link
                             href="/"
@@ -36,8 +36,8 @@ export const Footer: React.FC = () => {
                     </li>
                 </ul>
             </nav>
-            <nav>
-                <ul className="flex h-20 gap-x-8 items-center">
+            <nav className="h-full">
+                <ul className="flex h-full gap-x-8 items-center">
                     <li>
                         <Link href="/">
                             <AiFillInstagram color="#fff" size={25} className="hover:shadow-lg hover:shadow-[#eecdfa] hover:transition-shadow" />
@@ -50,8 +50,8 @@ export const Footer: React.FC = () => {
                     </li>
                 </ul>
             </nav>
-            <nav>
-                <ul className="flex h-20 gap-x-8 items-center pr-7">
+            <nav className="h-full max-md:w-1/4">
+                <ul className="flex h-full gap-x-8 items-center pr-7 max-md:flex-col max-md:gap-y-5 max-md:pt-3 max-md:pb-3">
                     <li>
                         <Link
                             href="/"
