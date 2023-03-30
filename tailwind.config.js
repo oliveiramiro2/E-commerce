@@ -11,8 +11,8 @@ module.exports = {
             "pallet-orange": "#f0791b",
         },
         backgroundImage: {
-            "banner": "url('/public/imgs/bannerEcommerce.png')"
-        }
+            'banner': "url(/imgs/bannerEcommerce.jpeg)"
+        },
     },
   },
   plugins: [],
