@@ -9,6 +9,9 @@ module.exports = {
             "pallet-black": "#160b30",
             "pallet-blue": "#00baff",
             "pallet-orange": "#f0791b",
+        },
+        backgroundImage: {
+            "banner": "url('/public/imgs/bannerEcommerce.png')"
         }
     },
   },
