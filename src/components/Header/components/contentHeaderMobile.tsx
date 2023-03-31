@@ -2,9 +2,8 @@ import React from "react";
 import Link from "next/link";
 import { FaHome, FaShoppingBag, FaShoppingCart } from "react-icons/fa";
 import { BiLogIn } from "react-icons/bi";
-import { Tiro_Devanagari_Hindi } from "next/font/google";
 
-const tiro = Tiro_Devanagari_Hindi({ subsets: ["latin"], weight: "400" });
+import { tiro } from "@/functions/fonts";
 
 export const ContentHeaderMobile: React.FC = () => {
     return (

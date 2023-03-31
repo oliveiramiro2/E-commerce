@@ -1,9 +1,8 @@
 import Link from "next/link";
 import React from "react";
-import { Tiro_Devanagari_Hindi } from "next/font/google";
 import { AiFillFacebook, AiFillInstagram } from "react-icons/ai";
 
-const tiro = Tiro_Devanagari_Hindi({ subsets: ["latin"], weight: "400" });
+import { tiro } from "@/functions/fonts";
 
 export const Footer: React.FC = () => {
     return (
@@ -40,12 +39,20 @@ export const Footer: React.FC = () => {
                 <ul className="flex h-full gap-x-8 items-center">
                     <li>
                         <Link href="/">
-                            <AiFillInstagram color="#fff" size={25} className="hover:shadow-lg hover:shadow-[#eecdfa] hover:transition-shadow" />
+                            <AiFillInstagram
+                                color="#fff"
+                                size={25}
+                                className="hover:shadow-lg hover:shadow-[#eecdfa] hover:transition-shadow"
+                            />
                         </Link>
                     </li>
                     <li>
                         <Link href="/">
-                            <AiFillFacebook color="#fff" size={25} className="hover:shadow-lg hover:shadow-[#eecdfa] hover:transition-shadow" />
+                            <AiFillFacebook
+                                color="#fff"
+                                size={25}
+                                className="hover:shadow-lg hover:shadow-[#eecdfa] hover:transition-shadow"
+                            />
                         </Link>
                     </li>
                 </ul>

@@ -4,11 +4,9 @@ import React from "react";
 import { FaHome, FaShoppingBag, FaShoppingCart } from "react-icons/fa";
 import { BiLogIn } from "react-icons/bi";
 import { AiOutlineClose, AiOutlineMenu } from "react-icons/ai";
-import { Tiro_Devanagari_Hindi } from "next/font/google";
 
 import { IPropsContentHeaderDesktop } from "@/interface";
-
-const tiro = Tiro_Devanagari_Hindi({ subsets: ["latin"], weight: "400" });
+import { tiro } from "@/functions/fonts";
 
 export const ContentHeaderDesktop: React.FC<IPropsContentHeaderDesktop> = ({
     showMenu,
