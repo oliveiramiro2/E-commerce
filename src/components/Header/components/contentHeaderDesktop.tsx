@@ -70,13 +70,13 @@ export const ContentHeaderDesktop: React.FC<IPropsContentHeaderDesktop> = ({
                 <AiOutlineClose
                     className="text-rose-600 cursor-pointer mr-6 hidden max-md:block"
                     size={25}
-                    onClick={() => setShowMenu(false)}
+                    onClick={() => setShowMenu()}
                 />
             ) : (
                 <AiOutlineMenu
                     className="text-pallet-orange cursor-pointer mr-6 hidden max-md:block"
                     size={25}
-                    onClick={() => setShowMenu(true)}
+                    onClick={() => setShowMenu()}
                 />
             )}
         </div>
