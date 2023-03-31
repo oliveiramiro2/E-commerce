@@ -58,7 +58,7 @@ export const Footer: React.FC = () => {
                 </ul>
             </nav>
             <nav className="h-full max-md:w-1/4">
-                <ul className="flex h-full gap-x-8 items-center pr-7 max-md:flex-col max-md:gap-y-5 max-md:pt-3 max-md:pb-3">
+                <ul className="flex h-full gap-x-8 items-center pr-14 max-md:flex-col max-md:gap-y-5 max-md:pt-3 max-md:pb-3">
                     <li>
                         <Link
                             href="/"
