@@ -1,6 +1,6 @@
 import React from "react";
 
-import { DefaultTemplate } from "./default";
+import { DefaultTemplate } from "../default";
 import { arnekG, oswald, tiro } from "@/functions/fonts";
 
 export const HomeTemplate: React.FC = () => (
@@ -13,7 +13,9 @@ export const HomeTemplate: React.FC = () => (
                 >
                     Bem-vindo ao RM E-commerce
                 </h1>
-                <p className={`font-medium tracking-wide max-md:text-xs ${arnekG.className}`}>
+                <p
+                    className={`font-medium tracking-wide max-md:text-xs ${arnekG.className}`}
+                >
                     Este é um E-commerce falso para fins de treinando com a
                     biblioteca ReactJS, o framework NextJS e uma store fake API
                     para meu portfólio.
