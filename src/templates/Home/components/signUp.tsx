@@ -1,6 +1,6 @@
 import React from 'react'
 
-export const SignInHome: React.FC = () => {
+export const SignUpHome: React.FC = () => {
   return (
     <section>signIn</section>
   )

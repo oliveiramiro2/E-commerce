@@ -1,11 +1,11 @@
 import React from "react";
 
 import { DefaultTemplate } from "../default";
-import { Banner, SignInHome } from "./components";
+import { Banner, SignUpHome } from "./components";
 
 export const HomeTemplate: React.FC = () => (
     <DefaultTemplate>
         <Banner />
-        <SignInHome />
+        <SignUpHome />
     </DefaultTemplate>
 );
