@@ -1,7 +1,6 @@
 import React from "react";
 
-import { Footer } from "@/components/Footer";
-import { Header } from "@/components/Header";
+import { Footer, Header } from "@/components";
 
 export const DefaultTemplate: React.FC<{ children: React.ReactNode }> = ({
     children,
