@@ -3,13 +3,13 @@
 import React from "react";
 import { useQuery } from "@tanstack/react-query";
 
-import { allProjects } from "@/services/api";
+import { bestOffers } from "@/services/api";
 import { IDataApi } from "@/interface";
 
 export const BestOffers: React.FC = () => {
     const { data, isLoading } = useQuery<IDataApi[] | undefined>({
-        queryKey: ["products"],
-        queryFn: allProjects,
+        queryKey: ["bestOffers"],
+        queryFn: bestOffers,
     });
 
     if (isLoading) return <div>loading...</div>;
