@@ -4,6 +4,11 @@ import axios from "axios"
 const base_url = "https://api.escuelajs.co/api/v1"
 
 
-export const api = axios.create({
+const api = axios.create({
     baseURL: base_url,
 })
+
+export const allProjects = async () => {
+    const { data } = await api.get("/products")
+    return data
+}
