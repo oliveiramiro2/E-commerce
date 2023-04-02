@@ -42,7 +42,7 @@ export const BestOffers: React.FC = () => {
             </div>
             <div className="flex w-[85%] max-lg:w-[90%] max-md:flex-wrap max-md:gap-y-5 justify-between">
                 {data !== undefined &&
-                    data.map(value => <Product param={value} />)}
+                    data.map(value => <Product key={value.id} param={value} />)}
             </div>
         </section>
     );
