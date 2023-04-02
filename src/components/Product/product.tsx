@@ -3,6 +3,8 @@
 import React from "react";
 import { SiFireship } from "react-icons/si";
 import clsx from "clsx";
+import { FaShoppingBag, FaShoppingCart } from "react-icons/fa";
+import Link from "next/link";
 
 import { IDataApi } from "@/interface";
 import { arnekG } from "@/functions/fonts";
@@ -40,6 +42,42 @@ export const Product: React.FC<{ param: IDataApi }> = ({ param }) => {
                 >
                     R$ {param.price},00
                 </p>
+            </div>
+            <div className="w-full flex justify-around mb-4">
+                <Link href="/">
+                    <button
+                        type="button"
+                        className={clsx(
+                            `hidden bg-pallet-orange pt-3 p-2 pl-4 pr-3 min-w-[35%] items-center gap-x-1 rounded-md font-bolder text-center text-sm text-pallet-white first-letter:capitalize hover:bg-[#ff9748] transition-colors shadow-md shadow-pallet-orange ${arnekG.className}`,
+                            {
+                                flex: show,
+                            }
+                        )}
+                    >
+                        <FaShoppingCart
+                            color="#f7f8f9"
+                            className="relative bottom-[3px]"
+                        />{" "}
+                        Carrinho
+                    </button>
+                </Link>
+                <Link href="/">
+                    <button
+                        type="button"
+                        className={clsx(
+                            `hidden bg-pallet-orange pt-3 p-2 pl-4 pr-3 min-w-[35%] items-center gap-x-1 rounded-md font-bolder text-center text-sm text-pallet-white first-letter:capitalize hover:bg-[#ff9748] transition-colors shadow-md shadow-pallet-orange ${arnekG.className}`,
+                            {
+                                flex: show,
+                            }
+                        )}
+                    >
+                        <FaShoppingBag
+                            color="#f7f8f9"
+                            className="relative bottom-[3px]"
+                        />{" "}
+                        Comprar
+                    </button>
+                </Link>
             </div>
         </div>
     );
