@@ -11,10 +11,16 @@ import { arnekG } from "@/functions/fonts";
 import { useShowInfo } from "./hooks/useShowInfo";
 
 export const Product: React.FC<{ param: IDataApi }> = ({ param }) => {
-    const { show } = useShowInfo();
+    const { show, handleShow, handleHide } = useShowInfo();
 
     return (
-        <div className="bg-pallet-black flex flex-col items-center gap-y-2 p-2 pr-3 pl-3 rounded-xl border-2 border-pallet-orange">
+        <div
+            className="bg-pallet-black flex flex-col items-center gap-y-2 p-2 pr-3 pl-3 rounded-xl border-2 border-pallet-orange shadow-lg shadow-pallet-orange"
+            onMouseOver={handleShow}
+            onFocus={handleShow}
+            onMouseOut={handleHide}
+            onBlur={handleHide}
+        >
             <p
                 className={`font-bold first-letter:capitalize text-lg text-pallet-white ${arnekG.className}`}
             >
@@ -27,9 +33,10 @@ export const Product: React.FC<{ param: IDataApi }> = ({ param }) => {
             />
             <p
                 className={clsx(
-                    `font-medium w-[20vw] hidden max-md:w-[80vw] text-center text-sm text-pallet-white first-letter:capitalize ${arnekG.className}`,
+                    `font-medium w-[20vw] max-md:w-[80vw] text-center text-sm text-pallet-white first-letter:capitalize ${arnekG.className}`,
                     {
-                        block: show,
+                        "block": show,
+                        "hidden": !show,
                     }
                 )}
             >
@@ -48,9 +55,10 @@ export const Product: React.FC<{ param: IDataApi }> = ({ param }) => {
                     <button
                         type="button"
                         className={clsx(
-                            `hidden bg-pallet-orange pt-3 p-2 pl-4 pr-3 min-w-[35%] items-center gap-x-1 rounded-md font-bolder text-center text-sm text-pallet-white first-letter:capitalize hover:bg-[#ff9748] transition-colors shadow-md shadow-pallet-orange ${arnekG.className}`,
+                            `bg-pallet-orange pt-3 p-2 pl-4 pr-3 min-w-[35%] items-center gap-x-1 rounded-md font-bolder text-center text-sm text-pallet-white first-letter:capitalize hover:bg-[#ff9748] transition-colors shadow-md shadow-pallet-orange ${arnekG.className}`,
                             {
-                                flex: show,
+                                "flex": show,
+                                "hidden": !show,
                             }
                         )}
                     >
@@ -65,9 +73,10 @@ export const Product: React.FC<{ param: IDataApi }> = ({ param }) => {
                     <button
                         type="button"
                         className={clsx(
-                            `hidden bg-pallet-orange pt-3 p-2 pl-4 pr-3 min-w-[35%] items-center gap-x-1 rounded-md font-bolder text-center text-sm text-pallet-white first-letter:capitalize hover:bg-[#ff9748] transition-colors shadow-md shadow-pallet-orange ${arnekG.className}`,
+                            `bg-pallet-orange pt-3 p-2 pl-4 pr-3 min-w-[35%] items-center gap-x-1 rounded-md font-bolder text-center text-sm text-pallet-white first-letter:capitalize hover:bg-[#ff9748] transition-colors shadow-md shadow-pallet-orange ${arnekG.className}`,
                             {
-                                flex: show,
+                                "flex": show,
+                                "hidden": !show,
                             }
                         )}
                     >
