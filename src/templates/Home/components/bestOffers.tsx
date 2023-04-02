@@ -22,11 +22,11 @@ export const BestOffers: React.FC = () => {
                 >
                     Produtos em oferta
                 </h2>
-            <div className="w-full flex flex-wrap justify-between pr-10 pl-5 max-md:flex-row max-md:mb-8 max-md:gap-y-5 max-md:justify-center max-md:items-center">
-                <SkeletonProducts />
-                <SkeletonProducts />
-                <SkeletonProducts />
-            </div>
+                <div className="w-full flex flex-wrap justify-between pr-10 pl-5 max-md:flex-row max-md:mb-8 max-md:gap-y-5 max-md:justify-center max-md:items-center">
+                    <SkeletonProducts />
+                    <SkeletonProducts />
+                    <SkeletonProducts />
+                </div>
             </div>
         );
     }
