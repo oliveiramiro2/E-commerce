@@ -10,3 +10,9 @@ export interface IDataApi {
     };
     images: string[] | string;
 }
+
+export interface ICategoryApi {
+    id: number;
+    name: string;
+    image: string;
+}
