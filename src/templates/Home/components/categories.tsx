@@ -1,8 +1,20 @@
+"use client";
+
 import React from "react";
+import { useQuery } from "@tanstack/react-query";
 
 import { oswald } from "@/functions/fonts";
+import { categories } from "@/services/api";
+import { ICategoryApi } from "@/interface";
 
 export const Categories: React.FC = () => {
+    const { data, isLoading } = useQuery<ICategoryApi[] | undefined>({
+        queryFn: () => categories(""),
+        queryKey: ["allCategories"],
+    });
+
+    if (isLoading) return <div>loading...</div>;
+
     return (
         <section>
             <div>
@@ -12,6 +24,10 @@ export const Categories: React.FC = () => {
                     Categorias
                 </h2>
             </div>
+            <ul>
+                {data !== undefined &&
+                    data.map(value => <li key={value.id}>{value.name}</li>)}
+            </ul>
         </section>
     );
 };
