@@ -36,6 +36,6 @@ export const bestOffers = async (): Promise<IDataApi[] | undefined> => {
 
 export const categories = async (param?: string) => {
     const { data }: {data: ICategoryApi[] | ICategoryApi | undefined} =
-        await api.get(`/products${param}`)
+        await api.get(`/categories${param}`)
     return data
 }
