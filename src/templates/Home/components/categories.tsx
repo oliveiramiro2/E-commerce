@@ -25,8 +25,8 @@ export const Categories: React.FC = () => {
                     Categorias
                 </h2>
             </div>
-            <div className="flex w-[86%] overflow-x-hidden">
-                <div className="w-full flex gap-x-5">
+            <div className="flex w-[86%] overflow-x-hidden pb-8">
+                <div className="w-full flex gap-5 justify-center items-center flex-wrap">
                 {data !== undefined &&
                     data.map(value => (
                         <ContainCategory key={value.id} data={value} />
