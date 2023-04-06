@@ -37,21 +37,21 @@ export const Footer: React.FC = () => {
             </nav>
             <nav className="h-full">
                 <ul className="flex h-full gap-x-8 items-center">
-                    <li>
+                    <li className="bg-[#cf5df8] rounded-[10px]">
                         <Link href="/">
                             <AiFillInstagram
                                 color="#fff"
                                 size={25}
-                                className="hover:shadow-lg hover:shadow-[#eecdfa] hover:transition-shadow"
+                                className="shadow-md shadow-[#cf5df8] rounded-[10px]"
                             />
                         </Link>
                     </li>
-                    <li>
+                    <li className="bg-[#cf5df8] rounded-[10px]">
                         <Link href="/">
                             <AiFillFacebook
                                 color="#fff"
                                 size={25}
-                                className="hover:shadow-lg hover:shadow-[#eecdfa] hover:transition-shadow"
+                                className="shadow-md shadow-[#cf5df8] rounded-[10px]"
                             />
                         </Link>
                     </li>
