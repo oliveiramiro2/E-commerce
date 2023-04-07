@@ -4,6 +4,7 @@ import React from "react";
 import { useForm } from "react-hook-form";
 import { FieldValues } from "react-hook-form/dist/types";
 import { z } from "zod";
+import { zodResolver } from "@hookform/resolvers/zod";
 
 import { oswald, tiro } from "@/functions/fonts";
 
@@ -23,17 +24,29 @@ const schemaRegister = z
         message: "As senhas devem ser iguais!",
     });
 
+type formProps = z.infer<typeof schemaRegister>;
+
 export const LoginAndRegister: React.FC<{ registerComponent: boolean }> = ({
     registerComponent,
 }) => {
     const {
         handleSubmit,
         register,
-        setValue,
         formState: { errors },
-    } = useForm({});
+    } = useForm<formProps>({
+        criteriaMode: "all",
+        mode: "all",
+        resolver: zodResolver(schemaRegister),
+        reValidateMode: "onChange",
+        defaultValues: {
+            confirmPassword: "",
+            email: "",
+            password: "",
+            name: "",
+        },
+    });
 
-    const loginValid = (data: FieldValues) => {
+    const loginValid = (data: formProps) => {
         return data;
     };
 
@@ -67,6 +80,9 @@ export const LoginAndRegister: React.FC<{ registerComponent: boolean }> = ({
                                 placeholder="Digite seu nome"
                                 {...register("name")}
                             />
+                            {errors.name?.message && (
+                                <p>{errors.name?.message}</p>
+                            )}
                         </div>
                     )}
                     <div className="flex flex-col w-[45%] max-xl:w-[60%] max-lg:w-[70%] max-md:w-[80%] max-sm:w-[90%] items-center">
@@ -83,6 +99,9 @@ export const LoginAndRegister: React.FC<{ registerComponent: boolean }> = ({
                             placeholder="Digite seu email"
                             {...register("email")}
                         />
+                        {errors.email?.message && (
+                            <p>{errors.email?.message}</p>
+                        )}
                     </div>
                     <div className="flex flex-col w-[45%] max-xl:w-[60%] max-lg:w-[70%] max-md:w-[80%] max-sm:w-[90%] items-center">
                         <label
@@ -98,6 +117,9 @@ export const LoginAndRegister: React.FC<{ registerComponent: boolean }> = ({
                             placeholder="Digite sua senha"
                             {...register("password")}
                         />
+                        {errors.password?.message && (
+                            <p>{errors.password?.message}</p>
+                        )}
                     </div>
                     {registerComponent && (
                         <div className="flex flex-col w-[45%] max-xl:w-[60%] max-lg:w-[70%] max-md:w-[80%] max-sm:w-[90%] items-center">
@@ -114,6 +136,9 @@ export const LoginAndRegister: React.FC<{ registerComponent: boolean }> = ({
                                 placeholder="Repita sua senha"
                                 {...register("confirmPassword")}
                             />
+                            {errors.confirmPassword?.message && (
+                                <p>{errors.confirmPassword?.message}</p>
+                            )}
                         </div>
                     )}
                     <button
