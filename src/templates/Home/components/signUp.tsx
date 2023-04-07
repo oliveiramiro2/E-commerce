@@ -1,4 +1,5 @@
 import React from "react";
+import Link from "next/link";
 
 import { arnekG, oswald, tiro } from "@/functions/fonts";
 
@@ -6,7 +7,9 @@ export const SignUpHome: React.FC = () => {
     return (
         <section className="w-screen min-h-[65vh] flex flex-col items-center pt-8">
             <div>
-                <h2 className={`font-black text-3xl relative right-5 max-lg:right-0 ${oswald.className}`}>
+                <h2
+                    className={`font-black text-3xl relative right-5 max-lg:right-0 ${oswald.className}`}
+                >
                     Faça seu cadastro
                 </h2>
             </div>
@@ -26,7 +29,7 @@ export const SignUpHome: React.FC = () => {
                         type="button"
                         className={`self-center rounded-xl p-2 pl-8 pr-8 bg-pallet-purple text-pallet-white tracking-wide shadow-lg shadow-gray-400 hover:bg-[#bf3eee] hover:transition-colors ${oswald.className}`}
                     >
-                        Registrar
+                        <Link href="/cadastro">Registrar</Link>
                     </button>
                 </div>
                 <div className="p-10 w-[40%] max-sm:w-[80%] max-md:pl-2 max-md:pr-2">

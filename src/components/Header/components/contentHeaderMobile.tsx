@@ -52,7 +52,7 @@ export const ContentHeaderMobile: React.FC = () => {
                         type="button"
                     >
                         <Link
-                            href="/"
+                            href="/entrar"
                             className="text-pallet-white flex gap-x-1 font-bold tracking-wider"
                         >
                             <BiLogIn

@@ -55,7 +55,7 @@ export const ContentHeaderDesktop: React.FC<IPropsContentHeaderDesktop> = ({
                 className="bg-pallet-orange hover:bg-[#ff9748] transition-colors shadow-md shadow-pallet-orange absolute right-5 h-5 p-8 pt-4 pb-4 rounded-md flex justify-center items-center max-md:hidden"
             >
                 <Link
-                    href="/"
+                    href="/entrar"
                     className="text-pallet-white font-bold tracking-wider flex gap-x-1"
                 >
                     <BiLogIn
