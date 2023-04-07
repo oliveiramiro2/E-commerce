@@ -39,3 +39,10 @@ export const categories = async (param: string) => {
         await api.get(`/categories${param}`)
     return data
 }
+
+// user
+export const emailIsAvaliable = async (email: string) => {
+    const {data} = await api.post(`/users/is-available`, email)
+    return data.isAvailable
+}
+
