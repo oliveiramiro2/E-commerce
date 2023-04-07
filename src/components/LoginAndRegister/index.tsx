@@ -2,7 +2,7 @@
 
 import React from "react";
 import { useForm } from "react-hook-form";
-import { FieldValues } from "react-hook-form/dist/types";
+import { SubmitErrorHandler, SubmitHandler } from "react-hook-form/dist/types";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 
@@ -46,17 +46,19 @@ export const LoginAndRegister: React.FC<{ registerComponent: boolean }> = ({
         },
     });
 
-    const loginValid = (data: formProps) => {
+    const loginValid: SubmitHandler<formProps> = (data) => {
+        console.log(data.confirmPassword)
         return data;
     };
 
-    const loginInvalid = (data: FieldValues) => {
+    const loginInvalid: SubmitErrorHandler<formProps> = (data) => {
+        console.log(data.email?.message, 'aaa')
         return data;
     };
 
     return (
         <section className="w-screen min-h-[72vh] flex justify-center">
-            <div className="w-[80%] max-md:w-[90%] flex flex-col items-center">
+            <div className="w-[80%] max-md:w-[90%] flex flex-col items-center mb-8">
                 <div className="w-[45%] max-xl:w-[60%] max-lg:w-[70%] max-md:w-[80%] max-sm:w-[90%] flex justify-center mb-3 mt-3">
                     <h3
                         className={`font-black text-3xl self-center max-lg:right-0 ${oswald.className}`}
@@ -76,12 +78,12 @@ export const LoginAndRegister: React.FC<{ registerComponent: boolean }> = ({
                             <input
                                 type="text"
                                 id="name"
-                                className={`w-full outline-none border-2 border-pallet-purple p-1 pl-2 pt-2 rounded-lg ${tiro.className}`}
+                                className={`w-full outline-none border-2 border-pallet-purple p-1 pl-2 rounded-lg ${tiro.className}`}
                                 placeholder="Digite seu nome"
                                 {...register("name")}
                             />
                             {errors.name?.message && (
-                                <p>{errors.name?.message}</p>
+                                <p className={`text-red-500 font-semibold self-center ${tiro.className}`}>{errors.name?.message}</p>
                             )}
                         </div>
                     )}
@@ -95,12 +97,12 @@ export const LoginAndRegister: React.FC<{ registerComponent: boolean }> = ({
                         <input
                             type="email"
                             id="email"
-                            className={`w-full outline-none border-2 border-pallet-purple p-1 pl-2 pt-2 rounded-lg ${tiro.className}`}
+                            className={`w-full outline-none border-2 border-pallet-purple p-1 pl-2 rounded-lg ${tiro.className}`}
                             placeholder="Digite seu email"
                             {...register("email")}
                         />
                         {errors.email?.message && (
-                            <p>{errors.email?.message}</p>
+                            <p className={`text-red-500 font-semibold self-center ${tiro.className}`}>{errors.email?.message}</p>
                         )}
                     </div>
                     <div className="flex flex-col w-[45%] max-xl:w-[60%] max-lg:w-[70%] max-md:w-[80%] max-sm:w-[90%] items-center">
@@ -113,12 +115,12 @@ export const LoginAndRegister: React.FC<{ registerComponent: boolean }> = ({
                         <input
                             type="password"
                             id="senha"
-                            className={`w-full outline-none border-2 border-pallet-purple p-1 pl-2 pt-2 rounded-lg ${tiro.className}`}
+                            className={`w-full outline-none border-2 border-pallet-purple p-1 pl-2 rounded-lg ${tiro.className}`}
                             placeholder="Digite sua senha"
                             {...register("password")}
                         />
                         {errors.password?.message && (
-                            <p>{errors.password?.message}</p>
+                            <p className={`text-red-500 font-semibold self-center ${tiro.className}`}>{errors.password?.message}</p>
                         )}
                     </div>
                     {registerComponent && (
@@ -132,19 +134,19 @@ export const LoginAndRegister: React.FC<{ registerComponent: boolean }> = ({
                             <input
                                 type="password"
                                 id="senha2"
-                                className={`w-full outline-none border-2 border-pallet-purple p-1 pl-2 pt-2 rounded-lg ${tiro.className}`}
+                                className={`w-full outline-none border-2 border-pallet-purple p-1 pl-2 rounded-lg ${tiro.className}`}
                                 placeholder="Repita sua senha"
                                 {...register("confirmPassword")}
                             />
                             {errors.confirmPassword?.message && (
-                                <p>{errors.confirmPassword?.message}</p>
+                                <p className={`text-red-500 font-semibold self-center ${tiro.className}`}>{errors.confirmPassword?.message}</p>
                             )}
                         </div>
                     )}
                     <button
                         type="button"
                         className={`self-center rounded-lg p-2 pl-8 pr-8 bg-pallet-purple text-pallet-white tracking-wide shadow-lg shadow-gray-400 hover:bg-[#bf3eee] hover:transition-colors ${oswald.className}`}
-                        onClick={() => handleSubmit(loginValid, loginInvalid)}
+                        onClick={handleSubmit(loginValid, loginInvalid)}
                     >
                         {registerComponent ? "Fazer cadastro" : "Entrar"}
                     </button>
