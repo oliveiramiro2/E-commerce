@@ -1,12 +1,12 @@
 "use client";
 
-import React, { useLayoutEffect } from "react";
+import React, { useEffect } from "react";
 
 import { DefaultTemplate } from "../default";
 import { LoginAndRegister } from "@/components";
 
 export const SignInTemplate: React.FC = () => {
-    useLayoutEffect(() => {
+    useEffect(() => {
         document.title = "RM E-commerce - Cadastro";
     }, []);
 

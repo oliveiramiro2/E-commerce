@@ -1,12 +1,12 @@
 "use client";
 
-import React, { useLayoutEffect } from "react";
+import React, { useEffect } from "react";
 
 import { DefaultTemplate } from "../default";
 import { Banner, BestOffers, Categories, SignUpHome } from "./components";
 
 export const HomeTemplate: React.FC = () => {
-    useLayoutEffect(() => {
+    useEffect(() => {
         document.title = "RM E-commerce - Home";
     }, []);
 
