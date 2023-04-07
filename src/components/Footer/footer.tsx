@@ -6,7 +6,7 @@ import { tiro } from "@/functions/fonts";
 
 export const Footer: React.FC = () => {
     return (
-        <footer className="w-screen min-h-[100px] bg-pallet-purple flex relative bottom-0 justify-between items-center">
+        <footer className="w-screen min-h-[15vh] bg-pallet-purple flex relative bottom-0 justify-between items-center">
             <nav className="h-full">
                 <ul className="flex h-full gap-x-8 items-center pl-10 max-md:flex-col max-md:gap-y-5 max-md:pt-3 max-md:pb-3">
                     <li>
