@@ -18,6 +18,7 @@ const schemaRegister = z
         confirmPassword: z
             .string()
             .min(8, "Sua senha deve ter no mínimo 8 caracteres!"),
+        type: z.boolean()
     })
     .refine(fields => fields.password === fields.confirmPassword, {
         path: ["confirmPassword"],
@@ -43,6 +44,7 @@ export const LoginAndRegister: React.FC<{ registerComponent: boolean }> = ({
             email: "",
             password: "",
             name: "",
+            type: false,
         },
     });
 
@@ -141,6 +143,23 @@ export const LoginAndRegister: React.FC<{ registerComponent: boolean }> = ({
                             {errors.confirmPassword?.message && (
                                 <p className={`text-red-500 font-semibold self-center ${tiro.className}`}>{errors.confirmPassword?.message}</p>
                             )}
+                        </div>
+                    )}
+                    {registerComponent && (
+                        <div className="flex w-[45%] max-xl:w-[60%] max-lg:w-[70%] max-md:w-[80%] max-sm:w-[90%] items-center pl-2">
+                            <input
+                                type="checkbox"
+                                id="tipo"
+                                className="bg-pallet-purple checked:text-pallet-purple"
+                                placeholder="Repita sua senha"
+                                {...register("type")}
+                            />
+                            <label
+                                htmlFor="tipo"
+                                className={`ml-2 font-semibold self-start ${tiro.className}`}
+                            >
+                                Administrador
+                            </label>
                         </div>
                     )}
                     <button
