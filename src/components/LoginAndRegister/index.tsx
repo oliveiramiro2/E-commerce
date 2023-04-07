@@ -49,7 +49,7 @@ export const LoginAndRegister: React.FC<{ registerComponent: boolean }> = ({
     });
 
     const loginValid: SubmitHandler<formProps> = (data) => {
-        console.log(data.confirmPassword)
+        console.log(data)
         return data;
     };
 
@@ -85,7 +85,7 @@ export const LoginAndRegister: React.FC<{ registerComponent: boolean }> = ({
                                 {...register("name")}
                             />
                             {errors.name?.message && (
-                                <p className={`text-red-500 font-semibold self-center ${tiro.className}`}>{errors.name?.message}</p>
+                                <p className={`text-red-500 font-semibold self-center relative top-3 ${tiro.className}`}>{errors.name?.message}</p>
                             )}
                         </div>
                     )}
@@ -104,7 +104,7 @@ export const LoginAndRegister: React.FC<{ registerComponent: boolean }> = ({
                             {...register("email")}
                         />
                         {errors.email?.message && (
-                            <p className={`text-red-500 font-semibold self-center ${tiro.className}`}>{errors.email?.message}</p>
+                            <p className={`text-red-500 font-semibold self-center relative top-3 ${tiro.className}`}>{errors.email?.message}</p>
                         )}
                     </div>
                     <div className="flex flex-col w-[45%] max-xl:w-[60%] max-lg:w-[70%] max-md:w-[80%] max-sm:w-[90%] items-center">
@@ -122,7 +122,7 @@ export const LoginAndRegister: React.FC<{ registerComponent: boolean }> = ({
                             {...register("password")}
                         />
                         {errors.password?.message && (
-                            <p className={`text-red-500 font-semibold self-center ${tiro.className}`}>{errors.password?.message}</p>
+                            <p className={`text-red-500 font-semibold self-center relative top-3 ${tiro.className}`}>{errors.password?.message}</p>
                         )}
                     </div>
                     {registerComponent && (
@@ -141,22 +141,22 @@ export const LoginAndRegister: React.FC<{ registerComponent: boolean }> = ({
                                 {...register("confirmPassword")}
                             />
                             {errors.confirmPassword?.message && (
-                                <p className={`text-red-500 font-semibold self-center ${tiro.className}`}>{errors.confirmPassword?.message}</p>
+                                <p className={`text-red-500 font-semibold self-center relative top-3 ${tiro.className}`}>{errors.confirmPassword?.message}</p>
                             )}
                         </div>
                     )}
                     {registerComponent && (
-                        <div className="flex w-[45%] max-xl:w-[60%] max-lg:w-[70%] max-md:w-[80%] max-sm:w-[90%] items-center pl-2">
+                        <div className="flex w-[45%] max-xl:w-[60%] max-lg:w-[70%] max-md:w-[80%] max-sm:w-[90%] mt-5 items-center pl-2">
                             <input
                                 type="checkbox"
                                 id="tipo"
-                                className="bg-pallet-purple checked:text-pallet-purple"
+                                className="accent-pallet-purple"
                                 placeholder="Repita sua senha"
                                 {...register("type")}
                             />
                             <label
                                 htmlFor="tipo"
-                                className={`ml-2 font-semibold self-start ${tiro.className}`}
+                                className={`ml-2 font-semibold self-start relative top-[2px] ${tiro.className}`}
                             >
                                 Administrador
                             </label>
@@ -164,7 +164,7 @@ export const LoginAndRegister: React.FC<{ registerComponent: boolean }> = ({
                     )}
                     <button
                         type="button"
-                        className={`self-center rounded-lg p-2 pl-8 pr-8 bg-pallet-purple text-pallet-white tracking-wide shadow-lg shadow-gray-400 hover:bg-[#bf3eee] hover:transition-colors ${oswald.className}`}
+                        className={`self-center rounded-lg p-2 pl-8 pr-8 mt-2 bg-pallet-purple text-pallet-white font-semibold tracking-wide shadow-lg shadow-gray-400 hover:bg-[#bf3eee] hover:transition-colors ${oswald.className}`}
                         onClick={handleSubmit(loginValid, loginInvalid)}
                     >
                         {registerComponent ? "Fazer cadastro" : "Entrar"}
