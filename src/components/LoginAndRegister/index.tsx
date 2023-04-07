@@ -16,20 +16,22 @@ export const LoginAndRegister: React.FC<{ register: boolean }> = ({
                     </h3>
                 </div>
                 <form className="flex flex-col gap-y-4 w-full items-center">
-                    <div className="flex flex-col w-[45%] max-xl:w-[60%] max-lg:w-[70%] max-md:w-[80%] max-sm:w-[90%] items-center">
-                        <label
-                            htmlFor="name"
-                            className={`ml-2 font-semibold self-start ${tiro.className}`}
-                        >
-                            Nome
-                        </label>
-                        <input
-                            type="text"
-                            id="name"
-                            className={`w-full outline-none border-2 border-pallet-purple p-1 pl-2 pt-2 rounded-lg ${tiro.className}`}
-                            placeholder="Digite seu nome"
-                        />
-                    </div>
+                    {register && (
+                        <div className="flex flex-col w-[45%] max-xl:w-[60%] max-lg:w-[70%] max-md:w-[80%] max-sm:w-[90%] items-center">
+                            <label
+                                htmlFor="name"
+                                className={`ml-2 font-semibold self-start ${tiro.className}`}
+                            >
+                                Nome
+                            </label>
+                            <input
+                                type="text"
+                                id="name"
+                                className={`w-full outline-none border-2 border-pallet-purple p-1 pl-2 pt-2 rounded-lg ${tiro.className}`}
+                                placeholder="Digite seu nome"
+                            />
+                        </div>
+                    )}
                     <div className="flex flex-col w-[45%] max-xl:w-[60%] max-lg:w-[70%] max-md:w-[80%] max-sm:w-[90%] items-center">
                         <label
                             htmlFor="email"
@@ -58,20 +60,22 @@ export const LoginAndRegister: React.FC<{ register: boolean }> = ({
                             placeholder="Digite sua senha"
                         />
                     </div>
-                    <div className="flex flex-col w-[45%] max-xl:w-[60%] max-lg:w-[70%] max-md:w-[80%] max-sm:w-[90%] items-center">
-                        <label
-                            htmlFor="senha2"
-                            className={`ml-2 font-semibold self-start ${tiro.className}`}
-                        >
-                            Confirme sua senha
-                        </label>
-                        <input
-                            type="password"
-                            id="senha2"
-                            className={`w-full outline-none border-2 border-pallet-purple p-1 pl-2 pt-2 rounded-lg ${tiro.className}`}
-                            placeholder="Repita sua senha"
-                        />
-                    </div>
+                    {register && (
+                        <div className="flex flex-col w-[45%] max-xl:w-[60%] max-lg:w-[70%] max-md:w-[80%] max-sm:w-[90%] items-center">
+                            <label
+                                htmlFor="senha2"
+                                className={`ml-2 font-semibold self-start ${tiro.className}`}
+                            >
+                                Confirme sua senha
+                            </label>
+                            <input
+                                type="password"
+                                id="senha2"
+                                className={`w-full outline-none border-2 border-pallet-purple p-1 pl-2 pt-2 rounded-lg ${tiro.className}`}
+                                placeholder="Repita sua senha"
+                            />
+                        </div>
+                    )}
                     <button
                         type="button"
                         className={`self-center rounded-lg p-2 pl-8 pr-8 bg-pallet-purple text-pallet-white tracking-wide shadow-lg shadow-gray-400 hover:bg-[#bf3eee] hover:transition-colors ${oswald.className}`}
