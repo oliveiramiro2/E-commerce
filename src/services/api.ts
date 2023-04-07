@@ -50,4 +50,8 @@ export const register = async (param: string, dataForm: any) => {
     await api.post(`/users${param === "" ? "" : "/1"}`, dataForm)
 }
 
-
+// login
+export const login = async (dataForm: any) => {
+    const { data } = await api.post(`/auth/login`, dataForm)
+    return data
+}
