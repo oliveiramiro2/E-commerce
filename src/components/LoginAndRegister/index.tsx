@@ -1,8 +1,27 @@
+"use client";
+
 import React from "react";
 import { useForm } from "react-hook-form";
 import { FieldValues } from "react-hook-form/dist/types";
+import { z } from "zod";
 
 import { oswald, tiro } from "@/functions/fonts";
+
+const schemaRegister = z
+    .object({
+        name: z.string().min(2, "O campo nome é obrigatório!"),
+        email: z.string().email("Por favor, digite um email válido!"),
+        password: z
+            .string()
+            .min(8, "Sua senha deve ter no mínimo 8 caracteres!"),
+        confirmPassword: z
+            .string()
+            .min(8, "Sua senha deve ter no mínimo 8 caracteres!"),
+    })
+    .refine(fields => fields.password === fields.confirmPassword, {
+        path: ["confirmPassword"],
+        message: "As senhas devem ser iguais!",
+    });
 
 export const LoginAndRegister: React.FC<{ registerComponent: boolean }> = ({
     registerComponent,
@@ -17,6 +36,7 @@ export const LoginAndRegister: React.FC<{ registerComponent: boolean }> = ({
     const loginValid = (data: FieldValues) => {
         return data;
     };
+
     const loginInvalid = (data: FieldValues) => {
         return data;
     };
@@ -45,6 +65,7 @@ export const LoginAndRegister: React.FC<{ registerComponent: boolean }> = ({
                                 id="name"
                                 className={`w-full outline-none border-2 border-pallet-purple p-1 pl-2 pt-2 rounded-lg ${tiro.className}`}
                                 placeholder="Digite seu nome"
+                                {...register("name")}
                             />
                         </div>
                     )}
@@ -60,6 +81,7 @@ export const LoginAndRegister: React.FC<{ registerComponent: boolean }> = ({
                             id="email"
                             className={`w-full outline-none border-2 border-pallet-purple p-1 pl-2 pt-2 rounded-lg ${tiro.className}`}
                             placeholder="Digite seu email"
+                            {...register("email")}
                         />
                     </div>
                     <div className="flex flex-col w-[45%] max-xl:w-[60%] max-lg:w-[70%] max-md:w-[80%] max-sm:w-[90%] items-center">
@@ -74,6 +96,7 @@ export const LoginAndRegister: React.FC<{ registerComponent: boolean }> = ({
                             id="senha"
                             className={`w-full outline-none border-2 border-pallet-purple p-1 pl-2 pt-2 rounded-lg ${tiro.className}`}
                             placeholder="Digite sua senha"
+                            {...register("password")}
                         />
                     </div>
                     {registerComponent && (
@@ -89,6 +112,7 @@ export const LoginAndRegister: React.FC<{ registerComponent: boolean }> = ({
                                 id="senha2"
                                 className={`w-full outline-none border-2 border-pallet-purple p-1 pl-2 pt-2 rounded-lg ${tiro.className}`}
                                 placeholder="Repita sua senha"
+                                {...register("confirmPassword")}
                             />
                         </div>
                     )}
