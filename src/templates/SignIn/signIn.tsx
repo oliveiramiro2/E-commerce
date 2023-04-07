@@ -1,8 +1,13 @@
-import React from 'react'
+"use client";
+
+import React, { useLayoutEffect } from "react";
+
+import { DefaultTemplate } from "../default";
 
 export const SignInTemplate: React.FC = () => {
-  return (
-    <div>signIn</div>
-  )
-}
+    useLayoutEffect(() => {
+        document.title = "RM E-commerce - Cadastro";
+    }, []);
 
+    return <DefaultTemplate>signIn</DefaultTemplate>;
+};
