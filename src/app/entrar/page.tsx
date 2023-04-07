@@ -1,9 +1,7 @@
-import React from 'react'
+import React from "react";
 
-const SignUp: React.FC = () => {
-  return (
-    <div>page</div>
-  )
-}
+import { SignUpTemplate } from "@/templates";
 
-export default SignUp
+const SignUp: React.FC = () => <SignUpTemplate />;
+
+export default SignUp;
