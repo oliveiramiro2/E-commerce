@@ -1,6 +1,6 @@
 import axios from "axios"
 
-import { ICategoryApi, IDataApi } from "@/interface"
+import { ICategoryApi, IDataApi, IDataLoginUser, IDataRegisterUser } from "@/interface"
 
 /* const base_url = "https://fakestoreapi.com/" */
 const base_url = "https://api.escuelajs.co/api/v1"
@@ -46,12 +46,12 @@ export const emailIsAvaliable = async (email: string) => {
     return data.isAvailable
 }
 
-export const register = async (param: string, dataForm: any) => {
+export const register = async (param: string, dataForm: IDataRegisterUser) => {
     await api.post(`/users${param === "" ? "" : "/1"}`, dataForm)
 }
 
 // login
-export const login = async (dataForm: any) => {
+export const login = async (dataForm: IDataLoginUser) => {
     const { data } = await api.post(`/auth/login`, dataForm)
     return data
 }
