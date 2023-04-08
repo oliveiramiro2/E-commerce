@@ -94,14 +94,14 @@ export const LoginAndRegister: React.FC<{ registerComponent: boolean }> = ({
                     {registerComponent && (
                         <div className="flex flex-col w-[45%] max-xl:w-[60%] max-lg:w-[70%] max-md:w-[80%] max-sm:w-[90%] items-center">
                             <label
-                                htmlFor="senha2"
+                                htmlFor="confirmPassword"
                                 className={`ml-2 font-semibold self-start ${tiro.className}`}
                             >
                                 Confirme sua senha
                             </label>
                             <input
                                 type="password"
-                                id="senha2"
+                                id="confirmPassword"
                                 className={`w-full outline-none border-2 border-pallet-purple p-1 pl-2 rounded-lg ${tiro.className}`}
                                 placeholder="Repita sua senha"
                                 {...register("confirmPassword")}

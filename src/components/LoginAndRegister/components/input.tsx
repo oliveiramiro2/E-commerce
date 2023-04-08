@@ -3,7 +3,7 @@ import React from "react";
 import { IPropsInput } from "../interfaces";
 import { tiro } from "@/functions/fonts";
 
-export const InputUser: React.FC<IPropsInput> = ({ data }) => (
+export const InputUser: React.FC<{data: IPropsInput}> = ({ data }) => (
     <div className="flex flex-col w-[45%] max-xl:w-[60%] max-lg:w-[70%] max-md:w-[80%] max-sm:w-[90%] items-center">
         <label
             htmlFor={data.name}
