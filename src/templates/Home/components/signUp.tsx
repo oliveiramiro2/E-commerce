@@ -4,7 +4,7 @@ import React, { useContext } from "react";
 import Link from "next/link";
 
 import { arnekG, oswald, tiro } from "@/functions/fonts";
-import { RegisterHomeContext } from "@/context/registerUserHome";
+import { RegisterHomeContext } from "@/contexts/registerUserHome";
 
 export const SignUpHome: React.FC = () => {
     const { userData, setUserData } = useContext(RegisterHomeContext);

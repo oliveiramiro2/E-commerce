@@ -1,3 +1,5 @@
+"use client";
+
 import React, { createContext, useMemo, useState } from "react";
 import { IContextDataRegisterHome, IDataRegisterHome } from "@/interface";
 

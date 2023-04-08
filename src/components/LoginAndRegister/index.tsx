@@ -4,7 +4,7 @@ import { oswald } from "@/functions/fonts";
 import { useLoginOrRegister, useLoginRegister } from "./hooks";
 import { loginInvalid, loginValid } from "./functions";
 import { CheckBoxUser, InputUser } from "./components";
-import { RegisterHomeContext } from "@/context/registerUserHome";
+import { RegisterHomeContext } from "@/contexts/registerUserHome";
 
 export const LoginAndRegister: React.FC<{ registerComponent: boolean }> = ({
     registerComponent,
@@ -14,6 +14,8 @@ export const LoginAndRegister: React.FC<{ registerComponent: boolean }> = ({
     const { dataInputs } = useLoginOrRegister(registerComponent);
     const { userData } = useContext(RegisterHomeContext);
 
+
+    console.log(userData, "singup component 2")
     /* useEffect(() => {
         setUserData({email: '', password: ''})
     }, []) */

@@ -6,19 +6,16 @@ import "animate.css";
 
 import { Footer, Header } from "@/components";
 import RootLayout from "@/app/layout";
-import ECommProvider from "@/contexts";
 
 export const DefaultTemplate: React.FC<{ children: React.ReactNode }> = ({
     children,
 }) => (
-    <ECommProvider>
-        <RootLayout>
-            <main className="bg-white min-h-screen w-screen flex flex-col items-center">
-                <ReactNotifications />
-                <Header />
-                {children}
-                <Footer />
-            </main>
-        </RootLayout>
-    </ECommProvider>
+    <RootLayout>
+        <div className="bg-white min-h-screen w-screen flex flex-col items-center">
+            <ReactNotifications />
+            <Header />
+            {children}
+            <Footer />
+        </div>
+    </RootLayout>
 );
