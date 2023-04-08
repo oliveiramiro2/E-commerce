@@ -1,1 +1,1 @@
-export type { formProps } from './register'
+export type { formProps, IPropsInput } from './register'
