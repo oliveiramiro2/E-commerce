@@ -1,9 +1,14 @@
-import React from "react";
+"use client";
+
+import React, { useContext } from "react";
 import Link from "next/link";
 
 import { arnekG, oswald, tiro } from "@/functions/fonts";
+import { RegisterHomeContext } from "@/context/registerUserHome";
 
 export const SignUpHome: React.FC = () => {
+    const { userData, setUserData } = useContext(RegisterHomeContext);
+
     return (
         <section className="w-screen min-h-[65vh] flex flex-col items-center pt-8">
             <div>
@@ -16,18 +21,27 @@ export const SignUpHome: React.FC = () => {
             <div className="flex mt-8 justify-center gap-x-8 pl-5 pr-5 max-sm:flex-wrap-reverse max-sm:mb-8">
                 <div className="flex flex-col w-[30%] max-lg:w-[40%] justify-center items-end gap-y-5 max-sm:w-[90%] max-sm:items-center">
                     <input
-                        type="text"
+                        type="email"
                         className={`min-w-[90%] max-sm:w-[90%] outline-none border-[1.5px] border-pallet-purple p-3 pl-5 rounded-lg ${tiro.className}`}
                         placeholder="Digite seu e-mail"
+                        onChange={e =>
+                            setUserData({ ...userData, email: e.target.value })
+                        }
+                        defaultValue={userData.email}
                     />
                     <input
                         type="password"
                         className={`min-w-[90%] max-sm:w-[90%] outline-none border-[1.5px] border-pallet-purple p-3 pl-5 rounded-lg ${tiro.className}`}
                         placeholder="Digite sua senha"
+                        onChange={e =>
+                            setUserData({ ...userData, password: e.target.value })
+                        }
+                        defaultValue={userData.password}
                     />
                     <button
                         type="button"
                         className={`self-center rounded-xl p-2 pl-8 pr-8 bg-pallet-purple text-pallet-white tracking-wide shadow-lg shadow-gray-400 hover:bg-[#bf3eee] hover:transition-colors ${oswald.className}`}
+                    onClick={() => console.log(userData, "saiu")}
                     >
                         <Link href="/cadastro">Registrar</Link>
                     </button>

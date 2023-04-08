@@ -1,11 +1,10 @@
-"use client";
-
-import React from "react";
+import React, { useContext, useEffect } from "react";
 
 import { oswald } from "@/functions/fonts";
 import { useLoginOrRegister, useLoginRegister } from "./hooks";
 import { loginInvalid, loginValid } from "./functions";
 import { CheckBoxUser, InputUser } from "./components";
+import { RegisterHomeContext } from "@/context/registerUserHome";
 
 export const LoginAndRegister: React.FC<{ registerComponent: boolean }> = ({
     registerComponent,
@@ -13,6 +12,11 @@ export const LoginAndRegister: React.FC<{ registerComponent: boolean }> = ({
     const { errors, handleSubmit, register } =
         useLoginRegister(registerComponent);
     const { dataInputs } = useLoginOrRegister(registerComponent);
+    const { userData } = useContext(RegisterHomeContext);
+
+    /* useEffect(() => {
+        setUserData({email: '', password: ''})
+    }, []) */
 
     return (
         <section className="w-screen min-h-[72vh] flex justify-center">
