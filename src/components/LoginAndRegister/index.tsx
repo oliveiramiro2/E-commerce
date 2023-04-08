@@ -1,62 +1,16 @@
 "use client";
 
 import React from "react";
-import { useForm } from "react-hook-form";
-import { SubmitErrorHandler, SubmitHandler } from "react-hook-form/dist/types";
-import { z } from "zod";
-import { zodResolver } from "@hookform/resolvers/zod";
 
 import { oswald, tiro } from "@/functions/fonts";
-
-const schemaRegister = z
-    .object({
-        name: z.string().min(2, "O campo nome é obrigatório!"),
-        email: z.string().email("Por favor, digite um email válido!"),
-        password: z
-            .string()
-            .min(8, "Sua senha deve ter no mínimo 8 caracteres!"),
-        confirmPassword: z
-            .string()
-            .min(8, "Sua senha deve ter no mínimo 8 caracteres!"),
-        type: z.boolean()
-    })
-    .refine(fields => fields.password === fields.confirmPassword, {
-        path: ["confirmPassword"],
-        message: "As senhas devem ser iguais!",
-    });
-
-type formProps = z.infer<typeof schemaRegister>;
+import { useLoginRegister } from "./hooks";
+import { loginInvalid, loginValid } from "./functions";
 
 export const LoginAndRegister: React.FC<{ registerComponent: boolean }> = ({
     registerComponent,
 }) => {
-    const {
-        handleSubmit,
-        register,
-        formState: { errors },
-    } = useForm<formProps>({
-        criteriaMode: "all",
-        mode: "all",
-        resolver: zodResolver(schemaRegister),
-        reValidateMode: "onChange",
-        defaultValues: {
-            confirmPassword: "",
-            email: "",
-            password: "",
-            name: "",
-            type: false,
-        },
-    });
-
-    const loginValid: SubmitHandler<formProps> = (data) => {
-        console.log(data)
-        return data;
-    };
-
-    const loginInvalid: SubmitErrorHandler<formProps> = (data) => {
-        console.log(data.email?.message, 'aaa')
-        return data;
-    };
+    const { errors, handleSubmit, register } =
+        useLoginRegister(registerComponent);
 
     return (
         <section className="w-screen min-h-[72vh] flex justify-center">
@@ -85,7 +39,11 @@ export const LoginAndRegister: React.FC<{ registerComponent: boolean }> = ({
                                 {...register("name")}
                             />
                             {errors.name?.message && (
-                                <p className={`text-red-500 font-semibold self-center relative top-3 ${tiro.className}`}>{errors.name?.message}</p>
+                                <p
+                                    className={`text-red-500 font-semibold self-center relative top-3 ${tiro.className}`}
+                                >
+                                    {errors.name?.message}
+                                </p>
                             )}
                         </div>
                     )}
@@ -104,7 +62,11 @@ export const LoginAndRegister: React.FC<{ registerComponent: boolean }> = ({
                             {...register("email")}
                         />
                         {errors.email?.message && (
-                            <p className={`text-red-500 font-semibold self-center relative top-3 ${tiro.className}`}>{errors.email?.message}</p>
+                            <p
+                                className={`text-red-500 font-semibold self-center relative top-3 ${tiro.className}`}
+                            >
+                                {errors.email?.message}
+                            </p>
                         )}
                     </div>
                     <div className="flex flex-col w-[45%] max-xl:w-[60%] max-lg:w-[70%] max-md:w-[80%] max-sm:w-[90%] items-center">
@@ -122,7 +84,11 @@ export const LoginAndRegister: React.FC<{ registerComponent: boolean }> = ({
                             {...register("password")}
                         />
                         {errors.password?.message && (
-                            <p className={`text-red-500 font-semibold self-center relative top-3 ${tiro.className}`}>{errors.password?.message}</p>
+                            <p
+                                className={`text-red-500 font-semibold self-center relative top-3 ${tiro.className}`}
+                            >
+                                {errors.password?.message}
+                            </p>
                         )}
                     </div>
                     {registerComponent && (
@@ -141,12 +107,16 @@ export const LoginAndRegister: React.FC<{ registerComponent: boolean }> = ({
                                 {...register("confirmPassword")}
                             />
                             {errors.confirmPassword?.message && (
-                                <p className={`text-red-500 font-semibold self-center relative top-3 ${tiro.className}`}>{errors.confirmPassword?.message}</p>
+                                <p
+                                    className={`text-red-500 font-semibold self-center relative top-3 ${tiro.className}`}
+                                >
+                                    {errors.confirmPassword?.message}
+                                </p>
                             )}
                         </div>
                     )}
                     {registerComponent && (
-                        <div className="flex w-[45%] max-xl:w-[60%] max-lg:w-[70%] max-md:w-[80%] max-sm:w-[90%] mt-5 items-center pl-2">
+                        <div className="flex w-[45%] max-xl:w-[60%] max-lg:w-[70%] max-md:w-[80%] max-sm:w-[90%] mt-5 items-center pl-3">
                             <input
                                 type="checkbox"
                                 id="tipo"
