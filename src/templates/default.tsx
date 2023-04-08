@@ -6,7 +6,7 @@ import "animate.css";
 
 import { Footer, Header } from "@/components";
 import RootLayout from "@/app/layout";
-import ECommProvider from "@/context";
+import ECommProvider from "@/contexts";
 
 export const DefaultTemplate: React.FC<{ children: React.ReactNode }> = ({
     children,
