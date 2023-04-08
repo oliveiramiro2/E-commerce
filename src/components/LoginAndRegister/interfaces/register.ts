@@ -7,17 +7,18 @@ import { schemaRegister, schemaLogin } from "../utils";
 export type formProps = z.infer<typeof schemaRegister & typeof schemaLogin>;
 
 export interface IPropsInput {
-    name: string;
+    name: "name" | "email" | "password" | "confirmPassword" | "type";
     label: string;
     placeholder: string;
     type: string;
-    errors?: FieldErrors<formProps>;
     register: UseFormRegister<formProps>;
+    errors?: FieldErrors<formProps>;
+    registerForm: boolean;
 }
 
 export interface IInputs {
     id: number;
-    name: string;
+    name: "name" | "email" | "password" | "confirmPassword" | "type";
     label: string;
     placeholder: string;
     type: string;
