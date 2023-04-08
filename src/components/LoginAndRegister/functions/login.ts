@@ -2,15 +2,16 @@ import { SubmitErrorHandler, SubmitHandler } from "react-hook-form/dist/types";
 import { FieldErrors } from "react-hook-form/dist/types/errors";
 
 import { formProps } from "../interfaces";
+import { notify } from "@/functions/notifications";
 
 export const loginValid: SubmitHandler<formProps> = (data) => {
     console.log(data)
-    return data;
+    notify("success", "Bem-vindo,", "Cadastro realizado com sucesso");
 };
 
 export const loginInvalid: SubmitErrorHandler<formProps> = (data) => {
-    console.log(data.email?.message, 'aaa')
-    return data;
+    console.log(data, 'aaa')
+    notify("danger", "Desculpe,", "Não foi possível fazer o cadastro");
 };
 
 export const errrorMessage: Function = (error: FieldErrors<formProps>, index: number, register: boolean) => {

@@ -11,7 +11,7 @@ export const CheckBoxUser: React.FC<{
         <input
             type="checkbox"
             id="tipo"
-            className="accent-pallet-purple"
+            className="accent-pallet-purple scale-125 relative top-[2px]"
             placeholder="Repita sua senha"
             {...register("type")}
         />
