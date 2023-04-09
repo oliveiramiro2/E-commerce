@@ -3,7 +3,8 @@ import { FieldErrors } from "react-hook-form/dist/types/errors";
 
 import { formProps } from "../interfaces";
 import { notify } from "@/functions/notifications";
-import { emailIsAvaliable } from "@/services/api";
+import { emailIsAvaliable, register } from "@/services/api";
+import { IDataRegisterUser } from "@/interface";
 
 export const loginValid: SubmitHandler<formProps> = async (data) => {
     if (data.type === undefined) {
@@ -12,10 +13,25 @@ export const loginValid: SubmitHandler<formProps> = async (data) => {
 
     const emailIsAvaliableReturn = await emailIsAvaliable(data.email)
     if (emailIsAvaliableReturn) {
-        notify("danger", "Desculpe,", "O email inserido já foi registrado");
+        notify("danger", "Desculpe,", "O email inserido já foi registrado!");
         return
     }
-    notify("success", "Bem-vindo,", "Cadastro realizado com sucesso");
+
+    const dataForm: IDataRegisterUser = {
+        email: data.email,
+        name: data.name,
+        password: data.password,
+        avatar: `https://api.lorem.space/image/face?w=${Math.round(
+            Math.random() * window.innerWidth) + 50}&amp;amp;amp;amp;h=${Math.round(
+            Math.random() * window.innerWidth) + 50}`,
+    }
+
+    register(data.type, dataForm)
+        .then((registerData) => {
+            notify("success", "Bem-vindo,", "Cadastro realizado com sucesso");
+            console.log(registerData)
+        })
+        .catch(() => notify("danger", "Desculpe,", "Não foi possível realizar o registro!"))
 };
 
 export const loginInvalid: SubmitErrorHandler<formProps> = (data) => {
@@ -27,11 +43,11 @@ export const loginInvalid: SubmitErrorHandler<formProps> = (data) => {
     \n ${data.confirmPassword?.message || ''}`);
 };
 
-export const errrorMessage: Function = (error: FieldErrors<formProps>, index: number, register: boolean) => {
+export const errrorMessage: Function = (error: FieldErrors<formProps>, index: number, registerUser: boolean) => {
     let returnValue: boolean | string = false
 
     try {
-        if (register) {
+        if (registerUser) {
             switch(index){
                 case 0:
                     if (error?.name?.message !== undefined) returnValue = error?.name?.message
