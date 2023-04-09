@@ -6,13 +6,11 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { formProps } from "../interfaces";
 
 import { schemaRegister, schemaLogin } from "../utils";
-import { TesteContext } from "@/app/context/teste";
+import { RegisterHomeContext } from "@/contexts/registerUserHome";
 
 export const useLoginRegister = (registerForm: boolean) => {
     const schema = registerForm ? schemaRegister : schemaLogin;
-    const { userData } = useContext(TesteContext);
-
-    console.log(userData, "hook")
+    const { userData } = useContext(RegisterHomeContext);
 
     const {
         handleSubmit,

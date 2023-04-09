@@ -1,12 +1,11 @@
 "use client";
 
-import React, { useContext, useEffect } from "react";
+import React from "react";
 
 import { oswald } from "@/functions/fonts";
 import { useLoginOrRegister, useLoginRegister } from "./hooks";
 import { loginInvalid, loginValid } from "./functions";
 import { CheckBoxUser, InputUser } from "./components";
-import { TesteContext } from "@/app/context/teste";
 
 export const LoginAndRegister: React.FC<{ registerComponent: boolean }> = ({
     registerComponent,
@@ -14,13 +13,6 @@ export const LoginAndRegister: React.FC<{ registerComponent: boolean }> = ({
     const { errors, handleSubmit, register } =
         useLoginRegister(registerComponent);
     const { dataInputs } = useLoginOrRegister(registerComponent);
-    const { userData, setUserData } = useContext(TesteContext);
-
-
-    useEffect(() => {
-        setUserData({email: 'asdada', password: 'asdada'})
-    }, [])
-    console.log(userData, "singup component 2")
 
     return (
         <section className="w-screen min-h-[72vh] flex justify-center">

@@ -2,13 +2,12 @@ import React, { useContext } from "react";
 import Link from "next/link";
 
 import { arnekG, oswald, tiro } from "@/functions/fonts";
-import { TesteContext } from "@/app/context/teste";
+import { RegisterHomeContext } from "@/contexts/registerUserHome";
 
 
 export const SignUpHome: React.FC = () => {
-    const { userData, setUserData } = useContext(TesteContext);
+    const { userData, setUserData } = useContext(RegisterHomeContext);
 
-    console.log(userData, "teste")
     return (
         <section className="w-screen min-h-[65vh] flex flex-col items-center pt-8">
             <div>
@@ -41,7 +40,6 @@ export const SignUpHome: React.FC = () => {
                     <button
                         type="button"
                         className={`self-center rounded-xl p-2 pl-8 pr-8 bg-pallet-purple text-pallet-white tracking-wide shadow-lg shadow-gray-400 hover:bg-[#bf3eee] hover:transition-colors ${oswald.className}`}
-                    onClick={() => console.log(userData, "saiu")}
                     >
                         <Link href="/cadastro">Registrar</Link>
                     </button>

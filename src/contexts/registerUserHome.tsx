@@ -7,7 +7,7 @@ export const RegisterHomeContext = createContext<IContextDataRegisterHome>(
     {} as IContextDataRegisterHome
 );
 
-const RegisterHomeProvider = ({ children }) => {
+const RegisterHomeProvider = ({ children }: { children: React.ReactNode }) => {
     const [userData, setUserData] = useState<IDataRegisterHome>(
         {email: '', password: ''}
     );
