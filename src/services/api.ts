@@ -40,14 +40,15 @@ export const categories = async (param: string) => {
     return data
 }
 
-// user
+// user register
 export const emailIsAvaliable = async (email: string) => {
     const {data} = await api.post(`/users/is-available`, email)
     return data.isAvailable
 }
 
 export const register = async (param: boolean, dataForm: IDataRegisterUser) => {
-    await api.post(`/users${param ? "/1" : ""}`, dataForm)
+    const {data} = await api.post(`/users${param ? "/1" : ""}`, dataForm)
+    return data
 }
 
 // login
