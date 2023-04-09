@@ -8,9 +8,10 @@ export const RegisterHomeContext = createContext<IContextDataRegisterHome>(
 );
 
 const RegisterHomeProvider = ({ children }: { children: React.ReactNode }) => {
-    const [userData, setUserData] = useState<IDataRegisterHome>(
-        {email: '', password: ''}
-    );
+    const [userData, setUserData] = useState<IDataRegisterHome>({
+        email: "",
+        password: "",
+    });
 
     const valueContext = useMemo(
         () => ({
