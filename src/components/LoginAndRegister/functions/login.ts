@@ -4,8 +4,11 @@ import { FieldErrors } from "react-hook-form/dist/types/errors";
 import { formProps } from "../interfaces";
 import { notify } from "@/functions/notifications";
 
-export const loginValid: SubmitHandler<formProps> = (data) => {
-    console.log(data.type)
+export const loginValid: SubmitHandler<formProps> = async (data) => {
+    if (data.type === undefined) {
+        return
+    }
+
     notify("success", "Bem-vindo,", "Cadastro realizado com sucesso");
 };
 
