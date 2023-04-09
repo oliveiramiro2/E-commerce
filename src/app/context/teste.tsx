@@ -3,11 +3,11 @@
 import React, { createContext, useMemo, useState } from "react";
 import { IContextDataRegisterHome, IDataRegisterHome } from "@/interface";
 
-export const RegisterHomeContext = createContext<IContextDataRegisterHome>(
+export const TesteContext = createContext<IContextDataRegisterHome>(
     {} as IContextDataRegisterHome
 );
 
-const RegisterHomeProvider = ({ children }) => {
+const TesteProvider = ({ children }) => {
     const [userData, setUserData] = useState<IDataRegisterHome>(
         {email: '', password: ''}
     );
@@ -21,10 +21,10 @@ const RegisterHomeProvider = ({ children }) => {
     );
 
     return (
-        <RegisterHomeContext.Provider value={valueContext}>
+        <TesteContext.Provider value={valueContext}>
             {children}
-        </RegisterHomeContext.Provider>
+        </TesteContext.Provider>
     );
 };
 
-export default RegisterHomeProvider;
+export default TesteProvider;

@@ -1,7 +1,7 @@
 import React from "react";
 import "../styles/globals.css";
+import TesteProvider from "./context/teste";
 import { ReactQueryProvider } from "@/contexts/reactQuery";
-import ECommProvider from "@/contexts";
 
 export const metadata = {
     title: "RM E-commerce",
@@ -12,11 +12,11 @@ const RootLayout = ({ children }: { children: React.ReactNode }) => {
     return (
         <html lang="pt-br">
             <body>
-                <main>
-                <ECommProvider>
-                    <ReactQueryProvider>{children}</ReactQueryProvider>
-                </ECommProvider>
-                </main>
+            <ReactQueryProvider>
+                <TesteProvider>
+                    {children}
+                </TesteProvider>
+                </ReactQueryProvider>
             </body>
         </html>
     );

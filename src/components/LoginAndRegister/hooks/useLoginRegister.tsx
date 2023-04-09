@@ -1,14 +1,16 @@
+"use client";
+
 import { useContext } from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { formProps } from "../interfaces";
 
 import { schemaRegister, schemaLogin } from "../utils";
-import { RegisterHomeContext } from "@/contexts/registerUserHome";
+import { TesteContext } from "@/app/context/teste";
 
 export const useLoginRegister = (registerForm: boolean) => {
     const schema = registerForm ? schemaRegister : schemaLogin;
-    const { userData } = useContext(RegisterHomeContext);
+    const { userData } = useContext(TesteContext);
 
     console.log(userData, "hook")
 

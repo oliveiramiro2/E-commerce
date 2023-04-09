@@ -4,13 +4,13 @@ import React, { useContext, useEffect } from "react";
 
 import { DefaultTemplate } from "../default";
 import { LoginAndRegister } from "@/components";
-import { RegisterHomeContext } from "@/contexts/registerUserHome";
+import { TesteContext } from "@/app/context/teste";
 
 export const SignUpTemplate: React.FC = () => {
     useEffect(() => {
         document.title = "RM E-commerce - Entrar";
     }, []);
-    const { userData } = useContext(RegisterHomeContext);
+    const { userData } = useContext(TesteContext);
 
     console.log(userData, "singup component")
 

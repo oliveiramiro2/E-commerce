@@ -1,9 +1,12 @@
+"use client";
+
 import React from "react";
 
 import RegisterHomeProvider from "./registerUserHome";
+import { ReactQueryProvider } from "./reactQuery";
 
-const ECommProvider: React.FC<{ children: React.ReactNode }> = ({
+const ECommProvider = ({
     children,
-}) => <RegisterHomeProvider>{children}</RegisterHomeProvider>;
+}) => <RegisterHomeProvider><ReactQueryProvider>{children}</ReactQueryProvider></RegisterHomeProvider>;
 
 export default ECommProvider;

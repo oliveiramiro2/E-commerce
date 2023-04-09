@@ -1,14 +1,14 @@
-"use client";
-
 import React, { useContext } from "react";
 import Link from "next/link";
 
 import { arnekG, oswald, tiro } from "@/functions/fonts";
-import { RegisterHomeContext } from "@/contexts/registerUserHome";
+import { TesteContext } from "@/app/context/teste";
+
 
 export const SignUpHome: React.FC = () => {
-    const { userData, setUserData } = useContext(RegisterHomeContext);
+    const { userData, setUserData } = useContext(TesteContext);
 
+    console.log(userData, "teste")
     return (
         <section className="w-screen min-h-[65vh] flex flex-col items-center pt-8">
             <div>
