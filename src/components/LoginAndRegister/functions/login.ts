@@ -3,12 +3,18 @@ import { FieldErrors } from "react-hook-form/dist/types/errors";
 
 import { formProps } from "../interfaces";
 import { notify } from "@/functions/notifications";
+import { emailIsAvaliable } from "@/services/api";
 
 export const loginValid: SubmitHandler<formProps> = async (data) => {
     if (data.type === undefined) {
         return
     }
 
+    const emailIsAvaliableReturn = await emailIsAvaliable(data.email)
+    if (emailIsAvaliableReturn) {
+        notify("danger", "Desculpe,", "O email inserido já foi registrado");
+        return
+    }
     notify("success", "Bem-vindo,", "Cadastro realizado com sucesso");
 };
 
