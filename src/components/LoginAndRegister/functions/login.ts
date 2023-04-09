@@ -19,7 +19,7 @@ export const loginValid: SubmitHandler<formProps> = async (data) => {
                 console.log(dataLogin)
                 notify("success", "Bem-vindo,", "Login realizado com sucesso");
             })
-            .catch(() => notify("danger", "Desculpe,", "Não foi possível realizar o login!"))
+            .catch(() => notify("danger", "Desculpe,", "Não foi possível realizar o login! As credenciais não conferem!"))
         return
     }
 
