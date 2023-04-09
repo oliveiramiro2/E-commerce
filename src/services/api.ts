@@ -1,7 +1,13 @@
 import axios from "axios"
 
-import { ICategoryApi, IDataApi, IDataLoginUser, IDataRegisterUser } from "@/interface"
-import { IDataUser } from "@/interface/dataRegisterUser"
+import {
+    ICategoryApi,
+    IDataApi,
+    IDataLoginUser,
+    IDataRegisterUser,
+    IDataUser,
+    ILoginData
+} from "@/interface"
 import { notify } from "@/functions/notifications"
 
 /* const base_url = "https://fakestoreapi.com/" */
@@ -55,7 +61,7 @@ export const register = async (dataForm: IDataRegisterUser): Promise<IDataUser> 
 }
 
 // login
-export const login = async (dataForm: IDataLoginUser) => {
+export const login = async (dataForm: IDataLoginUser): Promise<ILoginData> => {
     const { data } = await api.post(`/auth/login`, dataForm)
     return data
 }

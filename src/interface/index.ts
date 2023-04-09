@@ -3,6 +3,7 @@ export type { IDataApi, ICategoryApi } from './dataApiProduct';
 export type {
     IDataRegisterUser,
     IContextDataRegisterHome,
-    IDataRegisterHome
+    IDataRegisterHome,
+    IDataUser
 } from './dataRegisterUser';
-export type { IDataLoginUser } from './dataLoginUser';
+export type { IDataLoginUser, ILoginData } from './dataLoginUser';
