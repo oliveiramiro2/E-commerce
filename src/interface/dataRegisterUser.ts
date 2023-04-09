@@ -3,6 +3,7 @@ export interface IDataRegisterUser {
     email: string;
     password: string;
     avatar: string;
+    role: "customer" | "admin";
 }
 
 export interface IDataRegisterHome {
@@ -13,4 +14,8 @@ export interface IDataRegisterHome {
 export interface IContextDataRegisterHome {
     userData: IDataRegisterHome;
     setUserData: Function;
+}
+
+export interface IDataUser extends IDataRegisterUser {
+    id: number;
 }
