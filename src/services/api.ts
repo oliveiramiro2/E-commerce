@@ -46,8 +46,8 @@ export const emailIsAvaliable = async (email: string) => {
     return data.isAvailable
 }
 
-export const register = async (param: string, dataForm: IDataRegisterUser) => {
-    await api.post(`/users${param === "" ? "" : "/1"}`, dataForm)
+export const register = async (param: boolean, dataForm: IDataRegisterUser) => {
+    await api.post(`/users${param ? "/1" : ""}`, dataForm)
 }
 
 // login
