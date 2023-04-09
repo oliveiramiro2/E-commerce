@@ -5,13 +5,17 @@ import { formProps } from "../interfaces";
 import { notify } from "@/functions/notifications";
 
 export const loginValid: SubmitHandler<formProps> = (data) => {
-    console.log(data)
+    console.log(data.type)
     notify("success", "Bem-vindo,", "Cadastro realizado com sucesso");
 };
 
 export const loginInvalid: SubmitErrorHandler<formProps> = (data) => {
-    console.log(data, 'aaa')
-    notify("danger", "Desculpe,", "Não foi possível fazer o cadastro");
+    notify("danger", "Desculpe,", `Não foi possível fazer o cadastro.
+    \nOs dados estão incorretos ou faltando.
+    \n ${data.email?.message || ''}
+    \n ${data.name?.message || ''}
+    \n ${data.password?.message || ''}
+    \n ${data.confirmPassword?.message || ''}`);
 };
 
 export const errrorMessage: Function = (error: FieldErrors<formProps>, index: number, register: boolean) => {
