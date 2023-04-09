@@ -1,6 +1,8 @@
 import axios from "axios"
 
 import { ICategoryApi, IDataApi, IDataLoginUser, IDataRegisterUser } from "@/interface"
+import { IDataUser } from "@/interface/dataRegisterUser"
+import { notify } from "@/functions/notifications"
 
 /* const base_url = "https://fakestoreapi.com/" */
 const base_url = "https://api.escuelajs.co/api/v1"
@@ -41,13 +43,14 @@ export const categories = async (param: string) => {
 }
 
 // user register
-export const emailIsAvaliable = async (email: string) => {
+export const emailIsAvaliable = async (email: {email: string}): Promise<boolean> => {
     const {data} = await api.post(`/users/is-available`, email)
     return data.isAvailable
 }
 
-export const register = async (param: boolean, dataForm: IDataRegisterUser) => {
-    const {data} = await api.post(`/users${param ? "/1" : ""}`, dataForm)
+export const register = async (dataForm: IDataRegisterUser): Promise<IDataUser> => {
+    const {data, status} = await api.post(`/users`, dataForm)
+    if (status !== 201) notify("danger", "Desculpe,", "Não foi possível realizar o registro!")
     return data
 }
 
