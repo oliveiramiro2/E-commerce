@@ -1,4 +1,4 @@
-import { SubmitErrorHandler, SubmitHandler } from "react-hook-form/dist/types";
+import { SubmitErrorHandler } from "react-hook-form/dist/types";
 import { FieldErrors } from "react-hook-form/dist/types/errors";
 
 import { formProps } from "../interfaces";
@@ -6,7 +6,9 @@ import { notify } from "@/functions/notifications";
 import { emailIsAvaliable, login, register } from "@/services/api";
 import { IDataLoginUser, IDataRegisterUser, ILoginData } from "@/interface";
 
-export const loginValid: SubmitHandler<formProps> = async (data) => {
+export const loginValid = async (data: formProps, setShowIconLoading: Function) => {
+    setShowIconLoading(true)
+
     if (data.type === undefined) {
 
         const dataForm: IDataLoginUser = {
@@ -20,6 +22,7 @@ export const loginValid: SubmitHandler<formProps> = async (data) => {
                 notify("success", "Bem-vindo,", "Login realizado com sucesso");
             })
             .catch(() => notify("danger", "Desculpe,", "Não foi possível realizar o login! As credenciais não conferem!"))
+            .finally(() => setShowIconLoading(false))
         return
     }
 
@@ -27,6 +30,7 @@ export const loginValid: SubmitHandler<formProps> = async (data) => {
     const emailIsAvaliableReturn = await emailIsAvaliable(emailVerify)
     if (emailIsAvaliableReturn) {
         notify("danger", "Desculpe,", "O email inserido já foi registrado!");
+        setShowIconLoading(false)
         return
     }
 
@@ -45,6 +49,7 @@ export const loginValid: SubmitHandler<formProps> = async (data) => {
             notify("success", "Bem-vindo,", "Cadastro realizado com sucesso");
         })
         .catch(() => notify("danger", "Desculpe,", "Não foi possível realizar o registro!"))
+        .finally(() => setShowIconLoading(false))
 };
 
 export const loginInvalid: SubmitErrorHandler<formProps> = (data) => {
