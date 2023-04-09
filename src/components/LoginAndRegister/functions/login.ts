@@ -11,7 +11,8 @@ export const loginValid: SubmitHandler<formProps> = async (data) => {
         return
     }
 
-    const emailIsAvaliableReturn = await emailIsAvaliable(data.email)
+    const emailVerify: {email: string} = {email: data.email}
+    const emailIsAvaliableReturn = await emailIsAvaliable(emailVerify)
     if (emailIsAvaliableReturn) {
         notify("danger", "Desculpe,", "O email inserido já foi registrado!");
         return
@@ -21,15 +22,15 @@ export const loginValid: SubmitHandler<formProps> = async (data) => {
         email: data.email,
         name: data.name,
         password: data.password,
+        role: data.type ? "admin" : "customer",
         avatar: `https://api.lorem.space/image/face?w=${Math.round(
             Math.random() * window.innerWidth) + 50}&amp;amp;amp;amp;h=${Math.round(
             Math.random() * window.innerWidth) + 50}`,
     }
 
-    register(data.type, dataForm)
-        .then((registerData) => {
+    register(dataForm)
+        .then(() => {
             notify("success", "Bem-vindo,", "Cadastro realizado com sucesso");
-            console.log(registerData)
         })
         .catch(() => notify("danger", "Desculpe,", "Não foi possível realizar o registro!"))
 };
