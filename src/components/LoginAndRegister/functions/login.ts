@@ -3,11 +3,23 @@ import { FieldErrors } from "react-hook-form/dist/types/errors";
 
 import { formProps } from "../interfaces";
 import { notify } from "@/functions/notifications";
-import { emailIsAvaliable, register } from "@/services/api";
-import { IDataRegisterUser } from "@/interface";
+import { emailIsAvaliable, login, register } from "@/services/api";
+import { IDataLoginUser, IDataRegisterUser, ILoginData } from "@/interface";
 
 export const loginValid: SubmitHandler<formProps> = async (data) => {
     if (data.type === undefined) {
+
+        const dataForm: IDataLoginUser = {
+            email: data.email,
+            password: data.password,
+        }
+
+        login(dataForm)
+            .then((dataLogin: ILoginData) => {
+                console.log(dataLogin)
+                notify("success", "Bem-vindo,", "Login realizado com sucesso");
+            })
+            .catch(() => notify("danger", "Desculpe,", "Não foi possível realizar o login!"))
         return
     }
 
