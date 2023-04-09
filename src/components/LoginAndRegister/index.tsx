@@ -1,9 +1,10 @@
 "use client";
 
 import React from "react";
+import LoadingIcons from "react-loading-icons";
 
 import { oswald } from "@/functions/fonts";
-import { useLoginOrRegister, useLoginRegister } from "./hooks";
+import { useLoginOrRegister, useLoginRegister, useShowLoading } from "./hooks";
 import { loginInvalid, loginValid } from "./functions";
 import { CheckBoxUser, InputUser } from "./components";
 
@@ -13,6 +14,7 @@ export const LoginAndRegister: React.FC<{ registerComponent: boolean }> = ({
     const { errors, handleSubmit, register } =
         useLoginRegister(registerComponent);
     const { dataInputs } = useLoginOrRegister(registerComponent);
+    const { showIconLoading } = useShowLoading();
 
     return (
         <section className="w-screen min-h-[72vh] flex justify-center">
@@ -37,15 +39,23 @@ export const LoginAndRegister: React.FC<{ registerComponent: boolean }> = ({
                             }}
                         />
                     ))}
-                    {registerComponent && (
-                        <CheckBoxUser register={register} />
-                    )}
+                    {registerComponent && <CheckBoxUser register={register} />}
                     <button
                         type="button"
                         className={`self-center rounded-lg p-2 pl-8 pr-8 mt-2 bg-pallet-purple text-pallet-white font-semibold tracking-wide shadow-lg shadow-gray-400 hover:bg-[#bf3eee] hover:transition-colors ${oswald.className}`}
                         onClick={handleSubmit(loginValid, loginInvalid)}
                     >
-                        {registerComponent ? "Fazer cadastro" : "Entrar"}
+                        {showIconLoading ? (
+                            <LoadingIcons.SpinningCircles
+                                color="#fff"
+                                alignmentBaseline="central"
+                                height={30}
+                            />
+                        ) : registerComponent ? (
+                            "Fazer cadastro"
+                        ) : (
+                            "Entrar"
+                        )}
                     </button>
                 </form>
             </div>
