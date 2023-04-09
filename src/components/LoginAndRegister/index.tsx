@@ -14,7 +14,7 @@ export const LoginAndRegister: React.FC<{ registerComponent: boolean }> = ({
     const { errors, handleSubmit, register } =
         useLoginRegister(registerComponent);
     const { dataInputs } = useLoginOrRegister(registerComponent);
-    const { showIconLoading } = useShowLoading();
+    const { showIconLoading, setShowIconLoading } = useShowLoading();
 
     return (
         <section className="w-screen min-h-[72vh] flex justify-center">
@@ -43,7 +43,10 @@ export const LoginAndRegister: React.FC<{ registerComponent: boolean }> = ({
                     <button
                         type="button"
                         className={`self-center rounded-lg p-2 pl-8 pr-8 mt-2 bg-pallet-purple text-pallet-white font-semibold tracking-wide shadow-lg shadow-gray-400 hover:bg-[#bf3eee] hover:transition-colors ${oswald.className}`}
-                        onClick={handleSubmit(loginValid, loginInvalid)}
+                        onClick={handleSubmit(
+                            data => loginValid(data, setShowIconLoading),
+                            loginInvalid
+                        )}
                     >
                         {showIconLoading ? (
                             <LoadingIcons.SpinningCircles
