@@ -66,7 +66,7 @@ export const login = async (dataForm: IDataLoginUser): Promise<ILoginTokens> => 
     return data
 }
 
-export const getLoginData = async (token: string): Promise<IDataRegisterUser> => {
+export const getLoginData = async (token: string): Promise<IDataUser> => {
     const { data } = await api.get(`/auth/profile`, {
         headers: {
             Authorization: token
