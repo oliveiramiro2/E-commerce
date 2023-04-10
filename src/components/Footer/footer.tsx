@@ -1,10 +1,13 @@
+import React, {useContext} from "react";
 import Link from "next/link";
-import React from "react";
 import { AiFillFacebook, AiFillInstagram } from "react-icons/ai";
 
 import { tiro } from "@/functions/fonts";
+import { UserDataContext } from "@/contexts/userDataLogin";
 
 export const Footer: React.FC = () => {
+    const {logined} = useContext(UserDataContext)
+
     return (
         <footer className="w-screen min-h-[15vh] bg-pallet-purple flex relative bottom-0 justify-between items-center">
             <nav className="h-full">
@@ -19,7 +22,7 @@ export const Footer: React.FC = () => {
                     </li>
                     <li>
                         <Link
-                            href="/"
+                            href={logined ? "/" : "/entrar"}
                             className={`text-pallet-white font-medium hover:border-b hover:transition-colors hover:drop-shadow-xl border-pallet-blue ${tiro.className}`}
                         >
                             Comprar
@@ -27,7 +30,7 @@ export const Footer: React.FC = () => {
                     </li>
                     <li>
                         <Link
-                            href="/"
+                            href={logined ? "/" : "/entrar"}
                             className={`text-pallet-white font-medium hover:border-b hover:transition-colors hover:drop-shadow-xl border-pallet-blue ${tiro.className}`}
                         >
                             Carrinho
