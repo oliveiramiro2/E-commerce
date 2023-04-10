@@ -4,7 +4,7 @@ import { FieldErrors } from "react-hook-form/dist/types/errors";
 import { formProps } from "../interfaces";
 import { notify } from "@/functions/notifications";
 import { emailIsAvaliable, login, register } from "@/services/api";
-import { IDataLoginUser, IDataRegisterUser, ILoginData } from "@/interface";
+import { IDataLoginUser, IDataRegisterUser, ILoginTokens } from "@/interface";
 
 export const loginValid = async (data: formProps, setShowIconLoading: Function) => {
     setShowIconLoading(true)
@@ -17,8 +17,8 @@ export const loginValid = async (data: formProps, setShowIconLoading: Function) 
         }
 
         login(dataForm)
-            .then((dataLogin: ILoginData) => {
-                console.log(dataLogin)
+            .then((dataLogin: ILoginTokens) => {
+                console.log(dataLogin, '1')
                 notify("success", "Bem-vindo,", "Login realizado com sucesso");
             })
             .catch(() => notify("danger", "Desculpe,", "Não foi possível realizar o login! As credenciais não conferem!"))

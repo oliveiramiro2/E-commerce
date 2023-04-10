@@ -6,7 +6,7 @@ import {
     IDataLoginUser,
     IDataRegisterUser,
     IDataUser,
-    ILoginData
+    ILoginTokens
 } from "@/interface"
 import { notify } from "@/functions/notifications"
 
@@ -61,7 +61,7 @@ export const register = async (dataForm: IDataRegisterUser): Promise<IDataUser> 
 }
 
 // login
-export const login = async (dataForm: IDataLoginUser): Promise<ILoginData> => {
+export const login = async (dataForm: IDataLoginUser): Promise<ILoginTokens> => {
     const { data } = await api.post(`/auth/login`, dataForm)
     return data
 }
