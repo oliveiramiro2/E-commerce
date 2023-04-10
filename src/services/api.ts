@@ -74,3 +74,12 @@ export const getLoginData = async (token: string): Promise<IDataRegisterUser> =>
     })
     return data
 }
+
+export const getNewRefreshToken = async (token: string): Promise<ILoginTokens> => {
+    const { data } = await api.get(`/auth/refresh-token`, {
+        headers: {
+            Authorization: token
+        }
+    })
+    return data
+}
