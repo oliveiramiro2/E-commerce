@@ -1,6 +1,6 @@
 "use client";
 
-import React from "react";
+import React, { useContext } from "react";
 import { SiFireship } from "react-icons/si";
 import clsx from "clsx";
 import { FaShoppingBag, FaShoppingCart } from "react-icons/fa";
@@ -9,9 +9,11 @@ import Link from "next/link";
 import { IDataApi } from "@/interface";
 import { arnekG } from "@/functions/fonts";
 import { useShowInfo } from "./hooks/useShowInfo";
+import { UserDataContext } from "@/contexts/userDataLogin";
 
 export const Product: React.FC<{ param: IDataApi }> = ({ param }) => {
     const { show, handleShow, handleHide } = useShowInfo();
+    const { logined } = useContext(UserDataContext);
 
     return (
         <div
@@ -35,8 +37,8 @@ export const Product: React.FC<{ param: IDataApi }> = ({ param }) => {
                 className={clsx(
                     `font-medium w-[20vw] max-md:w-[80vw] text-center text-sm text-pallet-white first-letter:capitalize ${arnekG.className}`,
                     {
-                        "flex": show,
-                        "hidden": !show,
+                        flex: show,
+                        hidden: !show,
                     }
                 )}
             >
@@ -51,14 +53,14 @@ export const Product: React.FC<{ param: IDataApi }> = ({ param }) => {
                 </p>
             </div>
             <div className="w-full flex justify-around mb-4">
-                <Link href="/">
+                <Link href={logined ? "/" : "/entrar"}>
                     <button
                         type="button"
                         className={clsx(
                             `bg-pallet-orange pt-3 p-2 pl-4 pr-3 min-w-[35%] items-center gap-x-1 rounded-md font-bolder text-center text-sm text-pallet-white first-letter:capitalize hover:bg-[#ff9748] transition-colors shadow-md shadow-pallet-orange ${arnekG.className}`,
                             {
-                                "flex": show,
-                                "hidden": !show,
+                                flex: show,
+                                hidden: !show,
                             }
                         )}
                     >
@@ -69,14 +71,14 @@ export const Product: React.FC<{ param: IDataApi }> = ({ param }) => {
                         Carrinho
                     </button>
                 </Link>
-                <Link href="/">
+                <Link href={logined ? "/" : "/entrar"}>
                     <button
                         type="button"
                         className={clsx(
                             `bg-pallet-orange pt-3 p-2 pl-4 pr-3 min-w-[35%] items-center gap-x-1 rounded-md font-bolder text-center text-sm text-pallet-white first-letter:capitalize hover:bg-[#ff9748] transition-colors shadow-md shadow-pallet-orange ${arnekG.className}`,
                             {
-                                "flex": show,
-                                "hidden": !show,
+                                flex: show,
+                                hidden: !show,
                             }
                         )}
                     >

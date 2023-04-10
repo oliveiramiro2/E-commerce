@@ -1,4 +1,4 @@
-import React, {useContext} from "react";
+import React, { useContext } from "react";
 import Link from "next/link";
 import { AiFillFacebook, AiFillInstagram } from "react-icons/ai";
 
@@ -6,7 +6,7 @@ import { tiro } from "@/functions/fonts";
 import { UserDataContext } from "@/contexts/userDataLogin";
 
 export const Footer: React.FC = () => {
-    const {logined} = useContext(UserDataContext)
+    const { logined } = useContext(UserDataContext);
 
     return (
         <footer className="w-screen min-h-[15vh] bg-pallet-purple flex relative bottom-0 justify-between items-center">
