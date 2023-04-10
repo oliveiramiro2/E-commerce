@@ -23,6 +23,7 @@ export const ContentHeaderDesktop: React.FC<IPropsContentHeaderDesktop> = ({
                     alt="logo"
                     width={180}
                     height={20}
+                    style={{width: 'auto', height: 'auto'}}
                 />
             </Link>
             <div />
