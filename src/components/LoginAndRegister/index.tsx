@@ -1,12 +1,13 @@
 "use client";
 
-import React from "react";
+import React, { useContext } from "react";
 import LoadingIcons from "react-loading-icons";
 
 import { oswald } from "@/functions/fonts";
 import { useLoginOrRegister, useLoginRegister, useShowLoading } from "./hooks";
 import { loginInvalid, loginValid } from "./functions";
 import { CheckBoxUser, InputUser } from "./components";
+import { UserDataContext } from "@/contexts/userDataLogin";
 
 export const LoginAndRegister: React.FC<{ registerComponent: boolean }> = ({
     registerComponent,
@@ -15,6 +16,7 @@ export const LoginAndRegister: React.FC<{ registerComponent: boolean }> = ({
         useLoginRegister(registerComponent);
     const { dataInputs } = useLoginOrRegister(registerComponent);
     const { showIconLoading, setShowIconLoading } = useShowLoading();
+    const { setAllUserData, setLogined, logined } = useContext(UserDataContext);
 
     return (
         <section className="w-screen min-h-[72vh] flex justify-center">
@@ -25,6 +27,7 @@ export const LoginAndRegister: React.FC<{ registerComponent: boolean }> = ({
                     >
                         {registerComponent ? "Cadastrar" : "Entrar"}
                     </h3>
+                    {logined && <h4>funfou</h4>}
                 </div>
                 <form className="flex flex-col gap-y-4 w-full items-center">
                     {dataInputs.map(item => (
@@ -44,7 +47,13 @@ export const LoginAndRegister: React.FC<{ registerComponent: boolean }> = ({
                         type="button"
                         className={`self-center rounded-lg p-2 pl-8 pr-8 mt-2 bg-pallet-purple text-pallet-white font-semibold tracking-wide shadow-lg shadow-gray-400 hover:bg-[#bf3eee] hover:transition-colors ${oswald.className}`}
                         onClick={handleSubmit(
-                            data => loginValid(data, setShowIconLoading),
+                            data =>
+                                loginValid({
+                                    data,
+                                    setShowIconLoading,
+                                    setAllUserData,
+                                    setLogined,
+                                }),
                             loginInvalid
                         )}
                     >
