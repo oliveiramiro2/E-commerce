@@ -5,4 +5,5 @@ export interface IloginValid {
     setShowIconLoading: Function;
     setAllUserData: Function;
     setLogined: Function;
+    push: Function;
 }
