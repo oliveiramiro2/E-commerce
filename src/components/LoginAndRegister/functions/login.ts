@@ -19,7 +19,6 @@ export const loginValid = async (data: formProps, setShowIconLoading: Function) 
 
         login(dataForm)
             .then((dataLogin: ILoginTokens) => {
-                localStorage.removeItem("tokens")
                 removeTokens()
                 addTokens(dataLogin)
                 notify("success", "Bem-vindo,", "Login realizado com sucesso");
@@ -57,7 +56,6 @@ export const loginValid = async (data: formProps, setShowIconLoading: Function) 
 
             login(dataForm1)
                 .then((dataLogin: ILoginTokens) => {
-                    localStorage.removeItem("tokens")
                     removeTokens()
                     addTokens(dataLogin)
                     notify("success", "Bem-vindo,", "Login realizado com sucesso");
