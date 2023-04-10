@@ -16,7 +16,7 @@ export const LoginAndRegister: React.FC<{ registerComponent: boolean }> = ({
         useLoginRegister(registerComponent);
     const { dataInputs } = useLoginOrRegister(registerComponent);
     const { showIconLoading, setShowIconLoading } = useShowLoading();
-    const { setAllUserData, setLogined, logined } = useContext(UserDataContext);
+    const { setAllUserData, setLogined } = useContext(UserDataContext);
 
     return (
         <section className="w-screen min-h-[72vh] flex justify-center">
@@ -27,7 +27,6 @@ export const LoginAndRegister: React.FC<{ registerComponent: boolean }> = ({
                     >
                         {registerComponent ? "Cadastrar" : "Entrar"}
                     </h3>
-                    {logined && <h4>funfou</h4>}
                 </div>
                 <form className="flex flex-col gap-y-4 w-full items-center">
                     {dataInputs.map(item => (
