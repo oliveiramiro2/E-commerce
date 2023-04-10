@@ -6,4 +6,9 @@ export type {
     IDataRegisterHome,
     IDataUser
 } from './dataRegisterUser';
-export type { IDataLoginUser, ILoginData, IContextLoginData } from './dataLoginUser';
+export type {
+    IDataLoginUser,
+    ILoginData,
+    IContextLoginData,
+    ILoginTokens
+} from './dataLoginUser';

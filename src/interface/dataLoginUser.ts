@@ -5,10 +5,12 @@ export interface IDataLoginUser {
     password: string;
 }
 
-export interface ILoginData extends IDataUser {
+export interface ILoginTokens {
     access_token: string;
     refresh_token: string;
 }
+
+export interface ILoginData extends IDataUser, ILoginTokens {}
 
 export interface IContextLoginData {
     allUserData: ILoginData;
