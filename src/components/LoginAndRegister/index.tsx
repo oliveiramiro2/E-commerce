@@ -5,7 +5,7 @@ import LoadingIcons from "react-loading-icons";
 import Link from "next/link";
 
 import { arnekG, oswald } from "@/functions/fonts";
-import { useLoginOrRegister, useLoginRegister, useShowLoading } from "./hooks";
+import { useLoginOrRegister, useLoginRegister, useShowLoading, useRedirect } from "./hooks";
 import { loginInvalid, loginValid } from "./functions";
 import { CheckBoxUser, InputUser } from "./components";
 import { UserDataContext } from "@/contexts/userDataLogin";
@@ -18,6 +18,8 @@ export const LoginAndRegister: React.FC<{ registerComponent: boolean }> = ({
     const { dataInputs } = useLoginOrRegister(registerComponent);
     const { showIconLoading, setShowIconLoading } = useShowLoading();
     const { setAllUserData, setLogined } = useContext(UserDataContext);
+    const { push } = useRedirect()
+
 
     return (
         <section className="w-screen min-h-[72vh] flex justify-center">
@@ -61,6 +63,7 @@ export const LoginAndRegister: React.FC<{ registerComponent: boolean }> = ({
                                     setShowIconLoading,
                                     setAllUserData,
                                     setLogined,
+                                    push,
                                 }),
                             loginInvalid
                         )}
