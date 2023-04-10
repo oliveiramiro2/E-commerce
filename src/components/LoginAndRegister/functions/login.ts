@@ -5,6 +5,7 @@ import { formProps } from "../interfaces";
 import { notify } from "@/functions/notifications";
 import { emailIsAvaliable, login, register } from "@/services/api";
 import { IDataLoginUser, IDataRegisterUser, ILoginTokens } from "@/interface";
+import { addTokens, removeTokens } from "@/services/localStorage";
 
 export const loginValid = async (data: formProps, setShowIconLoading: Function) => {
     setShowIconLoading(true)
@@ -18,7 +19,9 @@ export const loginValid = async (data: formProps, setShowIconLoading: Function) 
 
         login(dataForm)
             .then((dataLogin: ILoginTokens) => {
-                console.log(dataLogin, '1')
+                localStorage.removeItem("tokens")
+                removeTokens()
+                addTokens(dataLogin)
                 notify("success", "Bem-vindo,", "Login realizado com sucesso");
             })
             .catch(() => notify("danger", "Desculpe,", "Não foi possível realizar o login! As credenciais não conferem!"))
@@ -47,6 +50,18 @@ export const loginValid = async (data: formProps, setShowIconLoading: Function) 
     register(dataForm)
         .then(() => {
             notify("success", "Bem-vindo,", "Cadastro realizado com sucesso");
+            const dataForm1: IDataLoginUser = {
+                email: dataForm.email,
+                password: dataForm.password,
+            }
+
+            login(dataForm1)
+                .then((dataLogin: ILoginTokens) => {
+                    localStorage.removeItem("tokens")
+                    removeTokens()
+                    addTokens(dataLogin)
+                    notify("success", "Bem-vindo,", "Login realizado com sucesso");
+                })
         })
         .catch(() => notify("danger", "Desculpe,", "Não foi possível realizar o registro!"))
         .finally(() => setShowIconLoading(false))
