@@ -7,7 +7,13 @@ import { emailIsAvaliable, getLoginData, login, register } from "@/services/api"
 import { IDataLoginUser, IDataRegisterUser, IDataUser, ILoginTokens } from "@/interface";
 import { addTokens, removeTokens } from "@/services/localStorage";
 
-export const loginValid = async ({data, setShowIconLoading, setAllUserData, setLogined}: IloginValid) => {
+export const loginValid = async ({
+    data,
+    setShowIconLoading,
+    setAllUserData,
+    setLogined,
+    push,
+}: IloginValid) => {
     setShowIconLoading(true)
 
     if (data.type === undefined) {
@@ -26,6 +32,10 @@ export const loginValid = async ({data, setShowIconLoading, setAllUserData, setL
                         setAllUserData({...dataToken, ...dataLogin});
                         setLogined(true);
                         notify("success", "Bem-vindo,", "Login realizado com sucesso");
+                        /* setTimeout(() => {
+
+                        }, timeout); */
+                        push('/');
                     })
             })
             .catch(() => notify("danger", "Desculpe,", "Não foi possível realizar o login! As credenciais não conferem!"))
@@ -66,6 +76,7 @@ export const loginValid = async ({data, setShowIconLoading, setAllUserData, setL
                     setAllUserData({...dataToken, ...dataForm});
                     setLogined(true);
                     notify("success", "Bem-vindo,", "Login realizado com sucesso");
+                    push("/");
                 })
         })
         .catch(() => notify("danger", "Desculpe,", "Não foi possível realizar o registro!"))
