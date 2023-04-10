@@ -1,13 +1,13 @@
 import { SubmitErrorHandler } from "react-hook-form/dist/types";
 import { FieldErrors } from "react-hook-form/dist/types/errors";
 
-import { formProps } from "../interfaces";
+import { IloginValid, formProps } from "../interfaces";
 import { notify } from "@/functions/notifications";
-import { emailIsAvaliable, login, register } from "@/services/api";
-import { IDataLoginUser, IDataRegisterUser, ILoginTokens } from "@/interface";
+import { emailIsAvaliable, getLoginData, login, register } from "@/services/api";
+import { IDataLoginUser, IDataRegisterUser, IDataUser, ILoginTokens } from "@/interface";
 import { addTokens, removeTokens } from "@/services/localStorage";
 
-export const loginValid = async (data: formProps, setShowIconLoading: Function) => {
+export const loginValid = async ({data, setShowIconLoading, setAllUserData, setLogined}: IloginValid) => {
     setShowIconLoading(true)
 
     if (data.type === undefined) {
@@ -18,10 +18,15 @@ export const loginValid = async (data: formProps, setShowIconLoading: Function) 
         }
 
         login(dataForm)
-            .then((dataLogin: ILoginTokens) => {
+            .then((dataToken: ILoginTokens) => {
                 removeTokens()
-                addTokens(dataLogin)
-                notify("success", "Bem-vindo,", "Login realizado com sucesso");
+                addTokens(dataToken)
+                getLoginData(dataToken.access_token)
+                    .then((dataLogin: IDataUser) => {
+                        setAllUserData({...dataToken, ...dataLogin});
+                        setLogined(true);
+                        notify("success", "Bem-vindo,", "Login realizado com sucesso");
+                    })
             })
             .catch(() => notify("danger", "Desculpe,", "Não foi possível realizar o login! As credenciais não conferem!"))
             .finally(() => setShowIconLoading(false))
@@ -32,7 +37,7 @@ export const loginValid = async (data: formProps, setShowIconLoading: Function) 
     const emailIsAvaliableReturn = await emailIsAvaliable(emailVerify)
     if (emailIsAvaliableReturn) {
         notify("danger", "Desculpe,", "O email inserido já foi registrado!");
-        setShowIconLoading(false)
+        setShowIconLoading(false);
         return
     }
 
@@ -55,9 +60,11 @@ export const loginValid = async (data: formProps, setShowIconLoading: Function) 
             }
 
             login(dataForm1)
-                .then((dataLogin: ILoginTokens) => {
-                    removeTokens()
-                    addTokens(dataLogin)
+                .then((dataToken: ILoginTokens) => {
+                    removeTokens();
+                    addTokens(dataToken);
+                    setAllUserData({...dataToken, ...dataForm});
+                    setLogined(true);
                     notify("success", "Bem-vindo,", "Login realizado com sucesso");
                 })
         })
