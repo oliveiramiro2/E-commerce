@@ -1,6 +1,6 @@
 import React from 'react'
 
-export const Products: React.FC = () => {
+export const ProductsTemplate: React.FC = () => {
   return (
     <div>products</div>
   )
