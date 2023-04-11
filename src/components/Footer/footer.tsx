@@ -22,7 +22,7 @@ export const Footer: React.FC = () => {
                     </li>
                     <li>
                         <Link
-                            href={logined ? "/" : "/entrar"}
+                            href={logined ? "/produtos" : "/entrar"}
                             className={`text-pallet-white font-medium hover:border-b hover:transition-colors hover:drop-shadow-xl border-pallet-blue ${tiro.className}`}
                         >
                             Comprar
