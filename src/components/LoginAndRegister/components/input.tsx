@@ -1,4 +1,5 @@
 import React from "react";
+import clsx from "clsx";
 
 import { IPropsInput } from "../interfaces";
 import { tiro } from "@/functions/fonts";
@@ -18,7 +19,9 @@ export const InputUser: React.FC<{ data: IPropsInput; index: number }> = ({
         <input
             type={data.type}
             id={data.name}
-            className={`w-full outline-none border-2 border-pallet-purple p-1 pl-2 rounded-lg ${tiro.className}`}
+            className={clsx(`w-full outline-none border-2 border-pallet-purple p-1 pl-2 rounded-lg ${tiro.className}`, {
+                "border-red-500": !!errorMessage(data.errors, index, data.registerForm)
+            })}
             placeholder={data.placeholder}
             {...data.register(data.name)}
         />
