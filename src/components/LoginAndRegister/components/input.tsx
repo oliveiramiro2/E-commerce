@@ -2,7 +2,7 @@ import React from "react";
 
 import { IPropsInput } from "../interfaces";
 import { tiro } from "@/functions/fonts";
-import { errrorMessage } from "../functions";
+import { errorMessage } from "../functions";
 
 export const InputUser: React.FC<{ data: IPropsInput; index: number }> = ({
     data,
@@ -23,11 +23,11 @@ export const InputUser: React.FC<{ data: IPropsInput; index: number }> = ({
             {...data.register(data.name)}
         />
 
-        {errrorMessage(data.errors, index, data.registerForm) && (
+        {errorMessage(data.errors, index, data.registerForm) && (
             <p
                 className={`text-red-500 font-semibold self-center relative top-3 ${tiro.className}`}
             >
-                {errrorMessage(data.errors, index, data.registerForm)}
+                {errorMessage(data.errors, index, data.registerForm)}
             </p>
         )}
     </div>

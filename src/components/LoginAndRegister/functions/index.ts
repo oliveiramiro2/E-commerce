@@ -1,1 +1,1 @@
-export { loginInvalid, loginValid, errrorMessage } from './login'
+export { loginInvalid, loginValid, errorMessage } from './login'

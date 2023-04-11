@@ -89,7 +89,7 @@ export const loginInvalid: SubmitErrorHandler<formProps> = (data) => {
     \n ${data.confirmPassword?.message || ''}`);
 };
 
-export const errrorMessage: Function = (error: FieldErrors<formProps>, index: number, registerUser: boolean) => {
+export const errorMessage: Function = (error: FieldErrors<formProps>, index: number, registerUser: boolean) => {
     let returnValue: boolean | string = false
 
     try {
