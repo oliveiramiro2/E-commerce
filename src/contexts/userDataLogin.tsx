@@ -37,7 +37,6 @@ const UserDataLogin = ({ children }: { children: React.ReactNode }) => {
                     setLogined(true);
                 })
                 .catch(() => {
-                    console.log("foi excluido!");
                     removeTokens();
                 });
         }
