@@ -1,9 +1,6 @@
-import React from 'react'
+import React from "react";
+import { ProductsTemplate } from "@/templates";
 
-const Produtos: React.FC = () => {
-  return (
-    <div>produtos</div>
-  )
-}
+const Produtos: React.FC = () => <ProductsTemplate />;
 
-export default Produtos
+export default Produtos;
