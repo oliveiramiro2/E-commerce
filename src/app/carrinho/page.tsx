@@ -1,9 +1,7 @@
-import React from 'react'
+import React from "react";
 
-const Cart: React.FC = () => {
-  return (
-    <div>page</div>
-  )
-}
+import { CartTemplate } from "@/templates";
 
-export default Cart
+const Cart: React.FC = () => <CartTemplate />;
+
+export default Cart;
