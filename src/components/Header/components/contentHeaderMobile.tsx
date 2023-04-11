@@ -18,14 +18,17 @@ export const ContentHeaderMobile: React.FC = () => {
                             className={`text-pallet-white w-[74px] flex items-center gap-x-2 font-medium text-md hover:border-b hover:transition-colors hover:drop-shadow-xl border-pallet-blue ${tiro.className}`}
                             href="/"
                         >
-                            <FaHome size={18} className="relative bottom-[2px]" />{" "}
+                            <FaHome
+                                size={18}
+                                className="relative bottom-[2px]"
+                            />{" "}
                             Home
                         </Link>
                     </li>
                     <li className="border-b w-full border-gray-800 pt-3 pb-5 pl-5">
                         <Link
                             className={`text-pallet-white w-24 flex items-center gap-x-2 font-medium text-md hover:border-b hover:transition-colors hover:drop-shadow-xl border-pallet-blue ${tiro.className}`}
-                            href={logined ? "/" : "/entrar"}
+                            href={logined ? "/produtos" : "/entrar"}
                         >
                             <FaShoppingBag className="relative bottom-[2px]" />{" "}
                             Comprar

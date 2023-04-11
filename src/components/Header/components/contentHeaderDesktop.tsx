@@ -23,7 +23,7 @@ export const ContentHeaderDesktop: React.FC<IPropsContentHeaderDesktop> = ({
                     alt="logo"
                     width={180}
                     height={20}
-                    style={{width: 'auto', height: 'auto'}}
+                    style={{ width: "auto", height: "auto" }}
                 />
             </Link>
             <div />
@@ -39,14 +39,20 @@ export const ContentHeaderDesktop: React.FC<IPropsContentHeaderDesktop> = ({
                     <li
                         className={`text-pallet-blue font-medium text-lg hover:border-b hover:transition-colors hover:drop-shadow-xl border-pallet-blue ${tiro.className}`}
                     >
-                        <Link className="flex gap-x-1" href={logined ? "/" : "/entrar"}>
+                        <Link
+                            className="flex gap-x-1"
+                            href={logined ? "/produtos" : "/entrar"}
+                        >
                             <FaShoppingBag className="relative top-1" /> Comprar
                         </Link>
                     </li>
                     <li
                         className={`text-pallet-blue font-medium text-lg hover:border-b hover:transition-colors hover:drop-shadow-xl border-pallet-blue ${tiro.className}`}
                     >
-                        <Link className="flex gap-x-1" href={logined ? "/" : "/entrar"}>
+                        <Link
+                            className="flex gap-x-1"
+                            href={logined ? "/" : "/entrar"}
+                        >
                             <FaShoppingCart className="relative top-1" />{" "}
                             Carrinho
                         </Link>
