@@ -1,8 +1,17 @@
-import React from 'react'
+"use client";
+
+import React, { useEffect } from "react";
+
+import { DefaultTemplate } from "../default";
 
 export const ProductsTemplate: React.FC = () => {
-  return (
-    <div>products</div>
-  )
-}
+    useEffect(() => {
+        document.title = "RM E-commerce - Comprar";
+    }, []);
 
+    return (
+        <DefaultTemplate>
+            <div>products</div>
+        </DefaultTemplate>
+    );
+};
