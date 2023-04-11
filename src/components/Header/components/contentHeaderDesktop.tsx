@@ -51,7 +51,7 @@ export const ContentHeaderDesktop: React.FC<IPropsContentHeaderDesktop> = ({
                     >
                         <Link
                             className="flex gap-x-1"
-                            href={logined ? "/" : "/entrar"}
+                            href={logined ? "/carrinho" : "/entrar"}
                         >
                             <FaShoppingCart className="relative top-1" />{" "}
                             Carrinho
