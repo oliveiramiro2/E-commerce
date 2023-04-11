@@ -32,9 +32,6 @@ export const loginValid = async ({
                         setAllUserData({...dataToken, ...dataLogin});
                         setLogined(true);
                         notify("success", "Bem-vindo,", "Login realizado com sucesso");
-                        /* setTimeout(() => {
-
-                        }, timeout); */
                         push('/');
                     })
             })
