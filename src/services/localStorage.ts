@@ -9,6 +9,7 @@ export const addTokens: Function = (tokens: ILoginTokens): void => {
 }
 
 export const getTokens: Function = (): ILoginTokens | false => {
+    /* Perform localStorage action */
     const response = localStorage.getItem("tokens");
     if (response === null) return false
     return JSON.parse(response)
