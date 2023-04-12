@@ -12,6 +12,7 @@ import { useShowInfo } from "./hooks/useShowInfo";
 import { useRedirect } from "@/hooks";
 import { UserDataContext } from "@/contexts/userDataLogin";
 import { CartUserContext } from "@/contexts/cartUser";
+import { notify } from "@/functions/notifications";
 
 export const Product: React.FC<{ param: IDataApi }> = ({ param }) => {
     const { show, handleShow, handleHide } = useShowInfo();
@@ -69,6 +70,7 @@ export const Product: React.FC<{ param: IDataApi }> = ({ param }) => {
                     onClick={() => {
                         if (logined) {
                             setCartData([...cartData, param]);
+                            notify("success", "Sucesso,", "Produto adicionado ao carrinho!")
                         } else {
                             push("/entrar");
                         }
