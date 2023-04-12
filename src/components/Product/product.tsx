@@ -69,7 +69,8 @@ export const Product: React.FC<{ param: IDataApi }> = ({ param }) => {
                     )}
                     onClick={() => {
                         if (logined) {
-                            setCartData([...cartData, param]);
+                            const checkRepeat = cartData.filter((item: IDataApi) => item.id !== param.id)
+                            setCartData([...checkRepeat, param]);
                             notify("success", "Sucesso,", "Produto adicionado ao carrinho!")
                         } else {
                             push("/entrar");
