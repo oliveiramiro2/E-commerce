@@ -6,9 +6,11 @@ import { DefaultTemplate } from "../default";
 import { CartUserContext } from "@/contexts/cartUser";
 import { arnekG, oswald } from "@/functions/fonts";
 import { ContainCart } from "./components";
+import { usePriceItems } from "./hooks";
 
 export const CartTemplate: React.FC = () => {
     const { cartData } = useContext(CartUserContext);
+    const { priceItems } = usePriceItems()
 
     useEffect(() => {
         document.title = "RM E-commerce - Carrinho";

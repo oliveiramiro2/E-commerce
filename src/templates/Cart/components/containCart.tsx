@@ -5,12 +5,13 @@ import clsx from "clsx";
 
 import { IDataApi } from "@/interface";
 import { arnekG, oswald } from "@/functions/fonts";
-import { useCountBuyItems } from "../hooks";
+import { useCountBuyItems, usePriceItems } from "../hooks";
 import { CartUserContext } from "@/contexts/cartUser";
 import { notify } from "@/functions/notifications";
 
 export const ContainCart: React.FC<{ data: IDataApi }> = ({ data }) => {
     const { count, handleCountLess, handleCountPlus } = useCountBuyItems();
+    const { handlePriceItems } = usePriceItems();
     const { cartData, setCartData } = useContext(CartUserContext);
 
     return (
@@ -58,7 +59,15 @@ export const ContainCart: React.FC<{ data: IDataApi }> = ({ data }) => {
                         <div className="bg-gray-100 border p-2 flex items-center gap-x-1 border-pallet-black rounded-sm">
                             <button
                                 type="button"
-                                onClick={handleCountLess}
+                                onClick={() => {
+                                    if (count !== 1)
+                                        handlePriceItems(
+                                            count,
+                                            count - 1,
+                                            data.price
+                                        );
+                                    handleCountLess();
+                                }}
                                 disabled={count === 1}
                                 className={clsx("cursor-pointer", {
                                     "cursor-no-drop": count === 1,
@@ -73,7 +82,14 @@ export const ContainCart: React.FC<{ data: IDataApi }> = ({ data }) => {
                             </span>
                             <button
                                 type="button"
-                                onClick={handleCountPlus}
+                                onClick={() => {
+                                    handlePriceItems(
+                                        count,
+                                        count + 1,
+                                        data.price
+                                    );
+                                    handleCountPlus();
+                                }}
                                 className="cursor-pointer"
                             >
                                 <FiPlus color="#000" size={22} />
