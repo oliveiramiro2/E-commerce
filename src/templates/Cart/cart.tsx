@@ -33,7 +33,7 @@ export const CartTemplate: React.FC = () => {
                     className="w-full flex flex-col self-center pb-5 pt-5 border-gray-200"
                 >
                     {cartData.length > 0 ? (
-                        cartData.map(item => (
+                        cartData.map((item) => (
                             <ContainCart key={item.id} data={item} />
                         ))
                     ) : (
