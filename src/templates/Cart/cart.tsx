@@ -7,6 +7,7 @@ import { CartUserContext } from "@/contexts/cartUser";
 import { arnekG, oswald } from "@/functions/fonts";
 import { ContainCart } from "./components";
 import { usePriceItems } from "./hooks";
+import { MaskCoin } from "@/functions/maskCoin";
 
 export const CartTemplate: React.FC = () => {
     const { cartData } = useContext(CartUserContext);
@@ -64,7 +65,7 @@ export const CartTemplate: React.FC = () => {
                         <p
                             className={`text-pallet-orange font-black text-lg ${arnekG.className}`}
                         >
-                            Total: $ {priceItems},00
+                            Total: {MaskCoin(priceItems)}
                         </p>
                     </div>
                 )}

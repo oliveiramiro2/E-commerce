@@ -8,6 +8,7 @@ import { arnekG, oswald } from "@/functions/fonts";
 import { useCountBuyItems } from "../hooks";
 import { CartUserContext } from "@/contexts/cartUser";
 import { notify } from "@/functions/notifications";
+import { MaskCoin } from '@/functions/maskCoin'
 
 export const ContainCart: React.FC<{
     data: IDataApi;
@@ -103,7 +104,7 @@ export const ContainCart: React.FC<{
                             <span
                                 className={`text-pallet-black font-black text-sm min-w-[50px] ${arnekG.className}`}
                             >
-                                R$ {count * Number(data.price)},00
+                                {MaskCoin(count * Number(data.price))}
                             </span>
                         </div>
                     </div>

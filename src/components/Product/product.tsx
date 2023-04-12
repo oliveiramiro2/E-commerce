@@ -13,6 +13,7 @@ import { useRedirect } from "@/hooks";
 import { UserDataContext } from "@/contexts/userDataLogin";
 import { CartUserContext } from "@/contexts/cartUser";
 import { notify } from "@/functions/notifications";
+import { MaskCoin } from "@/functions/maskCoin";
 
 export const Product: React.FC<{ param: IDataApi }> = ({ param }) => {
     const { show, handleShow, handleHide } = useShowInfo();
@@ -54,7 +55,7 @@ export const Product: React.FC<{ param: IDataApi }> = ({ param }) => {
                 <p
                     className={`font-bold text-sm text-pallet-white ${arnekG.className}`}
                 >
-                    R$ {param.price},00
+                    {MaskCoin(param.price)}
                 </p>
             </div>
             <div className="w-full flex justify-around mb-4">
