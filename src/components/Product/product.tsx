@@ -9,11 +9,15 @@ import Link from "next/link";
 import { IDataApi } from "@/interface";
 import { arnekG } from "@/functions/fonts";
 import { useShowInfo } from "./hooks/useShowInfo";
+import { useRedirect } from "@/hooks";
 import { UserDataContext } from "@/contexts/userDataLogin";
+import { CartUserContext } from "@/contexts/cartUser";
 
 export const Product: React.FC<{ param: IDataApi }> = ({ param }) => {
     const { show, handleShow, handleHide } = useShowInfo();
     const { logined } = useContext(UserDataContext);
+    const { push } = useRedirect();
+    const { setCartData, cartData } = useContext(CartUserContext);
 
     return (
         <div
@@ -53,24 +57,29 @@ export const Product: React.FC<{ param: IDataApi }> = ({ param }) => {
                 </p>
             </div>
             <div className="w-full flex justify-around mb-4">
-                <Link href={logined ? "/" : "/entrar"}>
-                    <button
-                        type="button"
-                        className={clsx(
-                            `bg-pallet-orange pt-3 p-2 pl-4 pr-3 min-w-[35%] items-center gap-x-1 rounded-md font-bolder text-center text-sm text-pallet-white first-letter:capitalize hover:bg-[#ff9748] transition-colors shadow-md shadow-pallet-orange ${arnekG.className}`,
-                            {
-                                flex: show,
-                                hidden: !show,
-                            }
-                        )}
-                    >
-                        <FaShoppingCart
-                            color="#f7f8f9"
-                            className="relative bottom-[3px]"
-                        />{" "}
-                        Carrinho
-                    </button>
-                </Link>
+                <button
+                    type="button"
+                    className={clsx(
+                        `bg-pallet-orange pt-3 p-2 pl-4 pr-3 min-w-[35%] items-center gap-x-1 rounded-md font-bolder text-center text-sm text-pallet-white first-letter:capitalize hover:bg-[#ff9748] transition-colors shadow-md shadow-pallet-orange ${arnekG.className}`,
+                        {
+                            flex: show,
+                            hidden: !show,
+                        }
+                    )}
+                    onClick={() => {
+                        if (logined) {
+                            setCartData([...cartData, param]);
+                        } else {
+                            push("/entrar");
+                        }
+                    }}
+                >
+                    <FaShoppingCart
+                        color="#f7f8f9"
+                        className="relative bottom-[3px]"
+                    />{" "}
+                    Carrinho
+                </button>
                 <Link href={logined ? "/" : "/entrar"}>
                     <button
                         type="button"
