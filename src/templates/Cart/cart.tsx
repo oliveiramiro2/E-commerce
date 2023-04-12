@@ -10,7 +10,8 @@ import { usePriceItems } from "./hooks";
 
 export const CartTemplate: React.FC = () => {
     const { cartData } = useContext(CartUserContext);
-    const { priceItems, handleFirstTime, handlePriceItems } = usePriceItems();
+    const { priceItems, handleFirstTime, handlePriceItems, handleRemoveItem } =
+        usePriceItems();
 
     useEffect(() => {
         document.title = "RM E-commerce - Carrinho";
@@ -45,6 +46,7 @@ export const CartTemplate: React.FC = () => {
                                 key={item.id}
                                 data={item}
                                 handlePriceItems={handlePriceItems}
+                                handleRemoveItem={handleRemoveItem}
                             />
                         ))
                     ) : (
