@@ -6,8 +6,8 @@ export const usePriceItems = () => {
     return {
         priceItems,
         handlePriceItems: (oldItems: number, items: number, price: number) => {
-            const newTotal = priceItems - (oldItems * price) + (items * price)
-            setPriceItems(newTotal)
-        }
-    }
+            const newTotal = priceItems - oldItems * price + items * price;
+            setPriceItems(newTotal);
+        },
+    };
 };
