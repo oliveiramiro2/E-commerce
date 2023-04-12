@@ -5,12 +5,12 @@ import clsx from "clsx";
 
 import { IDataApi } from "@/interface";
 import { arnekG, oswald } from "@/functions/fonts";
-import { CountBuyItens } from "../hooks";
+import { useCountBuyItems } from "../hooks";
 import { CartUserContext } from "@/contexts/cartUser";
 import { notify } from "@/functions/notifications";
 
 export const ContainCart: React.FC<{ data: IDataApi }> = ({ data }) => {
-    const { count, handleCountLess, handleCountPlus } = CountBuyItens();
+    const { count, handleCountLess, handleCountPlus } = useCountBuyItems();
     const { cartData, setCartData } = useContext(CartUserContext);
 
     return (

@@ -1,1 +1,1 @@
-export { CountBuyItens } from './countBuyitens';
+export { useCountBuyItems } from './useCountBuyitens';
