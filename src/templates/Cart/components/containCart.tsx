@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext } from "react";
 import { FiPlus, FiMinus } from "react-icons/fi";
 import { FaWindowClose } from "react-icons/fa";
 import clsx from "clsx";
@@ -6,15 +6,27 @@ import clsx from "clsx";
 import { IDataApi } from "@/interface";
 import { arnekG } from "@/functions/fonts";
 import { CountBuyItens } from "../hooks";
+import { CartUserContext } from "@/contexts/cartUser";
+import { notify } from "@/functions/notifications";
 
 export const ContainCart: React.FC<{ data: IDataApi }> = ({ data }) => {
     const { count, handleCountLess, handleCountPlus } = CountBuyItens();
+    const { cartData, setCartData } = useContext(CartUserContext);
 
     return (
         <div>
             <div className="relative top-8 left-7">
-                <button type="button">
-                    <FaWindowClose color="#f00" size={24} />
+                <button
+                    type="button"
+                    onClick={() => {
+                        const removeItem = cartData.filter(
+                            item => item.id !== data.id
+                        );
+                        setCartData(removeItem);
+                        notify("warning", "Removido,", "Item removido do carrinho!")
+                    }}
+                >
+                    <FaWindowClose color="#f00" size={22} />
                 </button>
             </div>
             <div className="bg-white border flex items-center justify-between border-gray-300 ml-6 mr-6 mb-2 pl-1 rounded-md">
