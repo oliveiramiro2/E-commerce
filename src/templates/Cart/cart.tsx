@@ -10,10 +10,17 @@ import { usePriceItems } from "./hooks";
 
 export const CartTemplate: React.FC = () => {
     const { cartData } = useContext(CartUserContext);
-    const { priceItems } = usePriceItems()
+    const { priceItems, handleFirstTime, handlePriceItems } = usePriceItems();
 
     useEffect(() => {
         document.title = "RM E-commerce - Carrinho";
+        if (cartData.length > 0) {
+            let totalValue = 0;
+            cartData.forEach(item => {
+                totalValue += Number(item.price);
+            });
+            handleFirstTime(totalValue);
+        }
     }, []);
 
     return (
@@ -34,16 +41,31 @@ export const CartTemplate: React.FC = () => {
                 <div className="w-full flex flex-col self-center pb-5 pt-5 border-gray-200">
                     {cartData.length > 0 ? (
                         cartData.map(item => (
-                            <ContainCart key={item.id} data={item} />
+                            <ContainCart
+                                key={item.id}
+                                data={item}
+                                handlePriceItems={handlePriceItems}
+                            />
                         ))
                     ) : (
-                        <span
-                            className={`text-pallet-orange pl-6 font-black text-sm ${arnekG.className}`}
-                        >
-                            Você ainda não tem items no seu carrinho.
-                        </span>
+                        <div className="w-full h-full flex items-center justify-center mb-3 mt-6">
+                            <span
+                                className={`text-pallet-orange pl-6 font-black text-sm ${arnekG.className}`}
+                            >
+                                Você ainda não tem items no seu carrinho.
+                            </span>
+                        </div>
                     )}
                 </div>
+                {cartData.length > 0 && (
+                    <div className="w-full flex pr-20 pl-5 justify-end mb-10">
+                        <p
+                            className={`text-pallet-orange font-black text-lg ${arnekG.className}`}
+                        >
+                            Total: $ {priceItems},00
+                        </p>
+                    </div>
+                )}
             </section>
         </DefaultTemplate>
     );

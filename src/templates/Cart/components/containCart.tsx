@@ -5,13 +5,15 @@ import clsx from "clsx";
 
 import { IDataApi } from "@/interface";
 import { arnekG, oswald } from "@/functions/fonts";
-import { useCountBuyItems, usePriceItems } from "../hooks";
+import { useCountBuyItems } from "../hooks";
 import { CartUserContext } from "@/contexts/cartUser";
 import { notify } from "@/functions/notifications";
 
-export const ContainCart: React.FC<{ data: IDataApi }> = ({ data }) => {
+export const ContainCart: React.FC<{
+    data: IDataApi;
+    handlePriceItems: Function;
+}> = ({ data, handlePriceItems }) => {
     const { count, handleCountLess, handleCountPlus } = useCountBuyItems();
-    const { handlePriceItems } = usePriceItems();
     const { cartData, setCartData } = useContext(CartUserContext);
 
     return (
@@ -64,7 +66,7 @@ export const ContainCart: React.FC<{ data: IDataApi }> = ({ data }) => {
                                         handlePriceItems(
                                             count,
                                             count - 1,
-                                            data.price
+                                            Number(data.price)
                                         );
                                     handleCountLess();
                                 }}
@@ -86,7 +88,7 @@ export const ContainCart: React.FC<{ data: IDataApi }> = ({ data }) => {
                                     handlePriceItems(
                                         count,
                                         count + 1,
-                                        data.price
+                                        Number(data.price)
                                     );
                                     handleCountPlus();
                                 }}
@@ -99,7 +101,7 @@ export const ContainCart: React.FC<{ data: IDataApi }> = ({ data }) => {
                             <span
                                 className={`text-pallet-black font-black text-sm min-w-[50px] ${arnekG.className}`}
                             >
-                                R$ {count * Number(data.price)}
+                                R$ {count * Number(data.price)},00
                             </span>
                         </div>
                     </div>
