@@ -5,7 +5,8 @@ import LoadingIcons from "react-loading-icons";
 import Link from "next/link";
 
 import { arnekG, oswald } from "@/functions/fonts";
-import { useLoginOrRegister, useLoginRegister, useShowLoading, useRedirect } from "./hooks";
+import { useLoginOrRegister, useLoginRegister, useShowLoading } from "./hooks";
+import { useRedirect } from "@/hooks";
 import { loginInvalid, loginValid } from "./functions";
 import { CheckBoxUser, InputUser } from "./components";
 import { UserDataContext } from "@/contexts/userDataLogin";
