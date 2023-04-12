@@ -12,3 +12,4 @@ export type {
     IContextLoginData,
     ILoginTokens
 } from './dataLoginUser';
+export type { IContextCartData } from './productsCart';
