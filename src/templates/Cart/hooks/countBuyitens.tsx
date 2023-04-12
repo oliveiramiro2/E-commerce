@@ -3,10 +3,11 @@
 import {useState} from 'react'
 
 export const CountBuyItens = () => {
-    const [count, setCount] = useState<number[]>([]);
+    const [count, setCount] = useState<number>(1);
 
     return {
         count,
-        setCount,
+        handleCountPlus: () => setCount(count + 1),
+        handleCountLess: () => setCount(count - 1),
     }
 }
