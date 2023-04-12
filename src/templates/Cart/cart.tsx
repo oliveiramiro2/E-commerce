@@ -38,7 +38,7 @@ export const CartTemplate: React.FC = () => {
                         ))
                     ) : (
                         <span
-                            className={`text-pallet-orange font-black text-sm ${arnekG.className}`}
+                            className={`text-pallet-orange pl-6 font-black text-sm ${arnekG.className}`}
                         >
                             Você ainda não tem items no seu carrinho.
                         </span>
