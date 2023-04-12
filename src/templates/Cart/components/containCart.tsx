@@ -61,13 +61,13 @@ export const ContainCart: React.FC<{ data: IDataApi }> = ({ data }) => {
                                 onClick={handleCountLess}
                                 disabled={count === 1}
                                 className={clsx("cursor-pointer", {
-                                    "cursor-default": count === 1,
+                                    "cursor-no-drop": count === 1,
                                 })}
                             >
                                 <FiMinus color="#000" size={22} />
                             </button>
                             <span
-                                className={`text-pallet-black bg-white rounded-lg text-center pl-2 pr-2 font-black ${arnekG.className}`}
+                                className={`text-pallet-black bg-white rounded-lg relative top-1 text-center pl-2 pr-2 font-black ${arnekG.className}`}
                             >
                                 {count}
                             </span>
@@ -81,7 +81,7 @@ export const ContainCart: React.FC<{ data: IDataApi }> = ({ data }) => {
                         </div>
                         <div>
                             <span
-                                className={`text-pallet-black font-black text-sm ${arnekG.className}`}
+                                className={`text-pallet-black font-black text-sm min-w-[50px] ${arnekG.className}`}
                             >
                                 R$ {count * Number(data.price)}
                             </span>
@@ -89,7 +89,7 @@ export const ContainCart: React.FC<{ data: IDataApi }> = ({ data }) => {
                     </div>
                     <button
                         type="button"
-                        className={`self-center rounded-xl p-1 pl-6 pr-6 bg-pallet-purple text-pallet-white tracking-wide shadow-lg shadow-gray-400 hover:bg-[#bf3eee] hover:transition-colors ${oswald.className}`}
+                        className={`self-center rounded-xl p-1 pl-8 pr-8 mt-3 mr-2 bg-pallet-purple text-pallet-white tracking-wide shadow-lg shadow-gray-400 hover:bg-[#bf3eee] hover:transition-colors ${oswald.className}`}
                     >
                         Comprar
                     </button>
