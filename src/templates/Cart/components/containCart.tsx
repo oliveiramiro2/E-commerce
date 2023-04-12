@@ -12,7 +12,8 @@ import { notify } from "@/functions/notifications";
 export const ContainCart: React.FC<{
     data: IDataApi;
     handlePriceItems: Function;
-}> = ({ data, handlePriceItems }) => {
+    handleRemoveItem: Function;
+}> = ({ data, handlePriceItems, handleRemoveItem }) => {
     const { count, handleCountLess, handleCountPlus } = useCountBuyItems();
     const { cartData, setCartData } = useContext(CartUserContext);
 
@@ -26,6 +27,7 @@ export const ContainCart: React.FC<{
                             item => item.id !== data.id
                         );
                         setCartData(removeItem);
+                        handleRemoveItem(count, data.price)
                         notify(
                             "warning",
                             "Removido,",

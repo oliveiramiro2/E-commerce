@@ -11,9 +11,13 @@ export const usePriceItems = () => {
             const newTotal = priceItems - oldItems * price + items * price;
             setPriceItems(newTotal);
         },
+        handleRemoveItem: (items: number, price: number) => {
+            const newTotal = priceItems - items * price;
+            setPriceItems(newTotal);
+        },
         handleFirstTime: (price: number) => {
-            const oldPrice = priceItems
-            setPriceItems(oldPrice + price)
+            const oldPrice = priceItems;
+            setPriceItems(oldPrice + price);
         },
     };
 };
