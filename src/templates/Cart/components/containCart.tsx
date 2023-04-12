@@ -4,7 +4,7 @@ import { FaWindowClose } from "react-icons/fa";
 import clsx from "clsx";
 
 import { IDataApi } from "@/interface";
-import { arnekG } from "@/functions/fonts";
+import { arnekG, oswald } from "@/functions/fonts";
 import { CountBuyItens } from "../hooks";
 import { CartUserContext } from "@/contexts/cartUser";
 import { notify } from "@/functions/notifications";
@@ -23,7 +23,11 @@ export const ContainCart: React.FC<{ data: IDataApi }> = ({ data }) => {
                             item => item.id !== data.id
                         );
                         setCartData(removeItem);
-                        notify("warning", "Removido,", "Item removido do carrinho!")
+                        notify(
+                            "warning",
+                            "Removido,",
+                            "Item removido do carrinho!"
+                        );
                     }}
                 >
                     <FaWindowClose color="#f00" size={22} />
@@ -49,38 +53,46 @@ export const ContainCart: React.FC<{ data: IDataApi }> = ({ data }) => {
                         </p>
                     </div>
                 </div>
-                <div className="flex mr-5 items-center gap-x-4">
-                    <div className="bg-gray-100 border p-2 flex items-center gap-x-1 border-pallet-black rounded-sm">
-                        <button
-                            type="button"
-                            onClick={handleCountLess}
-                            disabled={count === 1}
-                            className={clsx("cursor-pointer", {
-                                "cursor-default": count === 1,
-                            })}
-                        >
-                            <FiMinus color="#000" size={22} />
-                        </button>
-                        <span
-                            className={`text-pallet-black bg-white rounded-lg text-center pl-2 pr-2 font-black ${arnekG.className}`}
-                        >
-                            {count}
-                        </span>
-                        <button
-                            type="button"
-                            onClick={handleCountPlus}
-                            className="cursor-pointer"
-                        >
-                            <FiPlus color="#000" size={22} />
-                        </button>
+                <div className="flex flex-col justify-around">
+                    <div className="flex mr-5 items-center gap-x-4">
+                        <div className="bg-gray-100 border p-2 flex items-center gap-x-1 border-pallet-black rounded-sm">
+                            <button
+                                type="button"
+                                onClick={handleCountLess}
+                                disabled={count === 1}
+                                className={clsx("cursor-pointer", {
+                                    "cursor-default": count === 1,
+                                })}
+                            >
+                                <FiMinus color="#000" size={22} />
+                            </button>
+                            <span
+                                className={`text-pallet-black bg-white rounded-lg text-center pl-2 pr-2 font-black ${arnekG.className}`}
+                            >
+                                {count}
+                            </span>
+                            <button
+                                type="button"
+                                onClick={handleCountPlus}
+                                className="cursor-pointer"
+                            >
+                                <FiPlus color="#000" size={22} />
+                            </button>
+                        </div>
+                        <div>
+                            <span
+                                className={`text-pallet-black font-black text-sm ${arnekG.className}`}
+                            >
+                                R$ {count * Number(data.price)}
+                            </span>
+                        </div>
                     </div>
-                    <div>
-                        <span
-                            className={`text-pallet-black font-black text-sm ${arnekG.className}`}
-                        >
-                            R$ {count * Number(data.price)}
-                        </span>
-                    </div>
+                    <button
+                        type="button"
+                        className={`self-center rounded-xl p-1 pl-6 pr-6 bg-pallet-purple text-pallet-white tracking-wide shadow-lg shadow-gray-400 hover:bg-[#bf3eee] hover:transition-colors ${oswald.className}`}
+                    >
+                        Comprar
+                    </button>
                 </div>
             </div>
         </div>
