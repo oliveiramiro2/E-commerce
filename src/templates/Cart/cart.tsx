@@ -26,7 +26,7 @@ export const CartTemplate: React.FC = () => {
                     <span
                         className={`text-pallet-black self-center font-bold tracking-wide ${oswald.className}`}
                     >
-                        Compre agora seus produtos agora!
+                        Compre seus produtos agora!
                     </span>
                 </div>
                 <div
