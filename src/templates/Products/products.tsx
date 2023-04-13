@@ -12,7 +12,7 @@ import { Product, SkeletonProducts } from "@/components";
 export const ProductsTemplate: React.FC = () => {
     const { data, isLoading } = useQuery<IDataApi[] | undefined>({
         queryKey: ["allProducts"],
-        queryFn: allProducts,
+        queryFn: () => allProducts(),
     });
 
     useEffect(() => {
