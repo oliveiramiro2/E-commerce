@@ -20,8 +20,8 @@ const api = axios.create({
 
 // products
 
-export const allProducts = async (): Promise<IDataApi[] | undefined> => {
-    const { data }: {data: IDataApi[] | undefined} = await api.get("/products")
+export const allProducts = async (offset: number = 0, filter: string = ""): Promise<IDataApi[] | undefined> => {
+    const { data }: {data: IDataApi[] | undefined} = await api.get(`/products?limit=12&offset=${offset}${filter}`)
     return data
 }
 
