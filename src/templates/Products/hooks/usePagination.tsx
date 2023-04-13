@@ -6,7 +6,7 @@ export const usePagination = () => {
     return {
         pagination,
         handleInputPagination: (value: string) =>
-            setPagination(Number(value) * 1),
+            setPagination(Number(value) === 0 ? 1 : Number(value) * 1),
         handlePagination: (more: boolean) => {
             if (more) {
                 setPagination(pagination + 1);
