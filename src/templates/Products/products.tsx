@@ -19,6 +19,10 @@ export const ProductsTemplate: React.FC = () => {
         document.title = "RM E-commerce - Comprar";
     }, []);
 
+    if (isLoading) {
+        return <div>loading...</div>
+    }
+
     return (
         <DefaultTemplate>
             <section className="w-screen min-h-[72vh] bg-gray-100 flex flex-col items-center">
@@ -29,9 +33,9 @@ export const ProductsTemplate: React.FC = () => {
                         Produtos
                     </h3>
                 </div>
-                <div>
+                <div className="pl-6 pr-6">
                     <div>filter</div>
-                    <div>
+                    <div className="w-full flex flex-wrap justify-between">
                         {data?.map(item => (
                             <Product key={item.id} param={item} />
                         ))}
