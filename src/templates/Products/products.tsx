@@ -2,18 +2,21 @@
 
 import React, { useEffect } from "react";
 import { useQuery } from "@tanstack/react-query";
+import { TiChevronLeft, TiChevronRight } from "react-icons/ti";
 
 import { DefaultTemplate } from "../default";
 import { oswald } from "@/functions/fonts";
 import { allProducts } from "@/services/api";
 import { IDataApi } from "@/interface";
 import { Product, SkeletonProducts } from "@/components";
+import { usePagination } from "./hooks";
 
 export const ProductsTemplate: React.FC = () => {
     const { data, isLoading } = useQuery<IDataApi[] | undefined>({
         queryKey: ["allProducts"],
         queryFn: () => allProducts(),
     });
+    const { pagination } = usePagination();
 
     useEffect(() => {
         document.title = "RM E-commerce - Comprar";
@@ -51,11 +54,28 @@ export const ProductsTemplate: React.FC = () => {
                     </h3>
                 </div>
                 <div className="pl-6 pr-6 mb-10">
-                    <div className="w-full bg-white mb-5 pt-6 pb-6 pl-1 rounded-xl">filter</div>
+                    <div className="w-full bg-white mb-5 pt-6 pb-6 pl-1 rounded-xl">
+                        filter
+                    </div>
                     <div className="w-full flex flex-wrap gap-y-10 justify-between">
                         {data?.map(item => (
                             <Product key={item.id} param={item} />
                         ))}
+                    </div>
+                </div>
+                <div>
+                    <div>
+                        <button type="button">
+                            <TiChevronLeft />
+                        </button>
+                    </div>
+                    <div>
+                        <input type="text" defaultValue={pagination} />
+                    </div>
+                    <div>
+                        <button type="button">
+                            <TiChevronRight />
+                        </button>
                     </div>
                 </div>
             </section>
