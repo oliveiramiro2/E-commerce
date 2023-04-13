@@ -1,6 +1,6 @@
 "use client";
 
-import React, { createContext, useMemo, useState } from "react";
+import React, { createContext, useMemo, useState, useEffect } from "react";
 import {
     IContextLoginData,
     IDataUser,
@@ -27,20 +27,23 @@ const UserDataLogin = ({ children }: { children: React.ReactNode }) => {
     });
     const [logined, setLogined] = useState<boolean>(false);
 
-    if (typeof window !== "undefined") {
-        /* Perform localStorage action */
-        const tokens: ILoginTokens | false = getTokens();
-        if (tokens !== false) {
-            getLoginData(tokens.access_token)
-                .then((data: IDataUser) => {
-                    setAllUserData({ ...tokens, ...data });
-                    setLogined(true);
-                })
-                .catch(() => {
-                    removeTokens();
-                });
+    useEffect(() => {
+        if (typeof window !== "undefined") {
+            /* Perform localStorage action */
+            const tokens: ILoginTokens | false = getTokens();
+            if (tokens !== false) {
+                getLoginData(tokens.access_token)
+                    .then((data: IDataUser) => {
+                        setAllUserData({ ...tokens, ...data });
+                        setLogined(true);
+                    })
+                    .catch(() => {
+                        removeTokens();
+                    });
+            }
         }
-    }
+    }, [])
+    
     const valueContext = useMemo(
         () => ({
             allUserData,
