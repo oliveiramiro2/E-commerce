@@ -52,7 +52,7 @@ export const ProductsTemplate: React.FC = () => {
                 </div>
                 <div className="pl-6 pr-6">
                     <div>filter</div>
-                    <div className="w-full flex flex-wrap justify-between">
+                    <div className="w-full flex flex-wrap gap-y-10 justify-between">
                         {data?.map(item => (
                             <Product key={item.id} param={item} />
                         ))}
