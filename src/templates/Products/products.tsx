@@ -50,7 +50,7 @@ export const ProductsTemplate: React.FC = () => {
                         Produtos
                     </h3>
                 </div>
-                <div className="pl-6 pr-6">
+                <div className="pl-6 pr-6 mb-10">
                     <div className="w-full bg-white mb-5 pt-6 pb-6 pl-1 rounded-xl">filter</div>
                     <div className="w-full flex flex-wrap gap-y-10 justify-between">
                         {data?.map(item => (

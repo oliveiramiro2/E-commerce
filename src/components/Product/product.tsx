@@ -41,7 +41,7 @@ export const Product: React.FC<{ param: IDataApi }> = ({ param }) => {
             />
             <p
                 className={clsx(
-                    `font-medium w-[20vw] max-md:w-[80vw] mt-1 content-center text-center text-sm text-pallet-white first-letter:capitalize ${arnekG.className}`,
+                    `font-medium max-w-[20vw] max-md:w-[80vw] mt-1 content-center text-center text-sm text-pallet-white first-letter:capitalize ${arnekG.className}`,
                     {
                         flex: show,
                         hidden: !show,
@@ -50,7 +50,7 @@ export const Product: React.FC<{ param: IDataApi }> = ({ param }) => {
             >
                 {param.description}
             </p>
-            <div className="flex gap-x-2">
+            <div className="flex gap-x-2 mt-2">
                 <SiFireship color="#f00" />
                 <p
                     className={`font-bold text-sm text-pallet-white ${arnekG.className}`}
