@@ -80,7 +80,9 @@ export const ProductsTemplate: React.FC = () => {
                             value={pagination}
                             className={`w-14 text-center outline-none border-2 border-pallet-orange p-1 pl-1 rounded-lg ${tiro.className}`}
                             onChange={e =>
-                                handleInputPagination(e.target.value)
+                                handleInputPagination(
+                                    e.target.value.replace(/[^0-9.]/g, '')
+                                )
                             }
                         />
                     </div>
