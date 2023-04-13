@@ -1,11 +1,20 @@
 "use client";
 
 import React, { useEffect } from "react";
+import { useQuery } from "@tanstack/react-query";
 
 import { DefaultTemplate } from "../default";
 import { oswald } from "@/functions/fonts";
+import { allProducts } from "@/services/api";
+import { IDataApi } from "@/interface";
+import { Product } from "@/components";
 
 export const ProductsTemplate: React.FC = () => {
+    const { data, isLoading } = useQuery<IDataApi[] | undefined>({
+        queryKey: ["bestOffers"],
+        queryFn: allProducts,
+    });
+
     useEffect(() => {
         document.title = "RM E-commerce - Comprar";
     }, []);
@@ -19,6 +28,14 @@ export const ProductsTemplate: React.FC = () => {
                     >
                         Produtos
                     </h3>
+                </div>
+                <div>
+                    <div>filter</div>
+                    <div>
+                        {data?.map(item => (
+                            <Product key={item.id} param={item} />
+                        ))}
+                    </div>
                 </div>
             </section>
         </DefaultTemplate>
