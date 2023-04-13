@@ -41,7 +41,7 @@ export const Product: React.FC<{ param: IDataApi }> = ({ param }) => {
             />
             <p
                 className={clsx(
-                    `font-medium w-[20vw] max-md:w-[80vw] text-center text-sm text-pallet-white first-letter:capitalize ${arnekG.className}`,
+                    `font-medium w-[20vw] max-md:w-[80vw] mt-1 content-center text-center text-sm text-pallet-white first-letter:capitalize ${arnekG.className}`,
                     {
                         flex: show,
                         hidden: !show,
