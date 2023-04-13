@@ -11,7 +11,7 @@ import { Product } from "@/components";
 
 export const ProductsTemplate: React.FC = () => {
     const { data, isLoading } = useQuery<IDataApi[] | undefined>({
-        queryKey: ["bestOffers"],
+        queryKey: ["allProducts"],
         queryFn: allProducts,
     });
 
