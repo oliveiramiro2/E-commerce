@@ -5,7 +5,7 @@ import { useQuery } from "@tanstack/react-query";
 import { TiChevronLeft, TiChevronRight } from "react-icons/ti";
 
 import { DefaultTemplate } from "../default";
-import { oswald } from "@/functions/fonts";
+import { oswald, tiro } from "@/functions/fonts";
 import { allProducts } from "@/services/api";
 import { IDataApi } from "@/interface";
 import { Product, SkeletonProducts } from "@/components";
@@ -63,20 +63,24 @@ export const ProductsTemplate: React.FC = () => {
                         ))}
                     </div>
                 </div>
-                <div>
+                <div className="flex items-center mb-10">
+                    <button type="button" className="h-max">
+                        <div className="bg-pallet-orange h-max rounded-md mr-2 p-2 hover:bg-[#ff9748] transition-colors shadow-md shadow-pallet-orange">
+                            <TiChevronLeft color="#fff" />
+                        </div>
+                    </button>
                     <div>
-                        <button type="button">
-                            <TiChevronLeft />
-                        </button>
+                        <input
+                            type="text"
+                            defaultValue={pagination}
+                            className={`w-14 text-center outline-none border-2 border-pallet-orange p-1 pl-1 rounded-lg ${tiro.className}`}
+                        />
                     </div>
-                    <div>
-                        <input type="text" defaultValue={pagination} />
-                    </div>
-                    <div>
-                        <button type="button">
-                            <TiChevronRight />
-                        </button>
-                    </div>
+                    <button type="button" className="h-max">
+                        <div className="bg-pallet-orange h-max rounded-md ml-2 p-2 hover:bg-[#ff9748] transition-colors shadow-md shadow-pallet-orange">
+                            <TiChevronRight color="#fff" />
+                        </div>
+                    </button>
                 </div>
             </section>
         </DefaultTemplate>
