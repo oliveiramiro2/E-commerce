@@ -5,6 +5,16 @@ export const usePagination = () => {
 
     return {
         pagination,
-        setPagination,
+        handleInputPagination: (value: string) =>
+            setPagination(Number(value) * 1),
+        handlePagination: (more: boolean) => {
+            if (more) {
+                setPagination(pagination + 1);
+                return;
+            }
+            if (!more && pagination !== 1) {
+                setPagination(pagination - 1);
+            }
+        },
     };
 };
