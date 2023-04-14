@@ -13,7 +13,18 @@ import { useFilter } from "../hooks";
 const cartegoriesData: ICategoriesOptions[] = [{ id: 0, name: "" }];
 
 export const Filters: React.FC = () => {
-    const { options, setOptions, name, setName, price, setPrice } = useFilter();
+    const {
+        options,
+        setOptions,
+        name,
+        setName,
+        price,
+        setPrice,
+        minPrice,
+        setMinPrice,
+        maxPrice,
+        setMaxPrice,
+    } = useFilter();
     const { data, isLoading } = useQuery<ICategoryApi[] | undefined>({
         queryFn: () => categories(""),
         queryKey: ["allCategories"],
@@ -55,7 +66,7 @@ export const Filters: React.FC = () => {
                         type="text"
                         className={`outline-none border-2 border-pallet-orange p-1 pl-1 rounded-lg ${tiro.className}`}
                         value={name}
-                        onChange={e => setName(e.target.value)}                    
+                        onChange={e => setName(e.target.value)}
                     />
                 </div>
                 <div>
@@ -68,7 +79,9 @@ export const Filters: React.FC = () => {
                         type="text"
                         className={`outline-none border-2 border-pallet-orange p-1 pl-1 rounded-lg ${tiro.className}`}
                         value={price}
-                        onChange={e => setPrice(e.target.value)}    
+                        onChange={e =>
+                            setPrice(e.target.value.replace(/[^0-9.]/g, ""))
+                        }
                     />
                 </div>
                 <div>
@@ -88,6 +101,10 @@ export const Filters: React.FC = () => {
                             type="text"
                             className={`outline-none border-2 border-pallet-orange p-1 pl-1 rounded-lg ${tiro.className}`}
                             id="min"
+                            value={minPrice}
+                            onChange={e =>
+                                setMinPrice(e.target.value.replace(/[^0-9.]/g, ""))
+                            }
                         />
                     </div>
                     <div className="flex flex-col">
@@ -101,6 +118,10 @@ export const Filters: React.FC = () => {
                             type="text"
                             className={`outline-none border-2 border-pallet-orange p-1 pl-1 rounded-lg ${tiro.className}`}
                             id="max"
+                            value={maxPrice}
+                            onChange={e =>
+                                setMaxPrice(e.target.value.replace(/[^0-9.]/g, ""))
+                            }
                         />
                     </div>
                 </div>
