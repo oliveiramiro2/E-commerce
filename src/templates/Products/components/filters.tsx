@@ -13,7 +13,9 @@ import { notify } from "@/functions/notifications";
 
 const cartegoriesData: ICategoriesOptions[] = [{ id: 0, name: "" }];
 
-export const Filters: React.FC<{handleFilter: Function}> = ({handleFilter}) => {
+export const Filters: React.FC<{ handleFilter: Function }> = ({
+    handleFilter,
+}) => {
     const {
         options,
         setOptions,
@@ -106,7 +108,9 @@ export const Filters: React.FC<{handleFilter: Function}> = ({handleFilter}) => {
                             id="min"
                             value={minPrice}
                             onChange={e =>
-                                setMinPrice(e.target.value.replace(/[^0-9.]/g, ""))
+                                setMinPrice(
+                                    e.target.value.replace(/[^0-9.]/g, "")
+                                )
                             }
                         />
                     </div>
@@ -123,7 +127,9 @@ export const Filters: React.FC<{handleFilter: Function}> = ({handleFilter}) => {
                             id="max"
                             value={maxPrice}
                             onChange={e =>
-                                setMaxPrice(e.target.value.replace(/[^0-9.]/g, ""))
+                                setMaxPrice(
+                                    e.target.value.replace(/[^0-9.]/g, "")
+                                )
                             }
                         />
                     </div>
@@ -137,7 +143,7 @@ export const Filters: React.FC<{handleFilter: Function}> = ({handleFilter}) => {
                     <select
                         className={`text-center outline-none border-2 border-pallet-orange p-1 pl-1 rounded-lg ${tiro.className}`}
                         value={category}
-                        onChange={e => setCategory(e.target.value)}                    
+                        onChange={e => setCategory(e.target.value)}
                     >
                         {options.map(item => (
                             <option key={item.id} value={item.id}>
@@ -147,16 +153,41 @@ export const Filters: React.FC<{handleFilter: Function}> = ({handleFilter}) => {
                     </select>
                 </div>
             </div>
-            <button
-                type="button"
-                className={`self-center rounded-lg p-2 pl-8 pr-8 mt-2 bg-pallet-purple text-pallet-white font-semibold tracking-wide shadow-lg shadow-gray-400 hover:bg-[#bf3eee] hover:transition-colors ${oswald.className}`}
-                onClick={() => {
-                    handleFilter(name, price, minPrice, maxPrice, category)
-                    notify("success", "Sucesso,", "Filtro aplicado com sucesso!")
-                }}
-            >
-                Filtrar
-            </button>
+            <div className="w-full flex justify-evenly">
+                <button
+                    type="button"
+                    className={`self-center rounded-lg p-2 pl-8 pr-8 mt-2 bg-pallet-purple text-pallet-white font-semibold text-sm tracking-wide shadow-lg shadow-gray-400 hover:bg-[#bf3eee] hover:transition-colors ${oswald.className}`}
+                    onClick={() => {
+                        handleFilter(name, price, minPrice, maxPrice, category);
+                        notify(
+                            "success",
+                            "Sucesso,",
+                            "Filtro aplicado com sucesso!"
+                        );
+                    }}
+                >
+                    Filtrar
+                </button>
+                <button
+                    type="button"
+                    className={`self-center rounded-lg p-2 pl-8 pr-8 mt-2 bg-pallet-purple text-pallet-white font-semibold text-sm tracking-wide shadow-lg shadow-gray-400 hover:bg-[#bf3eee] hover:transition-colors ${oswald.className}`}
+                    onClick={() => {
+                        handleFilter("", "", "", "", "");
+                        setName("");
+                        setPrice("");
+                        setMinPrice("");
+                        setMaxPrice("");
+                        setCategory("0");
+                        notify(
+                            "success",
+                            "Sucesso,",
+                            "Filtro retirado com sucesso!"
+                        );
+                    }}
+                >
+                    Limpar filtro
+                </button>
+            </div>
         </section>
     );
 };
