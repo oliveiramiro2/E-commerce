@@ -21,7 +21,9 @@ const api = axios.create({
 // products
 
 export const allProducts = async (offset: number = 0, filter: string = ""): Promise<IDataApi[] | undefined> => {
-    const { data }: {data: IDataApi[] | undefined} = await api.get(`/products?limit=12&offset=${offset}${filter}`)
+    const numberInPage: number = 12;
+
+    const { data }: {data: IDataApi[] | undefined} = await api.get(`/products?limit=${numberInPage}&offset=${offset * numberInPage}${filter}`)
     return data
 }
 
