@@ -9,10 +9,11 @@ import { ICategoryApi } from "@/interface";
 import { categories } from "@/services/api";
 import { ICategoriesOptions } from "../interfaces";
 import { useFilter } from "../hooks";
+import { notify } from "@/functions/notifications";
 
 const cartegoriesData: ICategoriesOptions[] = [{ id: 0, name: "" }];
 
-export const Filters: React.FC = () => {
+export const Filters: React.FC<{handleFilter: Function}> = ({handleFilter}) => {
     const {
         options,
         setOptions,
@@ -149,6 +150,10 @@ export const Filters: React.FC = () => {
             <button
                 type="button"
                 className={`self-center rounded-lg p-2 pl-8 pr-8 mt-2 bg-pallet-purple text-pallet-white font-semibold tracking-wide shadow-lg shadow-gray-400 hover:bg-[#bf3eee] hover:transition-colors ${oswald.className}`}
+                onClick={() => {
+                    handleFilter(name, price, minPrice, maxPrice, category)
+                    notify("success", "Sucesso,", "Filtro aplicado com sucesso!")
+                }}
             >
                 Filtrar
             </button>
