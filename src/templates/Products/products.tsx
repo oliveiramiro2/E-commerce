@@ -64,9 +64,7 @@ export const ProductsTemplate: React.FC = () => {
                 </div>
                 <div className="pl-6 pr-6 mb-10">
                     <div className="w-full bg-white mb-5 pt-6 pb-6 pl-1 rounded-xl flex flex-col gap-y-5">
-                        <p
-                            className={`font-black text-lg ${oswald.className}`}
-                        >
+                        <p className={`font-black text-lg ${oswald.className}`}>
                             Filtar Por:
                         </p>
                         <div className="flex justify-between flex-wrap gap-y-5">
@@ -78,7 +76,7 @@ export const ProductsTemplate: React.FC = () => {
                                 </p>
                                 <input
                                     type="text"
-                                    className={`text-center outline-none border-2 border-pallet-orange p-1 pl-1 rounded-lg ${tiro.className}`}
+                                    className={`outline-none border-2 border-pallet-orange p-1 pl-1 rounded-lg ${tiro.className}`}
                                 />
                             </div>
                             <div>
@@ -89,7 +87,7 @@ export const ProductsTemplate: React.FC = () => {
                                 </p>
                                 <input
                                     type="text"
-                                    className={`text-center outline-none border-2 border-pallet-orange p-1 pl-1 rounded-lg ${tiro.className}`}
+                                    className={`outline-none border-2 border-pallet-orange p-1 pl-1 rounded-lg ${tiro.className}`}
                                 />
                             </div>
                             <div>
@@ -98,10 +96,34 @@ export const ProductsTemplate: React.FC = () => {
                                 >
                                     Faixa de preço
                                 </p>
-                                <input
-                                    type="text"
-                                    className={`text-center outline-none border-2 border-pallet-orange p-1 pl-1 rounded-lg ${tiro.className}`}
-                                />
+                                <div className="flex flex-col mb-2">
+                                    <label
+                                        htmlFor="min"
+                                        className={`font-medium font-sm ${tiro.className}`}
+                                    >
+                                        Mínimo
+                                    </label>
+                                    <input
+                                        type="text"
+                                        className={`outline-none border-2 border-pallet-orange p-1 pl-1 rounded-lg ${tiro.className}`}
+                                        id="min"
+                                        value={0}
+                                    />
+                                </div>
+                                <div className="flex flex-col">
+                                    <label
+                                        htmlFor="max"
+                                        className={`font-medium font-sm ${tiro.className}`}
+                                    >
+                                        Maximo
+                                    </label>
+                                    <input
+                                        type="text"
+                                        className={`outline-none border-2 border-pallet-orange p-1 pl-1 rounded-lg ${tiro.className}`}
+                                        id="max"
+                                        value={0}
+                                    />
+                                </div>
                             </div>
                             <div>
                                 <p
