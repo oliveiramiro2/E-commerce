@@ -11,10 +11,16 @@ import { allProducts } from "@/services/api";
 import { IDataApi } from "@/interface";
 import { Product, SkeletonProducts } from "@/components";
 import { usePagination } from "./hooks";
+import { notify } from "@/functions/notifications";
 
 export const ProductsTemplate: React.FC = () => {
-    const { pagination, handleInputPagination, handlePagination } =
-        usePagination();
+    const {
+        pagination,
+        inputPagination,
+        handleInputPagination,
+        handlePagination,
+        handleSearchInput,
+    } = usePagination();
     const { data, isLoading, isFetching } = useQuery<IDataApi[] | undefined>({
         queryKey: ["allProducts", pagination],
         queryFn: () => allProducts(pagination - 1),
@@ -101,7 +107,7 @@ export const ProductsTemplate: React.FC = () => {
                     <button
                         type="button"
                         className={clsx("h-max", {
-                            "invisible": pagination <= 1,
+                            invisible: pagination <= 1,
                         })}
                         onClick={() => handlePagination(false)}
                         disabled={pagination <= 1}
@@ -113,11 +119,19 @@ export const ProductsTemplate: React.FC = () => {
                     <div>
                         <input
                             type="text"
-                            value={pagination}
+                            value={inputPagination}
                             className={`w-14 text-center outline-none border-2 border-pallet-orange p-1 pl-1 rounded-lg ${tiro.className}`}
                             onChange={e =>
                                 handleInputPagination(
                                     e.target.value.replace(/[^0-9.]/g, "")
+                                )
+                            }
+                            onBlur={handleSearchInput}
+                            onFocus={() =>
+                                notify(
+                                    "info",
+                                    "Atenção,",
+                                    "Ao inserir a página desejada clique em outro lugar da tela para ir para a página desejada!"
                                 )
                             }
                         />
