@@ -10,7 +10,7 @@ import { oswald, tiro } from "@/functions/fonts";
 import { allProducts } from "@/services/api";
 import { IDataApi } from "@/interface";
 import { Product, SkeletonProducts } from "@/components";
-import { usePagination } from "./hooks";
+import { useFilter, usePagination } from "./hooks";
 import { notify } from "@/functions/notifications";
 import { Filters } from "./components";
 
@@ -22,9 +22,10 @@ export const ProductsTemplate: React.FC = () => {
         handlePagination,
         handleSearchInput,
     } = usePagination();
+    const { filter, handleFilter } = useFilter();
     const { data, isLoading, isFetching } = useQuery<IDataApi[] | undefined>({
-        queryKey: ["allProducts", pagination],
-        queryFn: () => allProducts(pagination - 1),
+        queryKey: ["allProducts", pagination, filter],
+        queryFn: () => allProducts(pagination - 1, filter),
         keepPreviousData: true,
     });
 
@@ -64,7 +65,7 @@ export const ProductsTemplate: React.FC = () => {
                     </h3>
                 </div>
                 <div className="pl-6 pr-6 mb-10">
-                    <Filters />
+                    <Filters handleFilter={handleFilter} />
                     <div className="w-full flex flex-wrap gap-y-10 justify-between">
                         {data?.map(item => (
                             <Product key={item.id} param={item} />
