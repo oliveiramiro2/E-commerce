@@ -10,7 +10,7 @@ export const ContentHeaderMobile: React.FC = () => {
     const { logined } = useContext(UserDataContext);
 
     return (
-        <div className="bg-black pt-2 pb-2 hidden max-md:block">
+        <div className="bg-black pt-2 pb-2 hidden max-lg:block">
             <nav>
                 <ul className="flex flex-col gap-y-1 items-center">
                     <li className="border-b w-full border-gray-800 pt-2 pb-5 pl-5">

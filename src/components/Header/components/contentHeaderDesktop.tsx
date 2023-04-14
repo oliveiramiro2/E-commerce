@@ -27,7 +27,7 @@ export const ContentHeaderDesktop: React.FC<IPropsContentHeaderDesktop> = ({
                 />
             </Link>
             <div />
-            <nav className="h-full flex justify-center items-center max-md:hidden">
+            <nav className="h-full flex justify-center items-center max-lg:hidden">
                 <ul className="flex gap-x-20 max-lg:gap-x-10">
                     <li
                         className={`text-pallet-blue font-medium text-lg hover:border-b hover:transition-colors hover:drop-shadow-xl border-pallet-blue ${tiro.className}`}
@@ -63,7 +63,7 @@ export const ContentHeaderDesktop: React.FC<IPropsContentHeaderDesktop> = ({
             {!logined && (
                 <button
                     type="button"
-                    className="bg-pallet-orange hover:bg-[#ff9748] transition-colors shadow-md shadow-pallet-orange absolute right-5 h-5 p-8 pt-4 pb-4 rounded-md flex justify-center items-center max-md:hidden"
+                    className="bg-pallet-orange hover:bg-[#ff9748] transition-colors shadow-md shadow-pallet-orange absolute right-5 h-5 p-8 pt-4 pb-4 rounded-md flex justify-center items-center max-lg:hidden"
                 >
                     <Link
                         href="/entrar"
@@ -80,13 +80,13 @@ export const ContentHeaderDesktop: React.FC<IPropsContentHeaderDesktop> = ({
             )}
             {showMenu ? (
                 <AiOutlineClose
-                    className="text-rose-600 cursor-pointer mr-6 hidden max-md:block"
+                    className="text-rose-600 cursor-pointer mr-6 hidden max-lg:block"
                     size={25}
                     onClick={() => setShowMenu()}
                 />
             ) : (
                 <AiOutlineMenu
-                    className="text-pallet-orange cursor-pointer mr-6 hidden max-md:block"
+                    className="text-pallet-orange cursor-pointer mr-6 hidden max-lg:block"
                     size={25}
                     onClick={() => setShowMenu()}
                 />
