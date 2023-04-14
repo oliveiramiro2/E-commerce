@@ -56,8 +56,39 @@ export const ProductsTemplate: React.FC = () => {
                     </h3>
                 </div>
                 <div className="pl-6 pr-6 mb-10">
-                    <div className="w-full bg-white mb-5 pt-6 pb-6 pl-1 rounded-xl">
-                        filter
+                    <div className="w-full bg-white mb-5 pt-6 pb-6 pl-1 rounded-xl flex flex-col gap-y-5">
+                        <p>Filtar Por:</p>
+                        <div className="flex justify-between">
+                            <div>
+                                <p>Nome</p>
+                                <input
+                                    type="text"
+                                    className={`text-center outline-none border-2 border-pallet-orange p-1 pl-1 rounded-lg ${tiro.className}`}
+                                />
+                            </div>
+                            <div>
+                                <p>Preço</p>
+                                <input
+                                    type="text"
+                                    className={`text-center outline-none border-2 border-pallet-orange p-1 pl-1 rounded-lg ${tiro.className}`}
+                                />
+                            </div>
+                            <div>
+                                <p>Faixa de preço</p>
+                                <input
+                                    type="text"
+                                    className={`text-center outline-none border-2 border-pallet-orange p-1 pl-1 rounded-lg ${tiro.className}`}
+                                />
+                            </div>
+                            <div>
+                                <p>Categoria</p>
+                                <input
+                                    type="text"
+                                    className={`text-center outline-none border-2 border-pallet-orange p-1 pl-1 rounded-lg ${tiro.className}`}
+                                />
+                            </div>
+                        </div>
+                        <button type="button">Filtrar</button>
                     </div>
                     <div className="w-full flex flex-wrap gap-y-10 justify-between">
                         {data?.map(item => (
