@@ -10,6 +10,7 @@ export const useFilter = () => {
     const [price, setPrice] = useState<string>('')
     const [minPrice, setMinPrice] = useState<string>('')
     const [maxPrice, setMaxPrice] = useState<string>('')
+    const [category, setCategory] = useState<string>('')
 
     return {
         options,
@@ -22,5 +23,7 @@ export const useFilter = () => {
         setMinPrice,
         maxPrice,
         setMaxPrice,
+        category,
+        setCategory,
     }
 }

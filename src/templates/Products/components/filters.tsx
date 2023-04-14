@@ -24,6 +24,8 @@ export const Filters: React.FC = () => {
         setMinPrice,
         maxPrice,
         setMaxPrice,
+        category,
+        setCategory,
     } = useFilter();
     const { data, isLoading } = useQuery<ICategoryApi[] | undefined>({
         queryFn: () => categories(""),
@@ -133,6 +135,8 @@ export const Filters: React.FC = () => {
                     </p>
                     <select
                         className={`text-center outline-none border-2 border-pallet-orange p-1 pl-1 rounded-lg ${tiro.className}`}
+                        value={category}
+                        onChange={e => setCategory(e.target.value)}                    
                     >
                         {options.map(item => (
                             <option key={item.id} value={item.id}>
