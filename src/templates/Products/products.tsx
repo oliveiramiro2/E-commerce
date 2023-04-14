@@ -14,16 +14,17 @@ import { usePagination } from "./hooks";
 export const ProductsTemplate: React.FC = () => {
     const { pagination, handleInputPagination, handlePagination } =
         usePagination();
-    const { data, isLoading, refetch } = useQuery<IDataApi[] | undefined>({
-        queryKey: ["allProducts"],
+    const { data, isLoading, isFetching } = useQuery<IDataApi[] | undefined>({
+        queryKey: ["allProducts", pagination],
         queryFn: () => allProducts(pagination - 1),
+        keepPreviousData: true,
     });
 
     useEffect(() => {
         document.title = "RM E-commerce - Comprar";
     }, []);
 
-    if (isLoading) {
+    if (isLoading || isFetching) {
         return (
             <DefaultTemplate>
                 <section className="w-screen min-h-[72vh] bg-gray-100 flex flex-col items-center">
@@ -68,10 +69,7 @@ export const ProductsTemplate: React.FC = () => {
                     <button
                         type="button"
                         className="h-max"
-                        onClick={() => {
-                            handlePagination(false)
-                            refetch()
-                        }}
+                        onClick={() => handlePagination(false)}
                     >
                         <div className="bg-pallet-orange h-max rounded-md mr-2 p-2 hover:bg-[#ff9748] transition-colors shadow-md shadow-pallet-orange">
                             <TiChevronLeft color="#fff" />
@@ -82,21 +80,17 @@ export const ProductsTemplate: React.FC = () => {
                             type="text"
                             value={pagination}
                             className={`w-14 text-center outline-none border-2 border-pallet-orange p-1 pl-1 rounded-lg ${tiro.className}`}
-                            onChange={e =>{
+                            onChange={e =>
                                 handleInputPagination(
-                                    e.target.value.replace(/[^0-9.]/g, '')
+                                    e.target.value.replace(/[^0-9.]/g, "")
                                 )
-                                refetch()
-                            }}
+                            }
                         />
                     </div>
                     <button
                         type="button"
                         className="h-max"
-                        onClick={() => {
-                            handlePagination(true)
-                            refetch()
-                        }}
+                        onClick={() => handlePagination(true)}
                     >
                         <div className="bg-pallet-orange h-max rounded-md ml-2 p-2 hover:bg-[#ff9748] transition-colors shadow-md shadow-pallet-orange">
                             <TiChevronRight color="#fff" />
