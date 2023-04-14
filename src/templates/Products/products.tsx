@@ -3,6 +3,7 @@
 import React, { useEffect } from "react";
 import { useQuery } from "@tanstack/react-query";
 import { TiChevronLeft, TiChevronRight } from "react-icons/ti";
+import clsx from "clsx";
 
 import { DefaultTemplate } from "../default";
 import { oswald, tiro } from "@/functions/fonts";
@@ -99,8 +100,11 @@ export const ProductsTemplate: React.FC = () => {
                 <div className="flex items-center mb-10">
                     <button
                         type="button"
-                        className="h-max"
+                        className={clsx("h-max", {
+                            "invisible": pagination <= 1,
+                        })}
                         onClick={() => handlePagination(false)}
+                        disabled={pagination <= 1}
                     >
                         <div className="bg-pallet-orange h-max rounded-md mr-2 p-2 hover:bg-[#ff9748] transition-colors shadow-md shadow-pallet-orange">
                             <TiChevronLeft color="#fff" />
