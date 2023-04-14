@@ -12,12 +12,12 @@ import { Product, SkeletonProducts } from "@/components";
 import { usePagination } from "./hooks";
 
 export const ProductsTemplate: React.FC = () => {
-    const { data, isLoading } = useQuery<IDataApi[] | undefined>({
-        queryKey: ["allProducts"],
-        queryFn: () => allProducts(),
-    });
     const { pagination, handleInputPagination, handlePagination } =
         usePagination();
+    const { data, isLoading, refetch } = useQuery<IDataApi[] | undefined>({
+        queryKey: ["allProducts"],
+        queryFn: () => allProducts(pagination - 1),
+    });
 
     useEffect(() => {
         document.title = "RM E-commerce - Comprar";
@@ -68,7 +68,10 @@ export const ProductsTemplate: React.FC = () => {
                     <button
                         type="button"
                         className="h-max"
-                        onClick={() => handlePagination(false)}
+                        onClick={() => {
+                            handlePagination(false)
+                            refetch()
+                        }}
                     >
                         <div className="bg-pallet-orange h-max rounded-md mr-2 p-2 hover:bg-[#ff9748] transition-colors shadow-md shadow-pallet-orange">
                             <TiChevronLeft color="#fff" />
@@ -79,17 +82,21 @@ export const ProductsTemplate: React.FC = () => {
                             type="text"
                             value={pagination}
                             className={`w-14 text-center outline-none border-2 border-pallet-orange p-1 pl-1 rounded-lg ${tiro.className}`}
-                            onChange={e =>
+                            onChange={e =>{
                                 handleInputPagination(
                                     e.target.value.replace(/[^0-9.]/g, '')
                                 )
-                            }
+                                refetch()
+                            }}
                         />
                     </div>
                     <button
                         type="button"
                         className="h-max"
-                        onClick={() => handlePagination(true)}
+                        onClick={() => {
+                            handlePagination(true)
+                            refetch()
+                        }}
                     >
                         <div className="bg-pallet-orange h-max rounded-md ml-2 p-2 hover:bg-[#ff9748] transition-colors shadow-md shadow-pallet-orange">
                             <TiChevronRight color="#fff" />
