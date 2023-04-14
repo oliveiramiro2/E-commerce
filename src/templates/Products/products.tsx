@@ -12,6 +12,7 @@ import { IDataApi } from "@/interface";
 import { Product, SkeletonProducts } from "@/components";
 import { usePagination } from "./hooks";
 import { notify } from "@/functions/notifications";
+import { Filters } from "./components";
 
 export const ProductsTemplate: React.FC = () => {
     const {
@@ -63,7 +64,7 @@ export const ProductsTemplate: React.FC = () => {
                     </h3>
                 </div>
                 <div className="pl-6 pr-6 mb-10">
-                    
+                    <Filters />
                     <div className="w-full flex flex-wrap gap-y-10 justify-between">
                         {data?.map(item => (
                             <Product key={item.id} param={item} />
