@@ -6,6 +6,7 @@ export const usePagination = () => {
 
     return {
         pagination,
+        inputPagination,
         handleInputPagination: (value: string) =>
             setInputPagination(Number(value) === 0 ? 1 : Number(value) * 1),
         handleSearchInput: () => setPagination(inputPagination),
