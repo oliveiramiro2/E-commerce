@@ -2,11 +2,13 @@ import { useState } from "react";
 
 export const usePagination = () => {
     const [pagination, setPagination] = useState<number>(1);
+    const [inputPagination, setInputPagination] = useState<number>(1);
 
     return {
         pagination,
         handleInputPagination: (value: string) =>
-            setPagination(Number(value) === 0 ? 1 : Number(value) * 1),
+            setInputPagination(Number(value) === 0 ? 1 : Number(value) * 1),
+        handleSearchInput: () => setPagination(inputPagination),
         handlePagination: (more: boolean) => {
             if (more) {
                 setPagination(pagination + 1);
