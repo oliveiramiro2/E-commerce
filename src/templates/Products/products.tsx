@@ -69,7 +69,7 @@ export const ProductsTemplate: React.FC = () => {
                         >
                             Filtar Por:
                         </p>
-                        <div className="flex justify-between">
+                        <div className="flex justify-between flex-wrap gap-y-5">
                             <div>
                                 <p
                                     className={`ml-1 font-semibold self-start ${tiro.className}`}
