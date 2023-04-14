@@ -11,6 +11,7 @@ export const useFilter = () => {
     const [minPrice, setMinPrice] = useState<string>('')
     const [maxPrice, setMaxPrice] = useState<string>('')
     const [category, setCategory] = useState<string>('')
+    const [filter, setFilter] = useState<string>('')
 
     return {
         options,
@@ -25,5 +26,15 @@ export const useFilter = () => {
         setMaxPrice,
         category,
         setCategory,
+        filter,
+        handleFilter: (fname: string, fprice: string, fminPrice: string, fmaxPrice: string, fcategory: string) => {
+            let aux = ""
+            if (fname !== '') aux += `&title=${fname}`
+            if (fprice !== '' && fprice !== "0") aux += `&price=${fprice}`
+            if (fminPrice !== '' && minPrice !== "0") aux += `&price_min=${fminPrice}`
+            if (fmaxPrice !== '' && fmaxPrice !== "0") aux += `&price_max=${fmaxPrice}`
+            if (fcategory !== '' && fcategory !== "0") aux += `&categoryId=${fcategory}`
+            setFilter(aux)
+        }
     }
 }
