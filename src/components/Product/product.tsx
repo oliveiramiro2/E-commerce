@@ -58,11 +58,11 @@ export const Product: React.FC<{ param: IDataApi }> = ({ param }) => {
                     {MaskCoin(param.price)}
                 </p>
             </div>
-            <div className="w-full flex justify-around mb-4">
+            <div className="w-full flex justify-around mb-4 gap-x-5">
                 <button
                     type="button"
                     className={clsx(
-                        `bg-pallet-orange pt-3 p-2 pl-4 pr-3 min-w-[35%] items-center gap-x-1 rounded-md font-bolder text-center text-sm text-pallet-white first-letter:capitalize hover:bg-[#ff9748] transition-colors shadow-md shadow-pallet-orange ${arnekG.className}`,
+                        `bg-pallet-orange pt-3 p-2 pl-4 pr-3 w-32 flex items-center justify-center gap-x-1 rounded-md font-bolder text-center text-sm text-pallet-white first-letter:capitalize hover:bg-[#ff9748] transition-colors shadow-md shadow-pallet-orange ${arnekG.className}`,
                         {
                             flex: show,
                             hidden: !show,
@@ -88,7 +88,7 @@ export const Product: React.FC<{ param: IDataApi }> = ({ param }) => {
                     <button
                         type="button"
                         className={clsx(
-                            `bg-pallet-orange pt-3 p-2 pl-4 pr-3 min-w-[35%] items-center gap-x-1 rounded-md font-bolder text-center text-sm text-pallet-white first-letter:capitalize hover:bg-[#ff9748] transition-colors shadow-md shadow-pallet-orange ${arnekG.className}`,
+                            `bg-pallet-orange pt-3 p-2 pl-4 pr-3 w-32 flex items-center justify-center gap-x-1 rounded-md font-bolder text-center text-sm text-pallet-white first-letter:capitalize hover:bg-[#ff9748] transition-colors shadow-md shadow-pallet-orange ${arnekG.className}`,
                             {
                                 flex: show,
                                 hidden: !show,
