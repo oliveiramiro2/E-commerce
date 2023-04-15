@@ -28,7 +28,7 @@ export const ContentHeaderMobile: React.FC = () => {
                     <li className="border-b w-full border-gray-800 pt-3 pb-5 pl-5">
                         <Link
                             className={`text-pallet-white w-24 flex items-center gap-x-2 font-medium text-md hover:border-b hover:transition-colors hover:drop-shadow-xl border-pallet-blue ${tiro.className}`}
-                            href={logined ? "/produtos" : "/entrar"}
+                            href="/produtos"
                         >
                             <FaShoppingBag className="relative bottom-[2px]" />{" "}
                             Comprar
@@ -37,7 +37,7 @@ export const ContentHeaderMobile: React.FC = () => {
                     <li className="border-b w-full border-gray-800 pt-3 pb-5 pl-5">
                         <Link
                             className={`text-pallet-white flex items-center w-24 gap-x-2 font-medium text-md hover:border-b hover:transition-colors hover:drop-shadow-xl border-pallet-blue ${tiro.className}`}
-                            href={logined ? "/carrinho" : "/entrar"}
+                            href="/carrinho"
                         >
                             <FaShoppingCart className="relative bottom-[2px]" />{" "}
                             Carrinho
