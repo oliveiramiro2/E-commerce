@@ -6,6 +6,6 @@ export const APP_ROUTES = {
     public: {
         home: '/',
         signIn: '/entrar',
-        signUp: '/cadastrar'
+        signUp: '/cadastro'
     },
 }
