@@ -17,4 +17,5 @@ export interface IContextLoginData {
     setAllUserData: Function;
     logined: boolean;
     setLogined: Function;
+    checkedLogined: boolean;
 }
