@@ -56,7 +56,7 @@ export const Filters: React.FC<{ handleFilter: Function }> = ({
     }, [isLoading]);
 
     return (
-        <section className="w-full bg-white mb-5 pt-6 pb-6 pl-1 pr-1 rounded-xl flex flex-col gap-y-5">
+        <section className="w-full min-w-[97vh] bg-white mb-5 pt-6 pb-6 pl-1 pr-1 rounded-xl flex flex-col gap-y-5">
             <p className={`font-black text-lg ${oswald.className}`}>
                 Filtar Por:
             </p>
