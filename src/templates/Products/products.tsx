@@ -4,6 +4,7 @@ import React, { useEffect } from "react";
 import { useQuery } from "@tanstack/react-query";
 import { TiChevronLeft, TiChevronRight } from "react-icons/ti";
 import clsx from "clsx";
+import { useSearchParams } from "next/navigation";
 
 import { DefaultTemplate } from "../default";
 import { oswald, tiro } from "@/functions/fonts";
@@ -28,9 +29,19 @@ export const ProductsTemplate: React.FC = () => {
         queryFn: () => allProducts(pagination - 1, filter),
         keepPreviousData: true,
     });
+    const path = useSearchParams();
 
     useEffect(() => {
         document.title = "RM E-commerce - Comprar";
+        if (path.toString().split("categoria=")[1] !== undefined) {
+            handleFilter(
+                "",
+                "",
+                "",
+                "",
+                path.toString().split("categoria=")[1]
+            );
+        }
     }, []);
 
     if (isLoading || isFetching) {
