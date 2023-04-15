@@ -2,7 +2,7 @@ import React, { useContext } from "react";
 import { ReactNotifications } from "react-notifications-component";
 import { usePathname } from "next/navigation";
 
-import { Footer, Header, LoadingUser } from "@/components";
+import { Footer, Header, LoadingUser, PrivateRoutes } from "@/components";
 import { checkRoute } from "@/functions/checkRoute";
 import { UserDataContext } from "@/contexts/userDataLogin";
 
@@ -28,11 +28,11 @@ export const DefaultTemplate: React.FC<{ children: React.ReactNode }> = ({
                 </>
             )}
             {checkedLogined && !isPublicRoute && (
-                <>
+                <PrivateRoutes>
                     <Header />
                     {children}
                     <Footer />
-                </>
+                </PrivateRoutes>
             )}
         </div>
     );
