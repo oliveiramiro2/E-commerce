@@ -24,9 +24,13 @@ export const LoadingUser: React.FC = () => {
 
     useEffect(() => {
         const elementText = document.querySelector("#dots");
-        setInterval(() => {
+        const intervalID = setInterval(() => {
             writeEffect(elementText);
         }, 2000);
+
+        return () => {
+            clearInterval(intervalID)
+        }
     }, []);
 
     return (
