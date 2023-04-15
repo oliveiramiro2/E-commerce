@@ -11,13 +11,7 @@ export const LoadingUser: React.FC = () => (
             >
                 Carregando dados....
             </p>
-                <LoadingIcons.Bars
-                    color="#a226d0"
-                    alignmentBaseline="central"
-                    height={50}
-                    fill="#a226d0"
-                />
-                <LoadingIcons.SpinningCircles
+            <LoadingIcons.Bars
                 color="#a226d0"
                 alignmentBaseline="central"
                 height={50}
