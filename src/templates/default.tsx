@@ -19,16 +19,17 @@ export const DefaultTemplate: React.FC<{ children: React.ReactNode }> = ({
 
     return (
         <div className="bg-white min-h-screen w-screen flex flex-col items-center">
-            <ReactNotifications />
-            {checkedLogined && isPublicRoute && (
+            {isPublicRoute && (
                 <>
+                    <ReactNotifications />
                     <Header />
                     {children}
                     <Footer />
                 </>
             )}
-            {checkedLogined && !isPublicRoute && (
+            {!isPublicRoute && (
                 <PrivateRoutes>
+                    <ReactNotifications />
                     <Header />
                     {children}
                     <Footer />

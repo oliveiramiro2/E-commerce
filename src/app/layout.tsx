@@ -5,7 +5,6 @@ import "react-notifications-component/dist/theme.css";
 
 import "../styles/globals.css";
 import ECommProvider from "@/contexts";
-import { PrivateRoutes } from "@/components";
 
 export const metadata = {
     title: "RM E-commerce",
@@ -16,7 +15,7 @@ const RootLayout = ({ children }: { children: React.ReactNode }) => (
     <html lang="pt-br">
         <body>
             <ECommProvider>
-                <PrivateRoutes>{children}</PrivateRoutes>
+                {children}
             </ECommProvider>
         </body>
     </html>
