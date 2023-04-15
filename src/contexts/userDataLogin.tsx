@@ -26,6 +26,7 @@ const UserDataLogin = ({ children }: { children: React.ReactNode }) => {
         role: "customer",
     });
     const [logined, setLogined] = useState<boolean>(false);
+    const [checkedLogined, setCheckedLogined] = useState<boolean>(false);
 
     useEffect(() => {
         if (typeof window !== "undefined") {
@@ -39,19 +40,23 @@ const UserDataLogin = ({ children }: { children: React.ReactNode }) => {
                     })
                     .catch(() => {
                         removeTokens();
-                    });
+                    })
+                    .finally(() => setCheckedLogined(true));
+            } else {
+                setCheckedLogined(true);
             }
         }
-    }, [])
-    
+    }, []);
+
     const valueContext = useMemo(
         () => ({
             allUserData,
             setAllUserData,
             logined,
             setLogined,
+            checkedLogined,
         }),
-        [allUserData, logined]
+        [allUserData, logined, checkedLogined]
     );
 
     return (
