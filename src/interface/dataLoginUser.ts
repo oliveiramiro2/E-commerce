@@ -18,4 +18,6 @@ export interface IContextLoginData {
     logined: boolean;
     setLogined: Function;
     checkedLogined: boolean;
+    redirectOnLogin: string;
+    setRedirectOnLogin: Function;
 }
