@@ -33,7 +33,7 @@ export const loginValid = async ({
                         setAllUserData({...dataToken, ...dataLogin});
                         setLogined(true);
                         notify("success", "Bem-vindo,", "Login realizado com sucesso");
-                        push(paramRedirect);
+                        push(paramRedirect());
                     })
             })
             .catch(() => notify("danger", "Desculpe,", "Não foi possível realizar o login! As credenciais não conferem!"))
@@ -74,7 +74,7 @@ export const loginValid = async ({
                     setAllUserData({...dataToken, ...dataForm});
                     setLogined(true);
                     notify("success", "Bem-vindo,", "Login realizado com sucesso");
-                    push(paramRedirect);
+                    push(paramRedirect());
                 })
         })
         .catch(() => notify("danger", "Desculpe,", "Não foi possível realizar o registro!"))
