@@ -4,24 +4,9 @@ import React, { useEffect } from "react";
 import LoadingIcons from "react-loading-icons";
 
 import { arnekG } from "@/functions/fonts";
+import { writeEffect } from "./functions";
 
 export const LoadingUser: React.FC = () => {
-    const writeEffect = (elementT: Element | null) => {
-        if (elementT === null) return;
-
-        const elementText = elementT;
-        const text = elementText.innerHTML.split("");
-        elementText.innerHTML = "";
-
-        setTimeout(() => {
-            text.forEach((value, index) => {
-                setTimeout(() => {
-                    elementText.innerHTML += value;
-                }, 400 * index);
-            });
-        }, 400);
-    };
-
     useEffect(() => {
         const elementText = document.querySelector("#dots");
         const intervalID = setInterval(() => {
@@ -35,13 +20,13 @@ export const LoadingUser: React.FC = () => {
 
     return (
         <div className="w-screen h-screen bg-white flex justify-center items-center">
-            <div>
+            <div className="flex flex-col gap-y-1 justify-center items-center">
                 <p
                     className={`text-pallet-purple font-black tracking-wider ${arnekG.className}`}
                 >
                     Carregando dados<span id="dots">...</span>
                 </p>
-                <LoadingIcons.Bars
+                <LoadingIcons.SpinningCircles
                     color="#a226d0"
                     alignmentBaseline="central"
                     height={50}
