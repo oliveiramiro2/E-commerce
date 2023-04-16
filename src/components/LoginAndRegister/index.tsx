@@ -2,7 +2,6 @@
 
 import React, { useContext } from "react";
 import LoadingIcons from "react-loading-icons";
-import Link from "next/link";
 import { useSearchParams } from "next/navigation";
 
 import { arnekG, oswald } from "@/functions/fonts";
@@ -50,26 +49,29 @@ export const LoginAndRegister: React.FC<{ registerComponent: boolean }> = ({
                             }}
                         />
                     ))}
-                    <Link
-                        href={
-                            registerComponent
-                                ? `/entrar${
-                                      pathRedirect !== undefined
-                                          ? pathRedirect
-                                          : ""
-                                  }`
-                                : `/cadastro${
-                                      pathRedirect !== undefined
-                                          ? pathRedirect
-                                          : ""
-                                  }`
+                    <button
+                        type="button"
+                        onClick={() =>
+                            push(
+                                registerComponent
+                                    ? `/entrar${
+                                          pathRedirect !== undefined
+                                              ? pathRedirect.replace("&", "?")
+                                              : ""
+                                      }`
+                                    : `/cadastro${
+                                          pathRedirect !== undefined
+                                              ? pathRedirect.replace("&", "?")
+                                              : ""
+                                      }`
+                            )
                         }
                         className={`text-pallet-blue font-bold tracking-wide hover:border-b hover:border-pallet-blue ${arnekG.className}`}
                     >
                         {registerComponent
                             ? "Já possui uma conta? Faça seu login"
                             : "Não possui uma conta? Faça seu registro"}
-                    </Link>
+                    </button>
                     {registerComponent && <CheckBoxUser register={register} />}
                     <button
                         type="button"
