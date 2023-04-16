@@ -7,7 +7,7 @@ import { useSearchParams } from "next/navigation";
 import { arnekG, oswald } from "@/functions/fonts";
 import { useLoginOrRegister, useLoginRegister, useShowLoading } from "./hooks";
 import { useRedirect } from "@/hooks";
-import { loginInvalid, loginValid } from "./functions";
+import { loginInvalid, loginValid, urlParamsRedirect } from "./functions";
 import { CheckBoxUser, InputUser } from "./components";
 import { UserDataContext } from "@/contexts/userDataLogin";
 
@@ -22,9 +22,7 @@ export const LoginAndRegister: React.FC<{ registerComponent: boolean }> = ({
     const { push } = useRedirect();
     const path = useSearchParams();
 
-    const pathRedirect: string | undefined = `?redirecionar=${
-        path.toString().split("redirecionar=")[1]
-    }`;
+    const pathRedirect: string | undefined = urlParamsRedirect(path.toString());
 
     return (
         <section className="w-screen min-h-[72vh] flex justify-center">
@@ -90,7 +88,7 @@ export const LoginAndRegister: React.FC<{ registerComponent: boolean }> = ({
                                             : `/${pathRedirect.replace(
                                                   "&",
                                                   "?"
-                                              ).split("redirecionar=")[1]}`,
+                                              ).split("redirecionar=")[1] || pathRedirect.split("redirecionar=")[1]}`,
                                 }),
                             loginInvalid
                         )}
