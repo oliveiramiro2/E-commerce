@@ -56,12 +56,12 @@ export const LoginAndRegister: React.FC<{ registerComponent: boolean }> = ({
                                 registerComponent
                                     ? `/entrar${
                                           pathRedirect !== undefined
-                                              ? pathRedirect.replace("&", "?")
+                                              ? pathRedirect
                                               : ""
                                       }`
                                     : `/cadastro${
                                           pathRedirect !== undefined
-                                              ? pathRedirect.replace("&", "?")
+                                              ? pathRedirect
                                               : ""
                                       }`
                             )
@@ -87,7 +87,10 @@ export const LoginAndRegister: React.FC<{ registerComponent: boolean }> = ({
                                     paramRedirect: () =>
                                         pathRedirect === undefined
                                             ? `/`
-                                            : `/${pathRedirect}`,
+                                            : `/${pathRedirect.replace(
+                                                  "&",
+                                                  "?"
+                                              )}`,
                                 }),
                             loginInvalid
                         )}
