@@ -82,6 +82,10 @@ export const LoginAndRegister: React.FC<{ registerComponent: boolean }> = ({
                                     setAllUserData,
                                     setLogined,
                                     push,
+                                    paramRedirect: () =>
+                                        pathRedirect === undefined
+                                            ? `/`
+                                            : `/${pathRedirect}`,
                                 }),
                             loginInvalid
                         )}
