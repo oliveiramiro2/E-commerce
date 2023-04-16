@@ -1,0 +1,1 @@
+export { writeEffect } from './writeEffect';
