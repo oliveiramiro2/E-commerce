@@ -8,12 +8,14 @@ import { AiOutlineClose, AiOutlineMenu } from "react-icons/ai";
 import { IPropsContentHeaderDesktop } from "@/interface";
 import { tiro } from "@/functions/fonts";
 import { UserDataContext } from "@/contexts/userDataLogin";
+import { useRedirect } from "@/hooks";
 
 export const ContentHeaderDesktop: React.FC<IPropsContentHeaderDesktop> = ({
     showMenu,
     setShowMenu,
 }) => {
-    const { logined } = useContext(UserDataContext);
+    const { logined, setRedirectOnLogin } = useContext(UserDataContext);
+    const { push } = useRedirect();
 
     return (
         <div className="w-screen h-20 bg-pallet-white flex justify-between items-center">
@@ -39,23 +41,33 @@ export const ContentHeaderDesktop: React.FC<IPropsContentHeaderDesktop> = ({
                     <li
                         className={`text-pallet-blue font-medium text-lg hover:border-b hover:transition-colors hover:drop-shadow-xl border-pallet-blue ${tiro.className}`}
                     >
-                        <Link
+                        <button
+                            type="button"
                             className="flex gap-x-1"
-                            href="/produtos"
+                            onClick={() => {
+                                if (!logined)
+                                    setRedirectOnLogin("redirecionar=produtos");
+                                push("/produtos");
+                            }}
                         >
                             <FaShoppingBag className="relative top-1" /> Comprar
-                        </Link>
+                        </button>
                     </li>
                     <li
                         className={`text-pallet-blue font-medium text-lg hover:border-b hover:transition-colors hover:drop-shadow-xl border-pallet-blue ${tiro.className}`}
                     >
-                        <Link
+                        <button
+                            type="button"
                             className="flex gap-x-1"
-                            href="/carrinho"
+                            onClick={() => {
+                                if (!logined)
+                                    setRedirectOnLogin("redirecionar=carrinho");
+                                push("/carrinho");
+                            }}
                         >
                             <FaShoppingCart className="relative top-1" />{" "}
                             Carrinho
-                        </Link>
+                        </button>
                     </li>
                 </ul>
             </nav>
