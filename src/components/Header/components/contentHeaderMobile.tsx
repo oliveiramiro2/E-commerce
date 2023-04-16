@@ -5,10 +5,11 @@ import { BiLogIn } from "react-icons/bi";
 
 import { tiro } from "@/functions/fonts";
 import { UserDataContext } from "@/contexts/userDataLogin";
+import { useRedirect } from "@/hooks";
 
 export const ContentHeaderMobile: React.FC = () => {
-    const { logined } = useContext(UserDataContext);
-
+    const { logined, setRedirectOnLogin } = useContext(UserDataContext);
+    const { push } = useRedirect();
     return (
         <div className="bg-black pt-2 pb-2 hidden max-lg:block">
             <nav>
@@ -26,22 +27,32 @@ export const ContentHeaderMobile: React.FC = () => {
                         </Link>
                     </li>
                     <li className="border-b w-full border-gray-800 pt-3 pb-5 pl-5">
-                        <Link
+                        <button
+                            type="button"
                             className={`text-pallet-white w-24 flex items-center gap-x-2 font-medium text-md hover:border-b hover:transition-colors hover:drop-shadow-xl border-pallet-blue ${tiro.className}`}
-                            href="/produtos"
+                            onClick={() => {
+                                if (!logined)
+                                    setRedirectOnLogin("redirecionar=produtos");
+                                push("/produtos");
+                            }}
                         >
                             <FaShoppingBag className="relative bottom-[2px]" />{" "}
                             Comprar
-                        </Link>
+                        </button>
                     </li>
                     <li className="border-b w-full border-gray-800 pt-3 pb-5 pl-5">
-                        <Link
+                        <button
+                            type="button"
                             className={`text-pallet-white flex items-center w-24 gap-x-2 font-medium text-md hover:border-b hover:transition-colors hover:drop-shadow-xl border-pallet-blue ${tiro.className}`}
-                            href="/carrinho"
+                            onClick={() => {
+                                if (!logined)
+                                    setRedirectOnLogin("redirecionar=carrinho");
+                                push("/carrinho");
+                            }}
                         >
                             <FaShoppingCart className="relative bottom-[2px]" />{" "}
                             Carrinho
-                        </Link>
+                        </button>
                     </li>
                     {!logined && (
                         <button
