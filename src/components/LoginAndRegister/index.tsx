@@ -3,6 +3,7 @@
 import React, { useContext } from "react";
 import LoadingIcons from "react-loading-icons";
 import Link from "next/link";
+import { useSearchParams } from "next/navigation";
 
 import { arnekG, oswald } from "@/functions/fonts";
 import { useLoginOrRegister, useLoginRegister, useShowLoading } from "./hooks";
@@ -19,8 +20,12 @@ export const LoginAndRegister: React.FC<{ registerComponent: boolean }> = ({
     const { dataInputs } = useLoginOrRegister(registerComponent);
     const { showIconLoading, setShowIconLoading } = useShowLoading();
     const { setAllUserData, setLogined } = useContext(UserDataContext);
-    const { push } = useRedirect()
+    const { push } = useRedirect();
+    const path = useSearchParams();
 
+    const pathRedirect: string | undefined = `?redirecionar=${
+        path.toString().split("redirecionar=")[1]
+    }`;
 
     return (
         <section className="w-screen min-h-[72vh] flex justify-center">
@@ -46,7 +51,19 @@ export const LoginAndRegister: React.FC<{ registerComponent: boolean }> = ({
                         />
                     ))}
                     <Link
-                        href={registerComponent ? "/entrar" : "/cadastro"}
+                        href={
+                            registerComponent
+                                ? `/entrar${
+                                      pathRedirect !== undefined
+                                          ? pathRedirect
+                                          : ""
+                                  }`
+                                : `/cadastro${
+                                      pathRedirect !== undefined
+                                          ? pathRedirect
+                                          : ""
+                                  }`
+                        }
                         className={`text-pallet-blue font-bold tracking-wide hover:border-b hover:border-pallet-blue ${arnekG.className}`}
                     >
                         {registerComponent
