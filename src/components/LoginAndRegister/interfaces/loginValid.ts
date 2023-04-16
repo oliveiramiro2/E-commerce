@@ -6,5 +6,5 @@ export interface IloginValid {
     setAllUserData: Function;
     setLogined: Function;
     push: Function;
-    paramRedirect: string;
+    paramRedirect(): string;
 }
