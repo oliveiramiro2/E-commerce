@@ -7,12 +7,16 @@ import { UserDataContext } from "@/contexts/userDataLogin";
 import { useRedirect } from "@/hooks";
 
 export const PrivateRoutes = ({ children }: { children: React.ReactNode }) => {
-    const { logined } = useContext(UserDataContext)
+    const { logined, redirectOnLogin } = useContext(UserDataContext);
     const { push } = useRedirect();
 
     useEffect(() => {
         if (!logined) {
-            push(APP_ROUTES.public.signIn);
+            if (redirectOnLogin.split("redirecionar=")[1] !== undefined) {
+                push(`${APP_ROUTES.public.signIn}?${redirectOnLogin}`);
+            } else {
+                push(APP_ROUTES.public.signIn);
+            }
         }
     }, [logined, push]);
 
