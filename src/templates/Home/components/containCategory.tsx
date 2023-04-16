@@ -13,7 +13,7 @@ export const ContainCategory: React.FC<{ data: ICategoryApi }> = ({ data }) => {
         <button
             type="button"
             onClick={() => {
-                if (!logined) setRedirectOnLogin(`redirecionar=produtos?categoria=${data.id}`)
+                if (!logined) setRedirectOnLogin(`redirecionar=produtos&categoria=${data.id}`)
                 push(`produtos?categoria=${data.id}`)
             }}
             className="cursor-pointer"
