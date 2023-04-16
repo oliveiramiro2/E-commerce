@@ -27,6 +27,7 @@ const UserDataLogin = ({ children }: { children: React.ReactNode }) => {
     });
     const [logined, setLogined] = useState<boolean>(false);
     const [checkedLogined, setCheckedLogined] = useState<boolean>(false);
+    const [redirectOnLogin, setRedirectOnLogin] = useState<string>('')
 
     useEffect(() => {
         if (typeof window !== "undefined") {
@@ -55,8 +56,10 @@ const UserDataLogin = ({ children }: { children: React.ReactNode }) => {
             logined,
             setLogined,
             checkedLogined,
+            redirectOnLogin,
+            setRedirectOnLogin,
         }),
-        [allUserData, logined, checkedLogined]
+        [allUserData, logined, checkedLogined, redirectOnLogin]
     );
 
     return (
