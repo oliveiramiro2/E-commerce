@@ -90,7 +90,7 @@ export const LoginAndRegister: React.FC<{ registerComponent: boolean }> = ({
                                             : `/${pathRedirect.replace(
                                                   "&",
                                                   "?"
-                                              )}`,
+                                              ).split("redirecionar=")[1]}`,
                                 }),
                             loginInvalid
                         )}
