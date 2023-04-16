@@ -1,10 +1,15 @@
-import React from "react";
+import React, { useContext } from "react";
 import Link from "next/link";
 import { AiFillFacebook, AiFillInstagram } from "react-icons/ai";
 
 import { tiro } from "@/functions/fonts";
+import { UserDataContext } from "@/contexts/userDataLogin";
+import { useRedirect } from "@/hooks";
 
 export const Footer: React.FC = () => {
+    const { logined, setRedirectOnLogin } = useContext(UserDataContext);
+    const { push } = useRedirect();
+
     return (
         <footer className="w-screen min-h-[15vh] bg-pallet-purple flex relative bottom-0 justify-between items-center">
             <nav className="h-full">
@@ -18,20 +23,30 @@ export const Footer: React.FC = () => {
                         </Link>
                     </li>
                     <li>
-                        <Link
-                            href="/produtos"
+                        <button
+                            type="button"
                             className={`text-pallet-white font-medium hover:border-b hover:transition-colors hover:drop-shadow-xl border-pallet-blue ${tiro.className}`}
+                            onClick={() => {
+                                if (!logined)
+                                    setRedirectOnLogin("redirecionar=produtos");
+                                push("/produtos");
+                            }}
                         >
                             Comprar
-                        </Link>
+                        </button>
                     </li>
                     <li>
-                        <Link
-                            href="/carrinho"
+                        <button
+                            type="button"
                             className={`text-pallet-white font-medium hover:border-b hover:transition-colors hover:drop-shadow-xl border-pallet-blue ${tiro.className}`}
+                            onClick={() => {
+                                if (!logined)
+                                    setRedirectOnLogin("redirecionar=carrinho");
+                                push("/carrinho");
+                            }}
                         >
                             Carrinho
-                        </Link>
+                        </button>
                     </li>
                 </ul>
             </nav>
