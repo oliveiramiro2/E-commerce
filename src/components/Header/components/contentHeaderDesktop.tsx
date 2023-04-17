@@ -2,19 +2,21 @@ import Image from "next/image";
 import Link from "next/link";
 import React, { useContext } from "react";
 import { FaHome, FaShoppingBag, FaShoppingCart } from "react-icons/fa";
-import { BiLogIn } from "react-icons/bi";
+import { BiLogIn, BiLogOut } from "react-icons/bi";
 import { AiOutlineClose, AiOutlineMenu } from "react-icons/ai";
 
 import { IPropsContentHeaderDesktop } from "@/interface";
 import { tiro } from "@/functions/fonts";
 import { UserDataContext } from "@/contexts/userDataLogin";
 import { useRedirect } from "@/hooks";
+import { logout } from "../functions/logout";
 
 export const ContentHeaderDesktop: React.FC<IPropsContentHeaderDesktop> = ({
     showMenu,
     setShowMenu,
 }) => {
-    const { logined, setRedirectOnLogin } = useContext(UserDataContext);
+    const { logined, setRedirectOnLogin, setLogined, setAllUserData } =
+        useContext(UserDataContext);
     const { push } = useRedirect();
 
     return (
@@ -72,7 +74,7 @@ export const ContentHeaderDesktop: React.FC<IPropsContentHeaderDesktop> = ({
                 </ul>
             </nav>
             <div />
-            {!logined && (
+            {!logined ? (
                 <button
                     type="button"
                     className="bg-pallet-orange hover:bg-[#ff9748] transition-colors shadow-md shadow-pallet-orange absolute right-5 h-5 p-8 pt-4 pb-4 rounded-md flex justify-center items-center max-lg:hidden"
@@ -88,6 +90,19 @@ export const ContentHeaderDesktop: React.FC<IPropsContentHeaderDesktop> = ({
                         />
                         Login
                     </Link>
+                </button>
+            ) : (
+                <button
+                    className="bg-pallet-orange text-pallet-white flex gap-x-1 font-bold tracking-wider hover:bg-[#ff9748] transition-colors shadow shadow-pallet-white h-5 p-20 mt-2 mb-2 pt-4 pb-4 rounded-lg justify-center items-center"
+                    type="button"
+                    onClick={() => logout(setLogined, setAllUserData)}
+                >
+                    <BiLogOut
+                        className="relative top-1"
+                        size={18}
+                        color="#f7f8f9"
+                    />
+                    Sair
                 </button>
             )}
             {showMenu ? (
