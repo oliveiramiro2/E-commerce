@@ -1,6 +1,8 @@
+import { notify } from '@/functions/notifications';
 import { removeTokens } from '@/services/localStorage'
 
 export const logout = (setLogined: Function, setAllUserData: Function) => {
+    notify("warning", "Sucesso,", "Você saiu com sucesso!")
     removeTokens();
     setAllUserData({
         access_token: "",
