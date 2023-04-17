@@ -1,14 +1,16 @@
 import React, { useContext } from "react";
 import Link from "next/link";
 import { FaHome, FaShoppingBag, FaShoppingCart } from "react-icons/fa";
-import { BiLogIn } from "react-icons/bi";
+import { BiLogIn, BiLogOut } from "react-icons/bi";
 
 import { tiro } from "@/functions/fonts";
 import { UserDataContext } from "@/contexts/userDataLogin";
 import { useRedirect } from "@/hooks";
+import { logout } from "../functions/logout";
 
 export const ContentHeaderMobile: React.FC = () => {
-    const { logined, setRedirectOnLogin } = useContext(UserDataContext);
+    const { logined, setRedirectOnLogin, setLogined, setAllUserData } =
+        useContext(UserDataContext);
     const { push } = useRedirect();
     return (
         <div className="bg-black pt-2 pb-2 hidden max-lg:block">
@@ -54,7 +56,7 @@ export const ContentHeaderMobile: React.FC = () => {
                             Carrinho
                         </button>
                     </li>
-                    {!logined && (
+                    {!logined ? (
                         <button
                             className="bg-pallet-orange hover:bg-[#ff9748] transition-colors shadow shadow-pallet-white h-5 p-20 mt-2 mb-2 pt-4 pb-4 rounded-lg flex justify-center items-center"
                             type="button"
@@ -70,6 +72,19 @@ export const ContentHeaderMobile: React.FC = () => {
                                 />
                                 Login
                             </Link>
+                        </button>
+                    ) : (
+                        <button
+                            className="bg-pallet-orange text-pallet-white flex gap-x-1 font-bold tracking-wider hover:bg-[#ff9748] transition-colors shadow shadow-pallet-white h-5 p-20 mt-2 mb-2 pt-4 pb-4 rounded-lg justify-center items-center"
+                            type="button"
+                            onClick={() => logout(setLogined, setAllUserData)}
+                        >
+                            <BiLogOut
+                                className="relative top-1"
+                                size={18}
+                                color="#f7f8f9"
+                            />
+                            Sair
                         </button>
                     )}
                 </ul>
