@@ -11,7 +11,9 @@ import { ICategoriesOptions } from "../interfaces";
 import { useFilter } from "../hooks";
 import { notify } from "@/functions/notifications";
 
-const cartegoriesData: ICategoriesOptions[] = [{ id: 0, name: "" }];
+const cartegoriesData: ICategoriesOptions[] = [
+    { id: 0, name: "Selecione uma categoria" },
+];
 
 export const Filters: React.FC<{ handleFilter: Function }> = ({
     handleFilter,
@@ -56,7 +58,7 @@ export const Filters: React.FC<{ handleFilter: Function }> = ({
     }, [isLoading]);
 
     return (
-        <section className="w-full min-w-[97vh] bg-white mb-5 pt-6 pb-6 pl-1 pr-1 rounded-xl flex flex-col gap-y-5">
+        <section className="w-full min-w-[95vw] self-center bg-white mb-5 pt-6 pb-6 pl-1 pr-1 rounded-xl flex flex-col gap-y-5">
             <p className={`font-black text-lg ${oswald.className}`}>
                 Filtar Por:
             </p>
@@ -72,6 +74,7 @@ export const Filters: React.FC<{ handleFilter: Function }> = ({
                         className={`outline-none border-2 border-pallet-orange p-1 pl-1 rounded-lg ${tiro.className}`}
                         value={name}
                         onChange={e => setName(e.target.value)}
+                        placeholder="Digite o nome do produto"
                     />
                 </div>
                 <div>
@@ -87,6 +90,7 @@ export const Filters: React.FC<{ handleFilter: Function }> = ({
                         onChange={e =>
                             setPrice(e.target.value.replace(/[^0-9.]/g, ""))
                         }
+                        placeholder="Digite o preço de um produto"
                     />
                 </div>
                 <div>
@@ -96,41 +100,29 @@ export const Filters: React.FC<{ handleFilter: Function }> = ({
                         Faixa de preço
                     </p>
                     <div className="flex flex-col mb-2">
-                        <label
-                            htmlFor="min"
-                            className={`font-medium font-sm ${tiro.className}`}
-                        >
-                            Mínimo
-                        </label>
                         <input
                             type="text"
                             className={`outline-none border-2 border-pallet-orange p-1 pl-1 rounded-lg ${tiro.className}`}
-                            id="min"
                             value={minPrice}
                             onChange={e =>
                                 setMinPrice(
                                     e.target.value.replace(/[^0-9.]/g, "")
                                 )
                             }
+                            placeholder="Digite o preço mínimo"
                         />
                     </div>
                     <div className="flex flex-col">
-                        <label
-                            htmlFor="max"
-                            className={`font-medium font-sm ${tiro.className}`}
-                        >
-                            Maximo
-                        </label>
                         <input
                             type="text"
                             className={`outline-none border-2 border-pallet-orange p-1 pl-1 rounded-lg ${tiro.className}`}
-                            id="max"
                             value={maxPrice}
                             onChange={e =>
                                 setMaxPrice(
                                     e.target.value.replace(/[^0-9.]/g, "")
                                 )
                             }
+                            placeholder="Digite o preço maximo"
                         />
                     </div>
                 </div>
