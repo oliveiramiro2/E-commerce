@@ -93,15 +93,11 @@ export const ContentHeaderDesktop: React.FC<IPropsContentHeaderDesktop> = ({
                 </button>
             ) : (
                 <button
-                    className="bg-pallet-orange text-pallet-white flex gap-x-1 font-bold tracking-wider hover:bg-[#ff9748] transition-colors shadow shadow-pallet-white h-5 p-20 mt-2 mb-2 pt-4 pb-4 rounded-lg justify-center items-center"
+                    className="bg-pallet-orange hover:bg-[#ff9748] transition-colors shadow-md shadow-pallet-orange absolute right-5 h-5 p-8 pt-4 pb-4 rounded-md text-pallet-white font-bold tracking-wider flex gap-x-1 justify-center items-center max-lg:hidden"
                     type="button"
                     onClick={() => logout(setLogined, setAllUserData)}
                 >
-                    <BiLogOut
-                        className="relative top-1"
-                        size={18}
-                        color="#f7f8f9"
-                    />
+                    <BiLogOut size={18} color="#f7f8f9" />
                     Sair
                 </button>
             )}
