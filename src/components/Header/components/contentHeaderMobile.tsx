@@ -79,11 +79,7 @@ export const ContentHeaderMobile: React.FC = () => {
                             type="button"
                             onClick={() => logout(setLogined, setAllUserData)}
                         >
-                            <BiLogOut
-                                className="relative top-1"
-                                size={18}
-                                color="#f7f8f9"
-                            />
+                            <BiLogOut size={18} color="#f7f8f9" />
                             Sair
                         </button>
                     )}
