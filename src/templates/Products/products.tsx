@@ -75,7 +75,7 @@ export const ProductsTemplate: React.FC = () => {
                         Produtos
                     </h3>
                 </div>
-                <div className="w-screen pl-6 pr-6 mb-10">
+                <div className="w-screen pl-6 pr-6 mb-10 flex flex-col items-center">
                     <Filters handleFilter={handleFilter} />
                     <div className="w-full flex flex-wrap gap-y-10 justify-between">
                         {data?.map(item => (
