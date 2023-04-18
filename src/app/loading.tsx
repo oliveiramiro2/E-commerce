@@ -1,7 +1,7 @@
-import React from 'react'
+import React from "react";
 
-import { LoadingUser } from '@/components'
+import { LoadingUser } from "@/components";
 
-const Loading: React.FC = () => <LoadingUser />
+const Loading: React.FC = () => <LoadingUser />;
 
-export default Loading
+export default Loading;

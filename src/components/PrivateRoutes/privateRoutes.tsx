@@ -5,6 +5,7 @@ import React, { useContext, useEffect } from "react";
 import { APP_ROUTES } from "@/constants/appRoutes";
 import { UserDataContext } from "@/contexts/userDataLogin";
 import { useRedirect } from "@/hooks";
+import { LoadingUser } from "../LoadingUser/loadingUser";
 
 export const PrivateRoutes = ({ children }: { children: React.ReactNode }) => {
     const { logined, redirectOnLogin } = useContext(UserDataContext);
@@ -22,7 +23,7 @@ export const PrivateRoutes = ({ children }: { children: React.ReactNode }) => {
 
     return (
         <>
-            {!logined && null}
+            {!logined && <LoadingUser />}
             {logined && children}
         </>
     );
