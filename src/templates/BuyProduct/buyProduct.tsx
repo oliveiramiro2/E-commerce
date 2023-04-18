@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 
 import { DefaultTemplate } from "../default";
 
-export const BuyProduct: React.FC = () => {
+export const BuyProductTemplate: React.FC = () => {
     useEffect(() => {
         document.title = "RM E-commerce - comprar produto";
     }, []);
