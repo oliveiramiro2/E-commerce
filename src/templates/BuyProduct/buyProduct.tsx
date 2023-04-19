@@ -45,8 +45,8 @@ export const BuyProductTemplate: React.FC = () => {
                     trigger: ".contain",
                     pin: true,
                     scrub: 1,
-                    },
-                });
+                },
+            });
         }
     }, [isLoading]);
 
@@ -54,7 +54,7 @@ export const BuyProductTemplate: React.FC = () => {
 
     return (
         <DefaultTemplate>
-            <section className="w-screen min-h-[72vh] bg-gray-100 flex flex-col items-center">
+            <section className="w-screen min-h-[72vh] bg-gray-100 flex flex-col items-center pl-6 pr-6">
                 <div className="w-[45%] max-xl:w-[60%] max-lg:w-[70%] max-md:w-[80%] max-sm:w-[90%] flex flex-col justify-center mb-3 mt-6">
                     <h3
                         className={`font-black text-3xl self-center max-lg:right-0 ${oswald.className}`}
@@ -63,15 +63,16 @@ export const BuyProductTemplate: React.FC = () => {
                     </h3>
                 </div>
                 <div>
-                    <div id="contain" className="contain flex">
+                    <div id="contain" className="contain flex bg-white">
                         {data?.images !== undefined &&
                             data?.images.map((item: string) => (
-                                <img
-                                    className="imgsSnap"
-                                    key={item}
-                                    src={item}
-                                    alt="produto"
-                                />
+                                <div key={item} className="w-[95vw] flex justify-center imgsSnap">
+                                    <img
+                                        className="rounded-lg"
+                                        src={item}
+                                        alt="produto"
+                                    />
+                                </div>
                             ))}
                     </div>
                     <p className={`font-bold text-sm ${arnekG.className}`}>
