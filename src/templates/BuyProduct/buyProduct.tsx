@@ -3,6 +3,8 @@
 import React, { useEffect } from "react";
 import { useQuery } from "@tanstack/react-query";
 import { useSearchParams } from "next/navigation";
+import { Power1, gsap } from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 
 import { DefaultTemplate } from "../default";
 import { arnekG, oswald } from "@/functions/fonts";
@@ -10,10 +12,11 @@ import { buyProduct } from "@/services/api";
 import { IDataApi } from "@/interface";
 import { useGetParam } from "./hooks";
 import { useRedirect } from "@/hooks";
+import { LoadingUser } from "@/components";
 
 export const BuyProductTemplate: React.FC = () => {
     const { getParam, setGetParam } = useGetParam();
-    const { data } = useQuery<IDataApi | undefined>({
+    const { data, isLoading } = useQuery<IDataApi | undefined>({
         queryKey: ["buyProduct", getParam],
         queryFn: () => buyProduct(getParam),
         keepPreviousData: true,
@@ -29,6 +32,26 @@ export const BuyProductTemplate: React.FC = () => {
         }
     }, []);
 
+    useEffect(() => {
+        if (!isLoading) {
+            gsap.registerPlugin(ScrollTrigger);
+
+            const sectionsImgs = gsap.utils.toArray(".imgsSnap");
+
+            gsap.to(sectionsImgs, {
+                xPercent: -100 * (sectionsImgs.length - 1),
+                ease: Power1.easeIn,
+                scrollTrigger: {
+                    trigger: ".contain",
+                    pin: true,
+                    scrub: 1,
+                    },
+                });
+        }
+    }, [isLoading]);
+
+    if (isLoading) return <LoadingUser />;
+
     return (
         <DefaultTemplate>
             <section className="w-screen min-h-[72vh] bg-gray-100 flex flex-col items-center">
@@ -40,11 +63,15 @@ export const BuyProductTemplate: React.FC = () => {
                     </h3>
                 </div>
                 <div>
-                    <div className="flex snap-x snap-mandatory snap-center">
+                    <div id="contain" className="contain flex">
                         {data?.images !== undefined &&
-                            data?.images.length > 1 &&
                             data?.images.map((item: string) => (
-                                <img className="imgsSnap" key={item} src={item} alt="produto" />
+                                <img
+                                    className="imgsSnap"
+                                    key={item}
+                                    src={item}
+                                    alt="produto"
+                                />
                             ))}
                     </div>
                     <p className={`font-bold text-sm ${arnekG.className}`}>
