@@ -40,7 +40,7 @@ export const BuyProductTemplate: React.FC = () => {
                     </h3>
                 </div>
                 <div>
-                    <div className="flex snap-y snap-mandatory snap-center overflow-y-scroll">
+                    <div className="flex snap-x snap-mandatory snap-center">
                         {data?.images !== undefined &&
                             data?.images.length > 1 &&
                             data?.images.map((item: string) => (
