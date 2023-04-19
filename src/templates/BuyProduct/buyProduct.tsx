@@ -5,7 +5,7 @@ import { useQuery } from "@tanstack/react-query";
 import { useSearchParams } from "next/navigation";
 
 import { DefaultTemplate } from "../default";
-import { oswald } from "@/functions/fonts";
+import { arnekG, oswald } from "@/functions/fonts";
 import { buyProduct } from "@/services/api";
 import { IDataApi } from "@/interface";
 import { useGetParam } from "./hooks";
@@ -38,6 +38,21 @@ export const BuyProductTemplate: React.FC = () => {
                     >
                         Comprar {data?.title}
                     </h3>
+                </div>
+                <div>
+                    <div className="flex snap-y snap-mandatory snap-center overflow-y-scroll">
+                        {data?.images !== undefined &&
+                            data?.images.length > 1 &&
+                            data?.images.map((item: string) => (
+                                <img className="imgsSnap" key={item} src={item} alt="produto" />
+                            ))}
+                    </div>
+                    <p className={`font-bold text-sm ${arnekG.className}`}>
+                        {data?.price}
+                    </p>
+                    <p className={`font-bold text-sm ${arnekG.className}`}>
+                        {data?.description}
+                    </p>
                 </div>
                 buyProduct
             </section>
