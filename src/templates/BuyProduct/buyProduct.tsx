@@ -1,9 +1,18 @@
 import React, { useEffect } from "react";
+import { useQuery } from "@tanstack/react-query";
 
 import { DefaultTemplate } from "../default";
 import { oswald } from "@/functions/fonts";
+import { buyProduct } from "@/services/api";
+import { IDataApi } from "@/interface";
 
 export const BuyProductTemplate: React.FC = () => {
+    const { data } = useQuery<IDataApi | undefined>({
+        queryKey: ["buyProduct"],
+        queryFn: () => buyProduct(1),
+        keepPreviousData: true,
+    });
+
     useEffect(() => {
         document.title = "RM E-commerce - comprar produto";
     }, []);
@@ -15,7 +24,7 @@ export const BuyProductTemplate: React.FC = () => {
                     <h3
                         className={`font-black text-3xl self-center max-lg:right-0 ${oswald.className}`}
                     >
-                        Comprar 
+                        Comprar {data?.title}
                     </h3>
                 </div>
                 buyProduct
