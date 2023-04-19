@@ -29,7 +29,7 @@ export const BuyProductTemplate: React.FC = () => {
     const { count, handleCountLess, handleCountMore } = useCount();
 
     useEffect(() => {
-        document.title = "RM E-commerce - comprar produto";
+        document.title = "RM E-commerce - Comprar produto";
         if (path.toString().split("idProduto=")[1] !== undefined) {
             if (path.toString().split("idProduto=")[1] === "") back();
             setGetParam(Number(path.toString().split("idProduto=")[1]));
@@ -43,7 +43,7 @@ export const BuyProductTemplate: React.FC = () => {
             const sectionsImgs = gsap.utils.toArray(".imgsSnap");
 
             gsap.to(sectionsImgs, {
-                xPercent: -100 * (sectionsImgs.length - 1),
+                xPercent: -100 * (sectionsImgs.length + 1.2),
                 ease: Power1.easeIn,
                 scrollTrigger: {
                     trigger: ".contain",
@@ -61,18 +61,21 @@ export const BuyProductTemplate: React.FC = () => {
             <section className="w-screen min-h-[72vh] bg-gray-100 flex flex-col items-center pl-6 pr-6">
                 <div className="w-[45%] max-xl:w-[60%] max-lg:w-[70%] max-md:w-[80%] max-sm:w-[90%] flex flex-col justify-center mb-3 mt-6">
                     <h3
-                        className={`font-black text-3xl self-center max-lg:right-0 ${oswald.className}`}
+                        className={`font-black text-center text-3xl self-center max-lg:right-0 ${oswald.className}`}
                     >
                         Comprar {data?.title}
                     </h3>
                 </div>
                 <div>
-                    <div id="contain" className="contain flex bg-white">
+                    <div id="contain" className="flex bg-white contain">
                         {data?.images !== undefined &&
                             data?.images.map((item: string) => (
-                                <div key={item} className="w-[95vw] flex justify-center imgsSnap">
+                                <div
+                                    key={item}
+                                    className="relative left-[100vw] w-[100vw] flex justify-center"
+                                >
                                     <img
-                                        className="rounded-lg"
+                                        className="rounded-lg imgsSnap"
                                         src={item}
                                         alt="produto"
                                     />
