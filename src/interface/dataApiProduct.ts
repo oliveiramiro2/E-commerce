@@ -8,7 +8,7 @@ export interface IDataApi {
       name: string;
       image: string[] | string;
     };
-    images: string[] | string;
+    images: string[];
 }
 
 export interface ICategoryApi {
