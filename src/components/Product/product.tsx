@@ -4,7 +4,6 @@ import React, { useContext } from "react";
 import { SiFireship } from "react-icons/si";
 import clsx from "clsx";
 import { FaShoppingBag, FaShoppingCart } from "react-icons/fa";
-import Link from "next/link";
 
 import { IDataApi } from "@/interface";
 import { arnekG } from "@/functions/fonts";
@@ -17,7 +16,7 @@ import { MaskCoin } from "@/functions/maskCoin";
 
 export const Product: React.FC<{ param: IDataApi }> = ({ param }) => {
     const { show, handleShow, handleHide } = useShowInfo();
-    const { logined } = useContext(UserDataContext);
+    const { logined, setRedirectOnLogin } = useContext(UserDataContext);
     const { push } = useRedirect();
     const { setCartData, cartData } = useContext(CartUserContext);
 
@@ -70,9 +69,15 @@ export const Product: React.FC<{ param: IDataApi }> = ({ param }) => {
                     )}
                     onClick={() => {
                         if (logined) {
-                            const checkRepeat = cartData.filter((item: IDataApi) => item.id !== param.id)
+                            const checkRepeat = cartData.filter(
+                                (item: IDataApi) => item.id !== param.id
+                            );
                             setCartData([...checkRepeat, param]);
-                            notify("success", "Sucesso,", "Produto adicionado ao carrinho!")
+                            notify(
+                                "success",
+                                "Sucesso,",
+                                "Produto adicionado ao carrinho!"
+                            );
                         } else {
                             push("/entrar");
                         }
@@ -84,24 +89,29 @@ export const Product: React.FC<{ param: IDataApi }> = ({ param }) => {
                     />{" "}
                     Carrinho
                 </button>
-                <Link href={logined ? "/" : "/entrar"}>
-                    <button
-                        type="button"
-                        className={clsx(
-                            `bg-pallet-orange pt-3 p-2 pl-4 pr-3 w-32 flex items-center justify-center gap-x-1 rounded-md font-bolder text-center text-sm text-pallet-white first-letter:capitalize hover:bg-[#ff9748] transition-colors shadow-md shadow-pallet-orange ${arnekG.className}`,
-                            {
-                                flex: show,
-                                hidden: !show,
-                            }
-                        )}
-                    >
-                        <FaShoppingBag
-                            color="#f7f8f9"
-                            className="relative bottom-[3px]"
-                        />{" "}
-                        Comprar
-                    </button>
-                </Link>
+                <button
+                    type="button"
+                    className={clsx(
+                        `bg-pallet-orange pt-3 p-2 pl-4 pr-3 w-32 flex items-center justify-center gap-x-1 rounded-md font-bolder text-center text-sm text-pallet-white first-letter:capitalize hover:bg-[#ff9748] transition-colors shadow-md shadow-pallet-orange ${arnekG.className}`,
+                        {
+                            flex: show,
+                            hidden: !show,
+                        }
+                    )}
+                    onClick={() => {
+                        if (!logined)
+                            setRedirectOnLogin(
+                                `redirecionar=comprar_produto&idProduto=${param.id}`
+                            );
+                        push(`comprar_produto?idProduto=${param.id}`);
+                    }}
+                >
+                    <FaShoppingBag
+                        color="#f7f8f9"
+                        className="relative bottom-[3px]"
+                    />{" "}
+                    Comprar
+                </button>
             </div>
         </div>
     );
