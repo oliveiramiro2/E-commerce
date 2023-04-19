@@ -3,9 +3,10 @@
 import { useRouter } from 'next/navigation'
 
 export const useRedirect = () => {
-    const { push } = useRouter()
+    const { push, back } = useRouter()
 
     return {
-        push
+        push,
+        back,
     }
 }
