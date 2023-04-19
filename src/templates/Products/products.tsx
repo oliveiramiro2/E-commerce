@@ -83,51 +83,49 @@ export const ProductsTemplate: React.FC = () => {
                         ))}
                     </div>
                 </div>
-                {data !== undefined && data.length > 14 && (
-                    <div className="flex items-center mb-10">
-                        <button
-                            type="button"
-                            className={clsx("h-max", {
-                                invisible: pagination <= 1,
-                            })}
-                            onClick={() => handlePagination(false)}
-                            disabled={pagination <= 1}
-                        >
-                            <div className="bg-pallet-orange h-max rounded-md mr-2 p-2 hover:bg-[#ff9748] transition-colors shadow-md shadow-pallet-orange">
-                                <TiChevronLeft color="#fff" />
-                            </div>
-                        </button>
-                        <div>
-                            <input
-                                type="text"
-                                value={inputPagination}
-                                className={`w-14 text-center outline-none border-2 border-pallet-orange p-1 pl-1 rounded-lg ${tiro.className}`}
-                                onChange={e =>
-                                    handleInputPagination(
-                                        e.target.value.replace(/[^0-9.]/g, "")
-                                    )
-                                }
-                                onBlur={handleSearchInput}
-                                onFocus={() =>
-                                    notify(
-                                        "info",
-                                        "Atenção,",
-                                        "Ao inserir a página desejada clique em outro lugar da tela para ir para a página desejada!"
-                                    )
-                                }
-                            />
+                <div className="flex items-center mb-10">
+                    <button
+                        type="button"
+                        className={clsx("h-max", {
+                            invisible: pagination <= 1,
+                        })}
+                        onClick={() => handlePagination(false)}
+                        disabled={pagination <= 1}
+                    >
+                        <div className="bg-pallet-orange h-max rounded-md mr-2 p-2 hover:bg-[#ff9748] transition-colors shadow-md shadow-pallet-orange">
+                            <TiChevronLeft color="#fff" />
                         </div>
-                        <button
-                            type="button"
-                            className="h-max"
-                            onClick={() => handlePagination(true)}
-                        >
-                            <div className="bg-pallet-orange h-max rounded-md ml-2 p-2 hover:bg-[#ff9748] transition-colors shadow-md shadow-pallet-orange">
-                                <TiChevronRight color="#fff" />
-                            </div>
-                        </button>
+                    </button>
+                    <div>
+                        <input
+                            type="text"
+                            value={inputPagination}
+                            className={`w-14 text-center outline-none border-2 border-pallet-orange p-1 pl-1 rounded-lg ${tiro.className}`}
+                            onChange={e =>
+                                handleInputPagination(
+                                    e.target.value.replace(/[^0-9.]/g, "")
+                                )
+                            }
+                            onBlur={handleSearchInput}
+                            onFocus={() =>
+                                notify(
+                                    "info",
+                                    "Atenção,",
+                                    "Ao inserir a página desejada clique em outro lugar da tela para ir para a página desejada!"
+                                )
+                            }
+                        />
                     </div>
-                )}
+                    <button
+                        type="button"
+                        className="h-max"
+                        onClick={() => handlePagination(true)}
+                    >
+                        <div className="bg-pallet-orange h-max rounded-md ml-2 p-2 hover:bg-[#ff9748] transition-colors shadow-md shadow-pallet-orange">
+                            <TiChevronRight color="#fff" />
+                        </div>
+                    </button>
+                </div>
             </section>
         </DefaultTemplate>
     );
