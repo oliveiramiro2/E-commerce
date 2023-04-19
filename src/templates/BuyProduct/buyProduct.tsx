@@ -1,20 +1,30 @@
 import React, { useEffect } from "react";
 import { useQuery } from "@tanstack/react-query";
+import { useSearchParams } from "next/navigation";
 
 import { DefaultTemplate } from "../default";
 import { oswald } from "@/functions/fonts";
 import { buyProduct } from "@/services/api";
 import { IDataApi } from "@/interface";
+import { useGetParam } from "./hooks";
+import { useRedirect } from "@/hooks";
 
 export const BuyProductTemplate: React.FC = () => {
+    const { getParam, setGetParam } = useGetParam();
     const { data } = useQuery<IDataApi | undefined>({
-        queryKey: ["buyProduct"],
-        queryFn: () => buyProduct(1),
+        queryKey: ["buyProduct", getParam],
+        queryFn: () => buyProduct(getParam),
         keepPreviousData: true,
     });
+    const path = useSearchParams();
+    const { back } = useRedirect();
 
     useEffect(() => {
         document.title = "RM E-commerce - comprar produto";
+        if (path.toString().split("idProduto=")[1] !== undefined) {
+            if (path.toString().split("idProduto=")[1] === "") back();
+            setGetParam(Number(path.toString().split("idProduto=")[1]));
+        }
     }, []);
 
     return (
