@@ -1,14 +1,12 @@
 import React, { useContext } from "react";
-import { FiPlus, FiMinus } from "react-icons/fi";
 import { FaWindowClose } from "react-icons/fa";
-import clsx from "clsx";
 
 import { IDataApi } from "@/interface";
 import { arnekG, oswald } from "@/functions/fonts";
 import { useCountBuyItems } from "../hooks";
 import { CartUserContext } from "@/contexts/cartUser";
 import { notify } from "@/functions/notifications";
-import { MaskCoin } from '@/functions/maskCoin'
+import { CountManyItems } from "@/components";
 
 export const ContainCart: React.FC<{
     data: IDataApi;
@@ -28,7 +26,7 @@ export const ContainCart: React.FC<{
                             item => item.id !== data.id
                         );
                         setCartData(removeItem);
-                        handleRemoveItem(count, data.price)
+                        handleRemoveItem(count, data.price);
                         notify(
                             "warning",
                             "Removido,",
@@ -60,54 +58,13 @@ export const ContainCart: React.FC<{
                     </div>
                 </div>
                 <div className="flex flex-col justify-around">
-                    <div className="flex mr-5 items-center gap-x-4">
-                        <div className="bg-gray-100 border p-2 flex items-center gap-x-1 border-pallet-black rounded-sm">
-                            <button
-                                type="button"
-                                onClick={() => {
-                                    if (count !== 1)
-                                        handlePriceItems(
-                                            count,
-                                            count - 1,
-                                            Number(data.price)
-                                        );
-                                    handleCountLess();
-                                }}
-                                disabled={count === 1}
-                                className={clsx("cursor-pointer", {
-                                    "cursor-no-drop": count === 1,
-                                })}
-                            >
-                                <FiMinus color="#000" size={22} />
-                            </button>
-                            <span
-                                className={`text-pallet-black bg-white rounded-lg relative top-1 text-center pl-2 pr-2 font-black ${arnekG.className}`}
-                            >
-                                {count}
-                            </span>
-                            <button
-                                type="button"
-                                onClick={() => {
-                                    handlePriceItems(
-                                        count,
-                                        count + 1,
-                                        Number(data.price)
-                                    );
-                                    handleCountPlus();
-                                }}
-                                className="cursor-pointer"
-                            >
-                                <FiPlus color="#000" size={22} />
-                            </button>
-                        </div>
-                        <div>
-                            <span
-                                className={`text-pallet-black font-black text-sm min-w-[50px] ${arnekG.className}`}
-                            >
-                                {MaskCoin(count * Number(data.price))}
-                            </span>
-                        </div>
-                    </div>
+                    <CountManyItems
+                        price={data?.price || 0}
+                        count={count}
+                        handleCountLess={handleCountLess}
+                        handleCountMore={handleCountPlus}
+                        handlePriceItems={handlePriceItems}
+                    />
                     <button
                         type="button"
                         className={`self-center rounded-xl p-1 pl-8 pr-8 mt-3 mr-2 bg-pallet-purple text-pallet-white tracking-wide shadow-lg shadow-gray-400 hover:bg-[#bf3eee] hover:transition-colors ${oswald.className}`}
