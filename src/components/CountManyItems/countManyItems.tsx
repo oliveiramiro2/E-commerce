@@ -13,7 +13,6 @@ export const CountManyItems: React.FC<ICountManyProps> = ({
     handleCountMore,
     handlePriceItems,
 }) => (
-    <div>
         <div className="flex mr-5 items-center gap-x-4">
             <div className="bg-gray-100 border p-2 flex items-center gap-x-1 border-pallet-black rounded-sm">
                 <button
@@ -58,5 +57,4 @@ export const CountManyItems: React.FC<ICountManyProps> = ({
                 </span>
             </div>
         </div>
-    </div>
 );
