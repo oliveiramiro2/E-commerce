@@ -29,7 +29,7 @@ export const Product: React.FC<{ param: IDataApi }> = ({ param }) => {
             onBlur={handleHide}
         >
             <p
-                className={`font-bold first-letter:capitalize text-lg text-pallet-white ${arnekG.className}`}
+                className={`font-bold max-w-[20vw] max-md:w-[80vw] text-center first-letter:capitalize text-lg text-pallet-white ${arnekG.className}`}
             >
                 {param.title}
             </p>
