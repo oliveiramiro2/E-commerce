@@ -5,6 +5,7 @@ import { useQuery } from "@tanstack/react-query";
 import { useSearchParams } from "next/navigation";
 import { Power1, gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import clsx from "clsx";
 
 import { DefaultTemplate } from "../default";
 import { arnekG, oswald } from "@/functions/fonts";
@@ -69,12 +70,19 @@ export const BuyProductTemplate: React.FC = () => {
                             data?.images.map((item: string) => (
                                 <div
                                     key={item}
-                                    className="relative left-[100vw] w-[100vw] flex justify-center"
+                                    className={clsx(
+                                        "relative w-[100vw] flex justify-center",
+                                        {
+                                            "left-[100vw]":
+                                                data?.images.length > 1,
+                                        }
+                                    )}
                                 >
                                     <img
-                                        className="rounded-lg imgsSnap"
+                                        className="h-[95vh] rounded-lg imgsSnap"
                                         src={item}
                                         alt="produto"
+                                        height={window.innerHeight}
                                     />
                                 </div>
                             ))}
