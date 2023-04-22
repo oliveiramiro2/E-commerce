@@ -5,7 +5,7 @@ export const useModal = () => {
 
     return {
         openModal,
-        handleCloseModal: setOpenModal(false),
-        handleOpenModal: setOpenModal(true),
+        handleCloseModal: () => setOpenModal(false),
+        handleOpenModal: () => setOpenModal(true),
     };
 };
