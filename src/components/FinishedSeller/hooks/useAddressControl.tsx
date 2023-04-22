@@ -4,12 +4,12 @@ import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useEffect } from "react";
 
-import { schemaRegister } from "@/components/LoginAndRegister/utils";
 import { formType } from "../interface";
 import { zipCodeMask } from "@/functions/zipCodeMask";
+import { schemaAddress } from "../utils";
 
 export const useAddressControl = () => {
-    const schema = schemaRegister;
+    const schema = schemaAddress;
 
     const {
         handleSubmit,
