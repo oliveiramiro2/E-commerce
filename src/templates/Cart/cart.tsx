@@ -7,7 +7,7 @@ import { DefaultTemplate } from "../default";
 import { CartUserContext } from "@/contexts/cartUser";
 import { arnekG, oswald } from "@/functions/fonts";
 import { ContainCart } from "./components";
-import { usePriceItems } from "./hooks";
+import { useIdBuy, usePriceItems } from "./hooks";
 import { MaskCoin } from "@/functions/maskCoin";
 import { FinishedSeller } from "@/components/FinishedSeller";
 import { useModal } from "@/hooks";
@@ -15,6 +15,7 @@ import { useModal } from "@/hooks";
 export const CartTemplate: React.FC = () => {
     const { cartData } = useContext(CartUserContext);
     const { openModal, handleCloseModal, handleOpenModal } = useModal();
+    const { buyId, setBuyId, buyAll, setBuyAll } = useIdBuy();
     const { priceItems, handleFirstTime, handlePriceItems, handleRemoveItem } =
         usePriceItems();
 
@@ -27,7 +28,7 @@ export const CartTemplate: React.FC = () => {
             });
             handleFirstTime(totalValue);
         }
-        handleCloseModal()
+        handleCloseModal();
     }, []);
 
     return (
@@ -54,6 +55,7 @@ export const CartTemplate: React.FC = () => {
                                 handlePriceItems={handlePriceItems}
                                 handleRemoveItem={handleRemoveItem}
                                 handleOpenModal={handleOpenModal}
+                                setBuyId={setBuyId}
                             />
                         ))
                     ) : (
@@ -67,12 +69,19 @@ export const CartTemplate: React.FC = () => {
                     )}
                 </div>
                 {cartData.length > 0 && (
-                    <div className="w-full flex pr-20 pl-5 justify-end mb-10">
+                    <div className="w-full flex flex-col pr-20 pl-5 justify-end items-end mb-10">
                         <p
                             className={`text-pallet-orange font-black text-lg ${arnekG.className}`}
                         >
                             Total: {MaskCoin(priceItems)}
                         </p>
+                        <button
+                            type="button"
+                            className={`rounded-xl relative left-8 w-44 p-1 pl-8 pr-8 mt-3 mr-2 bg-pallet-purple text-pallet-white tracking-wide shadow-lg shadow-gray-400 hover:bg-[#bf3eee] hover:transition-colors ${oswald.className}`}
+                            onClick={() => setBuyAll(true)}
+                        >
+                            Comprar tudo
+                        </button>
                     </div>
                 )}
                 <Modal
@@ -80,7 +89,12 @@ export const CartTemplate: React.FC = () => {
                     onRequestClose={handleCloseModal}
                     contentLabel="Finalize sua compra, entre com seu endereço!"
                 >
-                    <FinishedSeller close={handleCloseModal} />
+                    <FinishedSeller
+                        close={handleCloseModal}
+                        allItemsCart={buyAll}
+                        cartId={buyId}
+                        buyFromCart
+                    />
                 </Modal>
             </section>
         </DefaultTemplate>
