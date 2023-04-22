@@ -6,6 +6,7 @@ import { useSearchParams } from "next/navigation";
 import { Power1, gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import clsx from "clsx";
+import { FaShoppingBag, FaShoppingCart } from "react-icons/fa";
 
 import { DefaultTemplate } from "../default";
 import { arnekG, oswald } from "@/functions/fonts";
@@ -71,7 +72,7 @@ export const BuyProductTemplate: React.FC = () => {
                                 <div
                                     key={item}
                                     className={clsx(
-                                        "relative w-[100vw] flex justify-center",
+                                        "relative w-[100vw] flex justify-center pt-[2.5vh]",
                                         {
                                             "left-[100vw]":
                                                 data?.images.length > 1,
@@ -87,18 +88,41 @@ export const BuyProductTemplate: React.FC = () => {
                                 </div>
                             ))}
                     </div>
-                    <CountManyItems
-                        price={data?.price || 0}
-                        count={count}
-                        handleCountLess={handleCountLess}
-                        handleCountMore={handleCountMore}
-                        handlePriceItems={() => {}}
-                    />
-                    <p className={`font-bold text-sm ${arnekG.className}`}>
+                    <div className="flex items-center ml-6 mr-6">
+                        <CountManyItems
+                            price={data?.price || 0}
+                            count={count}
+                            handleCountLess={handleCountLess}
+                            handleCountMore={handleCountMore}
+                            handlePriceItems={() => {}}
+                        />
+                        <button
+                            type="button"
+                            className={`bg-green-500 flex items-center justify-center gap-x-1 rounded-md font-bolder text-center text-sm text-pallet-white first-letter:capitalize hover:bg-green-300 transition-colors shadow-md shadow-green-500 ${arnekG.className}`}
+                        >
+                            <FaShoppingBag
+                                color="#f7f8f9"
+                                className="relative bottom-[3px]"
+                            />{" "}
+                            Finalizar a compra
+                        </button>
+                        <button
+                            type="button"
+                            className={`bg-pallet-orange flex items-center justify-center gap-x-1 rounded-md font-bolder text-center text-sm text-pallet-white first-letter:capitalize hover:bg-[#ff9748] transition-colors shadow-md shadow-pallet-orange ${arnekG.className}`}
+                        >
+                            <FaShoppingCart
+                                color="#f7f8f9"
+                                className="relative bottom-[3px]"
+                            />{" "}
+                            Adicionar ao carrinho
+                        </button>
+                    </div>
+                    <p
+                        className={`font-bold text-center text-sm ${arnekG.className}`}
+                    >
                         {data?.description}
                     </p>
                 </div>
-                buyProduct
             </section>
         </DefaultTemplate>
     );
