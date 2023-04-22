@@ -2,13 +2,22 @@
 
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { useEffect } from "react";
+import { useCallback, useEffect, useState } from "react";
 
-import { formType } from "../interface";
+import { IAddressSchema, IViaCepReturn, formType } from "../interface";
 import { zipCodeMask } from "@/functions/zipCodeMask";
 import { schemaAddress } from "../utils";
+import { viaCep } from "@/services/viaCep";
 
 export const useAddressControl = () => {
+    const [zipCodeNotFound, setZipCodeNotFound] = useState<boolean>(false);
+    const [disabledInputs, setDisabledInputs] = useState<IAddressSchema>({
+        city: false,
+        complement: false,
+        district: false,
+        state: false,
+        street: false,
+    });
     const schema = schemaAddress;
 
     const {
@@ -33,13 +42,52 @@ export const useAddressControl = () => {
         },
     });
 
+    const handleSetData = useCallback(
+        (data: IViaCepReturn) => {
+            setValue("city", data.localidade);
+            setValue("street", data.logradouro);
+            setValue("district", data.bairro);
+            setValue("complement", data.complemento);
+            setValue("state", data.uf);
+            const auxDisable: IAddressSchema = {
+                city: false,
+                complement: false,
+                district: false,
+                state: false,
+                street: false,
+            };
+            if (data.localidade !== "") auxDisable.city = true
+            if (data.bairro !== "") auxDisable.district = true
+            if (data.complemento !== "") auxDisable.complement = true
+            if (data.logradouro !== "") auxDisable.street = true
+            if (data.uf !== "") auxDisable.state = true
+            setDisabledInputs(auxDisable)
+        },
+        [setValue]
+    );
+
+    const fetchAddress = useCallback(() => {
+        viaCep
+            .get(`${watch("CEP")}/json/`)
+            .then(({ data }: { data: IViaCepReturn }) => {
+                handleSetData(data);
+                setZipCodeNotFound(false);
+            })
+            .catch(() => setZipCodeNotFound(true));
+    }, [handleSetData]);
+
     useEffect(() => {
-        setValue('CEP', zipCodeMask(watch('CEP')))
-    }, [watch('CEP')])
+        setValue("CEP", zipCodeMask(watch("CEP")));
+
+        if (watch("CEP").length !== 9) return;
+        fetchAddress();
+    }, [watch("CEP"), fetchAddress, setValue]);
 
     return {
         handleSubmit,
         register,
         errors,
+        zipCodeNotFound,
+        disabledInputs,
     };
 };
