@@ -23,19 +23,138 @@ export const FinishedSeller: React.FC<{ close: Function }> = () => {
                         CEP
                     </label>
                     <input
-                        placeholder="Adicione seu CEP"
+                        placeholder="CEP"
                         type="text"
-                        className={clsx(`outline-none border-[1.5px] border-pallet-purple p-1 pl-1 rounded-lg ${tiro.className}`, {
-                            "border-red-500": errors.CEP?.message
-                        })}
+                        className={clsx(
+                            `outline-none border-[1.5px] border-pallet-purple p-1 pl-1 rounded-lg ${tiro.className}`,
+                            {
+                                "border-red-500": errors.CEP?.message,
+                            }
+                        )}
                         {...register("CEP")}
                         maxLength={9}
                     />
-                    {errors.CEP?.message && <p
-                        className={`text-red-500 font-semibold self-center relative top-3 ${tiro.className}`}
-                    >
-                        {errors.CEP?.message}
-                    </p>}
+                    {errors.CEP?.message && (
+                        <p
+                            className={`text-red-500 font-semibold self-center relative top-3 ${tiro.className}`}
+                        >
+                            {errors.CEP?.message}
+                        </p>
+                    )}
+                </div>
+                <div className="flex justify-around mt-10">
+                    <div className="flex flex-col">
+                        <input
+                            placeholder="Cidade"
+                            type="text"
+                            className={clsx(
+                                `outline-none border-[1.5px] border-pallet-purple p-1 pl-1 rounded-lg ${tiro.className}`,
+                                {
+                                    "border-red-500": errors.city?.message,
+                                }
+                            )}
+                            {...register("city")}
+                        />
+                        {errors.city?.message && (
+                            <p
+                                className={`text-red-500 font-semibold self-center relative top-3 ${tiro.className}`}
+                            >
+                                {errors.city?.message}
+                            </p>
+                        )}
+                    </div>
+                    <div className="flex flex-col">
+                        <input
+                            placeholder="Estado"
+                            type="text"
+                            className={clsx(
+                                `outline-none border-[1.5px] border-pallet-purple p-1 pl-1 rounded-lg ${tiro.className}`,
+                                {
+                                    "border-red-500": errors.state?.message,
+                                }
+                            )}
+                            {...register("state")}
+                        />
+                        {errors.state?.message && (
+                            <p
+                                className={`text-red-500 font-semibold self-center relative top-3 ${tiro.className}`}
+                            >
+                                {errors.state?.message}
+                            </p>
+                        )}
+                    </div>
+                </div>
+                <div className="flex justify-around mt-10">
+                    <div className="flex flex-col">
+                        <input
+                            placeholder="Rua"
+                            type="text"
+                            className={clsx(
+                                `outline-none border-[1.5px] border-pallet-purple p-1 pl-1 rounded-lg ${tiro.className}`,
+                                {
+                                    "border-red-500": errors.street?.message,
+                                }
+                            )}
+                            {...register("street")}
+                        />
+                        {errors.street?.message && (
+                            <p
+                                className={`text-red-500 font-semibold self-center relative top-3 ${tiro.className}`}
+                            >
+                                {errors.street?.message}
+                            </p>
+                        )}
+                    </div>
+                    <div className="flex flex-col">
+                        <input
+                            placeholder="Bairro"
+                            type="text"
+                            className={clsx(
+                                `outline-none border-[1.5px] border-pallet-purple p-1 pl-1 rounded-lg ${tiro.className}`,
+                                {
+                                    "border-red-500": errors.district?.message,
+                                }
+                            )}
+                            {...register("district")}
+                        />
+                        {errors.district?.message && (
+                            <p
+                                className={`text-red-500 font-semibold self-center relative top-3 ${tiro.className}`}
+                            >
+                                {errors.district?.message}
+                            </p>
+                        )}
+                    </div>
+                </div>
+                <div className="flex justify-around mt-10">
+                    <div className="flex flex-col">
+                        <input
+                            placeholder="Número da casa"
+                            type="text"
+                            className={clsx(
+                                `outline-none border-[1.5px] border-pallet-purple p-1 pl-1 rounded-lg ${tiro.className}`,
+                                {
+                                    "border-red-500": errors.number?.message,
+                                }
+                            )}
+                            {...register("number")}
+                        />
+                        {errors.number?.message && (
+                            <p
+                                className={`text-red-500 font-semibold self-center relative top-3 ${tiro.className}`}
+                            >
+                                {errors.number?.message}
+                            </p>
+                        )}
+                    </div>
+                    <div className="flex flex-col">
+                        <input
+                            placeholder="Complemento"
+                            type="text"
+                            className={`outline-none border-[1.5px] border-pallet-purple p-1 pl-1 rounded-lg ${tiro.className}`}
+                            {...register("complement")}
+                        />
+                    </div>
                 </div>
             </form>
         </div>
