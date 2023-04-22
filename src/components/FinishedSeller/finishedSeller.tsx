@@ -4,7 +4,7 @@ import clsx from "clsx";
 import { arnekG, oswald, tiro } from "@/functions/fonts";
 import { useAddressControl } from "./hooks";
 
-export const FinishedSeller: React.FC<{ close: Function }> = () => {
+export const FinishedSeller: React.FC<{ close: Function }> = ({ close }) => {
     const { errors, register, disabledInputs, zipCodeNotFound, zipCode } =
         useAddressControl();
 
@@ -187,6 +187,7 @@ export const FinishedSeller: React.FC<{ close: Function }> = () => {
                             <button
                                 className={`bg-pallet-orange pb-2 pt-3 pl-3 pr-3 w-28 flex items-center justify-center gap-x-1 rounded-md font-bolder text-center text-sm text-pallet-white first-letter:capitalize hover:bg-[#ff9748] transition-colors shadow-md shadow-pallet-orange ${arnekG.className}`}
                                 type="button"
+                                onClick={() => close()}
                             >
                                 Voltar
                             </button>
