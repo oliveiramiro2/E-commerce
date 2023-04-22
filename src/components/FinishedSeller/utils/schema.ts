@@ -8,4 +8,12 @@ export const schemaAddress = z.object({
     complement: z.string(),
     city: z.string().min(1, "Digite o nome da sua cidade!"),
     state: z.string().min(2, "Digite a sigla do seu estado!"),
-});
+}).transform(field => ({
+    CEP: field.CEP,
+    street: field.street,
+    number: field.number,
+    district: field.district,
+    complement: field.complement,
+    city: field.city,
+    state: field.state,
+}));
