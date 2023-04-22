@@ -1,1 +1,1 @@
-export type { IAddressSchema, formType } from './address';
+export type { IAddressSchema, formType, IViaCepReturn } from './address';

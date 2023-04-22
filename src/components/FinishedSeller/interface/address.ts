@@ -12,3 +12,11 @@ export interface IAddressSchema {
     city: string;
     state: string;
 }
+
+export interface IViaCepReturn {
+    bairro: string;
+    compomento: string;
+    uf: string;
+    logradouro: string;
+    localidade: string;
+}
