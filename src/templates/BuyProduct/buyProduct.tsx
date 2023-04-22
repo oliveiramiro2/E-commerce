@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useEffect } from "react";
+import React, { useContext, useEffect } from "react";
 import { useQuery } from "@tanstack/react-query";
 import { useSearchParams } from "next/navigation";
 import { Power1, gsap } from "gsap";
@@ -15,6 +15,8 @@ import { IDataApi } from "@/interface";
 import { useCount, useGetParam } from "./hooks";
 import { useRedirect } from "@/hooks";
 import { CountManyItems, LoadingUser } from "@/components";
+import { CartUserContext } from "@/contexts/cartUser";
+import { notify } from "@/functions/notifications";
 
 export const BuyProductTemplate: React.FC = () => {
     const { getParam, setGetParam } = useGetParam();
@@ -26,6 +28,7 @@ export const BuyProductTemplate: React.FC = () => {
     const path = useSearchParams();
     const { back } = useRedirect();
     const { count, handleCountLess, handleCountMore } = useCount();
+    const { setCartData, cartData } = useContext(CartUserContext);
 
     useEffect(() => {
         document.title = "RM E-commerce - Comprar produto";
@@ -110,6 +113,17 @@ export const BuyProductTemplate: React.FC = () => {
                     <button
                         type="button"
                         className={`bg-pallet-orange pb-2 pt-3 pl-3 pr-3 flex items-center justify-center gap-x-1 rounded-md font-bolder text-center text-sm text-pallet-white first-letter:capitalize hover:bg-[#ff9748] transition-colors shadow-md shadow-pallet-orange ${arnekG.className}`}
+                        onClick={() => {
+                            const checkRepeat = cartData.filter(
+                                (item: IDataApi) => item.id !== data?.id
+                            );
+                            setCartData([...checkRepeat, data]);
+                            notify(
+                                "success",
+                                "Sucesso,",
+                                "Produto adicionado ao carrinho!"
+                            );
+                        }}
                     >
                         <FaShoppingCart
                             color="#f7f8f9"
