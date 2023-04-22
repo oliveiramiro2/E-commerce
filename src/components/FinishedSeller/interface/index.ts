@@ -1,1 +1,1 @@
-export type { IAddressSchema } from './address';
+export type { IAddressSchema, formType } from './address';
