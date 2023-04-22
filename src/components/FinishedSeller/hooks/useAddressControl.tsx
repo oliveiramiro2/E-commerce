@@ -56,12 +56,12 @@ export const useAddressControl = () => {
                 state: false,
                 street: false,
             };
-            if (data.localidade !== "") auxDisable.city = true
-            if (data.bairro !== "") auxDisable.district = true
-            if (data.complemento !== "") auxDisable.complement = true
-            if (data.logradouro !== "") auxDisable.street = true
-            if (data.uf !== "") auxDisable.state = true
-            setDisabledInputs(auxDisable)
+            if (data.localidade !== "") auxDisable.city = true;
+            if (data.bairro !== "") auxDisable.district = true;
+            if (data.complemento !== "") auxDisable.complement = true;
+            if (data.logradouro !== "") auxDisable.street = true;
+            if (data.uf !== "") auxDisable.state = true;
+            setDisabledInputs(auxDisable);
         },
         [setValue]
     );
@@ -70,16 +70,23 @@ export const useAddressControl = () => {
         viaCep
             .get(`${watch("CEP")}/json/`)
             .then(({ data }: { data: IViaCepReturn }) => {
-                handleSetData(data);
-                setZipCodeNotFound(false);
+                if (!data.erro) {
+                    setZipCodeNotFound(true);
+                    handleSetData(data);
+                } else {
+                    setZipCodeNotFound(false);
+                }
             })
-            .catch(() => setZipCodeNotFound(true));
+            .catch(() => setZipCodeNotFound(false));
     }, [handleSetData]);
 
     useEffect(() => {
         setValue("CEP", zipCodeMask(watch("CEP")));
 
-        if (watch("CEP").length !== 9) return;
+        if (watch("CEP").length !== 9) {
+            setZipCodeNotFound(false);
+            return;
+        }
         fetchAddress();
     }, [watch("CEP"), fetchAddress, setValue]);
 
@@ -89,5 +96,6 @@ export const useAddressControl = () => {
         errors,
         zipCodeNotFound,
         disabledInputs,
+        zipCode: watch("CEP"),
     };
 };
