@@ -39,7 +39,7 @@ export const BuyProductTemplate: React.FC = () => {
             if (path.toString().split("idProduto=")[1] === "") back();
             setGetParam(Number(path.toString().split("idProduto=")[1]));
         }
-        handleCloseModal()
+        handleCloseModal();
     }, []);
 
     useEffect(() => {
@@ -147,7 +147,12 @@ export const BuyProductTemplate: React.FC = () => {
                     onRequestClose={handleCloseModal}
                     contentLabel="Finalize sua compra, entre com seu endereço!"
                 >
-                    <FinishedSeller close={handleCloseModal} />
+                    <FinishedSeller
+                        close={handleCloseModal}
+                        allItemsCart={false}
+                        cartId={undefined}
+                        buyFromCart={false}
+                    />
                 </Modal>
             </section>
         </DefaultTemplate>
