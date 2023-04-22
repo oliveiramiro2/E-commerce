@@ -7,16 +7,18 @@ import { Power1, gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import clsx from "clsx";
 import { FaShoppingBag, FaShoppingCart } from "react-icons/fa";
+import Modal from "react-modal";
 
 import { DefaultTemplate } from "../default";
 import { arnekG, oswald } from "@/functions/fonts";
 import { buyProduct } from "@/services/api";
 import { IDataApi } from "@/interface";
 import { useCount, useGetParam } from "./hooks";
-import { useRedirect } from "@/hooks";
+import { useModal, useRedirect } from "@/hooks";
 import { CountManyItems, LoadingUser } from "@/components";
 import { CartUserContext } from "@/contexts/cartUser";
 import { notify } from "@/functions/notifications";
+import { FinishedSeller } from "@/components/FinishedSeller";
 
 export const BuyProductTemplate: React.FC = () => {
     const { getParam, setGetParam } = useGetParam();
@@ -28,6 +30,7 @@ export const BuyProductTemplate: React.FC = () => {
     const path = useSearchParams();
     const { back } = useRedirect();
     const { count, handleCountLess, handleCountMore } = useCount();
+    const { openModal, handleCloseModal, handleOpenModal } = useModal();
     const { setCartData, cartData } = useContext(CartUserContext);
 
     useEffect(() => {
@@ -36,6 +39,7 @@ export const BuyProductTemplate: React.FC = () => {
             if (path.toString().split("idProduto=")[1] === "") back();
             setGetParam(Number(path.toString().split("idProduto=")[1]));
         }
+        handleCloseModal()
     }, []);
 
     useEffect(() => {
@@ -103,6 +107,7 @@ export const BuyProductTemplate: React.FC = () => {
                     <button
                         type="button"
                         className={`bg-green-500 pb-2 pt-3 pl-3 pr-3 flex items-center justify-center gap-x-1 rounded-md font-bolder text-center text-sm text-pallet-white first-letter:capitalize hover:bg-green-400 transition-colors shadow-md shadow-green-500 ${arnekG.className}`}
+                        onClick={handleOpenModal}
                     >
                         <FaShoppingBag
                             color="#f7f8f9"
@@ -137,6 +142,13 @@ export const BuyProductTemplate: React.FC = () => {
                 >
                     {data?.description}
                 </p>
+                <Modal
+                    isOpen={openModal}
+                    onRequestClose={handleCloseModal}
+                    contentLabel="Finalize sua compra, entre com seu endereço!"
+                >
+                    <FinishedSeller close={handleCloseModal} />
+                </Modal>
             </section>
         </DefaultTemplate>
     );
