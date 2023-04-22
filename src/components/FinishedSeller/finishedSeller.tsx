@@ -1,11 +1,12 @@
 import React from "react";
 import clsx from "clsx";
 
-import { oswald, tiro } from "@/functions/fonts";
+import { arnekG, oswald, tiro } from "@/functions/fonts";
 import { useAddressControl } from "./hooks";
 
 export const FinishedSeller: React.FC<{ close: Function }> = () => {
-    const { errors, register } = useAddressControl();
+    const { errors, register, disabledInputs, zipCodeNotFound } =
+        useAddressControl();
 
     return (
         <div>
@@ -41,121 +42,148 @@ export const FinishedSeller: React.FC<{ close: Function }> = () => {
                             {errors.CEP?.message}
                         </p>
                     )}
+                    {zipCodeNotFound && (
+                        <p
+                            className={`text-red-500 font-semibold self-center relative top-3 ${tiro.className}`}
+                        >
+                            Desculpe, CEP não foi encontrado!
+                        </p>
+                    )}
                 </div>
-                <div className="flex justify-around mt-10">
-                    <div className="flex flex-col">
-                        <input
-                            placeholder="Cidade"
-                            type="text"
-                            className={clsx(
-                                `outline-none border-[1.5px] border-pallet-purple p-1 pl-1 rounded-lg ${tiro.className}`,
-                                {
-                                    "border-red-500": errors.city?.message,
-                                }
-                            )}
-                            {...register("city")}
-                        />
-                        {errors.city?.message && (
-                            <p
-                                className={`text-red-500 font-semibold self-center relative top-3 ${tiro.className}`}
-                            >
-                                {errors.city?.message}
-                            </p>
-                        )}
-                    </div>
-                    <div className="flex flex-col">
-                        <input
-                            placeholder="Estado"
-                            type="text"
-                            className={clsx(
-                                `outline-none border-[1.5px] border-pallet-purple p-1 pl-1 rounded-lg ${tiro.className}`,
-                                {
-                                    "border-red-500": errors.state?.message,
-                                }
-                            )}
-                            {...register("state")}
-                        />
-                        {errors.state?.message && (
-                            <p
-                                className={`text-red-500 font-semibold self-center relative top-3 ${tiro.className}`}
-                            >
-                                {errors.state?.message}
-                            </p>
-                        )}
-                    </div>
-                </div>
-                <div className="flex justify-around mt-10">
-                    <div className="flex flex-col">
-                        <input
-                            placeholder="Rua"
-                            type="text"
-                            className={clsx(
-                                `outline-none border-[1.5px] border-pallet-purple p-1 pl-1 rounded-lg ${tiro.className}`,
-                                {
-                                    "border-red-500": errors.street?.message,
-                                }
-                            )}
-                            {...register("street")}
-                        />
-                        {errors.street?.message && (
-                            <p
-                                className={`text-red-500 font-semibold self-center relative top-3 ${tiro.className}`}
-                            >
-                                {errors.street?.message}
-                            </p>
-                        )}
-                    </div>
-                    <div className="flex flex-col">
-                        <input
-                            placeholder="Bairro"
-                            type="text"
-                            className={clsx(
-                                `outline-none border-[1.5px] border-pallet-purple p-1 pl-1 rounded-lg ${tiro.className}`,
-                                {
-                                    "border-red-500": errors.district?.message,
-                                }
-                            )}
-                            {...register("district")}
-                        />
-                        {errors.district?.message && (
-                            <p
-                                className={`text-red-500 font-semibold self-center relative top-3 ${tiro.className}`}
-                            >
-                                {errors.district?.message}
-                            </p>
-                        )}
-                    </div>
-                </div>
-                <div className="flex justify-around mt-10">
-                    <div className="flex flex-col">
-                        <input
-                            placeholder="Número da casa"
-                            type="text"
-                            className={clsx(
-                                `outline-none border-[1.5px] border-pallet-purple p-1 pl-1 rounded-lg ${tiro.className}`,
-                                {
-                                    "border-red-500": errors.number?.message,
-                                }
-                            )}
-                            {...register("number")}
-                        />
-                        {errors.number?.message && (
-                            <p
-                                className={`text-red-500 font-semibold self-center relative top-3 ${tiro.className}`}
-                            >
-                                {errors.number?.message}
-                            </p>
-                        )}
-                    </div>
-                    <div className="flex flex-col">
-                        <input
-                            placeholder="Complemento"
-                            type="text"
-                            className={`outline-none border-[1.5px] border-pallet-purple p-1 pl-1 rounded-lg ${tiro.className}`}
-                            {...register("complement")}
-                        />
-                    </div>
-                </div>
+                {zipCodeNotFound ? (
+                    <>
+                        <div className="flex justify-around mt-10">
+                            <div className="flex flex-col">
+                                <input
+                                    placeholder="Cidade"
+                                    type="text"
+                                    className={clsx(
+                                        `outline-none border-[1.5px] border-pallet-purple p-1 pl-1 rounded-lg ${tiro.className}`,
+                                        {
+                                            "border-red-500":
+                                                errors.city?.message,
+                                        }
+                                    )}
+                                    disabled={disabledInputs.city}
+                                    {...register("city")}
+                                />
+                                {errors.city?.message && (
+                                    <p
+                                        className={`text-red-500 font-semibold self-center relative top-3 ${tiro.className}`}
+                                    >
+                                        {errors.city?.message}
+                                    </p>
+                                )}
+                            </div>
+                            <div className="flex flex-col">
+                                <input
+                                    placeholder="Estado"
+                                    type="text"
+                                    className={clsx(
+                                        `outline-none border-[1.5px] border-pallet-purple p-1 pl-1 rounded-lg ${tiro.className}`,
+                                        {
+                                            "border-red-500":
+                                                errors.state?.message,
+                                        }
+                                    )}
+                                    disabled={disabledInputs.state}
+                                    {...register("state")}
+                                />
+                                {errors.state?.message && (
+                                    <p
+                                        className={`text-red-500 font-semibold self-center relative top-3 ${tiro.className}`}
+                                    >
+                                        {errors.state?.message}
+                                    </p>
+                                )}
+                            </div>
+                        </div>
+                        <div className="flex justify-around mt-10">
+                            <div className="flex flex-col">
+                                <input
+                                    placeholder="Rua"
+                                    type="text"
+                                    className={clsx(
+                                        `outline-none border-[1.5px] border-pallet-purple p-1 pl-1 rounded-lg ${tiro.className}`,
+                                        {
+                                            "border-red-500":
+                                                errors.street?.message,
+                                        }
+                                    )}
+                                    disabled={disabledInputs.street}
+                                    {...register("street")}
+                                />
+                                {errors.street?.message && (
+                                    <p
+                                        className={`text-red-500 font-semibold self-center relative top-3 ${tiro.className}`}
+                                    >
+                                        {errors.street?.message}
+                                    </p>
+                                )}
+                            </div>
+                            <div className="flex flex-col">
+                                <input
+                                    placeholder="Bairro"
+                                    type="text"
+                                    className={clsx(
+                                        `outline-none border-[1.5px] border-pallet-purple p-1 pl-1 rounded-lg ${tiro.className}`,
+                                        {
+                                            "border-red-500":
+                                                errors.district?.message,
+                                        }
+                                    )}
+                                    disabled={disabledInputs.district}
+                                    {...register("district")}
+                                />
+                                {errors.district?.message && (
+                                    <p
+                                        className={`text-red-500 font-semibold self-center relative top-3 ${tiro.className}`}
+                                    >
+                                        {errors.district?.message}
+                                    </p>
+                                )}
+                            </div>
+                        </div>
+                        <div className="flex justify-around mt-10">
+                            <div className="flex flex-col">
+                                <input
+                                    placeholder="Número da casa"
+                                    type="text"
+                                    className={clsx(
+                                        `outline-none border-[1.5px] border-pallet-purple p-1 pl-1 rounded-lg ${tiro.className}`,
+                                        {
+                                            "border-red-500":
+                                                errors.number?.message,
+                                        }
+                                    )}
+                                    {...register("number")}
+                                />
+                                {errors.number?.message && (
+                                    <p
+                                        className={`text-red-500 font-semibold self-center relative top-3 ${tiro.className}`}
+                                    >
+                                        {errors.number?.message}
+                                    </p>
+                                )}
+                            </div>
+                            <div className="flex flex-col">
+                                <input
+                                    placeholder="Complemento"
+                                    type="text"
+                                    disabled={disabledInputs.complement}
+                                    className={`outline-none border-[1.5px] border-pallet-purple p-1 pl-1 rounded-lg ${tiro.className}`}
+                                    {...register("complement")}
+                                />
+                            </div>
+                        </div>
+                    </>
+                ) : (
+                    <p
+                        className={`text-pallet-orange text-center mt-20 font-black text-sm ${arnekG.className}`}
+                    >
+                        Digite seu CEP
+                    </p>
+                )}
             </form>
         </div>
     );
