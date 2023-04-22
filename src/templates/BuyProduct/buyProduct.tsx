@@ -88,41 +88,41 @@ export const BuyProductTemplate: React.FC = () => {
                                 </div>
                             ))}
                     </div>
-                    <div className="flex items-center ml-6 mr-6">
-                        <CountManyItems
-                            price={data?.price || 0}
-                            count={count}
-                            handleCountLess={handleCountLess}
-                            handleCountMore={handleCountMore}
-                            handlePriceItems={() => {}}
-                        />
-                        <button
-                            type="button"
-                            className={`bg-green-500 flex items-center justify-center gap-x-1 rounded-md font-bolder text-center text-sm text-pallet-white first-letter:capitalize hover:bg-green-300 transition-colors shadow-md shadow-green-500 ${arnekG.className}`}
-                        >
-                            <FaShoppingBag
-                                color="#f7f8f9"
-                                className="relative bottom-[3px]"
-                            />{" "}
-                            Finalizar a compra
-                        </button>
-                        <button
-                            type="button"
-                            className={`bg-pallet-orange flex items-center justify-center gap-x-1 rounded-md font-bolder text-center text-sm text-pallet-white first-letter:capitalize hover:bg-[#ff9748] transition-colors shadow-md shadow-pallet-orange ${arnekG.className}`}
-                        >
-                            <FaShoppingCart
-                                color="#f7f8f9"
-                                className="relative bottom-[3px]"
-                            />{" "}
-                            Adicionar ao carrinho
-                        </button>
-                    </div>
-                    <p
-                        className={`font-bold text-center text-sm ${arnekG.className}`}
-                    >
-                        {data?.description}
-                    </p>
                 </div>
+                <div className="flex gap-x-3 items-center mt-5 mb-5">
+                    <CountManyItems
+                        price={data?.price || 0}
+                        count={count}
+                        handleCountLess={handleCountLess}
+                        handleCountMore={handleCountMore}
+                        handlePriceItems={() => {}}
+                    />
+                    <button
+                        type="button"
+                        className={`bg-green-500 pb-2 pt-3 pl-3 pr-3 flex items-center justify-center gap-x-1 rounded-md font-bolder text-center text-sm text-pallet-white first-letter:capitalize hover:bg-green-400 transition-colors shadow-md shadow-green-500 ${arnekG.className}`}
+                    >
+                        <FaShoppingBag
+                            color="#f7f8f9"
+                            className="relative bottom-[3px]"
+                        />{" "}
+                        Finalizar a compra
+                    </button>
+                    <button
+                        type="button"
+                        className={`bg-pallet-orange pb-2 pt-3 pl-3 pr-3 flex items-center justify-center gap-x-1 rounded-md font-bolder text-center text-sm text-pallet-white first-letter:capitalize hover:bg-[#ff9748] transition-colors shadow-md shadow-pallet-orange ${arnekG.className}`}
+                    >
+                        <FaShoppingCart
+                            color="#f7f8f9"
+                            className="relative bottom-[3px]"
+                        />{" "}
+                        Adicionar ao carrinho
+                    </button>
+                </div>
+                <p
+                    className={`font-bold mb-5 text-center text-sm ${arnekG.className}`}
+                >
+                    {data?.description}
+                </p>
             </section>
         </DefaultTemplate>
     );
