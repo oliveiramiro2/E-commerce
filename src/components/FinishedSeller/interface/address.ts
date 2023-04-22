@@ -17,4 +17,5 @@ export interface IViaCepReturn {
     uf: string;
     logradouro: string;
     localidade: string;
+    erro: boolean;
 }
