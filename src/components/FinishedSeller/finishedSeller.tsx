@@ -3,6 +3,7 @@ import clsx from "clsx";
 
 import { arnekG, oswald, tiro } from "@/functions/fonts";
 import { useAddressControl } from "./hooks";
+import { notify } from "@/functions/notifications";
 
 export const FinishedSeller: React.FC<{ close: Function }> = ({ close }) => {
     const { errors, register, disabledInputs, zipCodeNotFound, zipCode } =
@@ -181,6 +182,10 @@ export const FinishedSeller: React.FC<{ close: Function }> = ({ close }) => {
                             <button
                                 className={`bg-green-500 pb-2 pt-3 pl-3 pr-3 w-28 flex items-center justify-center gap-x-1 rounded-md font-bolder text-center text-sm text-pallet-white first-letter:capitalize hover:bg-green-400 transition-colors shadow-md shadow-green-500 ${arnekG.className}`}
                                 type="button"
+                                onClick={() => {
+                                    notify("success", "Sucesso,", "Produto comprado com sucesso!")
+                                    close()
+                                }}
                             >
                                 Comprar
                             </button>
