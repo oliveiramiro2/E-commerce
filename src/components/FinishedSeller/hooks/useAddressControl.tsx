@@ -4,7 +4,7 @@ import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 
 import { schemaRegister } from "@/components/LoginAndRegister/utils";
-import { IAddressSchema } from "../interface";
+import { formType } from "../interface";
 
 export const useAddressControl = () => {
     const schema = schemaRegister;
@@ -13,7 +13,7 @@ export const useAddressControl = () => {
         handleSubmit,
         register,
         formState: { errors },
-    } = useForm<IAddressSchema>({
+    } = useForm<formType>({
         criteriaMode: "all",
         mode: "all",
         resolver: zodResolver(schema),
@@ -22,8 +22,8 @@ export const useAddressControl = () => {
             CEP: "",
             city: "",
             complement: "",
-            neiborhood: "",
-            number: 0,
+            district: "",
+            number: "",
             state: "",
             street: "",
         },
