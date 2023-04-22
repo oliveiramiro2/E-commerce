@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useContext, useEffect } from "react";
+import Modal from "react-modal";
 
 import { DefaultTemplate } from "../default";
 import { CartUserContext } from "@/contexts/cartUser";
@@ -8,9 +9,12 @@ import { arnekG, oswald } from "@/functions/fonts";
 import { ContainCart } from "./components";
 import { usePriceItems } from "./hooks";
 import { MaskCoin } from "@/functions/maskCoin";
+import { FinishedSeller } from "@/components/FinishedSeller";
+import { useModal } from "@/hooks";
 
 export const CartTemplate: React.FC = () => {
     const { cartData } = useContext(CartUserContext);
+    const { openModal, handleCloseModal, handleOpenModal } = useModal();
     const { priceItems, handleFirstTime, handlePriceItems, handleRemoveItem } =
         usePriceItems();
 
@@ -23,6 +27,7 @@ export const CartTemplate: React.FC = () => {
             });
             handleFirstTime(totalValue);
         }
+        handleCloseModal()
     }, []);
 
     return (
@@ -48,6 +53,7 @@ export const CartTemplate: React.FC = () => {
                                 data={item}
                                 handlePriceItems={handlePriceItems}
                                 handleRemoveItem={handleRemoveItem}
+                                handleOpenModal={handleOpenModal}
                             />
                         ))
                     ) : (
@@ -69,6 +75,13 @@ export const CartTemplate: React.FC = () => {
                         </p>
                     </div>
                 )}
+                <Modal
+                    isOpen={openModal}
+                    onRequestClose={handleCloseModal}
+                    contentLabel="Finalize sua compra, entre com seu endereço!"
+                >
+                    <FinishedSeller close={handleCloseModal} />
+                </Modal>
             </section>
         </DefaultTemplate>
     );
