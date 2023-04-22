@@ -1,13 +1,21 @@
-import React from "react";
+import React, { useContext } from "react";
 import clsx from "clsx";
 
 import { arnekG, oswald, tiro } from "@/functions/fonts";
 import { useAddressControl } from "./hooks";
 import { notify } from "@/functions/notifications";
+import { CartUserContext } from "@/contexts/cartUser";
+import { IDataApi } from "@/interface";
 
-export const FinishedSeller: React.FC<{ close: Function }> = ({ close }) => {
+export const FinishedSeller: React.FC<{
+    close: Function;
+    allItemsCart: boolean;
+    cartId: number | undefined;
+    buyFromCart: boolean;
+}> = ({ close, allItemsCart, cartId, buyFromCart }) => {
     const { errors, register, disabledInputs, zipCodeNotFound, zipCode } =
         useAddressControl();
+    const { cartData, setCartData } = useContext(CartUserContext);
 
     return (
         <div>
@@ -183,8 +191,25 @@ export const FinishedSeller: React.FC<{ close: Function }> = ({ close }) => {
                                 className={`bg-green-500 pb-2 pt-3 pl-3 pr-3 w-28 flex items-center justify-center gap-x-1 rounded-md font-bolder text-center text-sm text-pallet-white first-letter:capitalize hover:bg-green-400 transition-colors shadow-md shadow-green-500 ${arnekG.className}`}
                                 type="button"
                                 onClick={() => {
-                                    notify("success", "Sucesso,", "Produto comprado com sucesso!")
-                                    close()
+                                    if (buyFromCart) {
+                                        if (allItemsCart) {
+                                            setCartData([]);
+                                        } else {
+                                            const checkRepeat = cartData.filter(
+                                                (item: IDataApi) =>
+                                                    item.id !== cartId
+                                            );
+                                            setCartData([
+                                                ...checkRepeat
+                                            ]);
+                                        }
+                                    }
+                                    notify(
+                                        "success",
+                                        "Sucesso,",
+                                        "Produto comprado com sucesso!"
+                                    );
+                                    close();
                                 }}
                             >
                                 Comprar
