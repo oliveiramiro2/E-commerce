@@ -1,11 +1,14 @@
 "use client";
 
-import React, { useEffect } from "react";
+import React, { useContext, useEffect } from "react";
 
 import { DefaultTemplate } from "../default";
 import { Banner, BestOffers, Categories, SignUpHome } from "./components";
+import { UserDataContext } from "@/contexts/userDataLogin";
 
 export const HomeTemplate: React.FC = () => {
+    const { logined } = useContext(UserDataContext)
+
     useEffect(() => {
         document.title = "RM E-commerce - Home";
     }, []);
@@ -13,7 +16,7 @@ export const HomeTemplate: React.FC = () => {
     return (
     <DefaultTemplate>
         <Banner />
-        <SignUpHome />
+        {!logined && <SignUpHome />}
         <BestOffers />
         <Categories />
     </DefaultTemplate>
