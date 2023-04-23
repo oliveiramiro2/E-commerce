@@ -15,9 +15,23 @@ import { useModal } from "@/hooks";
 export const CartTemplate: React.FC = () => {
     const { cartData } = useContext(CartUserContext);
     const { openModal, handleCloseModal, handleOpenModal } = useModal();
-    const { buyId, setBuyId, buyAll, setBuyAll } = useIdBuy();
-    const { priceItems, handleFirstTime, handlePriceItems, handleRemoveItem } =
-        usePriceItems();
+    const {
+        buyId,
+        setBuyId,
+        buyAll,
+        setBuyAll,
+        priceBuying,
+        setPriceBuying,
+        numberItems,
+        setNumberItems,
+    } = useIdBuy();
+    const {
+        priceItems,
+        handleFirstTime,
+        handlePriceItems,
+        handleRemoveItem,
+        handleRemoveItems,
+    } = usePriceItems();
 
     useEffect(() => {
         document.title = "RM E-commerce - Carrinho";
@@ -56,6 +70,8 @@ export const CartTemplate: React.FC = () => {
                                 handleRemoveItem={handleRemoveItem}
                                 handleOpenModal={handleOpenModal}
                                 setBuyId={setBuyId}
+                                setNumberItems={setNumberItems}
+                                setPriceBuying={setPriceBuying}
                             />
                         ))
                     ) : (
@@ -78,7 +94,10 @@ export const CartTemplate: React.FC = () => {
                         <button
                             type="button"
                             className={`rounded-xl relative left-8 w-44 p-1 pl-8 pr-8 mt-3 mr-2 bg-pallet-purple text-pallet-white tracking-wide shadow-lg shadow-gray-400 hover:bg-[#bf3eee] hover:transition-colors ${oswald.className}`}
-                            onClick={() => setBuyAll(true)}
+                            onClick={() => {
+setBuyAll(true)
+handleOpenModal()
+}}
                         >
                             Comprar tudo
                         </button>
@@ -94,6 +113,10 @@ export const CartTemplate: React.FC = () => {
                         allItemsCart={buyAll}
                         cartId={buyId}
                         buyFromCart
+                        priceBuying={priceBuying}
+                        numberItems={numberItems}
+                        setNewPriceCart={handleRemoveItem}
+                        setRemovePrice={handleRemoveItems}
                     />
                 </Modal>
             </section>
