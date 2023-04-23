@@ -11,11 +11,12 @@ import { loginInvalid, loginValid, urlParamsRedirect } from "./functions";
 import { CheckBoxUser, InputUser } from "./components";
 import { UserDataContext } from "@/contexts/userDataLogin";
 
-export const LoginAndRegister: React.FC<{ registerComponent: boolean }> = ({
-    registerComponent,
-}) => {
+export const LoginAndRegister: React.FC<{
+    registerComponent: boolean;
+    editProfile: boolean;
+}> = ({ registerComponent, editProfile }) => {
     const { errors, handleSubmit, register } =
-        useLoginRegister(registerComponent);
+        useLoginRegister(registerComponent, editProfile);
     const { dataInputs } = useLoginOrRegister(registerComponent);
     const { showIconLoading, setShowIconLoading } = useShowLoading();
     const { setAllUserData, setLogined } = useContext(UserDataContext);
@@ -31,7 +32,11 @@ export const LoginAndRegister: React.FC<{ registerComponent: boolean }> = ({
                     <h3
                         className={`font-black text-3xl self-center max-lg:right-0 ${oswald.className}`}
                     >
-                        {registerComponent ? "Cadastrar" : "Entrar"}
+                        {!registerComponent
+                            ? "Entrar"
+                            : editProfile
+                            ? "Editar Perfil"
+                            : "Cadastrar"}
                     </h3>
                 </div>
                 <form className="flex flex-col gap-y-4 w-full items-center">
@@ -47,29 +52,31 @@ export const LoginAndRegister: React.FC<{ registerComponent: boolean }> = ({
                             }}
                         />
                     ))}
-                    <button
-                        type="button"
-                        onClick={() =>
-                            push(
-                                registerComponent
-                                    ? `/entrar${
-                                          pathRedirect !== undefined
-                                              ? pathRedirect
-                                              : ""
-                                      }`
-                                    : `/cadastro${
-                                          pathRedirect !== undefined
-                                              ? pathRedirect
-                                              : ""
-                                      }`
-                            )
-                        }
-                        className={`text-pallet-blue font-bold tracking-wide hover:border-b hover:border-pallet-blue ${arnekG.className}`}
-                    >
-                        {registerComponent
-                            ? "Já possui uma conta? Faça seu login"
-                            : "Não possui uma conta? Faça seu registro"}
-                    </button>
+                    {!editProfile && (
+                        <button
+                            type="button"
+                            onClick={() =>
+                                push(
+                                    registerComponent
+                                        ? `/entrar${
+                                              pathRedirect !== undefined
+                                                  ? pathRedirect
+                                                  : ""
+                                          }`
+                                        : `/cadastro${
+                                              pathRedirect !== undefined
+                                                  ? pathRedirect
+                                                  : ""
+                                          }`
+                                )
+                            }
+                            className={`text-pallet-blue font-bold tracking-wide hover:border-b hover:border-pallet-blue ${arnekG.className}`}
+                        >
+                            {registerComponent
+                                ? "Já possui uma conta? Faça seu login"
+                                : "Não possui uma conta? Faça seu registro"}
+                        </button>
+                    )}
                     {registerComponent && <CheckBoxUser register={register} />}
                     <button
                         type="button"
@@ -85,10 +92,16 @@ export const LoginAndRegister: React.FC<{ registerComponent: boolean }> = ({
                                     paramRedirect: () =>
                                         pathRedirect === undefined
                                             ? `/`
-                                            : `/${pathRedirect.replace(
-                                                  "&",
-                                                  "?"
-                                              ).split("redirecionar=")[1] || pathRedirect.split("redirecionar=")[1]}`,
+                                            : `/${
+                                                  pathRedirect
+                                                      .replace("&", "?")
+                                                      .split(
+                                                          "redirecionar="
+                                                      )[1] ||
+                                                  pathRedirect.split(
+                                                      "redirecionar="
+                                                  )[1]
+                                              }`,
                                 }),
                             loginInvalid
                         )}
@@ -99,10 +112,12 @@ export const LoginAndRegister: React.FC<{ registerComponent: boolean }> = ({
                                 alignmentBaseline="central"
                                 height={30}
                             />
-                        ) : registerComponent ? (
+                        ) : !registerComponent ? (
+                            "Entrar"
+                        ) : !editProfile ? (
                             "Fazer cadastro"
                         ) : (
-                            "Entrar"
+                            "Atualizar perfil"
                         )}
                     </button>
                 </form>
