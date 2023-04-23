@@ -26,8 +26,14 @@ export const FinishedSeller: React.FC<{
     setNewPriceCart,
     setRemovePrice,
 }) => {
-    const { errors, register, disabledInputs, zipCodeNotFound, zipCode } =
-        useAddressControl();
+    const {
+        errors,
+        register,
+        disabledInputs,
+        zipCodeNotFound,
+        zipCode,
+        handleSubmit,
+    } = useAddressControl();
     const { cartData, setCartData } = useContext(CartUserContext);
 
     return (
@@ -203,7 +209,7 @@ export const FinishedSeller: React.FC<{
                             <button
                                 className={`bg-green-500 pb-2 pt-3 pl-3 pr-3 w-28 flex items-center justify-center gap-x-1 rounded-md font-bolder text-center text-sm text-pallet-white first-letter:capitalize hover:bg-green-400 transition-colors shadow-md shadow-green-500 ${arnekG.className}`}
                                 type="button"
-                                onClick={() => {
+                                onClick={handleSubmit(() => {
                                     if (buyFromCart) {
                                         if (allItemsCart) {
                                             setCartData([]);
@@ -226,7 +232,7 @@ export const FinishedSeller: React.FC<{
                                         "Produto comprado com sucesso!"
                                     );
                                     close();
-                                }}
+                                })}
                             >
                                 Comprar
                             </button>
