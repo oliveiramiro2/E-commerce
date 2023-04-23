@@ -1,7 +1,7 @@
 import React from "react";
 
-import { SignUpTemplate } from "@/templates";
+import { SignInTemplate } from "@/templates";
 
-const SignUp: React.FC = () => <SignUpTemplate />;
+const SignIn: React.FC = () => <SignInTemplate />;
 
-export default SignUp;
+export default SignIn;
