@@ -126,6 +126,7 @@ export const ContentHeaderDesktop: React.FC<IPropsContentHeaderDesktop> = ({
                 >
                     <MenuItem
                         className={`flex gap-x-2 items-center text-sm ${arnekG.className}`}
+                        onClick={() => push("/editar_perfil")}
                     >
                         <FaUserEdit
                             color="#555"
