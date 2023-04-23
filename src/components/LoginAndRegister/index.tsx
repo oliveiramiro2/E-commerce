@@ -15,11 +15,14 @@ export const LoginAndRegister: React.FC<{
     registerComponent: boolean;
     editProfile: boolean;
 }> = ({ registerComponent, editProfile }) => {
-    const { errors, handleSubmit, register } =
-        useLoginRegister(registerComponent, editProfile);
+    const { errors, handleSubmit, register } = useLoginRegister(
+        registerComponent,
+        editProfile
+    );
     const { dataInputs } = useLoginOrRegister(registerComponent);
     const { showIconLoading, setShowIconLoading } = useShowLoading();
-    const { setAllUserData, setLogined } = useContext(UserDataContext);
+    const { setAllUserData, setLogined, allUserData } =
+        useContext(UserDataContext);
     const { push } = useRedirect();
     const path = useSearchParams();
 
@@ -87,6 +90,7 @@ export const LoginAndRegister: React.FC<{
                                     data,
                                     setShowIconLoading,
                                     setAllUserData,
+                                    allUserData,
                                     setLogined,
                                     push,
                                     paramRedirect: () =>
@@ -102,6 +106,7 @@ export const LoginAndRegister: React.FC<{
                                                       "redirecionar="
                                                   )[1]
                                               }`,
+                                    editProfile,
                                 }),
                             loginInvalid
                         )}
