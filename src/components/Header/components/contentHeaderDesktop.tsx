@@ -111,7 +111,7 @@ export const ContentHeaderDesktop: React.FC<IPropsContentHeaderDesktop> = ({
                         <div className="bg-pallet-orange rounded-lg p-3 pt-1 pb-1 cursor-pointer text-pallet-white absolute right-5 max-lg:right-16 flex gap-x-1">
                             <img
                                 alt="Avatar"
-                                className="rounded-[100px] w-12 h-12"
+                                className="bg-pallet-orange rounded-[100px] w-12 h-12"
                                 src={allUserData.avatar}
                                 onError={() => {
                                     setAllUserData({
