@@ -12,7 +12,7 @@ export const SignInTemplate: React.FC = () => {
 
     return (
         <DefaultTemplate>
-            <LoginAndRegister registerComponent={false} />
+            <LoginAndRegister registerComponent={false} editProfile={false} />
         </DefaultTemplate>
     );
 };
