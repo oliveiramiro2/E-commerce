@@ -113,6 +113,12 @@ export const ContentHeaderDesktop: React.FC<IPropsContentHeaderDesktop> = ({
                                 alt="Avatar"
                                 className="rounded-[100px] w-12 h-12"
                                 src={allUserData.avatar}
+                                onError={() => {
+                                    setAllUserData({
+                                        ...allUserData,
+                                        avatar: "https://w7.pngwing.com/pngs/178/595/png-transparent-user-profile-computer-icons-login-user-avatars-thumbnail.png",
+                                    });
+                                }}
                             />
                             <FaAngleDown className="self-center" />
                         </div>
