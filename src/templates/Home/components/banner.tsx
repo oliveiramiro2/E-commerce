@@ -5,7 +5,7 @@ import { useRedirect } from "@/hooks";
 import { UserDataContext } from "@/contexts/userDataLogin";
 
 export const Banner: React.FC = () => {
-    const { logined, setRedirectOnLogin } = useContext(UserDataContext);
+    const { logined, setRedirectOnLogin, allUserData } = useContext(UserDataContext);
     const { push } = useRedirect();
 
     return (
@@ -15,7 +15,7 @@ export const Banner: React.FC = () => {
                 <h1
                     className={`font-bold text-xl text-center max-md:text-sm ${oswald.className}`}
                 >
-                    Bem-vindo ao RM E-commerce
+                    Bem-vindo{logined && `, ${allUserData.name}`} ao RM E-commerce
                 </h1>
                 <p
                     className={`font-medium tracking-wide max-md:text-xs ${arnekG.className}`}
