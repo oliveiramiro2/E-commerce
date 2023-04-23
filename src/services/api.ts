@@ -88,7 +88,7 @@ export const getNewRefreshToken = async (token: string): Promise<ILoginTokens> =
 }
 
 // edit profile
-export const editProfile = async (id: number, dataForm: IDataRegisterUser) => {
+export const editUserProfile = async (id: number, dataForm: IDataRegisterUser): Promise<IDataUser> => {
     const { data } = await api.put(`/users/${id}`, dataForm)
     return data
 }
