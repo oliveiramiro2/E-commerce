@@ -14,12 +14,16 @@ export const ContainCart: React.FC<{
     handleRemoveItem: Function;
     handleOpenModal: Function;
     setBuyId: Function;
+    setNumberItems: Function;
+    setPriceBuying: Function;
 }> = ({
     data,
     handlePriceItems,
     handleRemoveItem,
     handleOpenModal,
     setBuyId,
+    setNumberItems,
+    setPriceBuying,
 }) => {
     const { count, handleCountLess, handleCountPlus } = useCountBuyItems();
     const { cartData, setCartData } = useContext(CartUserContext);
@@ -77,8 +81,10 @@ export const ContainCart: React.FC<{
                         type="button"
                         className={`self-center rounded-xl p-1 pl-8 pr-8 mt-3 mr-2 bg-pallet-purple text-pallet-white tracking-wide shadow-lg shadow-gray-400 hover:bg-[#bf3eee] hover:transition-colors ${oswald.className}`}
                         onClick={() => {
-                            setBuyId(data.id)
-                            handleOpenModal()
+                            setBuyId(data.id);
+                            setNumberItems(count);
+                            setPriceBuying(data.price);
+                            handleOpenModal();
                         }}
                     >
                         Comprar
