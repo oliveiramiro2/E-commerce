@@ -11,6 +11,7 @@ import { viaCep } from "@/services/viaCep";
 
 export const useAddressControl = () => {
     const [zipCodeNotFound, setZipCodeNotFound] = useState<boolean>(false);
+    const [checkingZipCode, setCheckingZipCode] = useState<boolean>(false);
     const [disabledInputs, setDisabledInputs] = useState<IAddressSchema>({
         city: false,
         complement: false,
@@ -67,6 +68,7 @@ export const useAddressControl = () => {
     );
 
     const fetchAddress = useCallback(() => {
+        setCheckingZipCode(true)
         viaCep
             .get(`${watch("CEP")}/json/`)
             .then(({ data }: { data: IViaCepReturn }) => {
@@ -77,7 +79,8 @@ export const useAddressControl = () => {
                     setZipCodeNotFound(false);
                 }
             })
-            .catch(() => setZipCodeNotFound(false));
+            .catch(() => setZipCodeNotFound(false))
+            .finally(() => setCheckingZipCode(false));
     }, [handleSetData]);
 
     useEffect(() => {
@@ -97,5 +100,6 @@ export const useAddressControl = () => {
         zipCodeNotFound,
         disabledInputs,
         zipCode: watch("CEP"),
+        checkingZipCode,
     };
 };
