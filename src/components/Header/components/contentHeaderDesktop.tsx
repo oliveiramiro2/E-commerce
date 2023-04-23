@@ -1,12 +1,18 @@
 import Image from "next/image";
 import Link from "next/link";
 import React, { useContext } from "react";
-import { FaHome, FaShoppingBag, FaShoppingCart } from "react-icons/fa";
-import { BiLogIn, BiLogOut } from "react-icons/bi";
+import {
+    FaHome,
+    FaShoppingBag,
+    FaShoppingCart,
+    FaUserEdit,
+} from "react-icons/fa";
+import { BiLogIn, BiLogOut, BiArrowBack } from "react-icons/bi";
 import { AiOutlineClose, AiOutlineMenu } from "react-icons/ai";
+import { Menu, MenuItem } from "@szhsin/react-menu";
 
 import { IPropsContentHeaderDesktop } from "@/interface";
-import { tiro } from "@/functions/fonts";
+import { arnekG, tiro } from "@/functions/fonts";
 import { UserDataContext } from "@/contexts/userDataLogin";
 import { useRedirect } from "@/hooks";
 import { logout } from "../functions/logout";
@@ -15,8 +21,13 @@ export const ContentHeaderDesktop: React.FC<IPropsContentHeaderDesktop> = ({
     showMenu,
     setShowMenu,
 }) => {
-    const { logined, setRedirectOnLogin, setLogined, setAllUserData } =
-        useContext(UserDataContext);
+    const {
+        logined,
+        setRedirectOnLogin,
+        setLogined,
+        setAllUserData,
+        allUserData,
+    } = useContext(UserDataContext);
     const { push } = useRedirect();
 
     return (
@@ -92,14 +103,30 @@ export const ContentHeaderDesktop: React.FC<IPropsContentHeaderDesktop> = ({
                     </Link>
                 </button>
             ) : (
-                <button
-                    className="bg-pallet-orange hover:bg-[#ff9748] transition-colors shadow-md shadow-pallet-orange absolute right-5 h-5 p-8 pt-4 pb-4 rounded-md text-pallet-white font-bold tracking-wider flex gap-x-1 justify-center items-center max-lg:hidden"
-                    type="button"
-                    onClick={() => logout(setLogined, setAllUserData)}
+                <Menu
+                    menuButton={
+                        <div className="cursor-pointer absolute right-5 flex gap-x-1">
+                            <img
+                                alt="Avatar"
+                                className="rounded-[100px] w-12 h-12"
+                                src={allUserData.avatar}
+                            />
+                            <BiArrowBack color="#777" className="self-end" />
+                        </div>
+                    }
                 >
-                    <BiLogOut size={18} color="#f7f8f9" />
-                    Sair
-                </button>
+                    <MenuItem
+                        className={`flex gap-x-2 items-center text-sm ${arnekG.className}`}
+                    >
+                        <FaUserEdit color="#555" /> Editar perfil
+                    </MenuItem>
+                    <MenuItem
+                        className={`flex gap-x-2 items-center text-sm ${arnekG.className}`}
+                        onClick={() => logout(setLogined, setAllUserData)}
+                    >
+                        <BiLogOut color="#555" /> Sair
+                    </MenuItem>
+                </Menu>
             )}
             {showMenu ? (
                 <AiOutlineClose
