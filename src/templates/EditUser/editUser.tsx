@@ -3,13 +3,12 @@
 import React from "react";
 
 import { DefaultTemplate } from "../default";
+import { LoginAndRegister } from "@/components";
 
 export const EditUserTemlate: React.FC = () => {
     return (
         <DefaultTemplate>
-            <section className="w-screen min-h-[72vh] bg-gray-100 flex flex-col items-center">
-                editProfile
-            </section>
+            <LoginAndRegister registerComponent />
         </DefaultTemplate>
     );
 };
