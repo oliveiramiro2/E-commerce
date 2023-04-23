@@ -6,6 +6,7 @@ import { useAddressControl } from "./hooks";
 import { notify } from "@/functions/notifications";
 import { CartUserContext } from "@/contexts/cartUser";
 import { IDataApi } from "@/interface";
+import { useRedirect } from "@/hooks";
 
 export const FinishedSeller: React.FC<{
     close: Function;
@@ -35,6 +36,7 @@ export const FinishedSeller: React.FC<{
         handleSubmit,
     } = useAddressControl();
     const { cartData, setCartData } = useContext(CartUserContext);
+    const { push } = useRedirect();
 
     return (
         <div>
@@ -230,6 +232,10 @@ export const FinishedSeller: React.FC<{
                                         "success",
                                         "Sucesso,",
                                         "Produto comprado com sucesso!"
+                                    );
+                                    setTimeout(
+                                        () => push("/comprar_produto"),
+                                        3000
                                     );
                                     close();
                                 })}
