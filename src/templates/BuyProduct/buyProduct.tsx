@@ -152,6 +152,10 @@ export const BuyProductTemplate: React.FC = () => {
                         allItemsCart={false}
                         cartId={undefined}
                         buyFromCart={false}
+                        numberItems={0}
+                        priceBuying={0}
+                        setNewPriceCart={() => {}}
+                        setRemovePrice={() => {}}
                     />
                 </Modal>
             </section>
