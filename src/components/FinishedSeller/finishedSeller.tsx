@@ -12,7 +12,20 @@ export const FinishedSeller: React.FC<{
     allItemsCart: boolean;
     cartId: number | undefined;
     buyFromCart: boolean;
-}> = ({ close, allItemsCart, cartId, buyFromCart }) => {
+    priceBuying: number;
+    numberItems: number;
+    setNewPriceCart: Function;
+    setRemovePrice: Function;
+}> = ({
+    close,
+    allItemsCart,
+    cartId,
+    buyFromCart,
+    priceBuying,
+    numberItems,
+    setNewPriceCart,
+    setRemovePrice,
+}) => {
     const { errors, register, disabledInputs, zipCodeNotFound, zipCode } =
         useAddressControl();
     const { cartData, setCartData } = useContext(CartUserContext);
@@ -194,14 +207,17 @@ export const FinishedSeller: React.FC<{
                                     if (buyFromCart) {
                                         if (allItemsCart) {
                                             setCartData([]);
+                                            setRemovePrice();
                                         } else {
-                                            const checkRepeat = cartData.filter(
+                                            const removeItem = cartData.filter(
                                                 (item: IDataApi) =>
                                                     item.id !== cartId
                                             );
-                                            setCartData([
-                                                ...checkRepeat
-                                            ]);
+                                            setNewPriceCart(
+                                                numberItems,
+                                                priceBuying
+                                            );
+                                            setCartData([...removeItem]);
                                         }
                                     }
                                     notify(
