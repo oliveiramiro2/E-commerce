@@ -40,8 +40,9 @@ export const InputUser: React.FC<{ data: IPropsInput; index: number }> = ({
                                 index,
                                 data.registerForm
                             ),
-"ml-[14px]":  data.name === "confirmPassword" ||
-                        data.name === "password"
+                            "ml-[14px]":
+                                data.name === "confirmPassword" ||
+                                data.name === "password",
                         }
                     )}
                     placeholder={data.placeholder}
@@ -49,17 +50,17 @@ export const InputUser: React.FC<{ data: IPropsInput; index: number }> = ({
                 />
                 {(data.name === "confirmPassword" ||
                     data.name === "password") && (
-                        <button
-                            type="button"
-                            onClick={() => setShowPassword(!showPassword)}
-                        >
-                            {!showPassword ? (
-                                <AiFillEye className="text-pallet-purple self-end relative right-6" />
-                            ) : (
-                                <AiFillEyeInvisible className="text-pallet-purple self-end relative right-6" />
-                            )}
-                        </button>
-                    )}
+                    <button
+                        type="button"
+                        onClick={() => setShowPassword(!showPassword)}
+                    >
+                        {!showPassword ? (
+                            <AiFillEye size={25} className="text-pallet-purple self-end relative right-8" />
+                        ) : (
+                            <AiFillEyeInvisible size={25} className="text-pallet-purple self-end relative right-8" />
+                        )}
+                    </button>
+                )}
             </div>
 
             {errorMessage(data.errors, index, data.registerForm) && (
