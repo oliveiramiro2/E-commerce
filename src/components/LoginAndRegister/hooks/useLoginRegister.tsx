@@ -7,10 +7,31 @@ import { formProps } from "../interfaces";
 
 import { schemaRegister, schemaLogin } from "../utils";
 import { RegisterHomeContext } from "@/contexts/registerUserHome";
+import { UserDataContext } from "@/contexts/userDataLogin";
 
-export const useLoginRegister = (registerForm: boolean) => {
+export const useLoginRegister = (registerForm: boolean, editProfile: boolean) => {
     const schema = registerForm ? schemaRegister : schemaLogin;
     const { userData } = useContext(RegisterHomeContext);
+    const { allUserData } = useContext(UserDataContext);
+
+    let defaultValues = {}
+    if (editProfile) {
+        defaultValues = {
+            confirmPassword: allUserData.password,
+            email: allUserData.email,
+            password: allUserData.password,
+            name: allUserData.name,
+            type: allUserData.role === "admin",
+        }
+    } else {
+        defaultValues = {
+            confirmPassword: "",
+            email: userData.email,
+            password: userData.password,
+            name: "",
+            type: false,
+        }
+    }
 
     const {
         handleSubmit,
@@ -21,13 +42,7 @@ export const useLoginRegister = (registerForm: boolean) => {
         mode: "all",
         resolver: zodResolver(schema),
         reValidateMode: "onChange",
-        defaultValues: {
-            confirmPassword: "",
-            email: userData.email,
-            password: userData.password,
-            name: "",
-            type: false,
-        },
+        defaultValues,
     });
 
     return {
