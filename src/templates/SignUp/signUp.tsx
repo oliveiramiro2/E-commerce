@@ -7,12 +7,12 @@ import { LoginAndRegister } from "@/components";
 
 export const SignUpTemplate: React.FC = () => {
     useEffect(() => {
-        document.title = "RM E-commerce - Entrar";
+        document.title = "RM E-commerce - Cadastro";
     }, []);
 
     return (
         <DefaultTemplate>
-            <LoginAndRegister registerComponent={false} />
+            <LoginAndRegister registerComponent />
         </DefaultTemplate>
     );
 };
