@@ -54,9 +54,7 @@ export const loginValid = async ({
         name: data.name,
         password: data.password,
         role: data.type ? "admin" : "customer",
-        avatar: `https://api.lorem.space/image/face?w=${Math.round(
-            Math.random() * window.innerWidth) + 50}&amp;amp;amp;amp;h=${Math.round(
-            Math.random() * window.innerWidth) + 50}`,
+        avatar: `https://loremflickr.com/320/240/man`,
     }
 
     register(dataForm)
