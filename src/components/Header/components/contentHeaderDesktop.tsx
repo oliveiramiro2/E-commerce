@@ -6,10 +6,11 @@ import {
     FaShoppingBag,
     FaShoppingCart,
     FaUserEdit,
+    FaAngleDown,
 } from "react-icons/fa";
-import { BiLogIn, BiLogOut, BiArrowBack } from "react-icons/bi";
+import { BiLogIn, BiLogOut } from "react-icons/bi";
 import { AiOutlineClose, AiOutlineMenu } from "react-icons/ai";
-import { Menu, MenuItem } from "@szhsin/react-menu";
+import { Menu, MenuItem, MenuDivider } from "@szhsin/react-menu";
 
 import { IPropsContentHeaderDesktop } from "@/interface";
 import { arnekG, tiro } from "@/functions/fonts";
@@ -104,27 +105,38 @@ export const ContentHeaderDesktop: React.FC<IPropsContentHeaderDesktop> = ({
                 </button>
             ) : (
                 <Menu
+                    align="center"
+                    arrow
                     menuButton={
-                        <div className="cursor-pointer absolute right-5 flex gap-x-1">
+                        <div className="bg-pallet-orange rounded-lg p-3 pt-1 pb-1 cursor-pointer text-pallet-white absolute right-5 max-lg:right-16 flex gap-x-1">
                             <img
                                 alt="Avatar"
                                 className="rounded-[100px] w-12 h-12"
                                 src={allUserData.avatar}
                             />
-                            <BiArrowBack color="#777" className="self-end" />
+                            <FaAngleDown className="self-center" />
                         </div>
                     }
                 >
                     <MenuItem
                         className={`flex gap-x-2 items-center text-sm ${arnekG.className}`}
                     >
-                        <FaUserEdit color="#555" /> Editar perfil
+                        <FaUserEdit
+                            color="#555"
+                            className="relative bottom-[3px]"
+                        />{" "}
+                        Editar perfil
                     </MenuItem>
+                    <MenuDivider />
                     <MenuItem
                         className={`flex gap-x-2 items-center text-sm ${arnekG.className}`}
                         onClick={() => logout(setLogined, setAllUserData)}
                     >
-                        <BiLogOut color="#555" /> Sair
+                        <BiLogOut
+                            color="#555"
+                            className="relative bottom-[3px]"
+                        />{" "}
+                        Sair
                     </MenuItem>
                 </Menu>
             )}
