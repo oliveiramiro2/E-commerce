@@ -3,7 +3,7 @@ import { FieldErrors } from "react-hook-form/dist/types/errors";
 
 import { IloginValid, formProps } from "../interfaces";
 import { notify } from "@/functions/notifications";
-import { emailIsAvaliable, getLoginData, login, register } from "@/services/api";
+import { emailIsAvaliable, getLoginData, login, register, editUserProfile } from "@/services/api";
 import { IDataLoginUser, IDataRegisterUser, IDataUser, ILoginTokens } from "@/interface";
 import { addTokens, removeTokens } from "@/services/localStorage";
 
@@ -11,11 +11,35 @@ export const loginValid = async ({
     data,
     setShowIconLoading,
     setAllUserData,
+    allUserData,
     setLogined,
     push,
     paramRedirect,
+    editProfile,
 }: IloginValid) => {
     setShowIconLoading(true)
+
+    if (editProfile) {
+        const dataForm: IDataRegisterUser = {
+            email: data.email,
+            name: data.name,
+            password: data.password,
+            role: data.type ? "admin" : "customer",
+            avatar: `https://loremflickr.com/320/240/man`,
+        }
+
+        editUserProfile(allUserData.id, dataForm)
+            .then(value => {
+                notify("success", "Sucesso,", "Dados alterados com sucesso!");
+                setAllUserData({...allUserData, ...value})
+                setTimeout(() => {
+                    push('/')
+                }, 1000);
+            })
+            .catch(() => notify("danger", "Desculpe,", "Não foi possível os dados!"))
+            .finally(() => setShowIconLoading(false))
+        return
+    }
 
     if (data.type === undefined) {
 
