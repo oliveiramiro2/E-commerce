@@ -1,7 +1,7 @@
-import React from 'react'
+import React from "react";
 
-import { EditUser } from '@/templates'
+import { EditUserTemlate } from "@/templates";
 
-const EditProfile: React.FC = () => <EditUser />
+const EditUser: React.FC = () => <EditUserTemlate />;
 
-export default EditProfile
+export default EditUser;

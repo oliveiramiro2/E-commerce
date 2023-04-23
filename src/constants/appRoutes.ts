@@ -3,7 +3,7 @@ export const APP_ROUTES = {
         products: '/produtos',
         cart: '/carrinho',
         buy: '/comprar_produto',
-        editProfile: '/editar_perfil',
+        editProfile: '/editar_perfil'
     },
     public: {
         home: '/',
