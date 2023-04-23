@@ -8,17 +8,9 @@ import { notify } from "@/functions/notifications";
 import { CartUserContext } from "@/contexts/cartUser";
 import { IDataApi } from "@/interface";
 import { useRedirect } from "@/hooks";
+import { IPropsFinished } from "./interface";
 
-export const FinishedSeller: React.FC<{
-    close: Function;
-    allItemsCart: boolean;
-    cartId: number | undefined;
-    buyFromCart: boolean;
-    priceBuying: number;
-    numberItems: number;
-    setNewPriceCart: Function;
-    setRemovePrice: Function;
-}> = ({
+export const FinishedSeller: React.FC<IPropsFinished> = ({
     close,
     allItemsCart,
     cartId,
