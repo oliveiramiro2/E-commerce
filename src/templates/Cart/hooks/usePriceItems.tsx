@@ -19,5 +19,6 @@ export const usePriceItems = () => {
             const oldPrice = priceItems;
             setPriceItems(oldPrice + price);
         },
+        handleRemoveItems: () => setPriceItems(0)
     };
 };
