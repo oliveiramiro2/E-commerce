@@ -2,6 +2,7 @@ import React from "react";
 import "animate.css";
 import "react-loading-skeleton/dist/skeleton.css";
 import "react-notifications-component/dist/theme.css";
+import "@szhsin/react-menu/dist/index.css";
 
 import "../styles/globals.css";
 import ECommProvider from "@/contexts";
