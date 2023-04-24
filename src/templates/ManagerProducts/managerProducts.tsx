@@ -10,7 +10,7 @@ import { IDataApi } from "@/interface";
 import { allProductsWithoutParam } from "@/services/api";
 
 export const ManagerProductsTemplate: React.FC = () => {
-    const { data } = useQuery<IDataApi[] | undefined>({
+    const { data, isLoading } = useQuery<IDataApi[] | undefined>({
         queryKey: ["allProducts"],
         queryFn: allProductsWithoutParam,
         keepPreviousData: true,
@@ -19,6 +19,8 @@ export const ManagerProductsTemplate: React.FC = () => {
     useEffect(() => {
         document.title = "RM E-commerce - Gerenciar produtos";
     }, []);
+
+    if (isLoading) return <p>loading</p>;
 
     return (
         <DefaultTemplate>
