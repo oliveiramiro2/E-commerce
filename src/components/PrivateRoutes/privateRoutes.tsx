@@ -6,9 +6,17 @@ import { APP_ROUTES } from "@/constants/appRoutes";
 import { UserDataContext } from "@/contexts/userDataLogin";
 import { useRedirect } from "@/hooks";
 import { LoadingUser } from "../LoadingUser/loadingUser";
+import { checkAdminRoutes } from "@/functions/checkRoute";
 
-export const PrivateRoutes = ({ children }: { children: React.ReactNode }) => {
-    const { logined, redirectOnLogin } = useContext(UserDataContext);
+export const PrivateRoutes = ({
+    children,
+    path,
+}: {
+    children: React.ReactNode;
+    path: string;
+}) => {
+    const { logined, redirectOnLogin, allUserData } =
+        useContext(UserDataContext);
     const { push } = useRedirect();
 
     useEffect(() => {
@@ -17,6 +25,10 @@ export const PrivateRoutes = ({ children }: { children: React.ReactNode }) => {
                 push(`${APP_ROUTES.public.signIn}?${redirectOnLogin}`);
             } else {
                 push(APP_ROUTES.public.signIn);
+            }
+        } else if (checkAdminRoutes(path)) {
+            if (allUserData.role !== "admin") {
+                push(APP_ROUTES.public.home);
             }
         }
     }, [logined, push]);
