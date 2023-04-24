@@ -5,3 +5,9 @@ export const checkRoute = (path: string): boolean => {
 
     return publicRoutes.includes(path)
 }
+
+export const checkAdminRoutes = (path: string): boolean => {
+    const adminRoutes = Object.values(APP_ROUTES.private.admin)
+
+    return adminRoutes.includes(path)
+}
