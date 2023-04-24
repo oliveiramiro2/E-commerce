@@ -1,8 +1,5 @@
-interface IData {
-    name: string;
-    id: number;
-}
+import { IDataApi, ICategoryApi } from "@/interface";
 
 export interface IProps {
-    data: IData[];
+    data: IDataApi[] | ICategoryApi[];
 }
