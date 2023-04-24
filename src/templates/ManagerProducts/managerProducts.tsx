@@ -4,6 +4,7 @@ import React, { useEffect } from "react";
 
 import { DefaultTemplate } from "../default";
 import { oswald } from "@/functions/fonts";
+import { ManagerContain } from "@/components";
 
 export const ManagerProductsTemplate: React.FC = () => {
     useEffect(() => {
@@ -20,6 +21,7 @@ export const ManagerProductsTemplate: React.FC = () => {
                         Gerenciar produtos
                     </h3>
                 </div>
+                <ManagerContain />
             </section>
         </DefaultTemplate>
     );
