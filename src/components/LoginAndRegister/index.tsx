@@ -55,6 +55,7 @@ export const LoginAndRegister: React.FC<{
                             }}
                         />
                     ))}
+{registerComponent && <CheckBoxUser register={register} />}
                     {!editProfile && (
                         <button
                             type="button"
@@ -80,7 +81,7 @@ export const LoginAndRegister: React.FC<{
                                 : "Não possui uma conta? Faça seu registro"}
                         </button>
                     )}
-                    {registerComponent && <CheckBoxUser register={register} />}
+                    
                     <button
                         type="button"
                         className={`self-center rounded-lg p-2 pl-8 pr-8 mt-2 bg-pallet-purple text-pallet-white font-semibold tracking-wide shadow-lg shadow-gray-400 hover:bg-[#bf3eee] hover:transition-colors ${oswald.className}`}

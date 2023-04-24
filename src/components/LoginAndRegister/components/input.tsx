@@ -40,7 +40,7 @@ export const InputUser: React.FC<{ data: IPropsInput; index: number }> = ({
                                 index,
                                 data.registerForm
                             ),
-                            "ml-[14px]":
+                            "ml-6":
                                 data.name === "confirmPassword" ||
                                 data.name === "password",
                         }
