@@ -28,7 +28,7 @@ export const DefaultTemplate: React.FC<{ children: React.ReactNode }> = ({
                 </>
             )}
             {!isPublicRoute && (
-                <PrivateRoutes>
+                <PrivateRoutes path={path}>
                     <ReactNotifications />
                     <Header />
                     {children}
