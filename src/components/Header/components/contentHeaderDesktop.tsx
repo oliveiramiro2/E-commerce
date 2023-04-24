@@ -8,7 +8,7 @@ import {
     FaUserEdit,
     FaAngleDown,
 } from "react-icons/fa";
-import { BiLogIn, BiLogOut } from "react-icons/bi";
+import { BiCartAdd, BiLogIn, BiLogOut } from "react-icons/bi";
 import { AiOutlineClose, AiOutlineMenu } from "react-icons/ai";
 import { Menu, MenuItem, MenuDivider } from "@szhsin/react-menu";
 
@@ -52,37 +52,66 @@ export const ContentHeaderDesktop: React.FC<IPropsContentHeaderDesktop> = ({
                             <FaHome className="relative top-1" /> Home
                         </Link>
                     </li>
-                    <li
-                        className={`text-pallet-blue font-medium text-lg hover:border-b hover:transition-colors hover:drop-shadow-xl border-pallet-blue ${tiro.className}`}
-                    >
-                        <button
-                            type="button"
-                            className="flex gap-x-1"
-                            onClick={() => {
-                                if (!logined)
-                                    setRedirectOnLogin("redirecionar=produtos");
-                                push("/produtos");
-                            }}
+                    {allUserData.role === "customer" ? (
+                        <>
+                            <li
+                                className={`text-pallet-blue font-medium text-lg hover:border-b hover:transition-colors hover:drop-shadow-xl border-pallet-blue ${tiro.className}`}
+                            >
+                                <button
+                                    type="button"
+                                    className="flex gap-x-1"
+                                    onClick={() => {
+                                        if (!logined)
+                                            setRedirectOnLogin(
+                                                "redirecionar=produtos"
+                                            );
+                                        push("/produtos");
+                                    }}
+                                >
+                                    <FaShoppingBag className="relative top-1" />{" "}
+                                    Comprar
+                                </button>
+                            </li>
+                            <li
+                                className={`text-pallet-blue font-medium text-lg hover:border-b hover:transition-colors hover:drop-shadow-xl border-pallet-blue ${tiro.className}`}
+                            >
+                                <button
+                                    type="button"
+                                    className="flex gap-x-1"
+                                    onClick={() => {
+                                        if (!logined)
+                                            setRedirectOnLogin(
+                                                "redirecionar=carrinho"
+                                            );
+                                        push("/carrinho");
+                                    }}
+                                >
+                                    <FaShoppingCart className="relative top-1" />{" "}
+                                    Carrinho
+                                </button>
+                            </li>
+                        </>
+                    ) : (
+                        <li
+                            className={`text-pallet-blue font-medium text-lg hover:border-b hover:transition-colors hover:drop-shadow-xl border-pallet-blue ${tiro.className}`}
                         >
-                            <FaShoppingBag className="relative top-1" /> Comprar
-                        </button>
-                    </li>
-                    <li
-                        className={`text-pallet-blue font-medium text-lg hover:border-b hover:transition-colors hover:drop-shadow-xl border-pallet-blue ${tiro.className}`}
-                    >
-                        <button
-                            type="button"
-                            className="flex gap-x-1"
-                            onClick={() => {
-                                if (!logined)
-                                    setRedirectOnLogin("redirecionar=carrinho");
-                                push("/carrinho");
-                            }}
-                        >
-                            <FaShoppingCart className="relative top-1" />{" "}
-                            Carrinho
-                        </button>
-                    </li>
+                            <button
+                                type="button"
+                                className="flex gap-x-1"
+                                onClick={() => {
+                                    if (
+                                        !logined ||
+                                        allUserData.role === "customer"
+                                    )
+                                        push("/");
+                                    push("/gerenciar_produtos");
+                                }}
+                            >
+                                <BiCartAdd className="relative top-1" />{" "}
+                                Gerenciar produtos
+                            </button>
+                        </li>
+                    )}
                 </ul>
             </nav>
             <div />
