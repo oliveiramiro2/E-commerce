@@ -137,10 +137,10 @@ export const ContentHeaderDesktop: React.FC<IPropsContentHeaderDesktop> = ({
                     align="center"
                     arrow
                     menuButton={
-                        <div className="bg-pallet-orange rounded-lg p-4 pt-1 pb-1 cursor-pointer text-pallet-white absolute right-5 max-lg:right-16 flex gap-x-2">
+                        <div className="bg-pallet-black shadow-md shadow-gray-400 rounded-lg p-4 pt-1 pb-1 cursor-pointer text-pallet-white absolute right-5 max-lg:right-16 flex gap-x-2">
                             <img
                                 alt="Avatar"
-                                className="bg-pallet-orange rounded-[100px] w-10 h-10"
+                                className="bg-gray-200 rounded-[100px] w-10 h-10"
                                 src={allUserData.avatar}
                                 onError={() => {
                                     setAllUserData({
