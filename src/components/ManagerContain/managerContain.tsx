@@ -12,7 +12,7 @@ export const ManagerContain: React.FC<IProps> = ({
     const { data } = useData(dataProduct, dataCategory);
 
     return (
-        <section className="w-screen h-52 bg-white border-gray-200">
+        <section className="w-[97vw] bg-white mt-5 mb-10 p-2 self-center rounded-lg border border-gray-300">
             {data.map(item => (
                 <p key={item.id}>{item.name}</p>
             ))}
