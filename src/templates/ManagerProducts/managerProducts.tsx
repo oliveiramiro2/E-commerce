@@ -1,7 +1,11 @@
-import React from 'react'
+import React from "react";
 
-export const ManagerProducts: React.FC = () => {
-  return (
-    <div>managerProducts</div>
-  )
-}
+import { DefaultTemplate } from "../default";
+
+export const ManagerProductsTemplate: React.FC = () => {
+    return (
+        <DefaultTemplate>
+            <div>managerProducts</div>
+        </DefaultTemplate>
+    );
+};
