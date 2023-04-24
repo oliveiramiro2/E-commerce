@@ -49,7 +49,7 @@ export const ContentHeaderDesktop: React.FC<IPropsContentHeaderDesktop> = ({
                         className={`text-pallet-blue font-medium text-lg hover:border-b hover:transition-colors hover:drop-shadow-xl border-pallet-blue ${tiro.className}`}
                     >
                         <Link className="flex gap-x-1" href="/">
-                            <FaHome className="relative top-1" /> Home
+                            <FaHome className="relative top-[2px]" /> Home
                         </Link>
                     </li>
                     {allUserData.role === "customer" ? (
@@ -107,7 +107,7 @@ export const ContentHeaderDesktop: React.FC<IPropsContentHeaderDesktop> = ({
                                     push("/gerenciar_produtos");
                                 }}
                             >
-                                <BiCartAdd className="relative top-1" />{" "}
+                                <BiCartAdd className="relative top-[2px]" />{" "}
                                 Gerenciar produtos
                             </button>
                         </li>

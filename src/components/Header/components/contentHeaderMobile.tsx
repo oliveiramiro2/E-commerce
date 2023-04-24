@@ -24,7 +24,7 @@ export const ContentHeaderMobile: React.FC = () => {
                         >
                             <FaHome
                                 size={18}
-                                className="relative bottom-[2px]"
+                                className="relative bottom-[3px]"
                             />{" "}
                             Home
                         </Link>
@@ -43,7 +43,7 @@ export const ContentHeaderMobile: React.FC = () => {
                                         push("/produtos");
                                     }}
                                 >
-                                    <FaShoppingBag className="relative bottom-[2px]" />{" "}
+                                    <FaShoppingBag className="relative bottom-[3px]" />{" "}
                                     Comprar
                                 </button>
                             </li>
@@ -66,7 +66,7 @@ export const ContentHeaderMobile: React.FC = () => {
                                         push("/carrinho");
                                     }}
                                 >
-                                    <FaShoppingCart className="relative bottom-[2px]" />{" "}
+                                    <FaShoppingCart className="relative bottom-[3px]" />{" "}
                                     Carrinho
                                 </button>
                             </li>
@@ -75,7 +75,7 @@ export const ContentHeaderMobile: React.FC = () => {
                         <li className="border-b w-full border-gray-800 pt-3 pb-5 pl-5">
                             <button
                                 type="button"
-                                className={`text-pallet-white w-24 flex items-center gap-x-2 font-medium text-md hover:border-b hover:transition-colors hover:drop-shadow-xl border-pallet-blue ${tiro.className}`}
+                                className={`text-pallet-white w-52 flex items-center gap-x-2 font-medium text-md hover:border-b hover:transition-colors hover:drop-shadow-xl border-pallet-blue ${tiro.className}`}
                                 onClick={() => {
                                     if (
                                         !logined ||
@@ -85,7 +85,10 @@ export const ContentHeaderMobile: React.FC = () => {
                                     push("/gerenciar_produtos");
                                 }}
                             >
-                                <BiCartAdd className="relative bottom-[2px]" />{" "}
+                                <BiCartAdd
+                                    size={20}
+                                    className="relative bottom-[3px]"
+                                />{" "}
                                 Gerenciar produtos
                             </button>
                         </li>
