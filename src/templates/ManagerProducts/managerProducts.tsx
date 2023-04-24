@@ -1,12 +1,21 @@
 "use client";
 
 import React, { useEffect } from "react";
+import { useQuery } from "@tanstack/react-query";
 
 import { DefaultTemplate } from "../default";
 import { oswald } from "@/functions/fonts";
 import { ManagerContain } from "@/components";
+import { IDataApi } from "@/interface";
+import { allProductsWithoutParam } from "@/services/api";
 
 export const ManagerProductsTemplate: React.FC = () => {
+    const { data } = useQuery<IDataApi[] | undefined>({
+        queryKey: ["allProducts"],
+        queryFn: allProductsWithoutParam,
+        keepPreviousData: true,
+    });
+
     useEffect(() => {
         document.title = "RM E-commerce - Gerenciar produtos";
     }, []);
@@ -21,7 +30,9 @@ export const ManagerProductsTemplate: React.FC = () => {
                         Gerenciar produtos
                     </h3>
                 </div>
-                <ManagerContain />
+                {data !== undefined && (
+                    <ManagerContain dataProduct={data} dataCategory={[]} />
+                )}
             </section>
         </DefaultTemplate>
     );
