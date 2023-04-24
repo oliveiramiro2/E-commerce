@@ -6,3 +6,4 @@ export { Product } from './Product';
 export { LoginAndRegister } from './LoginAndRegister';
 export { LoadingUser } from './LoadingUser/loadingUser';
 export { CountManyItems } from './CountManyItems/countManyItems';
+export { ManagerContain } from './ManagerContain/managerContain';
