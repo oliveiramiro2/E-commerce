@@ -7,6 +7,7 @@ import { UserDataContext } from "@/contexts/userDataLogin";
 import { useRedirect } from "@/hooks";
 import { LoadingUser } from "../LoadingUser/loadingUser";
 import { checkAdminRoutes } from "@/functions/checkRoute";
+import { useShowLoading } from "./hooks";
 
 export const PrivateRoutes = ({
     children,
@@ -18,8 +19,10 @@ export const PrivateRoutes = ({
     const { logined, redirectOnLogin, allUserData } =
         useContext(UserDataContext);
     const { push } = useRedirect();
+    const { setShowLoading, showLoading } = useShowLoading();
 
     useEffect(() => {
+        setShowLoading(true);
         if (!logined) {
             if (redirectOnLogin.split("redirecionar=")[1] !== undefined) {
                 push(`${APP_ROUTES.public.signIn}?${redirectOnLogin}`);
@@ -31,11 +34,12 @@ export const PrivateRoutes = ({
                 push(APP_ROUTES.public.home);
             }
         }
+        setShowLoading(false);
     }, [logined, push]);
 
     return (
         <>
-            {!logined && <LoadingUser />}
+            {!logined && showLoading && <LoadingUser />}
             {logined && children}
         </>
     );
