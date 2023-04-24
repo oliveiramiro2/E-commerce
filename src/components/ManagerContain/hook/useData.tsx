@@ -9,6 +9,8 @@ export const useData = (
     dataProduct: IDataApi[],
     dataCategory: ICategoryApi[]
 ) => {
+    const [data, setData] = useState<IDataTable[]>([]);
+
     const auxData: IDataTable[] = [];
     useEffect(() => {
         if (dataProduct.length > 1) {
@@ -16,15 +18,15 @@ export const useData = (
                 const aux: IDataTable = { name: item.title, id: item.id };
                 auxData.push(aux);
             });
+            setData(auxData);
         } else {
             dataCategory.forEach(item => {
                 const aux: IDataTable = { name: item.name, id: item.id };
                 auxData.push(aux);
             });
+            setData(auxData);
         }
     }, []);
-
-    const [data, setData] = useState<IDataTable[]>(auxData);
 
     return {
         data,
