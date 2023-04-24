@@ -32,15 +32,18 @@ export const PrivateRoutes = ({
         } else if (checkAdminRoutes(path)) {
             if (allUserData.role !== "admin") {
                 push(APP_ROUTES.public.home);
+            } else {
+                setShowLoading(false);
             }
+        } else if (!checkAdminRoutes(path)) {
+            setShowLoading(false);
         }
-        setShowLoading(false);
-    }, [logined, push]);
+    }, [logined, push, showLoading]);
 
     return (
         <>
             {!logined && showLoading && <LoadingUser />}
-            {logined && children}
+            {logined && !showLoading && children}
         </>
     );
 };
