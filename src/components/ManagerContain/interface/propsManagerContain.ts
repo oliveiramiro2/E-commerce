@@ -1,6 +1,8 @@
+interface IData {
+    name: string;
+    id: number;
+}
+
 export interface IProps {
-    data: {
-        name: string;
-        id: number;
-    }
+    data: IData[];
 }
