@@ -1,1 +1,1 @@
-export type { IProps } from './propsManagerContain';
+export type { IProps, IDataTable } from './propsManagerContain';
