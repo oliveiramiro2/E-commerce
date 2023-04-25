@@ -7,13 +7,18 @@ import { FaRegTrashAlt } from "react-icons/fa";
 import { IProps } from "./interface";
 import { useData } from "./hook";
 import { tiro, arnekG } from "@/functions/fonts";
+import { Pagination } from "./components";
 
 export const ManagerContain: React.FC<IProps> = ({
     dataCategory,
     dataProduct,
     numberItemsPagination = 1,
 }) => {
-    const { data } = useData(dataProduct, dataCategory, numberItemsPagination);
+    const { data, page, numPage } = useData(
+        dataProduct,
+        dataCategory,
+        numberItemsPagination
+    );
 
     return (
         <div>
@@ -62,7 +67,7 @@ export const ManagerContain: React.FC<IProps> = ({
                     ))}
                 </tbody>
             </table>
-            <p>paginação</p>
+            <Pagination page={page} numPage={numPage} />
         </div>
     );
 };
