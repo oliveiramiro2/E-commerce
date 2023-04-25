@@ -25,16 +25,16 @@ export const ModalConfirmDelete: React.FC<IPropsConfirmDelete> = ({
     }, []);
 
     return (
-        <div className="contain-modal-confirm min-h-36 w-36 rounded-md">
+        <div className="contain-modal-confirm border border-black h-full rounded-md flex flex-col justify-around">
             <p
-                className={`font-black text-xl self-center max-lg:right-0 ${oswald.className}`}
+                className={`font-black text-xl text-center self-center max-lg:right-0 ${oswald.className}`}
             >
                 Deseja excluir o produto?
             </p>
             <div className="w-full flex justify-around mt-5">
                 <button
                     type="button"
-                    className={`bg-pallet-orange rounded-md p-2 hover:bg-[#ff9748] transition-colors shadow-md shadow-gray-400 ${arnekG.className}`}
+                    className={`bg-pallet-orange w-[40%] rounded-md p-2 pb-1 hover:bg-[#ff9748] transition-colors shadow-md shadow-gray-400 text-white font-bold ${arnekG.className}`}
                     disabled={loading}
                     onClick={() => {
                         showLoading(true);
@@ -62,7 +62,7 @@ export const ModalConfirmDelete: React.FC<IPropsConfirmDelete> = ({
                                 setTimeout(() => {
                                     showLoading(false);
                                     handleClose(false);
-                                }, 1000);
+                                }, 500);
                             });
                     }}
                 >
@@ -70,8 +70,8 @@ export const ModalConfirmDelete: React.FC<IPropsConfirmDelete> = ({
                         <LoadingIcons.SpinningCircles
                             color="#a226d0"
                             alignmentBaseline="central"
-                            height={50}
-                            fill="#a226d0"
+                            height={25}
+                            fill="#fff"
                         />
                     ) : (
                         "Confirmar"
@@ -79,7 +79,7 @@ export const ModalConfirmDelete: React.FC<IPropsConfirmDelete> = ({
                 </button>
                 <button
                     type="button"
-                    className={`bg-green-500 rounded-md p-2 hover:bg-green-400 transition-colors shadow-md shadow-gray-400 ${arnekG.className}`}
+                    className={`bg-green-500 w-[40%] rounded-md p-2 pb-1 hover:bg-green-400 transition-colors shadow-md shadow-gray-400 text-white font-bold tracker ${arnekG.className}`}
                     onClick={() => {
                         gsap.to(".contain-modal-confirm", {
                             scale: 0,
@@ -88,7 +88,7 @@ export const ModalConfirmDelete: React.FC<IPropsConfirmDelete> = ({
                         });
                         setTimeout(() => {
                             handleClose(false);
-                        }, 1000);
+                        }, 500);
                     }}
                 >
                     Cancelar
