@@ -29,7 +29,7 @@ export const ManagerContain: React.FC<IProps> = ({
             <div className="flex mt-10">
                 <button
                     type="button"
-                    className={`font-bold text-lg flex items-center text-center ${tiro.className}`}
+                    className={`font-bold text-lg flex items-center gap-x-1 border border-blue-200 p-1 pr-2 rounded-md bg-white hover:bg-gray-100 transition-colors text-center ${tiro.className}`}
                 >
                     <FiPlus color="#32f34c" size={22} />
                     Adicionar {dataProduct.length > 1 ? "Produto" : "Categoria"}
