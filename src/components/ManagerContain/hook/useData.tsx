@@ -3,9 +3,9 @@
 import { useEffect, useState } from "react";
 
 import { ICategoryApi, IDataApi } from "@/interface";
-import { IDataTable } from "../interface";
+import { IDataTable, IOptions } from "../interface";
 
-const options: any = [
+const options: IOptions[] = [
     {value: 10},
     {value: 20},
     {value: 30},
