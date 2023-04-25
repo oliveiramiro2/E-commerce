@@ -7,11 +7,12 @@ import { FiPlus } from "react-icons/fi";
 import { FcSearch } from "react-icons/fc";
 import clsx from "clsx";
 import { gsap } from "gsap";
+import Modal from "react-modal";
 
 import { IProps } from "./interface";
-import { useData } from "./hook";
+import { useData, useModalConfirm } from "./hook";
 import { tiro, arnekG } from "@/functions/fonts";
-import { Pagination } from "./components";
+import { ModalConfirmDelete, Pagination } from "./components";
 
 export const ManagerContain: React.FC<IProps> = ({
     dataCategory,
@@ -31,13 +32,21 @@ export const ManagerContain: React.FC<IProps> = ({
         handlePagMore,
         handlePagMinus,
     } = useData(dataProduct, dataCategory, numberItemsPagination);
+    const {
+        setShowModalConfirm,
+        showModalConfirm,
+        showLoading,
+        setShowLoading,
+        idItem,
+        setIdItem,
+    } = useModalConfirm();
 
     useEffect(() => {
-        gsap.timeline({delay: 1})
-        .from(".add", {opacity: 0, xPercent: -100, ease: "slow"})
-        .from(".search", {opacity: 0, y: -100, ease: "slow"})
-        .from(".select", {opacity: 0, xPercent: 100, ease: "slow"})
-    }, [])
+        gsap.timeline({ delay: 1 })
+            .from(".add", { opacity: 0, xPercent: -100, ease: "slow" })
+            .from(".search", { opacity: 0, y: -100, ease: "slow" })
+            .from(".select", { opacity: 0, xPercent: 100, ease: "slow" });
+    }, []);
 
     useEffect(() => {
         if (search === "")
@@ -127,7 +136,13 @@ export const ManagerContain: React.FC<IProps> = ({
                                 </button>
                             </td>
                             <td className="border-t border-blue-200 text-center">
-                                <button type="button">
+                                <button
+                                    type="button"
+                                    onClick={() => {
+                                        setShowModalConfirm(true);
+                                        setIdItem(item.id);
+                                    }}
+                                >
                                     <FaRegTrashAlt color="#ff6666" size={20} />
                                 </button>
                             </td>
@@ -144,6 +159,19 @@ export const ManagerContain: React.FC<IProps> = ({
                     handlePagMore={handlePagMore}
                 />
             )}
+            <Modal
+                isOpen={showModalConfirm}
+                onRequestClose={() => setShowModalConfirm(false)}
+                contentLabel="Tem certeza desta ação?"
+            >
+                <ModalConfirmDelete
+                    handleClose={setShowModalConfirm}
+                    showLoading={setShowLoading}
+                    loading={showLoading}
+                    product={dataProduct.length > 1}
+                    id={idItem}
+                />
+            </Modal>
         </div>
     );
 };
