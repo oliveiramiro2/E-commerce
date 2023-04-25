@@ -20,6 +20,14 @@ export const ManagerContain: React.FC<IProps> = ({
     numberItemsPagination = 1,
 }) => {
     const {
+        setShowModalConfirm,
+        showModalConfirm,
+        showLoading,
+        setShowLoading,
+        idItem,
+        setIdItem,
+    } = useModalConfirm();
+    const {
         data,
         page,
         numPage,
@@ -31,15 +39,13 @@ export const ManagerContain: React.FC<IProps> = ({
         handlePagPerIndex,
         handlePagMore,
         handlePagMinus,
-    } = useData(dataProduct, dataCategory, numberItemsPagination);
-    const {
-        setShowModalConfirm,
-        showModalConfirm,
+    } = useData(
+        dataProduct,
+        dataCategory,
+        numberItemsPagination,
         showLoading,
-        setShowLoading,
-        idItem,
-        setIdItem,
-    } = useModalConfirm();
+        idItem
+    );
 
     useEffect(() => {
         gsap.timeline({ delay: 1 })
@@ -164,7 +170,7 @@ export const ManagerContain: React.FC<IProps> = ({
                 onRequestClose={() => setShowModalConfirm(false)}
                 contentLabel="Tem certeza desta ação?"
                 overlayClassName="modal-overlay"
-                className="border border-black rounded-lg h-[250px] w-[250px] m-2"
+                className="bg-white border border-black rounded-lg h-[250px] w-[250px] m-2"
             >
                 <ModalConfirmDelete
                     handleClose={setShowModalConfirm}
