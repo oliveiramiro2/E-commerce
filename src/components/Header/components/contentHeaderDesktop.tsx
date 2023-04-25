@@ -137,7 +137,7 @@ export const ContentHeaderDesktop: React.FC<IPropsContentHeaderDesktop> = ({
                     align="center"
                     arrow
                     menuButton={
-                        <div className="bg-pallet-black shadow-md shadow-gray-400 rounded-lg p-4 pt-1 pb-1 cursor-pointer text-pallet-white absolute right-5 max-lg:right-16 flex gap-x-2">
+                        <div className="bg-gray-200 shadow-md shadow-gray-400 rounded-lg p-4 pt-1 pb-1 cursor-pointer text-pallet-white absolute right-5 max-lg:right-16 flex gap-x-2">
                             <img
                                 alt="Avatar"
                                 className="bg-gray-200 rounded-[100px] w-10 h-10"
@@ -149,7 +149,7 @@ export const ContentHeaderDesktop: React.FC<IPropsContentHeaderDesktop> = ({
                                     });
                                 }}
                             />
-                            <FaAngleDown size={20} className="self-center" />
+                            <FaAngleDown size={20} className="self-center text-black" />
                         </div>
                     }
                 >
