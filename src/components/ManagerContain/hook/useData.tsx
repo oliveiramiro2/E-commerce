@@ -20,16 +20,16 @@ export const useData = (
 ) => {
     const [data, setData] = useState<IDataTable[]>([]);
     const [allData, setAllData] = useState<IDataTable[]>([]);
+const [lenghtItems, setLenghtItems] = useState<number>(1);
     const [numPage, setNumPage] = useState<number>(1);
     const [numItems, setNumItems] = useState<number>(numberItemsPagination);
     const [page, setPage] = useState<number>(1);
 
     const auxData: IDataTable[] = [];
-    let auxNumItems: number = 1;
     useEffect(() => {
         if (dataProduct.length > 1) {
-            auxNumItems = dataProduct.length;
-            setNumPage(Math.ceil(auxNumItems / numberItemsPagination));
+            setLenghtItems(dataProduct.length);
+            setNumPage(Math.ceil(dataProduct.length / numberItemsPagination));
 
             dataProduct.forEach(item => {
                 const aux: IDataTable = { name: item.title, id: item.id };
@@ -37,8 +37,8 @@ export const useData = (
             });
             setAllData(auxData);
         } else {
-            auxNumItems = dataCategory.length;
-            setNumPage(Math.ceil(auxNumItems / numberItemsPagination));
+             setLenghtItems(dataCategory.length);
+            setNumPage(Math.ceil(dataCategory.length / numberItemsPagination));
 
             dataCategory.forEach(item => {
                 const aux: IDataTable = { name: item.name, id: item.id };
@@ -64,9 +64,10 @@ export const useData = (
         handleNewData: (name: string, id: number) =>
             setData([...data, { name, id }]),
         numPage,
+        numItems,
         page,
         handleItemPerPage: (num: number) => {
-            setNumPage(Math.ceil(auxNumItems / num))
+            setNumPage(Math.ceil(lenghtItems / num))
             setNumItems(num)
         },
         handlePagPerIndex: (index: number) => setPage(index),
