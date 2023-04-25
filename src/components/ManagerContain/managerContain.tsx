@@ -163,6 +163,8 @@ export const ManagerContain: React.FC<IProps> = ({
                 isOpen={showModalConfirm}
                 onRequestClose={() => setShowModalConfirm(false)}
                 contentLabel="Tem certeza desta ação?"
+                overlayClassName="modal-overlay"
+                className="border border-black rounded-lg h-[250px] w-[250px] m-2"
             >
                 <ModalConfirmDelete
                     handleClose={setShowModalConfirm}
