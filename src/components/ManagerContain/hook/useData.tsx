@@ -6,12 +6,12 @@ import { ICategoryApi, IDataApi } from "@/interface";
 import { IDataTable, IOptions } from "../interface";
 
 const options: IOptions[] = [
-    {value: 10},
-    {value: 20},
-    {value: 30},
-    {value: 40},
-    {value: 50},
-]
+    { value: 10 },
+    { value: 20 },
+    { value: 30 },
+    { value: 40 },
+    { value: 50 },
+];
 
 export const useData = (
     dataProduct: IDataApi[],
@@ -20,10 +20,11 @@ export const useData = (
 ) => {
     const [data, setData] = useState<IDataTable[]>([]);
     const [allData, setAllData] = useState<IDataTable[]>([]);
-const [lenghtItems, setLenghtItems] = useState<number>(1);
+    const [lenghtItems, setLenghtItems] = useState<number>(1);
     const [numPage, setNumPage] = useState<number>(1);
     const [numItems, setNumItems] = useState<number>(numberItemsPagination);
     const [page, setPage] = useState<number>(1);
+    const [search, setSearch] = useState<string>("");
 
     const auxData: IDataTable[] = [];
     useEffect(() => {
@@ -37,7 +38,7 @@ const [lenghtItems, setLenghtItems] = useState<number>(1);
             });
             setAllData(auxData);
         } else {
-             setLenghtItems(dataCategory.length);
+            setLenghtItems(dataCategory.length);
             setNumPage(Math.ceil(dataCategory.length / numberItemsPagination));
 
             dataCategory.forEach(item => {
@@ -50,7 +51,7 @@ const [lenghtItems, setLenghtItems] = useState<number>(1);
 
     useEffect(() => {
         const aux: number = numItems * page - 1;
-        const auxItems: any = [];
+        const auxItems: IDataTable[] = [];
         allData.forEach((item, index) => {
             if (aux - index >= 0 && index > aux - numItems) {
                 auxItems.push(item);
@@ -59,16 +60,29 @@ const [lenghtItems, setLenghtItems] = useState<number>(1);
         setData(auxItems);
     }, [allData, page, numItems]);
 
+    useEffect(() => {
+        if (search.length > 0) {
+            const aux: IDataTable[] = [];
+            allData.forEach(item => {
+                if (item.name.toLowerCase().includes(search.toLowerCase()))
+                    aux.push(item);
+            });
+            setData(aux);
+        }
+    }, [search]);
+
     return {
         data,
-        handleNewData: (name: string, id: number) =>
-            setData([...data, { name, id }]),
         numPage,
         numItems,
         page,
+        options,
+        search,
+        handleNewData: (name: string, id: number) =>
+            setData([...data, { name, id }]),
         handleItemPerPage: (num: number) => {
-            setNumPage(Math.ceil(lenghtItems / num))
-            setNumItems(num)
+            setNumPage(Math.ceil(lenghtItems / num));
+            setNumItems(num);
         },
         handlePagPerIndex: (index: number) => setPage(index),
         handlePagMore: () => {
@@ -79,6 +93,6 @@ const [lenghtItems, setLenghtItems] = useState<number>(1);
             if (page === 1) return;
             setPage(page - 1);
         },
-        options,
+        setSearch,
     };
 };
