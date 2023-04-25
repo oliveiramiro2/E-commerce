@@ -3,5 +3,4 @@ export interface IPropsConfirmDelete {
     showLoading: Function;
     loading: boolean;
     product: boolean;
-    id: number;
 }
