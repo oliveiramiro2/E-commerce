@@ -25,7 +25,7 @@ export const ModalConfirmDelete: React.FC<IPropsConfirmDelete> = ({
     }, []);
 
     return (
-        <div className="contain-modal-confirm border border-black h-full rounded-md flex flex-col justify-around">
+        <div className="contain-modal-confirm h-full rounded-md flex flex-col justify-around">
             <p
                 className={`font-black text-xl text-center self-center max-lg:right-0 ${oswald.className}`}
             >
@@ -67,12 +67,14 @@ export const ModalConfirmDelete: React.FC<IPropsConfirmDelete> = ({
                     }}
                 >
                     {loading ? (
-                        <LoadingIcons.SpinningCircles
-                            color="#a226d0"
-                            alignmentBaseline="central"
-                            height={25}
-                            fill="#fff"
-                        />
+                        <div className="relative left-3">
+                            <LoadingIcons.SpinningCircles
+                                color="#a226d0"
+                                alignmentBaseline="central"
+                                height={25}
+                                fill="#fff"
+                            />
+                        </div>
                     ) : (
                         "Confirmar"
                     )}
