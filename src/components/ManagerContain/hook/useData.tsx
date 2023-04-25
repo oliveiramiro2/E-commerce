@@ -16,7 +16,9 @@ const options: IOptions[] = [
 export const useData = (
     dataProduct: IDataApi[],
     dataCategory: ICategoryApi[],
-    numberItemsPagination: number
+    numberItemsPagination: number,
+    showLoading: boolean,
+    idItem: number
 ) => {
     const [data, setData] = useState<IDataTable[]>([]);
     const [allData, setAllData] = useState<IDataTable[]>([]);
@@ -60,6 +62,13 @@ export const useData = (
         setData(auxItems);
         window.scrollTo({ top: 0 });
     }, [allData, page, numItems]);
+
+    useEffect(() => {
+        if (showLoading) {
+            const aux = allData.filter(item => item.id !== idItem);
+            setAllData(aux);
+        }
+    }, [showLoading]);
 
     useEffect(() => {
         handleDataPerPagination();
