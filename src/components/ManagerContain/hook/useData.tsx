@@ -5,6 +5,14 @@ import { useEffect, useState } from "react";
 import { ICategoryApi, IDataApi } from "@/interface";
 import { IDataTable } from "../interface";
 
+const options: any = [
+    {value: 10},
+    {value: 20},
+    {value: 30},
+    {value: 40},
+    {value: 50},
+]
+
 export const useData = (
     dataProduct: IDataApi[],
     dataCategory: ICategoryApi[],
@@ -14,7 +22,7 @@ export const useData = (
     const [allData, setAllData] = useState<IDataTable[]>([]);
     const [numPage, setNumPage] = useState<number>(1);
     const [numItems, setNumItems] = useState<number>(numberItemsPagination);
-    const [page, setPag] = useState<number>(1);
+    const [page, setPage] = useState<number>(1);
 
     const auxData: IDataTable[] = [];
     let auxNumItems: number = 1;
@@ -49,24 +57,27 @@ export const useData = (
             }
         });
         setData(auxItems);
-    }, [allData, page, numPage]);
+    }, [allData, page, numItems]);
 
     return {
         data,
         handleNewData: (name: string, id: number) =>
             setData([...data, { name, id }]),
         numPage,
-        handleNumPage: (num: number) => Math.ceil(auxNumItems / num),
         page,
-        handleItemPerPage: (num: number) => setNumItems(num),
-        handlePagPerIndex: (index: number) => setPag(index),
+        handleItemPerPage: (num: number) => {
+            setNumPage(Math.ceil(auxNumItems / num))
+            setNumItems(num)
+        },
+        handlePagPerIndex: (index: number) => setPage(index),
         handlePagMore: () => {
             if (page === numPage) return;
-            setPag(page + 1);
+            setPage(page + 1);
         },
         handlePagMinus: () => {
             if (page === 1) return;
-            setPag(page - 1);
+            setPage(page - 1);
         },
+        options,
     };
 };
