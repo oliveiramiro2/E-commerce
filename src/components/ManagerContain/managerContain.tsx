@@ -1,11 +1,12 @@
 "use client";
 
-import React from "react";
+import React, { useEffect } from "react";
 import { SlPencil } from "react-icons/sl";
 import { FaRegTrashAlt } from "react-icons/fa";
 import { FiPlus } from "react-icons/fi";
 import { FcSearch } from "react-icons/fc";
 import clsx from "clsx";
+import { gsap } from "gsap";
 
 import { IProps } from "./interface";
 import { useData } from "./hook";
@@ -31,6 +32,16 @@ export const ManagerContain: React.FC<IProps> = ({
         handlePagMinus,
     } = useData(dataProduct, dataCategory, numberItemsPagination);
 
+    useEffect(() => {
+        gsap.from(".lineTable", {
+            duration: 1.5,
+            ease: "back",
+            opacity: 0,
+            scale: 0,
+            stagger: 0.3,
+        });
+    }, [page, numPage, numItems, data]);
+
     return (
         <div>
             <div className="flex mt-10 justify-between">
@@ -55,9 +66,12 @@ export const ManagerContain: React.FC<IProps> = ({
                     />
                 </div>
                 <select
-                    className={clsx(`text-center outline-none border-2 border-pallet-purple p-1 pl-1 rounded-lg ${tiro.className}`, {
-                        invisible: search !== "",
-                    })}
+                    className={clsx(
+                        `text-center outline-none border-2 border-pallet-purple p-1 pl-1 rounded-lg ${tiro.className}`,
+                        {
+                            invisible: search !== "",
+                        }
+                    )}
                     value={numItems}
                     onChange={e => handleItemPerPage(Number(e.target.value))}
                 >
@@ -92,7 +106,7 @@ export const ManagerContain: React.FC<IProps> = ({
                     {data.map(item => (
                         <tr
                             key={item.id}
-                            className="h-10 rounded-sm odd:bg-slate-100 border border-blue-200 border-separate border-tools-table-outline bg-white"
+                            className="lineTable h-10 rounded-sm odd:bg-slate-100 border border-blue-200 border-separate border-tools-table-outline bg-white"
                         >
                             <td
                                 className={`border-t border-blue-200 pl-2 font-medium ${arnekG.className}`}
@@ -113,13 +127,15 @@ export const ManagerContain: React.FC<IProps> = ({
                     ))}
                 </tbody>
             </table>
-            {search === "" && <Pagination
-                page={page}
-                numPage={numPage}
-                handlePagPerIndex={handlePagPerIndex}
-                handlePagMinus={handlePagMinus}
-                handlePagMore={handlePagMore}
-            />}
+            {search === "" && (
+                <Pagination
+                    page={page}
+                    numPage={numPage}
+                    handlePagPerIndex={handlePagPerIndex}
+                    handlePagMinus={handlePagMinus}
+                    handlePagMore={handlePagMore}
+                />
+            )}
         </div>
     );
 };
