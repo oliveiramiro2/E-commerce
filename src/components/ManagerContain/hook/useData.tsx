@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useState, useCallback } from "react";
 
 import { ICategoryApi, IDataApi } from "@/interface";
 import { IDataTable, IOptions } from "../interface";
@@ -49,7 +49,7 @@ export const useData = (
         }
     }, []);
 
-    useEffect(() => {
+    const handleDataPerPagination = useCallback(() => {
         const aux: number = numItems * page - 1;
         const auxItems: IDataTable[] = [];
         allData.forEach((item, index) => {
@@ -58,7 +58,12 @@ export const useData = (
             }
         });
         setData(auxItems);
+        window.scrollTo({ top: 0 });
     }, [allData, page, numItems]);
+
+    useEffect(() => {
+        handleDataPerPagination();
+    }, [handleDataPerPagination]);
 
     useEffect(() => {
         if (search.length > 0) {
@@ -68,6 +73,8 @@ export const useData = (
                     aux.push(item);
             });
             setData(aux);
+        } else {
+            handleDataPerPagination();
         }
     }, [search]);
 
@@ -81,6 +88,7 @@ export const useData = (
         handleNewData: (name: string, id: number) =>
             setData([...data, { name, id }]),
         handleItemPerPage: (num: number) => {
+            setPage(1);
             setNumPage(Math.ceil(lenghtItems / num));
             setNumItems(num);
         },
