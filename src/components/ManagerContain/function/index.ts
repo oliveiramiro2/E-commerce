@@ -1,0 +1,1 @@
+export { deleteItem } from './delete';
