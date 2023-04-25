@@ -33,14 +33,15 @@ export const ManagerContain: React.FC<IProps> = ({
     } = useData(dataProduct, dataCategory, numberItemsPagination);
 
     useEffect(() => {
-        gsap.from(".lineTable", {
-            duration: 1.5,
-            ease: "back",
-            opacity: 0,
-            scale: 0,
-            stagger: 0.3,
-        });
-    }, [page, numPage, numItems, data]);
+        if (search === "")
+            gsap.from(".lineTable", {
+                duration: 0.5,
+                ease: "back",
+                opacity: 0,
+                scale: 0,
+                stagger: 0.3,
+            });
+    }, [data]);
 
     return (
         <div>
