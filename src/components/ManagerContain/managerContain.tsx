@@ -3,6 +3,7 @@
 import React from "react";
 import { SlPencil } from "react-icons/sl";
 import { FaRegTrashAlt } from "react-icons/fa";
+import { FiPlus } from "react-icons/fi";
 
 import { IProps } from "./interface";
 import { useData } from "./hook";
@@ -25,6 +26,15 @@ export const ManagerContain: React.FC<IProps> = ({
 
     return (
         <div>
+            <div className="flex mt-10">
+                <button
+                    type="button"
+                    className={`font-bold text-lg flex items-center text-center ${tiro.className}`}
+                >
+                    <FiPlus color="#32f34c" size={22} />
+                    Adicionar {dataProduct.length > 1 ? "Produto" : "Categoria"}
+                </button>
+            </div>
             <table className="rounded-md border-separate border-tools-table-outline w-[97vw] bg-white mt-5 mb-10 self-center border border-blue-200">
                 <thead>
                     <tr className="h-14">
