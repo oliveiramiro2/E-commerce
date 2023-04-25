@@ -1,7 +1,9 @@
 import React from "react";
 import { TiChevronLeft, TiChevronRight } from "react-icons/ti";
 
-export const Pagination: React.FC<{ page: number; numPage: number }> = ({
+import { IPropsPagination } from "../interface";
+
+export const Pagination: React.FC<IPropsPagination> = ({
     page,
     numPage,
 }) => (
