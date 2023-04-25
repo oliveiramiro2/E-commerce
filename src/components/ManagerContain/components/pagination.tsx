@@ -11,7 +11,7 @@ export const Pagination: React.FC<IPropsPagination> = ({
     handlePagMore,
     handlePagPerIndex,
 }) => (
-    <div className="flex items-center mb-10">
+    <div className="flex justify-center mb-10">
         <button
             type="button"
             className={clsx("h-max", {
@@ -27,7 +27,7 @@ export const Pagination: React.FC<IPropsPagination> = ({
         <div className="flex gap-x-1">
             {page - 2 > 0 && (
                 <button
-                    className="p-1 bg-pallet-orange rounded-md hover:bg-[#ff9748] transition-colors shadow-md shadow-pallet-orange"
+                    className="text-white pl-3 pr-3 p-1 bg-pallet-orange rounded-md hover:bg-[#ff9748] transition-colors shadow-md shadow-pallet-orange"
                     type="button"
                     onClick={() => handlePagPerIndex(page - 2)}
                 >
@@ -36,7 +36,7 @@ export const Pagination: React.FC<IPropsPagination> = ({
             )}
             {page - 1 > 0 && (
                 <button
-                    className="p-1 bg-pallet-orange rounded-md hover:bg-[#ff9748] transition-colors shadow-md shadow-pallet-orange"
+                    className="text-white pl-3 pr-3 p-1 bg-pallet-orange rounded-md hover:bg-[#ff9748] transition-colors shadow-md shadow-pallet-orange"
                     type="button"
                     onClick={() => handlePagPerIndex(page - 1)}
                 >
@@ -44,7 +44,7 @@ export const Pagination: React.FC<IPropsPagination> = ({
                 </button>
             )}
             <button
-                className="p-1 bg-pallet-orange rounded-md hover:bg-[#ff9748] transition-colors shadow-md shadow-pallet-orange"
+                className="text-white pl-3 pr-3 p-1 rounded-md bg-[#ff9748] shadow-md shadow-pallet-orange"
                 type="button"
                 disabled
             >
@@ -52,7 +52,7 @@ export const Pagination: React.FC<IPropsPagination> = ({
             </button>
             {page + 1 <= numPage && (
                 <button
-                    className="p-1 bg-pallet-orange rounded-md hover:bg-[#ff9748] transition-colors shadow-md shadow-pallet-orange"
+                    className="text-white pl-3 pr-3 p-1 bg-pallet-orange rounded-md hover:bg-[#ff9748] transition-colors shadow-md shadow-pallet-orange"
                     type="button"
                     onClick={() => handlePagPerIndex(page + 1)}
                 >
@@ -61,7 +61,7 @@ export const Pagination: React.FC<IPropsPagination> = ({
             )}
             {page + 2 <= numPage && (
                 <button
-                    className="p-1 bg-pallet-orange rounded-md hover:bg-[#ff9748] transition-colors shadow-md shadow-pallet-orange"
+                    className="text-white pl-3 pr-3 p-1 bg-pallet-orange rounded-md hover:bg-[#ff9748] transition-colors shadow-md shadow-pallet-orange"
                     type="button"
                     onClick={() => handlePagPerIndex(page + 2)}
                 >
