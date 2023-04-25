@@ -33,6 +33,13 @@ export const ManagerContain: React.FC<IProps> = ({
     } = useData(dataProduct, dataCategory, numberItemsPagination);
 
     useEffect(() => {
+        gsap.timeline({delay: 1})
+        .from(".add", {opacity: 0, xPercent: -100, ease: "slow"})
+        .from(".search", {opacity: 0, y: -100, ease: "slow"})
+        .from(".select", {opacity: 0, xPercent: 100, ease: "slow"})
+    }, [])
+
+    useEffect(() => {
         if (search === "")
             gsap.from(".lineTable", {
                 duration: 0.5,
@@ -48,12 +55,12 @@ export const ManagerContain: React.FC<IProps> = ({
             <div className="flex mt-10 justify-between">
                 <button
                     type="button"
-                    className={`font-bold text-lg flex items-center gap-x-1 border-2 border-pallet-purple p-1 pr-2 rounded-md bg-white hover:bg-gray-100 transition-colors text-center ${tiro.className}`}
+                    className={`add font-bold text-lg flex items-center gap-x-1 border-2 border-pallet-purple p-1 pr-2 rounded-md bg-white hover:bg-gray-100 transition-colors text-center ${tiro.className}`}
                 >
                     <FiPlus color="#32f34c" size={22} />
                     Adicionar {dataProduct.length > 1 ? "Produto" : "Categoria"}
                 </button>
-                <div className="flex items-center relative right-[2vw]">
+                <div className="search flex items-center relative right-[2vw]">
                     <input
                         type="text"
                         className={`w-40 outline-none border-l-2  border-t-2  border-b-2 border-pallet-purple p-1 pl-2 rounded-l-lg ${tiro.className}`}
@@ -68,7 +75,7 @@ export const ManagerContain: React.FC<IProps> = ({
                 </div>
                 <select
                     className={clsx(
-                        `text-center outline-none border-2 border-pallet-purple p-1 pl-1 rounded-lg ${tiro.className}`,
+                        `select text-center outline-none border-2 border-pallet-purple p-1 pl-1 rounded-lg ${tiro.className}`,
                         {
                             invisible: search !== "",
                         }
