@@ -5,6 +5,7 @@ import { SlPencil } from "react-icons/sl";
 import { FaRegTrashAlt } from "react-icons/fa";
 import { FiPlus } from "react-icons/fi";
 import { FcSearch } from "react-icons/fc";
+import clsx from "clsx";
 
 import { IProps } from "./interface";
 import { useData } from "./hook";
@@ -22,6 +23,8 @@ export const ManagerContain: React.FC<IProps> = ({
         numPage,
         options,
         numItems,
+        search,
+        setSearch,
         handleItemPerPage,
         handlePagPerIndex,
         handlePagMore,
@@ -43,6 +46,8 @@ export const ManagerContain: React.FC<IProps> = ({
                         type="text"
                         className={`w-40 outline-none border-l-2  border-t-2  border-b-2 border-pallet-purple p-1 pl-2 rounded-l-lg ${tiro.className}`}
                         placeholder="Procure um nome"
+                        value={search}
+                        onChange={e => setSearch(e.target.value)}
                     />
                     <FcSearch
                         size={25}
@@ -50,7 +55,9 @@ export const ManagerContain: React.FC<IProps> = ({
                     />
                 </div>
                 <select
-                    className={`text-center outline-none border-2 border-pallet-purple p-1 pl-1 rounded-lg ${tiro.className}`}
+                    className={clsx(`text-center outline-none border-2 border-pallet-purple p-1 pl-1 rounded-lg ${tiro.className}`, {
+                        invisible: search !== "",
+                    })}
                     value={numItems}
                     onChange={e => handleItemPerPage(Number(e.target.value))}
                 >
@@ -106,13 +113,13 @@ export const ManagerContain: React.FC<IProps> = ({
                     ))}
                 </tbody>
             </table>
-            <Pagination
+            {search === "" && <Pagination
                 page={page}
                 numPage={numPage}
                 handlePagPerIndex={handlePagPerIndex}
                 handlePagMinus={handlePagMinus}
                 handlePagMore={handlePagMore}
-            />
+            />}
         </div>
     );
 };
