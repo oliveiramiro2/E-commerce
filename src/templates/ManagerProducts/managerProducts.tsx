@@ -34,10 +34,7 @@ export const ManagerProductsTemplate: React.FC = () => {
                     </div>
                     <div className="w-[97vw] bg-white rounded-md mt-5 mb-10 self-center border border-blue-200">
                         <Skeleton count={1} className="w-full h-14" />
-                        <Skeleton
-                            count={6}
-                            className="w-full h-10"
-                        />
+                        <Skeleton count={6} className="w-full h-10" />
                     </div>
                 </section>
             </DefaultTemplate>
@@ -54,7 +51,11 @@ export const ManagerProductsTemplate: React.FC = () => {
                     </h3>
                 </div>
                 {data !== undefined && (
-                    <ManagerContain dataProduct={data} dataCategory={[]} />
+                    <ManagerContain
+                        dataProduct={data}
+                        dataCategory={[]}
+                        numberItemsPagination={10}
+                    />
                 )}
             </section>
         </DefaultTemplate>
