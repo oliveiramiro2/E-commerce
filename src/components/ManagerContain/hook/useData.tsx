@@ -12,6 +12,7 @@ export const useData = (
 ) => {
     const [data, setData] = useState<IDataTable[]>([]);
     const [numPage, setNumPage] = useState<number>(1);
+    const [pag, setPag] = useState<number>(1);
 
     const auxData: IDataTable[] = [];
     let numItems: number = 1;
@@ -43,5 +44,15 @@ export const useData = (
             setData([...data, { name, id }]),
         numPage,
         handleNumPage: (num: number) => Math.ceil(numItems / num),
+        pag,
+        handlePagPerIndex: (index: number) => setPag(index),
+        handlePagMore: () => {
+            if (pag === numPage) return;
+            setPag(pag + 1);
+        },
+        handlePagMinus: () => {
+            if (pag === 1) return;
+            setPag(pag - 1);
+        },
     };
 };
