@@ -4,6 +4,7 @@ import React from "react";
 import { SlPencil } from "react-icons/sl";
 import { FaRegTrashAlt } from "react-icons/fa";
 import { FiPlus } from "react-icons/fi";
+import { FcSearch } from "react-icons/fc";
 
 import { IProps } from "./interface";
 import { useData } from "./hook";
@@ -26,7 +27,7 @@ export const ManagerContain: React.FC<IProps> = ({
 
     return (
         <div>
-            <div className="flex mt-10">
+            <div className="flex mt-10 justify-between">
                 <button
                     type="button"
                     className={`font-bold text-lg flex items-center gap-x-1 border border-blue-200 p-1 pr-2 rounded-md bg-white hover:bg-gray-100 transition-colors text-center ${tiro.className}`}
@@ -34,6 +35,15 @@ export const ManagerContain: React.FC<IProps> = ({
                     <FiPlus color="#32f34c" size={22} />
                     Adicionar {dataProduct.length > 1 ? "Produto" : "Categoria"}
                 </button>
+                <div className="flex items-center relative right-[7vw]">
+                    <input
+                        type="text"
+                        className={`w-40 outline-none border-l-2  border-t-2  border-b-2 border-pallet-purple p-1 pl-2 rounded-l-lg ${tiro.className}`}
+                        placeholder="Procure um nome"
+                    />
+                    <FcSearch size={25} className="bg-white border-r-2  border-t-2  border-b-2 border-pallet-purple rounded-r-lg h-[35.1px] w-8" />
+                </div>
+                <div />
             </div>
             <table className="rounded-md border-separate border-tools-table-outline w-[97vw] bg-white mt-5 mb-10 self-center border border-blue-200">
                 <thead>
