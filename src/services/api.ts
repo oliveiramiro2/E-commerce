@@ -51,6 +51,11 @@ export const buyProduct = async (productId: number): Promise<IDataApi | undefine
     return data
 }
 
+export const deleteProduct = async (productId: number): Promise<boolean> => {
+    const { data }: {data: boolean} = await api.get(`/products/${productId}`)
+    return data
+}
+
 // categories
 
 export const categories = async (param: string) => {
