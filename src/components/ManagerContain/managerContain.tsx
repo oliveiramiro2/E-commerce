@@ -14,11 +14,14 @@ export const ManagerContain: React.FC<IProps> = ({
     dataProduct,
     numberItemsPagination = 1,
 }) => {
-    const { data, page, numPage } = useData(
-        dataProduct,
-        dataCategory,
-        numberItemsPagination
-    );
+    const {
+        data,
+        page,
+        numPage,
+        handlePagPerIndex,
+        handlePagMore,
+        handlePagMinus,
+    } = useData(dataProduct, dataCategory, numberItemsPagination);
 
     return (
         <div>
@@ -67,7 +70,13 @@ export const ManagerContain: React.FC<IProps> = ({
                     ))}
                 </tbody>
             </table>
-            <Pagination page={page} numPage={numPage} />
+            <Pagination
+                page={page}
+                numPage={numPage}
+                handlePagPerIndex={handlePagPerIndex}
+                handlePagMinus={handlePagMinus}
+                handlePagMore={handlePagMore}
+            />
         </div>
     );
 };
