@@ -11,8 +11,9 @@ import { tiro, arnekG } from "@/functions/fonts";
 export const ManagerContain: React.FC<IProps> = ({
     dataCategory,
     dataProduct,
+    numberItemsPagination = 1,
 }) => {
-    const { data } = useData(dataProduct, dataCategory);
+    const { data } = useData(dataProduct, dataCategory, numberItemsPagination);
 
     return (
         <div>
