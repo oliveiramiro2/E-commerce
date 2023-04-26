@@ -32,6 +32,17 @@ export const ManagerContain: React.FC<IProps> = ({
         setIdItem,
     } = useModalConfirm();
     const {
+        openModalProduct,
+        addNew,
+        dataActionProduct,
+        requestIsLoading,
+        setRequestIsLoading,
+        setOpenModalProduct,
+        setAddNew,
+        handleSingleData,
+        handleCleanData,
+    } = useModalAddEditProduct();
+    const {
         data,
         page,
         numPage,
@@ -48,19 +59,10 @@ export const ManagerContain: React.FC<IProps> = ({
         dataCategory,
         numberItemsPagination,
         showLoading,
-        idItem
-    );
-    const {
-        openModalProduct,
-        addNew,
-        dataActionProduct,
+        idItem,
         requestIsLoading,
-        setRequestIsLoading,
-        setOpenModalProduct,
-        setAddNew,
-        handleSingleData,
-        handleCleanData,
-    } = useModalAddEditProduct();
+        dataActionProduct,
+    );
 
     useLayoutEffect(() => {
         gsap.timeline({ delay: 1 })
