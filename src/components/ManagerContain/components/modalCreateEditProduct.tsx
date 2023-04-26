@@ -19,6 +19,22 @@ export const ModalCreateEditProduct: React.FC = () => {
             >
                 Adicionar produto
             </p>
+            <form>
+                <div className="flex">
+                    <input type="text" placeholder="Nome" />
+                    <input type="text" placeholder="Descrição" />
+                </div>
+                <div className="flex">
+                    <input type="text" placeholder="Preço" />
+                    <select>
+                        <option value="ok">test</option>
+                    </select>
+                </div>
+                <div>
+                    <button type="button">Adicionar</button>
+                    <button type="button">Cancelar</button>
+                </div>
+            </form>
         </div>
     );
 };
