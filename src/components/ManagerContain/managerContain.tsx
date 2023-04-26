@@ -12,7 +12,7 @@ import Modal from "react-modal";
 import { IProps } from "./interface";
 import { useData, useModalConfirm } from "./hook";
 import { tiro, arnekG } from "@/functions/fonts";
-import { ModalConfirmDelete, Pagination } from "./components";
+import { ModalConfirmDelete, ModalCreateEditProduct, Pagination } from "./components";
 
 export const ManagerContain: React.FC<IProps> = ({
     dataCategory,
@@ -20,11 +20,11 @@ export const ManagerContain: React.FC<IProps> = ({
     numberItemsPagination = 1,
 }) => {
     const {
-        setShowModalConfirm,
         showModalConfirm,
         showLoading,
-        setShowLoading,
         idItem,
+        setShowModalConfirm,
+        setShowLoading,
         setIdItem,
     } = useModalConfirm();
     const {
@@ -179,6 +179,15 @@ export const ManagerContain: React.FC<IProps> = ({
                     product={dataProduct.length > 1}
                     id={idItem}
                 />
+            </Modal>
+            <Modal
+                isOpen
+                /* isOpen={showModalConfirm}
+                onRequestClose={() => setShowModalConfirm(false)} */
+                contentLabel="Adicionar produto!"
+                className="bg-white border border-black rounded-lg max-w-[50vw] max-lg:max-w-[70vw] max-md:[80vw]"
+            >
+                <ModalCreateEditProduct />
             </Modal>
         </div>
     );
