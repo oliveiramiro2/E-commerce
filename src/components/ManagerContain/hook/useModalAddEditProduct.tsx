@@ -16,11 +16,13 @@ export const useModalAddEditProduct = () => {
     const [addNew, setAddNew] = useState<boolean>(false);
     const [dataActionProduct, setDataActionProduct] =
         useState<IDataProduct>(defaultValuesProduct);
+    const [requestIsLoading, setRequestIsLoading] = useState<boolean>(false);
 
     return {
         openModalProduct,
         addNew,
         dataActionProduct,
+        requestIsLoading,
         setOpenModalProduct,
         setAddNew,
         handleSingleData: (value: string, index: number) => {
@@ -59,5 +61,6 @@ export const useModalAddEditProduct = () => {
         },
         handleEditData: (value: IDataProduct) => setDataActionProduct(value),
         handleCleanData: () => setDataActionProduct(defaultValuesProduct),
+        setRequestIsLoading,
     };
 };
