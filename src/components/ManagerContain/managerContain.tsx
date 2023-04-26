@@ -67,7 +67,7 @@ export const ManagerContain: React.FC<IProps> = ({
 
     return (
         <div>
-            <div className="flex mt-10 justify-between">
+            <div className="flex mt-10 justify-between flex-wrap max-md:gap-y-5 max-md:pl-3 max-md:pr-3">
                 <button
                     type="button"
                     className={`add font-bold text-lg flex items-center gap-x-1 border-2 border-pallet-purple p-1 pr-2 rounded-md bg-white hover:bg-gray-100 transition-colors text-center ${tiro.className}`}
@@ -166,6 +166,7 @@ export const ManagerContain: React.FC<IProps> = ({
                 />
             )}
             <Modal
+                ariaHideApp={false}
                 isOpen={showModalConfirm}
                 onRequestClose={() => setShowModalConfirm(false)}
                 contentLabel="Tem certeza desta ação?"
@@ -181,11 +182,13 @@ export const ManagerContain: React.FC<IProps> = ({
                 />
             </Modal>
             <Modal
+                ariaHideApp={false}
                 isOpen
                 /* isOpen={showModalConfirm}
                 onRequestClose={() => setShowModalConfirm(false)} */
                 contentLabel="Adicionar produto!"
-                className="bg-white border border-black rounded-lg max-w-[50vw] max-lg:max-w-[70vw] max-md:[80vw]"
+                overlayClassName="modal-overlay-center"
+                className="bg-white border border-black rounded-lg min-w-[50vw] max-lg:min-w-[70vw] max-md:min-w-[85vw]"
             >
                 <ModalCreateEditProduct />
             </Modal>
