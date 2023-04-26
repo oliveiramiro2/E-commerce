@@ -8,6 +8,7 @@ export const ModalCreateEditProduct: React.FC<IPropsAddEditProduct> = ({
     add,
     data,
     handleSingle,
+    closeModal,
 }) => {
     useLayoutEffect(() => {
         gsap.from(".contain-modal-product", {
@@ -67,6 +68,16 @@ export const ModalCreateEditProduct: React.FC<IPropsAddEditProduct> = ({
                     <button
                         type="button"
                         className={`bg-pallet-orange w-[40%] rounded-md p-2 pb-1 hover:bg-[#ff9748] transition-colors shadow-md shadow-gray-400 text-white font-bold ${arnekG.className}`}
+                        onClick={() => {
+                            gsap.to(".contain-modal-product", {
+                                scale: 0,
+                                opacity: 0,
+                                ease: "slow",
+                            });
+                            setTimeout(() => {
+                                closeModal(false);
+                            }, 500);
+                        }}
                     >
                         Cancelar
                     </button>
