@@ -9,40 +9,55 @@ const defaultValuesProduct: IDataProduct = {
     price: 0,
     category: 0,
     trySendErro: false,
-}
+};
 
 export const useModalAddEditProduct = () => {
     const [openModalProduct, setOpenModalProduct] = useState<boolean>(false);
     const [addNew, setAddNew] = useState<boolean>(false);
-    const [dataProduct, setDataProduct] =
+    const [dataActionProduct, setDataActionProduct] =
         useState<IDataProduct>(defaultValuesProduct);
 
     return {
         openModalProduct,
         addNew,
-        dataProduct,
+        dataActionProduct,
         setOpenModalProduct,
         setAddNew,
         handleSingleData: (value: string, index: number) => {
             switch (index) {
                 case 0:
-                    setDataProduct({...dataProduct, title: value})
+                    setDataActionProduct({
+                        ...dataActionProduct,
+                        title: value,
+                    });
                     break;
                 case 1:
-                    setDataProduct({...dataProduct, description: value})
+                    setDataActionProduct({
+                        ...dataActionProduct,
+                        description: value,
+                    });
                     break;
                 case 2:
-                    setDataProduct({...dataProduct, price: Number(value)})
+                    setDataActionProduct({
+                        ...dataActionProduct,
+                        price: Number(value),
+                    });
                     break;
                 case 3:
-                    setDataProduct({...dataProduct, category: Number(value)})
+                    setDataActionProduct({
+                        ...dataActionProduct,
+                        category: Number(value),
+                    });
                     break;
                 default:
-                    setDataProduct({ ...dataProduct, trySendErro: true });
+                    setDataActionProduct({
+                        ...dataActionProduct,
+                        trySendErro: true,
+                    });
                     break;
             }
         },
-        handleEditData: (value: IDataProduct) => setDataProduct(value),
-        handleCleanData: () => setDataProduct(defaultValuesProduct)
+        handleEditData: (value: IDataProduct) => setDataActionProduct(value),
+        handleCleanData: () => setDataActionProduct(defaultValuesProduct),
     };
 };
