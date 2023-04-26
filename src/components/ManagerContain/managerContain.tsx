@@ -10,9 +10,13 @@ import { gsap } from "gsap";
 import Modal from "react-modal";
 
 import { IProps } from "./interface";
-import { useData, useModalConfirm } from "./hook";
+import { useData, useModalAddEditProduct, useModalConfirm } from "./hook";
 import { tiro, arnekG } from "@/functions/fonts";
-import { ModalConfirmDelete, ModalCreateEditProduct, Pagination } from "./components";
+import {
+    ModalConfirmDelete,
+    ModalCreateEditProduct,
+    Pagination,
+} from "./components";
 
 export const ManagerContain: React.FC<IProps> = ({
     dataCategory,
@@ -46,6 +50,7 @@ export const ManagerContain: React.FC<IProps> = ({
         showLoading,
         idItem
     );
+    const { openModalProduct, setOpenModalProduct } = useModalAddEditProduct();
 
     useLayoutEffect(() => {
         gsap.timeline({ delay: 1 })
@@ -71,6 +76,7 @@ export const ManagerContain: React.FC<IProps> = ({
                 <button
                     type="button"
                     className={`add font-bold text-lg flex items-center gap-x-1 border-2 border-pallet-purple p-1 pr-2 rounded-md bg-white hover:bg-gray-100 transition-colors text-center ${tiro.className}`}
+                    onClick={() => setOpenModalProduct(true)}
                 >
                     <FiPlus color="#32f34c" size={22} />
                     Adicionar {dataProduct.length > 1 ? "Produto" : "Categoria"}
@@ -183,9 +189,8 @@ export const ManagerContain: React.FC<IProps> = ({
             </Modal>
             <Modal
                 ariaHideApp={false}
-                isOpen
-                /* isOpen={showModalConfirm}
-                onRequestClose={() => setShowModalConfirm(false)} */
+                isOpen={openModalProduct}
+                onRequestClose={() => setOpenModalProduct(false)}
                 contentLabel="Adicionar produto!"
                 overlayClassName="modal-overlay-center"
                 className="bg-white border border-black rounded-lg min-w-[50vw] max-lg:min-w-[70vw] max-md:min-w-[85vw]"
