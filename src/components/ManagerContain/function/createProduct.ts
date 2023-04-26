@@ -4,25 +4,30 @@ import { INewProductData } from "@/interface";
 import { addProduct } from "@/services/api";
 
 /* eslint-disable-next-line */
-export const createProduct = (data: IDataProduct, handleData: Function, clearProduct: Function) => {
+export const createProduct = (data: IDataProduct, handleData: Function, clearProduct: Function, setRequestIsLoading: Function) => {
+    setRequestIsLoading(true)
     if (data.title === "") {
         handleData({...data, trySendErro: true})
         notify("warning", "Erro,", "Não foi possível fazer login preencha o nome do produto")
+        setRequestIsLoading(false)
         return false
     }
     if (data.description === "") {
         handleData({...data, trySendErro: true})
         notify("warning", "Erro,", "Não foi possível fazer login preencha a descrição do produto")
+        setRequestIsLoading(false)
         return false
     }
     if (data.price === "") {
         handleData({...data, trySendErro: true})
         notify("warning", "Erro,", "Não foi possível fazer login preencha o preço do produto")
+        setRequestIsLoading(false)
         return false
     }
     if (data.category === 0) {
         handleData({...data, trySendErro: true})
         notify("warning", "Erro,", "Não foi possível fazer login preencha a categoria do produto")
+        setRequestIsLoading(false)
         return false
     }
 
@@ -50,5 +55,5 @@ export const createProduct = (data: IDataProduct, handleData: Function, clearPro
     }).catch(() => {
         notify("danger", "Erro desculpe,", "não foi possível cadastrar o produto!")
         return false
-    })
+    }).finally(() => setRequestIsLoading(false))
 }
