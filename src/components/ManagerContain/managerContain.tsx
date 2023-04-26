@@ -52,10 +52,12 @@ export const ManagerContain: React.FC<IProps> = ({
     );
     const {
         openModalProduct,
-        setOpenModalProduct,
         addNew,
-        setAddNew,
         dataActionProduct,
+        requestIsLoading,
+        setRequestIsLoading,
+        setOpenModalProduct,
+        setAddNew,
         handleSingleData,
         handleCleanData,
     } = useModalAddEditProduct();
@@ -212,6 +214,8 @@ export const ManagerContain: React.FC<IProps> = ({
                     handleSingle={handleSingleData}
                     cleanData={handleCleanData}
                     closeModal={setOpenModalProduct}
+                    requestIsLoading={requestIsLoading}
+                    setRequestIsLoading={setRequestIsLoading}
                 />
             </Modal>
         </div>
