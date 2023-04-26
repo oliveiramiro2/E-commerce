@@ -16,6 +16,7 @@ export const ModalCreateEditProduct: React.FC<IPropsAddEditProduct> = ({
     dataProduct,
     handleSingle,
     closeModal,
+    cleanData,
 }) => {
     const { data, isLoading } = useQuery<ICategoryApi[] | undefined>({
         queryFn: () => categories(""),
@@ -153,9 +154,24 @@ export const ModalCreateEditProduct: React.FC<IPropsAddEditProduct> = ({
                     <button
                         type="button"
                         className={`bg-green-500 w-[40%] rounded-md p-2 pb-1 hover:bg-green-400 transition-colors shadow-md shadow-gray-400 text-white font-bold tracker ${arnekG.className}`}
-                        onClick={() => {
-                            createProduct(dataProduct, handleSingle);
-                            console.log(dataProduct);
+                        onClick={async () => {
+                            if (add) {
+                                const created = createProduct(
+                                    dataProduct,
+                                    handleSingle,
+                                    cleanData
+                                );
+                                if (created) {
+                                    gsap.to(".contain-modal-product", {
+                                        scale: 0,
+                                        opacity: 0,
+                                        ease: "slow",
+                                    });
+                                    setTimeout(() => {
+                                        closeModal(false);
+                                    }, 500);
+                                }
+                            }
                         }}
                     >
                         Adicionar
