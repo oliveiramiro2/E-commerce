@@ -3,7 +3,6 @@ import { gsap } from "gsap";
 
 import { arnekG, oswald, tiro } from "@/functions/fonts";
 import { IPropsAddEditProduct } from "../interface";
-import { MaskCoin } from "@/functions/maskCoin";
 
 export const ModalCreateEditProduct: React.FC<IPropsAddEditProduct> = ({
     add,
@@ -48,7 +47,7 @@ export const ModalCreateEditProduct: React.FC<IPropsAddEditProduct> = ({
                         type="text"
                         placeholder="Preço"
                         className={`outline-none border border-pallet-purple p-1 pl-1 rounded-lg ${tiro.className}`}
-                        value={MaskCoin(Number(data.price))}
+                        value={data.price}
                         onChange={e => handleSingle(e.target.value.replace(/[^0-9.]/g, ""), 2)}
                     />
                     <select
