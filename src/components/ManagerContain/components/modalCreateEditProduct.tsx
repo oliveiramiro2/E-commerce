@@ -17,7 +17,7 @@ export const ModalCreateEditProduct: React.FC = () => {
             <p
                 className={`font-black text-xl text-center self-center max-lg:right-0 ${oswald.className}`}
             >
-                Deseja excluir o produto?
+                Adicionar produto
             </p>
         </div>
     );
