@@ -156,10 +156,11 @@ export const ModalCreateEditProduct: React.FC<IPropsAddEditProduct> = ({
                 <div className="w-full flex justify-around">
                     <button
                         type="button"
+                        disabled={requestIsLoading}
                         className={`bg-green-500 w-[40%] rounded-md p-2 pb-1 hover:bg-green-400 transition-colors shadow-md shadow-gray-400 text-white font-bold tracker ${arnekG.className}`}
                         onClick={async () => {
                             if (add) {
-                                const created = createProduct(
+                                const created = await createProduct(
                                     dataProduct,
                                     handleSingle,
                                     cleanData,
@@ -179,10 +180,10 @@ export const ModalCreateEditProduct: React.FC<IPropsAddEditProduct> = ({
                         }}
                     >
                         {requestIsLoading ? (
-                            <div className="relative left-3">
+                            <div className="flex items-center justify-center">
                                 <LoadingIcons.SpinningCircles
                                     color="#a226d0"
-                                    alignmentBaseline="central"
+                                    alignmentBaseline="middle"
                                     height={25}
                                     fill="#fff"
                                 />
