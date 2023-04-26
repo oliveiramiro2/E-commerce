@@ -53,8 +53,8 @@ export const InputUser: React.FC<{ data: IPropsInput; index: number }> = ({
                     <button
                         type="button"
                         onClick={() => setShowPassword(!showPassword)}
-                     className="text-pallet-purple self-end relative right-8 bottom-[6px]"
->
+                        className="text-pallet-purple self-end relative right-8 bottom-[6px]"
+                    >
                         {!showPassword ? (
                             <AiFillEye size={25} />
                         ) : (

@@ -1,16 +1,27 @@
 import React, { useLayoutEffect } from "react";
 import { gsap } from "gsap";
 import { NumericFormat } from "react-number-format";
+import { useQuery } from "@tanstack/react-query";
+import Skeleton from "react-loading-skeleton";
+import clsx from "clsx";
 
 import { arnekG, oswald, tiro } from "@/functions/fonts";
 import { IPropsAddEditProduct } from "../interface";
+import { ICategoryApi } from "@/interface";
+import { categories } from "@/services/api";
+import { createProduct } from "../function";
 
 export const ModalCreateEditProduct: React.FC<IPropsAddEditProduct> = ({
     add,
-    data,
+    dataProduct,
     handleSingle,
     closeModal,
 }) => {
+    const { data, isLoading } = useQuery<ICategoryApi[] | undefined>({
+        queryFn: () => categories(""),
+        queryKey: ["allCategories"],
+    });
+
     useLayoutEffect(() => {
         gsap.from(".contain-modal-product", {
             scale: 0,
@@ -28,47 +39,124 @@ export const ModalCreateEditProduct: React.FC<IPropsAddEditProduct> = ({
             </p>
             <form className="w-full h-[40vh] flex flex-col justify-around items-center pl-[5vw] pr-[5vw]">
                 <div className="w-full flex justify-between gap-x-4">
-                    <input
-                        type="text"
-                        placeholder="Nome"
-                        className={`outline-none border border-pallet-purple p-1 pl-1 rounded-lg ${tiro.className}`}
-                        value={data.title}
-                        onChange={e => handleSingle(e.target.value, 0)}
-                    />
-                    <input
-                        type="text"
-                        placeholder="Descrição"
-                        className={`outline-none border border-pallet-purple p-1 pl-1 rounded-lg ${tiro.className}`}
-                        value={data.description}
-                        onChange={e => handleSingle(e.target.value, 1)}
-                    />
+                    <div>
+                        <input
+                            type="text"
+                            placeholder="Nome"
+                            className={clsx(
+                                `outline-none border border-pallet-purple p-1 pl-1 rounded-lg ${tiro.className}`,
+                                {
+                                    "border-red-500":
+                                        dataProduct.title === "" &&
+                                        dataProduct.trySendErro,
+                                }
+                            )}
+                            value={dataProduct.title}
+                            onChange={e => handleSingle(e.target.value, 0)}
+                        />
+                        {dataProduct.title === "" &&
+                            dataProduct.trySendErro && (
+                                <p
+                                    className={`text-red-500 font-semibold self-center relative top-3 ${tiro.className}`}
+                                >
+                                    Preencha o nome do produto.
+                                </p>
+                            )}
+                    </div>
+                    <div>
+                        <input
+                            type="text"
+                            placeholder="Descrição"
+                            className={clsx(
+                                `outline-none border border-pallet-purple p-1 pl-1 rounded-lg ${tiro.className}`,
+                                {
+                                    "border-red-500":
+                                        dataProduct.description === "" &&
+                                        dataProduct.trySendErro,
+                                }
+                            )}
+                            value={dataProduct.description}
+                            onChange={e => handleSingle(e.target.value, 1)}
+                        />
+                        {dataProduct.description === "" &&
+                            dataProduct.trySendErro && (
+                                <p
+                                    className={`text-red-500 font-semibold self-center relative top-3 ${tiro.className}`}
+                                >
+                                    Preencha a descrição do produto.
+                                </p>
+                            )}
+                    </div>
                 </div>
                 <div className="w-full flex justify-between">
-                    <NumericFormat
-                        value={data.price}
-                        placeholder="Preço"
-                        prefix="R$ "
-                        decimalSeparator=","
-                        thousandSeparator="."
-                        decimalScale={2}
-                        allowNegative={false}
-                        className={`outline-none border border-pallet-purple p-1 pl-1 rounded-lg ${tiro.className}`}
-                        onValueChange={e => handleSingle(e.floatValue, 2)}
-                    />
-                    <select
-                        className={`select text-center outline-none border border-pallet-purple p-1 pl-1 rounded-lg ${tiro.className}`}
-                        value={data.category}
-                        onChange={e => handleSingle(e.target.value, 3)}
-                    >
-                        <option value="ok">test</option>
-                        <option value="1">test working?</option>
-                    </select>
+                    <div>
+                        <NumericFormat
+                            value={dataProduct.price}
+                            placeholder="Preço"
+                            prefix="R$ "
+                            decimalSeparator=","
+                            thousandSeparator="."
+                            decimalScale={2}
+                            allowNegative={false}
+                            className={clsx(
+                                `outline-none border border-pallet-purple p-1 pl-1 rounded-lg ${tiro.className}`,
+                                {
+                                    "border-red-500":
+                                        dataProduct.price === "" &&
+                                        dataProduct.trySendErro,
+                                }
+                            )}
+                            onValueChange={e => handleSingle(e.floatValue, 2)}
+                        />
+                        {dataProduct.price === "" &&
+                            dataProduct.trySendErro && (
+                                <p
+                                    className={`text-red-500 font-semibold self-center relative top-3 ${tiro.className}`}
+                                >
+                                    Preencha o preço do produto.
+                                </p>
+                            )}
+                    </div>
+                    {isLoading ? (
+                        <Skeleton count={1} />
+                    ) : (
+                        <div>
+                            <select
+                                className={clsx(
+                                    `select text-center outline-none border border-pallet-purple p-1 pl-1 rounded-lg ${tiro.className}`,
+                                    {
+                                        "border-red-500":
+                                            dataProduct.category === 0 &&
+                                            dataProduct.trySendErro,
+                                    }
+                                )}
+                                value={dataProduct.category}
+                                onChange={e => handleSingle(e.target.value, 3)}
+                            >
+                                <option value="0">Categoria</option>
+                                {data?.map(item => (
+                                    <option value={item.id}>{item.name}</option>
+                                ))}
+                            </select>
+                            {dataProduct.category === 0 &&
+                                dataProduct.trySendErro && (
+                                    <p
+                                        className={`text-red-500 font-semibold self-center relative top-3 ${tiro.className}`}
+                                    >
+                                        Selecione a categoria do produto.
+                                    </p>
+                                )}
+                        </div>
+                    )}
                 </div>
                 <div className="w-full flex justify-around">
                     <button
                         type="button"
                         className={`bg-green-500 w-[40%] rounded-md p-2 pb-1 hover:bg-green-400 transition-colors shadow-md shadow-gray-400 text-white font-bold tracker ${arnekG.className}`}
-                        onClick={() => console.log(data)}
+                        onClick={() => {
+                            createProduct(dataProduct, handleSingle);
+                            console.log(dataProduct);
+                        }}
                     >
                         Adicionar
                     </button>
