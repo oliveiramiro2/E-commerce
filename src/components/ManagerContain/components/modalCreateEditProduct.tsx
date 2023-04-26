@@ -2,8 +2,11 @@ import React, { useLayoutEffect } from "react";
 import { gsap } from "gsap";
 
 import { arnekG, oswald, tiro } from "@/functions/fonts";
+import { IPropsAddEditProduct } from "../interface";
 
-export const ModalCreateEditProduct: React.FC = () => {
+export const ModalCreateEditProduct: React.FC<IPropsAddEditProduct> = ({
+    add,
+}) => {
     useLayoutEffect(() => {
         gsap.from(".contain-modal-product", {
             scale: 0,
@@ -17,10 +20,10 @@ export const ModalCreateEditProduct: React.FC = () => {
             <p
                 className={`font-black text-xl text-center self-center max-lg:right-0 ${oswald.className}`}
             >
-                Adicionar produto
+                {add ? "Adicionar" : "Editar"} produto
             </p>
             <form className="w-full h-[40vh] flex flex-col justify-around items-center pl-[5vw] pr-[5vw]">
-                <div className="w-full flex justify-between">
+                <div className="w-full flex justify-between gap-x-4">
                     <input
                         type="text"
                         placeholder="Nome"
