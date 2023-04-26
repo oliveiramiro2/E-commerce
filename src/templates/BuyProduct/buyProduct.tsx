@@ -96,7 +96,7 @@ export const BuyProductTemplate: React.FC = () => {
                             ))}
                     </div>
                 </div>
-                <div className="flex gap-x-3 items-center mt-5 mb-5">
+                <div className="flex gap-x-3 items-center mt-10 mb-10">
                     <CountManyItems
                         price={data?.price || 0}
                         count={count}
@@ -138,7 +138,7 @@ export const BuyProductTemplate: React.FC = () => {
                     </button>
                 </div>
                 <p
-                    className={`font-bold mb-5 text-center text-sm ${arnekG.className}`}
+                    className={`font-bold mb-10 text-center text-sm ${arnekG.className}`}
                 >
                     {data?.description}
                 </p>
