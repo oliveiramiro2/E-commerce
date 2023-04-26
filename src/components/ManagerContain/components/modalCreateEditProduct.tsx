@@ -6,6 +6,8 @@ import { IPropsAddEditProduct } from "../interface";
 
 export const ModalCreateEditProduct: React.FC<IPropsAddEditProduct> = ({
     add,
+    data,
+    handleSingle,
 }) => {
     useLayoutEffect(() => {
         gsap.from(".contain-modal-product", {
@@ -28,11 +30,15 @@ export const ModalCreateEditProduct: React.FC<IPropsAddEditProduct> = ({
                         type="text"
                         placeholder="Nome"
                         className={`outline-none border-[1.5px] border-pallet-purple p-1 pl-1 rounded-lg ${tiro.className}`}
+                        value={data.title}
+                        onChange={e => handleSingle(e.target.value, 0)}
                     />
                     <input
                         type="text"
                         placeholder="Descrição"
                         className={`outline-none border-[1.5px] border-pallet-purple p-1 pl-1 rounded-lg ${tiro.className}`}
+                        value={data.description}
+                        onChange={e => handleSingle(e.target.value, 1)}
                     />
                 </div>
                 <div className="w-full flex justify-between">
@@ -40,9 +46,13 @@ export const ModalCreateEditProduct: React.FC<IPropsAddEditProduct> = ({
                         type="text"
                         placeholder="Preço"
                         className={`outline-none border-[1.5px] border-pallet-purple p-1 pl-1 rounded-lg ${tiro.className}`}
+                        value={data.price}
+                        onChange={e => handleSingle(e.target.value, 2)}
                     />
                     <select
                         className={`select text-center outline-none border-2 border-pallet-purple p-1 pl-1 rounded-lg ${tiro.className}`}
+                        value={data.category}
+                        onChange={e => handleSingle(e.target.value, 3)}
                     >
                         <option value="ok">test</option>
                     </select>
