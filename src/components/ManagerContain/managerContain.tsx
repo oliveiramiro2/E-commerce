@@ -50,8 +50,15 @@ export const ManagerContain: React.FC<IProps> = ({
         showLoading,
         idItem
     );
-    const { openModalProduct, setOpenModalProduct, addNew, setAddNew } =
-        useModalAddEditProduct();
+    const {
+        openModalProduct,
+        setOpenModalProduct,
+        addNew,
+        setAddNew,
+        dataActionProduct,
+        handleSingleData,
+        handleCleanData,
+    } = useModalAddEditProduct();
 
     useLayoutEffect(() => {
         gsap.timeline({ delay: 1 })
@@ -199,7 +206,12 @@ export const ManagerContain: React.FC<IProps> = ({
                 overlayClassName="modal-overlay-center"
                 className="bg-white border border-black rounded-lg min-w-[50vw] max-lg:min-w-[70vw] max-md:min-w-[85vw]"
             >
-                <ModalCreateEditProduct add={addNew} />
+                <ModalCreateEditProduct
+                    add={addNew}
+                    data={dataActionProduct}
+                    handleSingle={handleSingleData}
+                    cleanData={handleCleanData}
+                />
             </Modal>
         </div>
     );
