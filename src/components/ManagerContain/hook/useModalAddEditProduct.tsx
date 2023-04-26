@@ -2,11 +2,12 @@
 
 import { useState } from "react";
 import { IDataProduct } from "../interface";
+import { MaskCoin } from "@/functions/maskCoin";
 
 const defaultValuesProduct: IDataProduct = {
     title: "",
     description: "",
-    price: 0,
+    price: "",
     category: 0,
     trySendErro: false,
 };
@@ -40,7 +41,7 @@ export const useModalAddEditProduct = () => {
                 case 2:
                     setDataActionProduct({
                         ...dataActionProduct,
-                        price: Number(value),
+                        price: MaskCoin(value),
                     });
                     break;
                 case 3:

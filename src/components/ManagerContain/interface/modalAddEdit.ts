@@ -1,7 +1,7 @@
 export interface IDataProduct {
     title: string;
     description: string;
-    price: number;
+    price: string;
     category: number;
     trySendErro: boolean;
 }

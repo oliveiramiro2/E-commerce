@@ -3,6 +3,7 @@ import { gsap } from "gsap";
 
 import { arnekG, oswald, tiro } from "@/functions/fonts";
 import { IPropsAddEditProduct } from "../interface";
+import { MaskCoin } from "@/functions/maskCoin";
 
 export const ModalCreateEditProduct: React.FC<IPropsAddEditProduct> = ({
     add,
@@ -30,14 +31,14 @@ export const ModalCreateEditProduct: React.FC<IPropsAddEditProduct> = ({
                     <input
                         type="text"
                         placeholder="Nome"
-                        className={`outline-none border-[1.5px] border-pallet-purple p-1 pl-1 rounded-lg ${tiro.className}`}
+                        className={`outline-none border border-pallet-purple p-1 pl-1 rounded-lg ${tiro.className}`}
                         value={data.title}
                         onChange={e => handleSingle(e.target.value, 0)}
                     />
                     <input
                         type="text"
                         placeholder="Descrição"
-                        className={`outline-none border-[1.5px] border-pallet-purple p-1 pl-1 rounded-lg ${tiro.className}`}
+                        className={`outline-none border border-pallet-purple p-1 pl-1 rounded-lg ${tiro.className}`}
                         value={data.description}
                         onChange={e => handleSingle(e.target.value, 1)}
                     />
@@ -46,22 +47,24 @@ export const ModalCreateEditProduct: React.FC<IPropsAddEditProduct> = ({
                     <input
                         type="text"
                         placeholder="Preço"
-                        className={`outline-none border-[1.5px] border-pallet-purple p-1 pl-1 rounded-lg ${tiro.className}`}
-                        value={data.price}
-                        onChange={e => handleSingle(e.target.value, 2)}
+                        className={`outline-none border border-pallet-purple p-1 pl-1 rounded-lg ${tiro.className}`}
+                        value={MaskCoin(Number(data.price))}
+                        onChange={e => handleSingle(e.target.value.replace(/[^0-9.]/g, ""), 2)}
                     />
                     <select
-                        className={`select text-center outline-none border-2 border-pallet-purple p-1 pl-1 rounded-lg ${tiro.className}`}
+                        className={`select text-center outline-none border border-pallet-purple p-1 pl-1 rounded-lg ${tiro.className}`}
                         value={data.category}
                         onChange={e => handleSingle(e.target.value, 3)}
                     >
                         <option value="ok">test</option>
+                        <option value="1">test working?</option>
                     </select>
                 </div>
                 <div className="w-full flex justify-around">
                     <button
                         type="button"
                         className={`bg-green-500 w-[40%] rounded-md p-2 pb-1 hover:bg-green-400 transition-colors shadow-md shadow-gray-400 text-white font-bold tracker ${arnekG.className}`}
+                        onClick={() => console.log(data)}
                     >
                         Adicionar
                     </button>
