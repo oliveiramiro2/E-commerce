@@ -208,7 +208,7 @@ export const ManagerContain: React.FC<IProps> = ({
             >
                 <ModalCreateEditProduct
                     add={addNew}
-                    data={dataActionProduct}
+                    dataProduct={dataActionProduct}
                     handleSingle={handleSingleData}
                     cleanData={handleCleanData}
                     closeModal={setOpenModalProduct}

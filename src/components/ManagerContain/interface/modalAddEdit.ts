@@ -8,7 +8,7 @@ export interface IDataProduct {
 
 export interface IPropsAddEditProduct {
     add: boolean;
-    data: IDataProduct;
+    dataProduct: IDataProduct;
     handleSingle: Function;
     cleanData: Function;
     closeModal: Function;
