@@ -13,3 +13,4 @@ export type {
     ILoginTokens
 } from './dataLoginUser';
 export type { IContextCartData } from './productsCart';
+export type { INewProductData, IEditProduct } from './newProduct';
