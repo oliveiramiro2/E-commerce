@@ -12,4 +12,13 @@ export interface IPropsAddEditProduct {
     handleSingle: Function;
     cleanData: Function;
     closeModal: Function;
+    requestIsLoading: boolean;
+    setRequestIsLoading: Function;
+}
+
+export interface IPropsFunctionAddProduct {
+    data: IDataProduct;
+    handleData: Function;
+    clearProduct: Function;
+    setRequestIsLoading: Function;
 }
