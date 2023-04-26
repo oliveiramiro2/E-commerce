@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useEffect } from "react";
+import React, { useLayoutEffect } from "react";
 import { SlPencil } from "react-icons/sl";
 import { FaRegTrashAlt } from "react-icons/fa";
 import { FiPlus } from "react-icons/fi";
@@ -47,14 +47,14 @@ export const ManagerContain: React.FC<IProps> = ({
         idItem
     );
 
-    useEffect(() => {
+    useLayoutEffect(() => {
         gsap.timeline({ delay: 1 })
             .from(".add", { opacity: 0, xPercent: -100, ease: "slow" })
             .from(".search", { opacity: 0, y: -100, ease: "slow" })
             .from(".select", { opacity: 0, xPercent: 100, ease: "slow" });
     }, []);
 
-    useEffect(() => {
+    useLayoutEffect(() => {
         if (search === "")
             gsap.from(".lineTable", {
                 duration: 0.5,
