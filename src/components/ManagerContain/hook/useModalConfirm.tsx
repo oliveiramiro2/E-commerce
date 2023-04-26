@@ -10,9 +10,9 @@ export const useModalConfirm = () => {
     return {
         showModalConfirm,
         showLoading,
+        idItem,
         setShowLoading,
         setShowModalConfirm,
-        idItem,
         setIdItem,
     };
 };
