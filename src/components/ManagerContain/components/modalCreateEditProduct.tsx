@@ -1,5 +1,6 @@
 import React, { useLayoutEffect } from "react";
 import { gsap } from "gsap";
+import { NumericFormat } from "react-number-format";
 
 import { arnekG, oswald, tiro } from "@/functions/fonts";
 import { IPropsAddEditProduct } from "../interface";
@@ -43,12 +44,16 @@ export const ModalCreateEditProduct: React.FC<IPropsAddEditProduct> = ({
                     />
                 </div>
                 <div className="w-full flex justify-between">
-                    <input
-                        type="text"
-                        placeholder="Preço"
-                        className={`outline-none border border-pallet-purple p-1 pl-1 rounded-lg ${tiro.className}`}
+                    <NumericFormat
                         value={data.price}
-                        onChange={e => handleSingle(e.target.value.replace(/[^0-9.]/g, ""), 2)}
+                        placeholder="Preço"
+                        prefix="R$ "
+                        decimalSeparator=","
+                        thousandSeparator="."
+                        decimalScale={2}
+                        allowNegative={false}
+                        className={`outline-none border border-pallet-purple p-1 pl-1 rounded-lg ${tiro.className}`}
+                        onValueChange={e => handleSingle(e.floatValue, 2)}
                     />
                     <select
                         className={`select text-center outline-none border border-pallet-purple p-1 pl-1 rounded-lg ${tiro.className}`}
