@@ -50,7 +50,8 @@ export const ManagerContain: React.FC<IProps> = ({
         showLoading,
         idItem
     );
-    const { openModalProduct, setOpenModalProduct } = useModalAddEditProduct();
+    const { openModalProduct, setOpenModalProduct, addNew, setAddNew } =
+        useModalAddEditProduct();
 
     useLayoutEffect(() => {
         gsap.timeline({ delay: 1 })
@@ -76,7 +77,10 @@ export const ManagerContain: React.FC<IProps> = ({
                 <button
                     type="button"
                     className={`add font-bold text-lg flex items-center gap-x-1 border-2 border-pallet-purple p-1 pr-2 rounded-md bg-white hover:bg-gray-100 transition-colors text-center ${tiro.className}`}
-                    onClick={() => setOpenModalProduct(true)}
+                    onClick={() => {
+                        setAddNew(true);
+                        setOpenModalProduct(true);
+                    }}
                 >
                     <FiPlus color="#32f34c" size={22} />
                     Adicionar {dataProduct.length > 1 ? "Produto" : "Categoria"}
@@ -195,7 +199,7 @@ export const ManagerContain: React.FC<IProps> = ({
                 overlayClassName="modal-overlay-center"
                 className="bg-white border border-black rounded-lg min-w-[50vw] max-lg:min-w-[70vw] max-md:min-w-[85vw]"
             >
-                <ModalCreateEditProduct />
+                <ModalCreateEditProduct add={addNew} />
             </Modal>
         </div>
     );
