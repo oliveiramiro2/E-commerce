@@ -3,7 +3,7 @@
 import { useEffect, useState, useCallback } from "react";
 
 import { ICategoryApi, IDataApi } from "@/interface";
-import { IDataTable, IOptions } from "../interface";
+import { IDataProduct, IDataTable, IOptions } from "../interface";
 
 const options: IOptions[] = [
     { value: 10 },
@@ -18,7 +18,9 @@ export const useData = (
     dataCategory: ICategoryApi[],
     numberItemsPagination: number,
     showLoading: boolean,
-    idItem: number
+    idItem: number,
+    requestIsLoading :boolean,
+    dataActionProduct :IDataProduct,
 ) => {
     const [data, setData] = useState<IDataTable[]>([]);
     const [allData, setAllData] = useState<IDataTable[]>([]);
@@ -69,6 +71,13 @@ export const useData = (
             setAllData(aux);
         }
     }, [showLoading]);
+
+    useEffect(() => {
+        if (requestIsLoading) {
+            const aux = [...allData, {name: dataActionProduct.title, id: 9999}];
+            setAllData(aux);
+        }
+    }, [requestIsLoading]);
 
     useEffect(() => {
         handleDataPerPagination();
