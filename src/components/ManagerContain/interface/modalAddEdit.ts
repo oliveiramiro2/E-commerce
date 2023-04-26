@@ -15,10 +15,3 @@ export interface IPropsAddEditProduct {
     requestIsLoading: boolean;
     setRequestIsLoading: Function;
 }
-
-export interface IPropsFunctionAddProduct {
-    data: IDataProduct;
-    handleData: Function;
-    clearProduct: Function;
-    setRequestIsLoading: Function;
-}
