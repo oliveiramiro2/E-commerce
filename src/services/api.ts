@@ -6,7 +6,8 @@ import {
     IDataLoginUser,
     IDataRegisterUser,
     IDataUser,
-    ILoginTokens
+    ILoginTokens,
+    INewProductData
 } from "@/interface"
 import { notify } from "@/functions/notifications"
 
@@ -54,6 +55,11 @@ export const buyProduct = async (productId: number): Promise<IDataApi | undefine
 export const deleteProduct = async (productId: number): Promise<boolean> => {
     const { data }: {data: boolean} = await api.delete(`/products/${productId}`)
     return data
+}
+
+export const addProduct = async (dataForm: INewProductData): Promise<boolean> => {
+    const { status } = await api.post(`/products/`, dataForm)
+    return status === 201
 }
 
 // categories
