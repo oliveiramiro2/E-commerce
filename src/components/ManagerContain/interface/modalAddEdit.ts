@@ -11,4 +11,5 @@ export interface IPropsAddEditProduct {
     data: IDataProduct;
     handleSingle: Function;
     cleanData: Function;
+    closeModal: Function;
 }
