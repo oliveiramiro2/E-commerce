@@ -211,6 +211,7 @@ export const ManagerContain: React.FC<IProps> = ({
                     data={dataActionProduct}
                     handleSingle={handleSingleData}
                     cleanData={handleCleanData}
+                    closeModal={setOpenModalProduct}
                 />
             </Modal>
         </div>
