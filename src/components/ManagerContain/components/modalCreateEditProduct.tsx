@@ -3,6 +3,7 @@ import { gsap } from "gsap";
 import { NumericFormat } from "react-number-format";
 import { useQuery } from "@tanstack/react-query";
 import Skeleton from "react-loading-skeleton";
+import LoadingIcons from "react-loading-icons";
 import clsx from "clsx";
 
 import { arnekG, oswald, tiro } from "@/functions/fonts";
@@ -17,6 +18,8 @@ export const ModalCreateEditProduct: React.FC<IPropsAddEditProduct> = ({
     handleSingle,
     closeModal,
     cleanData,
+    requestIsLoading,
+    setRequestIsLoading,
 }) => {
     const { data, isLoading } = useQuery<ICategoryApi[] | undefined>({
         queryFn: () => categories(""),
@@ -159,7 +162,8 @@ export const ModalCreateEditProduct: React.FC<IPropsAddEditProduct> = ({
                                 const created = createProduct(
                                     dataProduct,
                                     handleSingle,
-                                    cleanData
+                                    cleanData,
+                                    setRequestIsLoading,
                                 );
                                 if (created) {
                                     gsap.to(".contain-modal-product", {
@@ -174,7 +178,18 @@ export const ModalCreateEditProduct: React.FC<IPropsAddEditProduct> = ({
                             }
                         }}
                     >
-                        Adicionar
+                        {requestIsLoading ? (
+                            <div className="relative left-3">
+                                <LoadingIcons.SpinningCircles
+                                    color="#a226d0"
+                                    alignmentBaseline="central"
+                                    height={25}
+                                    fill="#fff"
+                                />
+                            </div>
+                        ) : (
+                            "Adicionar"
+                        )}
                     </button>
                     <button
                         type="button"
