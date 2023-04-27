@@ -29,7 +29,7 @@ export const ModalCreateEditCategory: React.FC<IPropsAddEditCategory> = ({
     }, []);
 
     return (
-        <div className="contain-modal-category flex flex-col justify-center min-h-[50vh]">
+        <div className="contain-modal-category flex flex-col justify-center mt-10 min-h-[50vh]">
             <p
                 className={`font-black text-xl text-center self-center max-lg:right-0 ${oswald.className}`}
             >
