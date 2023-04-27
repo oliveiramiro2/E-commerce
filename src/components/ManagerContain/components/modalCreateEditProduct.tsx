@@ -20,6 +20,7 @@ export const ModalCreateEditProduct: React.FC<IPropsAddEditProduct> = ({
     cleanData,
     requestIsLoading,
     setRequestIsLoading,
+    setIdNewItem,
 }) => {
     const { data, isLoading } = useQuery<ICategoryApi[] | undefined>({
         queryFn: () => categories(""),
@@ -165,6 +166,7 @@ export const ModalCreateEditProduct: React.FC<IPropsAddEditProduct> = ({
                                     handleSingle,
                                     cleanData,
                                     setRequestIsLoading,
+                                    setIdNewItem,
                                 );
                                 if (created) {
                                     gsap.to(".contain-modal-product", {
