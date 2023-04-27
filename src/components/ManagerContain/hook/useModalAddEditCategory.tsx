@@ -23,8 +23,8 @@ export const useModalAddEditCategory = () => {
         editIdCategory,
         setOpenModalCategory,
         setAddNewCategory,
-        handleDataCategory: (name: string) =>
-            setDataActionCategory({ ...dataActionCategory, name }),
+        handleDataCategory: (name: string, trySendErro: boolean = false) =>
+            setDataActionCategory({ name, trySendErro }),
         setEditIdCategory,
     };
 };
