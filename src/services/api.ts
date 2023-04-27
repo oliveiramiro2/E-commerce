@@ -93,6 +93,11 @@ export const createCategory = async (dataForm: INewCategoryData): Promise<boolea
     return false
 }
 
+export const editCategory = async (categoryId: number, name: string): Promise<boolean> => {
+    const { status } = await api.put(`/categories/${categoryId}`, name)
+    return status === 200
+}
+
 // user register
 export const emailIsAvaliable = async (email: {email: string}): Promise<boolean> => {
     const {data} = await api.post(`/users/is-available`, email)
