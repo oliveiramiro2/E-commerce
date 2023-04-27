@@ -6,6 +6,7 @@ export const APP_ROUTES = {
         editProfile: '/editar_perfil',
         admin: {
             managerProducts: '/gerenciar_produtos',
+            managerCategories: '/gerenciar_categorias',
         }
     },
     public: {
