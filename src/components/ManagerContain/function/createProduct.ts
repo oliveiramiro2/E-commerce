@@ -2,6 +2,7 @@ import { notify } from "@/functions/notifications";
 import { IDataProduct } from "../interface";
 import { INewProductData } from "@/interface";
 import { addProduct } from "@/services/api";
+import { leftSomeInfo } from "./leftSomeInfo";
 
 /* eslint-disable-next-line */
 export const createProduct = async (
@@ -11,26 +12,10 @@ export const createProduct = async (
         setRequestIsLoading: Function,
         setIdNewItem: Function
     ) => {
-    if (data.title === "") {
-        handleData({...data, trySendErro: true})
-        notify("warning", "Erro,", "Não foi possível fazer login preencha o nome do produto")
-        return false
-    }
-    if (data.description === "") {
-        handleData({...data, trySendErro: true})
-        notify("warning", "Erro,", "Não foi possível fazer login preencha a descrição do produto")
-        return false
-    }
-    if (data.price === "") {
-        handleData({...data, trySendErro: true})
-        notify("warning", "Erro,", "Não foi possível fazer login preencha o preço do produto")
-        return false
-    }
-    if (data.category === 0) {
-        handleData({...data, trySendErro: true})
-        notify("warning", "Erro,", "Não foi possível fazer login preencha a categoria do produto")
-        return false
-    }
+
+    const leftInfo = leftSomeInfo(data, handleData, true)
+
+    if (!leftInfo) return leftInfo;
 
     setRequestIsLoading(true)
     const dataForm: INewProductData = {
