@@ -100,10 +100,12 @@ export const useData = (
     }, [idNewItem]);
 
     useEffect(() => {
+        const auxId: number =
+                dataProduct.length > 1 ? idItem : editIdCategory;
         if (productEdited) {
             const aux: IDataTable[] = [];
             allData.forEach(item => {
-                if (item.id !== editId) {
+                if (item.id !== auxId) {
                     aux.push({ name: item.name, id: item.id });
                 }
             });
