@@ -14,7 +14,7 @@ export const editTheProduct = async (
     /* eslint-disable-next-line */
 ): Promise<boolean> => {
 
-    const leftInfo = leftSomeInfo(data, handleData, true)
+    const leftInfo = leftSomeInfo(data, handleData, false)
 
     if (!leftInfo) return leftInfo;
 
