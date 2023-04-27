@@ -20,6 +20,7 @@ export const useData = (
     showLoading: boolean,
     idItem: number,
     dataActionProduct :IDataProduct,
+    editId: number,
 ) => {
     const [data, setData] = useState<IDataTable[]>([]);
     const [allData, setAllData] = useState<IDataTable[]>([]);
@@ -29,6 +30,7 @@ export const useData = (
     const [page, setPage] = useState<number>(1);
     const [search, setSearch] = useState<string>("");
     const [idNewItem, setIdNewItem] = useState<number>(0);
+    const [productEdited, setProductEdited] = useState<boolean>(false);
 
     const auxData: IDataTable[] = [];
     useEffect(() => {
@@ -80,6 +82,19 @@ export const useData = (
     }, [idNewItem]);
 
     useEffect(() => {
+        if (productEdited) {
+            const aux: IDataTable[] = [];
+            allData.forEach(item => {
+                if (item.id !== editId) {
+                    aux.push({name: item.name, id: item.id});
+                }
+            });
+            aux.push({name: dataActionProduct.title, id: editId})
+            setAllData(aux);
+        }
+    }, [productEdited]);
+
+    useEffect(() => {
         handleDataPerPagination();
     }, [handleDataPerPagination]);
 
@@ -121,5 +136,6 @@ export const useData = (
         },
         setSearch,
         setIdNewItem,
+        setProductEdited,
     };
 };
