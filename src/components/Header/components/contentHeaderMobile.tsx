@@ -49,7 +49,7 @@ export const ContentHeaderMobile: React.FC = () => {
                             </li>
                             <li
                                 className={clsx(
-                                    "w-full border-gray-800 pt-3 pb-5 pl-5",
+                                    "w-full pt-3 pb-5 pl-5",
                                     {
                                         "border-b": !logined,
                                     }
@@ -72,6 +72,7 @@ export const ContentHeaderMobile: React.FC = () => {
                             </li>
                         </>
                     ) : (
+                        <>
                         <li className="border-b w-full border-gray-800 pt-3 pb-5 pl-5">
                             <button
                                 type="button"
@@ -92,6 +93,27 @@ export const ContentHeaderMobile: React.FC = () => {
                                 Gerenciar produtos
                             </button>
                         </li>
+                        <li className="w-full pt-3 pb-5 pl-5">
+                            <button
+                                type="button"
+                                className={`text-pallet-white w-52 flex items-center gap-x-2 font-medium text-md hover:border-b hover:transition-colors hover:drop-shadow-xl border-pallet-blue ${tiro.className}`}
+                                onClick={() => {
+                                    if (
+                                        !logined ||
+                                        allUserData.role === "customer"
+                                    )
+                                        push("/");
+                                    push("/gerenciar_categorias");
+                                }}
+                            >
+                                <BiCartAdd
+                                    size={20}
+                                    className="relative bottom-[3px]"
+                                />{" "}
+                                Gerenciar categorias
+                            </button>
+                        </li>
+                        </>
                     )}
                     {!logined && (
                         <button

@@ -92,25 +92,46 @@ export const ContentHeaderDesktop: React.FC<IPropsContentHeaderDesktop> = ({
                             </li>
                         </>
                     ) : (
-                        <li
-                            className={`text-pallet-blue font-medium text-lg hover:border-b hover:transition-colors hover:drop-shadow-xl border-pallet-blue ${tiro.className}`}
-                        >
-                            <button
-                                type="button"
-                                className="flex gap-x-1"
-                                onClick={() => {
-                                    if (
-                                        !logined ||
-                                        allUserData.role === "customer"
-                                    )
-                                        push("/");
-                                    push("/gerenciar_produtos");
-                                }}
+                        <>
+                            <li
+                                className={`text-pallet-blue font-medium text-lg hover:border-b hover:transition-colors hover:drop-shadow-xl border-pallet-blue ${tiro.className}`}
                             >
-                                <BiCartAdd className="relative top-[2px]" />{" "}
-                                Gerenciar produtos
-                            </button>
-                        </li>
+                                <button
+                                    type="button"
+                                    className="flex gap-x-1"
+                                    onClick={() => {
+                                        if (
+                                            !logined ||
+                                            allUserData.role === "customer"
+                                        )
+                                            push("/");
+                                        push("/gerenciar_produtos");
+                                    }}
+                                >
+                                    <BiCartAdd className="relative top-[2px]" />{" "}
+                                    Gerenciar produtos
+                                </button>
+                            </li>
+                            <li
+                                className={`text-pallet-blue font-medium text-lg hover:border-b hover:transition-colors hover:drop-shadow-xl border-pallet-blue ${tiro.className}`}
+                            >
+                                <button
+                                    type="button"
+                                    className="flex gap-x-1"
+                                    onClick={() => {
+                                        if (
+                                            !logined ||
+                                            allUserData.role === "customer"
+                                        )
+                                            push("/");
+                                        push("/gerenciar_categorias");
+                                    }}
+                                >
+                                    <BiCartAdd className="relative top-[2px]" />{" "}
+                                    Gerenciar categorias
+                                </button>
+                            </li>
+                        </>
                     )}
                 </ul>
             </nav>
@@ -149,7 +170,10 @@ export const ContentHeaderDesktop: React.FC<IPropsContentHeaderDesktop> = ({
                                     });
                                 }}
                             />
-                            <FaAngleDown size={20} className="self-center text-black" />
+                            <FaAngleDown
+                                size={20}
+                                className="self-center text-black"
+                            />
                         </div>
                     }
                 >
