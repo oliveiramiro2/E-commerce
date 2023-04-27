@@ -19,7 +19,6 @@ export const useData = (
     numberItemsPagination: number,
     showLoading: boolean,
     idItem: number,
-    requestIsLoading :boolean,
     dataActionProduct :IDataProduct,
 ) => {
     const [data, setData] = useState<IDataTable[]>([]);
@@ -29,6 +28,7 @@ export const useData = (
     const [numItems, setNumItems] = useState<number>(numberItemsPagination);
     const [page, setPage] = useState<number>(1);
     const [search, setSearch] = useState<string>("");
+    const [idNewItem, setIdNewItem] = useState<number>(0);
 
     const auxData: IDataTable[] = [];
     useEffect(() => {
@@ -73,11 +73,11 @@ export const useData = (
     }, [showLoading]);
 
     useEffect(() => {
-        if (requestIsLoading) {
-            const aux = [...allData, {name: dataActionProduct.title, id: 9999}];
+        if (idNewItem !== 0) {
+            const aux = [...allData, {name: dataActionProduct.title, id: idNewItem}];
             setAllData(aux);
         }
-    }, [requestIsLoading]);
+    }, [idNewItem]);
 
     useEffect(() => {
         handleDataPerPagination();
@@ -120,5 +120,6 @@ export const useData = (
             setPage(page - 1);
         },
         setSearch,
+        setIdNewItem,
     };
 };
