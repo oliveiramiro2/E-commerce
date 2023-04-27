@@ -7,7 +7,7 @@ import LoadingIcons from "react-loading-icons";
 
 import { arnekG, oswald, tiro } from "@/functions/fonts";
 import { IPropsAddEditCategory } from "../interface";
-import { createCategory } from "../function";
+import { createCategory, editTheCategory } from "../function";
 
 export const ModalCreateEditCategory: React.FC<IPropsAddEditCategory> = ({
     add,
@@ -17,7 +17,8 @@ export const ModalCreateEditCategory: React.FC<IPropsAddEditCategory> = ({
     setRequestIsLoading,
     closeModal,
     setIdNewItem,
-    /* editId, */
+    editId,
+    setProductEdited,
 }) => {
     useLayoutEffect(() => {
         gsap.from(".contain-modal-category", {
@@ -28,7 +29,7 @@ export const ModalCreateEditCategory: React.FC<IPropsAddEditCategory> = ({
     }, []);
 
     return (
-        <div className="contain-modal-product flex flex-col justify-center min-h-[50vh]">
+        <div className="contain-modal-category flex flex-col justify-center min-h-[50vh]">
             <p
                 className={`font-black text-xl text-center self-center max-lg:right-0 ${oswald.className}`}
             >
@@ -56,7 +57,7 @@ export const ModalCreateEditCategory: React.FC<IPropsAddEditCategory> = ({
                                 <p
                                     className={`text-red-500 font-semibold self-center relative top-3 ${tiro.className}`}
                                 >
-                                    Preencha o nome do produto.
+                                    Preencha o nome da categoria.
                                 </p>
                             )}
                     </div>
@@ -76,20 +77,19 @@ export const ModalCreateEditCategory: React.FC<IPropsAddEditCategory> = ({
                                     setIdNewItem,
                                 );
                                 requestWasRigth = created !== false;
-                            } /* else {
-                                const edited = await editTheProduct(
-                                    dataProduct,
-                                    handleSingle,
-                                    cleanData,
+                            } else {
+                                const edited = await editTheCategory(
+                                    dataCategory,
+                                    handleData,
                                     setRequestIsLoading,
                                     editId,
                                     setProductEdited,
                                 )
                                 requestWasRigth = edited;
-                            } */
+                            }
                             if (requestWasRigth) {
                                 requestWasRigth = false;
-                                gsap.to(".contain-modal-product", {
+                                gsap.to(".contain-modal-category", {
                                     scale: 0,
                                     opacity: 0,
                                     ease: "slow",
