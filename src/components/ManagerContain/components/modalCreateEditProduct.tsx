@@ -10,7 +10,7 @@ import { arnekG, oswald, tiro } from "@/functions/fonts";
 import { IPropsAddEditProduct } from "../interface";
 import { ICategoryApi } from "@/interface";
 import { categories } from "@/services/api";
-import { createProduct } from "../function";
+import { createProduct, editTheProduct } from "../function";
 
 export const ModalCreateEditProduct: React.FC<IPropsAddEditProduct> = ({
     add,
@@ -21,6 +21,8 @@ export const ModalCreateEditProduct: React.FC<IPropsAddEditProduct> = ({
     requestIsLoading,
     setRequestIsLoading,
     setIdNewItem,
+    editId,
+    setProductEdited
 }) => {
     const { data, isLoading } = useQuery<ICategoryApi[] | undefined>({
         queryFn: () => categories(""),
@@ -36,7 +38,7 @@ export const ModalCreateEditProduct: React.FC<IPropsAddEditProduct> = ({
     }, []);
 
     return (
-        <div className="contain-modal-product flex flex-col justify-center min-h-[50vh]">
+        <div className="contain-modal-product flex flex-col justify-center min-h-[60vh]">
             <p
                 className={`font-black text-xl text-center self-center max-lg:right-0 ${oswald.className}`}
             >
@@ -69,8 +71,7 @@ export const ModalCreateEditProduct: React.FC<IPropsAddEditProduct> = ({
                             )}
                     </div>
                     <div>
-                        <input
-                            type="text"
+                        <textarea
                             placeholder="Descrição"
                             className={clsx(
                                 `outline-none border border-pallet-purple p-1 pl-1 rounded-lg ${tiro.className}`,
@@ -160,24 +161,37 @@ export const ModalCreateEditProduct: React.FC<IPropsAddEditProduct> = ({
                         disabled={requestIsLoading}
                         className={`bg-green-500 w-[40%] rounded-md p-2 pb-1 hover:bg-green-400 transition-colors shadow-md shadow-gray-400 text-white font-bold tracker ${arnekG.className}`}
                         onClick={async () => {
+                            let requestWasRigth = false
                             if (add) {
                                 const created = await createProduct(
                                     dataProduct,
                                     handleSingle,
                                     cleanData,
                                     setRequestIsLoading,
-                                    setIdNewItem,
+                                    setIdNewItem
                                 );
-                                if (created) {
-                                    gsap.to(".contain-modal-product", {
-                                        scale: 0,
-                                        opacity: 0,
-                                        ease: "slow",
-                                    });
-                                    setTimeout(() => {
-                                        closeModal(false);
-                                    }, 500);
-                                }
+                                requestWasRigth = created !== false;
+                            } else {
+                                const edited = await editTheProduct(
+                                    dataProduct,
+                                    handleSingle,
+                                    cleanData,
+                                    setRequestIsLoading,
+                                    editId,
+                                    setProductEdited,
+                                )
+                                requestWasRigth = edited;
+                            }
+                            if (requestWasRigth) {
+                                requestWasRigth = false;
+                                gsap.to(".contain-modal-product", {
+                                    scale: 0,
+                                    opacity: 0,
+                                    ease: "slow",
+                                });
+                                setTimeout(() => {
+                                    closeModal(false);
+                                }, 500);
                             }
                         }}
                     >
@@ -190,8 +204,10 @@ export const ModalCreateEditProduct: React.FC<IPropsAddEditProduct> = ({
                                     fill="#fff"
                                 />
                             </div>
-                        ) : (
+                        ) : add ? (
                             "Adicionar"
+                        ) : (
+                            "Editar"
                         )}
                     </button>
                     <button
