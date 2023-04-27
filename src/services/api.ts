@@ -6,6 +6,7 @@ import {
     IDataLoginUser,
     IDataRegisterUser,
     IDataUser,
+    IEditProduct,
     ILoginTokens,
     INewProductData
 } from "@/interface"
@@ -63,6 +64,11 @@ export const addProduct = async (dataForm: INewProductData): Promise<boolean | n
         return data.id
     }
     return false
+}
+
+export const editProduct = async (productId: number, dataForm: IEditProduct): Promise<boolean> => {
+    const { status } = await api.put(`/products/${productId}`, dataForm)
+    return status === 200
 }
 
 // categories
