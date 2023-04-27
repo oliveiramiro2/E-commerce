@@ -306,7 +306,7 @@ export const ManagerContain: React.FC<IProps> = ({
                     closeModal={setOpenModalCategory}
                     editId={editIdCategory}
                     setIdNewItem={setIdNewItem}
-                    /* categoryId={editIdCategory} */
+                    setProductEdited={setProductEdited}
                 />
             </Modal>
         </div>
