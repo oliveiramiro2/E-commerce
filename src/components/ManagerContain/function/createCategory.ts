@@ -28,11 +28,11 @@ export const createCategory = async (
             setIdNewItem(0)
             handleData({name: "", trySendErro: false})
         }, 1500)
-        notify("success", "Sucesso,", "Produto foi cadastrado com sucesso!")
+        notify("success", "Sucesso,", "Categoria foi cadastrado com sucesso!")
         setRequestIsLoading(false)
         return response
     }
-    notify("danger", "Erro desculpe,", "não foi possível cadastrar o produto!")
+    notify("danger", "Erro desculpe,", "não foi possível cadastrar o categoria!")
     setRequestIsLoading(false)
     return false
 }
