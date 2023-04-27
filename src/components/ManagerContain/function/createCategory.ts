@@ -4,7 +4,7 @@ import { INewCategoryData } from "@/interface";
 import { addCategory } from "@/services/api";
 import { leftSomeInfoCategory } from "./leftSomeInfoCategory";
 
-export const createProduct = async (
+export const createCategory = async (
         data: IDataCategory,
         handleData: Function,
         clearProduct: Function,
