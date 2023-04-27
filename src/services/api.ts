@@ -79,6 +79,11 @@ export const categories = async (param: string) => {
     return data
 }
 
+export const deleteCategory = async (categoryId: number): Promise<boolean> => {
+    const { data }: {data: boolean} = await api.delete(`/categories${categoryId}`)
+    return data;
+}
+
 // user register
 export const emailIsAvaliable = async (email: {email: string}): Promise<boolean> => {
     const {data} = await api.post(`/users/is-available`, email)
