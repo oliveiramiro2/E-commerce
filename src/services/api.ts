@@ -57,9 +57,12 @@ export const deleteProduct = async (productId: number): Promise<boolean> => {
     return data
 }
 
-export const addProduct = async (dataForm: INewProductData): Promise<boolean> => {
-    const { status } = await api.post(`/products/`, dataForm)
-    return status === 201
+export const addProduct = async (dataForm: INewProductData): Promise<boolean | number> => {
+    const { status, data } = await api.post(`/products/`, dataForm)
+    if (status === 201) {
+        return data.id
+    }
+    return false
 }
 
 // categories
