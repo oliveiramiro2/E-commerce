@@ -94,7 +94,7 @@ export const addCategory = async (dataForm: INewCategoryData): Promise<boolean> 
 }
 
 export const editCategory = async (categoryId: number, name: string): Promise<boolean> => {
-    const { status } = await api.put(`/categories/${categoryId}`, name)
+    const { status } = await api.put(`/categories/${categoryId}`, { name })
     return status === 200
 }
 
