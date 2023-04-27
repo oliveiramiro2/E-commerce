@@ -3,7 +3,12 @@
 import { useEffect, useState, useCallback } from "react";
 
 import { ICategoryApi, IDataApi } from "@/interface";
-import { IDataProduct, IDataTable, IOptions } from "../interface";
+import {
+    IDataCategory,
+    IDataProduct,
+    IDataTable,
+    IOptions,
+} from "../interface";
 
 const options: IOptions[] = [
     { value: 10 },
@@ -19,8 +24,10 @@ export const useData = (
     numberItemsPagination: number,
     showLoading: boolean,
     idItem: number,
-    dataActionProduct :IDataProduct,
+    dataActionProduct: IDataProduct,
     editId: number,
+    dataActionCategory: IDataCategory,
+    editIdCategory: number
 ) => {
     const [data, setData] = useState<IDataTable[]>([]);
     const [allData, setAllData] = useState<IDataTable[]>([]);
@@ -69,14 +76,25 @@ export const useData = (
 
     useEffect(() => {
         if (showLoading) {
-            const aux = allData.filter(item => item.id !== idItem);
+            const auxId: number =
+                dataProduct.length > 1 ? idItem : editIdCategory;
+            const aux = allData.filter(item => item.id !== auxId);
             setAllData(aux);
         }
     }, [showLoading]);
 
     useEffect(() => {
         if (idNewItem !== 0) {
-            const aux = [...allData, {name: dataActionProduct.title, id: idNewItem}];
+            const aux = [
+                ...allData,
+                {
+                    name:
+                        dataProduct.length > 1
+                            ? dataActionProduct.title
+                            : dataActionCategory.name,
+                    id: idNewItem,
+                },
+            ];
             setAllData(aux);
         }
     }, [idNewItem]);
@@ -86,10 +104,16 @@ export const useData = (
             const aux: IDataTable[] = [];
             allData.forEach(item => {
                 if (item.id !== editId) {
-                    aux.push({name: item.name, id: item.id});
+                    aux.push({ name: item.name, id: item.id });
                 }
             });
-            aux.push({name: dataActionProduct.title, id: editId})
+            aux.push({
+                name:
+                    dataProduct.length > 1
+                        ? dataActionProduct.title
+                        : dataActionCategory.name,
+                id: editId,
+            });
             setAllData(aux);
         }
     }, [productEdited]);
