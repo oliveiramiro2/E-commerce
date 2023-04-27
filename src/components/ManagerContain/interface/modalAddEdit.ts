@@ -14,4 +14,5 @@ export interface IPropsAddEditProduct {
     closeModal: Function;
     requestIsLoading: boolean;
     setRequestIsLoading: Function;
+    setIdNewItem: Function;
 }
