@@ -15,4 +15,6 @@ export interface IPropsAddEditProduct {
     requestIsLoading: boolean;
     setRequestIsLoading: Function;
     setIdNewItem: Function;
+    editId: number;
+    setProductEdited: Function;
 }
