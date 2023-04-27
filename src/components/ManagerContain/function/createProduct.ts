@@ -4,7 +4,13 @@ import { INewProductData } from "@/interface";
 import { addProduct } from "@/services/api";
 
 /* eslint-disable-next-line */
-export const createProduct = async (data: IDataProduct, handleData: Function, clearProduct: Function, setRequestIsLoading: Function) => {
+export const createProduct = async (
+        data: IDataProduct,
+        handleData: Function,
+        clearProduct: Function,
+        setRequestIsLoading: Function,
+        setIdNewItem: Function
+    ) => {
     if (data.title === "") {
         handleData({...data, trySendErro: true})
         notify("warning", "Erro,", "Não foi possível fazer login preencha o nome do produto")
@@ -40,12 +46,16 @@ export const createProduct = async (data: IDataProduct, handleData: Function, cl
     }
 
     const response = await addProduct(dataForm)
-    if (response) {
+    if (response !== false) {
+        setIdNewItem(response)
         handleData({...data, trySendErro: false});
-        setTimeout(() => clearProduct(), 1000)
+        setTimeout(() => {
+            setIdNewItem(0)
+            clearProduct()
+        }, 1500)
         notify("success", "Sucesso,", "Produto foi cadastrado com sucesso!")
         setRequestIsLoading(false)
-        return true
+        return response
     }
     notify("danger", "Erro desculpe,", "não foi possível cadastrar o produto!")
     setRequestIsLoading(false)
