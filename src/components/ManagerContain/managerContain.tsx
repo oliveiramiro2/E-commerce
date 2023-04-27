@@ -54,13 +54,13 @@ export const ManagerContain: React.FC<IProps> = ({
         handlePagPerIndex,
         handlePagMore,
         handlePagMinus,
+        setIdNewItem,
     } = useData(
         dataProduct,
         dataCategory,
         numberItemsPagination,
         showLoading,
         idItem,
-        requestIsLoading,
         dataActionProduct,
     );
 
@@ -218,6 +218,7 @@ export const ManagerContain: React.FC<IProps> = ({
                     closeModal={setOpenModalProduct}
                     requestIsLoading={requestIsLoading}
                     setRequestIsLoading={setRequestIsLoading}
+                    setIdNewItem={setIdNewItem}
                 />
             </Modal>
         </div>
