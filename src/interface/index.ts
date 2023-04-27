@@ -14,3 +14,4 @@ export type {
 } from './dataLoginUser';
 export type { IContextCartData } from './productsCart';
 export type { INewProductData, IEditProduct } from './newProduct';
+export type { INewCategoryData, IEditCategory } from './newCategory';
