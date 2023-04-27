@@ -12,6 +12,7 @@ import { BiCartAdd, BiLogIn, BiLogOut } from "react-icons/bi";
 import { AiOutlineClose, AiOutlineMenu } from "react-icons/ai";
 import { MdCategory } from "react-icons/md";
 import { Menu, MenuItem, MenuDivider } from "@szhsin/react-menu";
+import clsx from "clsx";
 
 import { IPropsContentHeaderDesktop } from "@/interface";
 import { arnekG, tiro } from "@/functions/fonts";
@@ -45,7 +46,9 @@ export const ContentHeaderDesktop: React.FC<IPropsContentHeaderDesktop> = ({
             </Link>
             <div />
             <nav className="h-full flex justify-center items-center max-lg:hidden">
-                <ul className="flex gap-x-20 max-lg:gap-x-10">
+                <ul className={clsx("flex gap-x-20 max-lg:gap-x-10", {
+                    "gap-x-5": allUserData.role !== "customer",
+                })}>
                     <li
                         className={`text-pallet-blue font-medium text-lg hover:border-b hover:transition-colors hover:drop-shadow-xl border-pallet-blue ${tiro.className}`}
                     >
