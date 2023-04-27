@@ -10,6 +10,7 @@ import {
 } from "react-icons/fa";
 import { BiCartAdd, BiLogIn, BiLogOut } from "react-icons/bi";
 import { AiOutlineClose, AiOutlineMenu } from "react-icons/ai";
+import { MdCategory } from "react-icons/md";
 import { Menu, MenuItem, MenuDivider } from "@szhsin/react-menu";
 
 import { IPropsContentHeaderDesktop } from "@/interface";
@@ -127,7 +128,7 @@ export const ContentHeaderDesktop: React.FC<IPropsContentHeaderDesktop> = ({
                                         push("/gerenciar_categorias");
                                     }}
                                 >
-                                    <BiCartAdd className="relative top-[2px]" />{" "}
+                                    <MdCategory className="relative top-[2px]" />{" "}
                                     Gerenciar categorias
                                 </button>
                             </li>

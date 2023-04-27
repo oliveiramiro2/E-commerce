@@ -2,6 +2,7 @@ import React, { useContext } from "react";
 import Link from "next/link";
 import { FaHome, FaShoppingBag, FaShoppingCart } from "react-icons/fa";
 import { BiCartAdd, BiLogIn } from "react-icons/bi";
+import { MdCategory } from "react-icons/md";
 import clsx from "clsx";
 
 import { tiro } from "@/functions/fonts";
@@ -106,7 +107,7 @@ export const ContentHeaderMobile: React.FC = () => {
                                     push("/gerenciar_categorias");
                                 }}
                             >
-                                <BiCartAdd
+                                <MdCategory
                                     size={20}
                                     className="relative bottom-[3px]"
                                 />{" "}
