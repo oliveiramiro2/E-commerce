@@ -82,7 +82,9 @@ export const ManagerContain: React.FC<IProps> = ({
         showLoading,
         idItem,
         dataActionProduct,
-        editId
+        editId,
+        dataActionCategory,
+        editIdCategory
     );
 
     useLayoutEffect(() => {
@@ -187,7 +189,7 @@ export const ManagerContain: React.FC<IProps> = ({
                                 <button
                                     type="button"
                                     onClick={() => {
-                                        if (dataProduct.length) {
+                                        if (dataProduct.length > 0) {
                                             const productToEdit =
                                                 dataProduct.filter(
                                                     product =>
@@ -210,7 +212,7 @@ export const ManagerContain: React.FC<IProps> = ({
                                             setAddNew(false);
                                             setOpenModalProduct(true);
                                         }
-                                        if (dataCategory.length) {
+                                        if (dataCategory.length > 0) {
                                             const categoryToEdit =
                                                 dataCategory.filter(
                                                     category =>
