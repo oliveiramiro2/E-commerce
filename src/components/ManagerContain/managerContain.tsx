@@ -235,6 +235,7 @@ export const ManagerContain: React.FC<IProps> = ({
                                     type="button"
                                     onClick={() => {
                                         setShowModalConfirm(true);
+                                        setEditIdCategory(item.id);
                                         setIdItem(item.id);
                                     }}
                                 >

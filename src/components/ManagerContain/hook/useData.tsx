@@ -100,8 +100,7 @@ export const useData = (
     }, [idNewItem]);
 
     useEffect(() => {
-        const auxId: number =
-                dataProduct.length > 1 ? idItem : editIdCategory;
+        const auxId: number = dataProduct.length > 1 ? editId : editIdCategory;
         if (productEdited) {
             const aux: IDataTable[] = [];
             allData.forEach(item => {
