@@ -20,7 +20,7 @@ export const ManagerProductsTemplate: React.FC = () => {
         document.title = "RM E-commerce - Gerenciar produtos";
     }, []);
 
-    if (isLoading) return <SkeletonManagetTable />
+    if (isLoading) return <SkeletonManagetTable />;
 
     return (
         <DefaultTemplate>
