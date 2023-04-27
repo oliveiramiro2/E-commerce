@@ -21,10 +21,10 @@ export const editTheCategory = async (
     const response = await editCategory(editId, data.name)
     if (response) {
         setProductEdited(true)
-        handleData({...data, trySendErro: false})
+        handleData(data.name, false)
         setTimeout(() => {
             setProductEdited(false)
-            handleData({name: '', trySendErro: false})
+            handleData('', false)
         }, 1500)
         notify("success", "Sucesso,", "Categoria foi editado com sucesso!")
         setRequestIsLoading(false)

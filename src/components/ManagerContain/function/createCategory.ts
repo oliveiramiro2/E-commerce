@@ -23,10 +23,10 @@ export const createCategory = async (
     const response = await addCategory(dataForm)
     if (response !== false) {
         setIdNewItem(response)
-        handleData({...data, trySendErro: false});
+        handleData(data.name, false);
         setTimeout(() => {
             setIdNewItem(0)
-            handleData({name: "", trySendErro: false})
+            handleData("", false)
         }, 1500)
         notify("success", "Sucesso,", "Categoria foi cadastrado com sucesso!")
         setRequestIsLoading(false)
