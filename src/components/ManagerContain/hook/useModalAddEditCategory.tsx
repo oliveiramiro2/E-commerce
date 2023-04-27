@@ -8,7 +8,7 @@ const defaultValuesCategory: IDataCategory = {
     trySendErro: false,
 };
 
-export const useModalAddEditProduct = () => {
+export const useModalAddEditCategory = () => {
     const [openModalCategory, setOpenModalCategory] = useState<boolean>(false);
     const [addNewCategory, setAddNewCategory] = useState<boolean>(false);
     const [dataActionCategory, setDataActionCategory] = useState<IDataCategory>(
