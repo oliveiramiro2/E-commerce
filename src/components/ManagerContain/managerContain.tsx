@@ -41,6 +41,7 @@ export const ManagerContain: React.FC<IProps> = ({
         setAddNew,
         handleSingleData,
         handleCleanData,
+        handleEditData,
     } = useModalAddEditProduct();
     const {
         data,
@@ -61,7 +62,7 @@ export const ManagerContain: React.FC<IProps> = ({
         numberItemsPagination,
         showLoading,
         idItem,
-        dataActionProduct,
+        dataActionProduct
     );
 
     useLayoutEffect(() => {
@@ -158,7 +159,27 @@ export const ManagerContain: React.FC<IProps> = ({
                                 {item.name}
                             </td>
                             <td className="text-center border-t border-l border-r border-blue-200">
-                                <button type="button">
+                                <button
+                                    type="button"
+                                    onClick={() => {
+                                        if (dataProduct.length) {
+                                            const productToEdit =
+                                                dataProduct.filter(
+                                                    product =>
+                                                        product.id === item.id
+                                                );
+                                            handleEditData({
+                                                title: productToEdit[0].title,
+                                                category: productToEdit[0].category.id,
+                                                description: productToEdit[0].description,
+                                                price: String(productToEdit[0].price),
+                                                trySendErro: false,
+                                            });
+                                            setAddNew(false);
+                                            setOpenModalProduct(true);
+                                        }
+                                    }}
+                                >
                                     <SlPencil color="#e68a00" size={20} />
                                 </button>
                             </td>
