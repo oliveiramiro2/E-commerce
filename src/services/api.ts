@@ -85,7 +85,7 @@ export const deleteCategory = async (categoryId: number): Promise<boolean> => {
     return data;
 }
 
-export const createCategory = async (dataForm: INewCategoryData): Promise<boolean> => {
+export const addCategory = async (dataForm: INewCategoryData): Promise<boolean> => {
     const { data, status } = await api.post(`/categories`, dataForm)
     if (status === 201) {
         return data.id
