@@ -6,3 +6,4 @@ export { CartTemplate } from './Cart/cart';
 export { BuyProductTemplate } from './BuyProduct/buyProduct';
 export { EditUserTemlate } from './EditUser/editUser';
 export { ManagerProductsTemplate } from './ManagerProducts/managerProducts';
+export { ManagerCategoriesTemplate } from './ManagerCategories/managerCategories';
