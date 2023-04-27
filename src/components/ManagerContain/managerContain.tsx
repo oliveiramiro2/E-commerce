@@ -36,6 +36,8 @@ export const ManagerContain: React.FC<IProps> = ({
         addNew,
         dataActionProduct,
         requestIsLoading,
+        editId,
+        setEditId,
         setRequestIsLoading,
         setOpenModalProduct,
         setAddNew,
@@ -56,13 +58,15 @@ export const ManagerContain: React.FC<IProps> = ({
         handlePagMore,
         handlePagMinus,
         setIdNewItem,
+        setProductEdited,
     } = useData(
         dataProduct,
         dataCategory,
         numberItemsPagination,
         showLoading,
         idItem,
-        dataActionProduct
+        dataActionProduct,
+        editId
     );
 
     useLayoutEffect(() => {
@@ -175,6 +179,7 @@ export const ManagerContain: React.FC<IProps> = ({
                                                 price: String(productToEdit[0].price),
                                                 trySendErro: false,
                                             });
+                                            setEditId(item.id)
                                             setAddNew(false);
                                             setOpenModalProduct(true);
                                         }
@@ -240,6 +245,8 @@ export const ManagerContain: React.FC<IProps> = ({
                     requestIsLoading={requestIsLoading}
                     setRequestIsLoading={setRequestIsLoading}
                     setIdNewItem={setIdNewItem}
+                    editId={editId}
+                    setProductEdited={setProductEdited}
                 />
             </Modal>
         </div>
