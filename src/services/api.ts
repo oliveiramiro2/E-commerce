@@ -8,6 +8,7 @@ import {
     IDataUser,
     IEditProduct,
     ILoginTokens,
+    INewCategoryData,
     INewProductData
 } from "@/interface"
 import { notify } from "@/functions/notifications"
@@ -82,6 +83,14 @@ export const categories = async (param: string) => {
 export const deleteCategory = async (categoryId: number): Promise<boolean> => {
     const { data }: {data: boolean} = await api.delete(`/categories${categoryId}`)
     return data;
+}
+
+export const createCategory = async (dataForm: INewCategoryData): Promise<boolean> => {
+    const { data, status } = await api.post(`/categories`, dataForm)
+    if (status === 201) {
+        return data.id
+    }
+    return false
 }
 
 // user register
