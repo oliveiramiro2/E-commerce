@@ -10,7 +10,12 @@ import { gsap } from "gsap";
 import Modal from "react-modal";
 
 import { IProps } from "./interface";
-import { useData, useModalAddEditProduct, useModalConfirm } from "./hook";
+import {
+    useData,
+    useModalAddEditCategory,
+    useModalAddEditProduct,
+    useModalConfirm,
+} from "./hook";
 import { tiro, arnekG } from "@/functions/fonts";
 import {
     ModalConfirmDelete,
@@ -46,6 +51,16 @@ export const ManagerContain: React.FC<IProps> = ({
         handleCleanData,
         handleEditData,
     } = useModalAddEditProduct();
+    const {
+        addNewCategory,
+        dataActionCategory,
+        editIdCategory,
+        openModalCategory,
+        handleDataCategory,
+        setAddNewCategory,
+        setEditIdCategory,
+        setOpenModalCategory,
+    } = useModalAddEditCategory();
     const {
         data,
         page,
@@ -98,9 +113,10 @@ export const ManagerContain: React.FC<IProps> = ({
                         if (dataProduct.length) {
                             setAddNew(true);
                             setOpenModalProduct(true);
-                        } /* else {
-                            setAddNew(true);
-                        } */
+                        } else {
+                            setAddNewCategory(true);
+                            setOpenModalCategory(true);
+                        }
                     }}
                 >
                     <FiPlus color="#32f34c" size={22} />
@@ -194,6 +210,19 @@ export const ManagerContain: React.FC<IProps> = ({
                                             setAddNew(false);
                                             setOpenModalProduct(true);
                                         }
+                                        if (dataCategory.length) {
+                                            const categoryToEdit =
+                                                dataCategory.filter(
+                                                    category =>
+                                                        category.id === item.id
+                                                );
+                                            handleDataCategory(
+                                                categoryToEdit[0].name
+                                            );
+                                            setEditIdCategory(item.id);
+                                            setAddNewCategory(false);
+                                            setOpenModalCategory(true);
+                                        }
                                     }}
                                 >
                                     <SlPencil color="#e68a00" size={20} />
@@ -262,14 +291,23 @@ export const ManagerContain: React.FC<IProps> = ({
             </Modal>
             <Modal
                 ariaHideApp={false}
-                isOpen
-                /* isOpen={openModalProduct}
-                onRequestClose={() => setOpenModalProduct(false)} */
+                isOpen={openModalCategory}
+                onRequestClose={() => setOpenModalCategory(false)}
                 contentLabel="Adicionar ou editar categoria!"
                 overlayClassName="modal-overlay-center"
                 className="bg-white border border-black rounded-lg min-w-[50vw] max-lg:min-w-[70vw] max-md:min-w-[85vw]"
             >
-                <ModalCreateEditCategory />
+                <ModalCreateEditCategory
+                    add={addNewCategory}
+                    dataCategory={dataActionCategory}
+                    handleData={handleDataCategory}
+                    requestIsLoading={requestIsLoading}
+                    setRequestIsLoading={setRequestIsLoading}
+                    closeModal={setOpenModalCategory}
+                    editId={editIdCategory}
+                    setIdNewItem={setIdNewItem}
+                    /* categoryId={editIdCategory} */
+                />
             </Modal>
         </div>
     );
