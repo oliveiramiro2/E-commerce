@@ -81,7 +81,7 @@ export const categories = async (param: string) => {
 }
 
 export const deleteCategory = async (categoryId: number): Promise<boolean> => {
-    const { data }: {data: boolean} = await api.delete(`/categories${categoryId}`)
+    const { data }: {data: boolean} = await api.delete(`/categories/${categoryId}`)
     return data;
 }
 
