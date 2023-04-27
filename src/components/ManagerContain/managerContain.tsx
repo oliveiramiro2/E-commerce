@@ -14,6 +14,7 @@ import { useData, useModalAddEditProduct, useModalConfirm } from "./hook";
 import { tiro, arnekG } from "@/functions/fonts";
 import {
     ModalConfirmDelete,
+    ModalCreateEditCategory,
     ModalCreateEditProduct,
     Pagination,
 } from "./components";
@@ -94,8 +95,12 @@ export const ManagerContain: React.FC<IProps> = ({
                     type="button"
                     className={`add font-bold text-lg flex items-center gap-x-1 border-2 border-pallet-purple p-1 pr-2 rounded-md bg-white hover:bg-gray-100 transition-colors text-center ${tiro.className}`}
                     onClick={() => {
-                        setAddNew(true);
-                        setOpenModalProduct(true);
+                        if (dataProduct.length) {
+                            setAddNew(true);
+                            setOpenModalProduct(true);
+                        } /* else {
+                            setAddNew(true);
+                        } */
                     }}
                 >
                     <FiPlus color="#32f34c" size={22} />
@@ -174,12 +179,18 @@ export const ManagerContain: React.FC<IProps> = ({
                                                 );
                                             handleEditData({
                                                 title: productToEdit[0].title,
-                                                category: productToEdit[0].category.id,
-                                                description: productToEdit[0].description,
-                                                price: String(productToEdit[0].price),
+                                                category:
+                                                    productToEdit[0].category
+                                                        .id,
+                                                description:
+                                                    productToEdit[0]
+                                                        .description,
+                                                price: String(
+                                                    productToEdit[0].price
+                                                ),
                                                 trySendErro: false,
                                             });
-                                            setEditId(item.id)
+                                            setEditId(item.id);
                                             setAddNew(false);
                                             setOpenModalProduct(true);
                                         }
@@ -232,7 +243,7 @@ export const ManagerContain: React.FC<IProps> = ({
                 ariaHideApp={false}
                 isOpen={openModalProduct}
                 onRequestClose={() => setOpenModalProduct(false)}
-                contentLabel="Adicionar produto!"
+                contentLabel="Adicionar ou editar produto!"
                 overlayClassName="modal-overlay-center"
                 className="bg-white border border-black rounded-lg min-w-[50vw] max-lg:min-w-[70vw] max-md:min-w-[85vw]"
             >
@@ -248,6 +259,17 @@ export const ManagerContain: React.FC<IProps> = ({
                     editId={editId}
                     setProductEdited={setProductEdited}
                 />
+            </Modal>
+            <Modal
+                ariaHideApp={false}
+                isOpen
+                /* isOpen={openModalProduct}
+                onRequestClose={() => setOpenModalProduct(false)} */
+                contentLabel="Adicionar ou editar categoria!"
+                overlayClassName="modal-overlay-center"
+                className="bg-white border border-black rounded-lg min-w-[50vw] max-lg:min-w-[70vw] max-md:min-w-[85vw]"
+            >
+                <ModalCreateEditCategory />
             </Modal>
         </div>
     );
