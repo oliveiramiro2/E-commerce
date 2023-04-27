@@ -12,5 +12,5 @@ export interface IPropsAddEditCategory {
     closeModal: Function;
     editId: number;
     setIdNewItem: Function;
-    /* setProductEdited: Function; */
+    setProductEdited: Function;
 }
