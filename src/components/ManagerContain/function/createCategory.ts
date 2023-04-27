@@ -7,7 +7,6 @@ import { leftSomeInfoCategory } from "./leftSomeInfoCategory";
 export const createCategory = async (
         data: IDataCategory,
         handleData: Function,
-        clearProduct: Function,
         setRequestIsLoading: Function,
         setIdNewItem: Function
     ) => {
@@ -27,7 +26,7 @@ export const createCategory = async (
         handleData({...data, trySendErro: false});
         setTimeout(() => {
             setIdNewItem(0)
-            clearProduct()
+            handleData({name: "", trySendErro: false})
         }, 1500)
         notify("success", "Sucesso,", "Produto foi cadastrado com sucesso!")
         setRequestIsLoading(false)
