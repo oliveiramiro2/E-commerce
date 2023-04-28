@@ -1,21 +1,51 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect, useRef } from "react";
+import { gsap } from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 
 import { arnekG, oswald, tiro } from "@/functions/fonts";
 import { useRedirect } from "@/hooks";
 import { UserDataContext } from "@/contexts/userDataLogin";
 
 export const Banner: React.FC = () => {
-    const { logined, setRedirectOnLogin, allUserData } = useContext(UserDataContext);
+    const { logined, setRedirectOnLogin, allUserData } =
+        useContext(UserDataContext);
     const { push } = useRedirect();
 
+    gsap.registerPlugin(ScrollTrigger);
+    const refBanner = useRef(null);
+
+    useEffect(() => {
+        const element: any = refBanner.current;
+
+        gsap.to(element.querySelector("#banner"), {
+            scale: 0,
+            opacity: 0,
+            ease: "slow",
+            scrollTrigger: {
+                trigger: element.querySelector("#banner-text"),
+                scrub: true,
+                start: "top top",
+                end: "center top",
+            },
+        });
+    }, []);
+
     return (
-        <section className="bg-banner bg-cover bg-center bg-fixed bg-no-repeat w-screen h-[90vh] flex justify-between">
+        <section
+            ref={refBanner}
+            className="bg-banner bg-cover bg-center bg-fixed bg-no-repeat w-screen h-[90vh] flex justify-between"
+        >
             <div />
-            <div className="bg-pallet-white w-[30%] h-[50%] flex flex-col justify-around items-center pl-6 pr-6 rounded-lg border-2 border-pallet-blue mt-10 mr-20 max-lg:mr-8 max-lg:w-[40%]">
+            <div
+                id="banner"
+                className="bg-pallet-white w-[30%] h-[50%] flex flex-col justify-around items-center pl-6 pr-6 rounded-lg border-2 border-pallet-blue mt-10 mr-20 max-lg:mr-8 max-lg:w-[40%]"
+            >
                 <h1
+                    id="banner-text"
                     className={`font-bold text-xl text-center max-md:text-sm ${oswald.className}`}
                 >
-                    Bem-vindo {logined && `${allUserData.name}`}, ao RM E-commerce
+                    Bem-vindo {logined && `${allUserData.name}, `}ao RM
+                    E-commerce
                 </h1>
                 <p
                     className={`font-medium tracking-wide max-md:text-xs ${arnekG.className}`}
@@ -28,7 +58,8 @@ export const Banner: React.FC = () => {
                     type="button"
                     className={`bg-pallet-black p-3 pr-4 pl-4 text-pallet-white rounded-xl font-bold text-sm border-2 border-pallet-orange shadow-lg shadow-pallet-black hover:bg-pallet-orange hover:transition-colors max-md:text-xs ${tiro.className}`}
                     onClick={() => {
-                        if (!logined) setRedirectOnLogin("redirecionar=produtos");
+                        if (!logined)
+                            setRedirectOnLogin("redirecionar=produtos");
                         push("/produtos");
                     }}
                 >
