@@ -10,6 +10,9 @@ import ECommProvider from "@/contexts";
 export const metadata = {
     title: "RM E-commerce",
     description: "A fake e-commerce create with next app",
+    icons: {
+        icon: '/icon.png',
+    },
 };
 
 const RootLayout = ({ children }: { children: React.ReactNode }) => (
