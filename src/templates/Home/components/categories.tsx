@@ -28,8 +28,8 @@ export const Categories: React.FC = () => {
             scrollTrigger: {
                 trigger: element,
                 scrub: 2,
-                start: "bottom 75%",
-                end: "bottom 75%",
+                start: "bottom 85%",
+                end: "bottom 85%",
             },
         })
             .from(element.querySelector("#homeBestOfferText"), {
