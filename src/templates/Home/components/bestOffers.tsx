@@ -20,9 +20,7 @@ export const BestOffers: React.FC = () => {
     const refBestOffers = useRef(null);
 
     useEffect(() => {
-        console.log("passou 1");
         if (isLoading) return;
-        console.log("passou 2");
         const element: any = refBestOffers.current;
 
         gsap.timeline({
