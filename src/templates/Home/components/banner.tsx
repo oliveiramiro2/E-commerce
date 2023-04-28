@@ -20,12 +20,14 @@ export const Banner: React.FC = () => {
         gsap.to(element.querySelector("#banner"), {
             scale: 0,
             opacity: 0,
+            xPercent: 100,
             ease: "slow",
             scrollTrigger: {
                 trigger: element.querySelector("#banner-text"),
-                scrub: true,
-                start: "top top",
-                end: "center top",
+                scrub: 2,
+                pin: true,
+                start: "top 20%",
+                end: "bottom 20%",
             },
         });
     }, []);
