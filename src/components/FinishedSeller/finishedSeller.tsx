@@ -1,6 +1,7 @@
-import React, { useContext } from "react";
+import React, { useContext, useLayoutEffect } from "react";
 import clsx from "clsx";
 import LoadingIcons from "react-loading-icons";
+import { gsap } from "gsap";
 
 import { arnekG, oswald, tiro } from "@/functions/fonts";
 import { useAddressControl } from "./hooks";
@@ -32,8 +33,16 @@ export const FinishedSeller: React.FC<IPropsFinished> = ({
     const { cartData, setCartData } = useContext(CartUserContext);
     const { push } = useRedirect();
 
+    useLayoutEffect(() => {
+        gsap.from(".contain-modal-buy", {
+            scale: 0,
+            opacity: 0,
+            ease: "slow",
+        });
+    }, []);
+
     return (
-        <div>
+        <div className="contain-modal-buy">
             <div className="w-full flex justify-center">
                 <h5 className={`font-black text-2xl ${oswald.className}`}>
                     Adicione seu endereço para entrega!
@@ -243,7 +252,14 @@ export const FinishedSeller: React.FC<IPropsFinished> = ({
                                 <button
                                     className={`bg-pallet-orange pb-2 pt-3 pl-3 pr-3 w-28 flex items-center justify-center gap-x-1 rounded-md font-bolder text-center text-sm text-pallet-white first-letter:capitalize hover:bg-[#ff9748] transition-colors shadow-md shadow-pallet-orange ${arnekG.className}`}
                                     type="button"
-                                    onClick={() => close()}
+                                    onClick={() => {
+                                        gsap.to(".contain-modal-buy", {
+                                            scale: 0,
+                                            opacity: 0,
+                                            ease: "slow",
+                                        });
+                                        setTimeout(() => close(), 600)
+                                    }}
                                 >
                                     Voltar
                                 </button>
