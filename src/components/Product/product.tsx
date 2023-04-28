@@ -22,7 +22,7 @@ export const Product: React.FC<{ param: IDataApi }> = ({ param }) => {
 
     return (
         <div
-            className="bg-pallet-black flex flex-col h-min items-center gap-y-2 p-2 pr-3 pl-3 rounded-xl border-2 border-pallet-orange shadow-lg shadow-pallet-orange"
+            className="product bg-pallet-black flex flex-col h-min items-center gap-y-2 p-2 pr-3 pl-3 rounded-xl border-2 border-pallet-orange shadow-lg shadow-pallet-orange"
             onMouseOver={handleShow}
             onFocus={handleShow}
             onMouseOut={handleHide}

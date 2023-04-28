@@ -1,7 +1,9 @@
 "use client";
 
-import React from "react";
+import React, { useRef, useEffect } from "react";
 import { useQuery } from "@tanstack/react-query";
+import { gsap } from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 
 import { bestOffers } from "@/services/api";
 import { IDataApi } from "@/interface";
@@ -13,6 +15,35 @@ export const BestOffers: React.FC = () => {
         queryKey: ["bestOffers"],
         queryFn: bestOffers,
     });
+
+    gsap.registerPlugin(ScrollTrigger);
+    const refBestOffers = useRef(null);
+
+    useEffect(() => {
+console.log('passou 1')
+if (isLoading) return;
+console.log('passou 2')
+        const element: any = refBestOffers.current;
+
+        gsap.timeline({
+            scrollTrigger: {
+                trigger: element,
+                scrub: 2,
+                start: "center 55%",
+                end: "center 45%",
+            },
+        })
+            .from(element.querySelector("#homeBestOfferText"), {
+                y: -100,
+                opacity: 0,
+                scaleX: 0.2,
+            })
+            .from(".product", {
+                opacity: 0,
+                scaleX: 0,
+ease: "slow",
+            });
+    }, [isLoading]);
 
     if (isLoading) {
         return (
@@ -32,9 +63,13 @@ export const BestOffers: React.FC = () => {
     }
 
     return (
-        <section className="w-screen flex flex-col items-center pt-8 mb-8">
+        <section
+            ref={refBestOffers}
+            className="w-screen flex flex-col items-center pt-8 mb-8"
+        >
             <div>
                 <h2
+                    id="homeBestOfferText"
                     className={`font-black text-3xl relative right-5 max-lg:right-0 mb-8 ${oswald.className}`}
                 >
                     Produtos em oferta
