@@ -35,7 +35,7 @@ export const Banner: React.FC = () => {
     return (
         <section
             ref={refBanner}
-            className="bg-banner bg-cover bg-center bg-fixed bg-no-repeat w-screen h-[90vh] flex justify-between"
+            className="z-10 bg-banner bg-cover bg-center bg-fixed bg-no-repeat w-screen h-[90vh] flex justify-between"
         >
             <div />
             <div
