@@ -1,38 +1,79 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
-## Getting Started
+# Fake E-Commerce
 
-First, run the development server:
+This is a completely fictitious project, and the API used is completely public, so do not use any real information in case of use.
+
+A simple e-commerce example project for my portfolio. Built with ReactJs library, NextJS 13 framework and libraries like Tailwind Css, React Querty, React-hook-form, yup, gsap...
+
+
+## Run Locally
+
+Clone the project
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
+  git clone https://github.com/oliveiramiro2/E-commerce.git
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Go to the project directory
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+```bash
+  cd E-commerce
+```
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.ts`.
+Install dependencies
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
+```bash
+  npm install
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+Start the server
 
-## Learn More
+```bash
+  npm run dev
+```
 
-To learn more about Next.js, take a look at the following resources:
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Demo
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+Insert gif or link to demo
 
-## Deploy on Vercel
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## Authors
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+- [@Ramiro Mares](https://github.com/oliveiramiro2)
+
+
+## 🚀 About Me
+I'm a full stack developer JavaScript. I have solid knowledge with JavaScipt including TypeScript, my main focus is on React, React-Native and NodeJs. I'm constantly updating myself and learning with each project a little more how to be a better and more complete developer.
+
+
+## 🛠 Skills
+Javascript, Typescript, HTML5, CSS3, ReactJs.
+
+
+## Tech Stack
+
+**Client:** React, NextJs, TailwindCSS, React-Query, React-Hook-Form, Yup, Eslint, Prettier
+
+
+
+## Badges
+
+Add badges from somewhere like: [shields.io](https://shields.io/)
+
+[![Javascript](https://github.com/oliveiramiro2/badges_for_different_use/blob/main/badges/Language_%20JavaScript.png?raw=true)](https://www.javascript.com/) 
+
+[![TypeScript](https://github.com/oliveiramiro2/badges_for_different_use/blob/main/badges/Language_%20TypeScript.png?raw=true)](https://www.typescriptlang.org/)
+
+[![NextJS](https://github.com/oliveiramiro2/badges_for_different_use/blob/main/badges/Framework_%20NextJs.png?raw=true)](https://nextjs.org/)
+
+[![ReactJS](https://github.com/oliveiramiro2/badges_for_different_use/blob/main/badges/lib_%20ReactJS.png?raw=true)](https://pt-br.legacy.reactjs.org/)
+
+[![Tailwind Css](https://github.com/oliveiramiro2/badges_for_different_use/blob/main/badges/lib_%20Tailwind%20css.png?raw=true)](https://tailwindcss.com/)
+
+[![React-Query](https://github.com/oliveiramiro2/badges_for_different_use/blob/main/badges/lib_%20React%20Query.png?raw=true)](https://tanstack.com/query/v3/)
+
+## License
+
+[MIT](https://choosealicense.com/licenses/mit/)
+
