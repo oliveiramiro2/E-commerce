@@ -35,7 +35,8 @@ Start the server
 
 ## Demo
 
-Insert gif or link to demo
+The site is slow because my computer is very weak I couldn't finish showing the cart because the server restarted due to lack of memory, I spent 2 hours to record this video.
+<img src="https://github.com/oliveiramiro2/foto/blob/main/RM_E-commerce.gif?raw=true" />
 
 
 ## Authors
