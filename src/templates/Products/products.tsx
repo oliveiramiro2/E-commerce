@@ -6,7 +6,6 @@ import { TiChevronLeft, TiChevronRight } from "react-icons/ti";
 import clsx from "clsx";
 import { useSearchParams } from "next/navigation";
 import { gsap } from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
 
 import { DefaultTemplate } from "../default";
 import { oswald, tiro } from "@/functions/fonts";
@@ -54,7 +53,7 @@ export const ProductsTemplate: React.FC = () => {
                 scaleX: 0,
                 ease: "slow",
             });
-    }, [isLoading]);
+    }, [isLoading, isFetching]);
 
     if (isLoading || isFetching) {
         return (
