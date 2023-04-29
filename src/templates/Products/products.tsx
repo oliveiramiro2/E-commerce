@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useEffect, useRef } from "react";
+import React, { useEffect } from "react";
 import { useQuery } from "@tanstack/react-query";
 import { TiChevronLeft, TiChevronRight } from "react-icons/ti";
 import clsx from "clsx";
@@ -46,22 +46,10 @@ export const ProductsTemplate: React.FC = () => {
         }
     }, []);
 
-    gsap.registerPlugin(ScrollTrigger);
-    const refProducts = useRef(null);
-
     useEffect(() => {
         if (isLoading || isFetching) return;
-        const element: any = refProducts.current;
 
-        gsap.timeline({
-            scrollTrigger: {
-                trigger: element,
-                scrub: 2,
-                start: "center 55%",
-                end: "center 45%",
-            },
-        })
-            .from(".product", {
+        gsap.from(".product", {
                 opacity: 0,
                 scaleX: 0,
                 ease: "slow",
@@ -101,7 +89,7 @@ export const ProductsTemplate: React.FC = () => {
                 </div>
                 <div className="w-screen pl-6 pr-6 mb-10 flex flex-col items-center">
                     <Filters handleFilter={handleFilter} />
-                    <div ref={refProducts} className="w-full flex flex-wrap gap-y-10 justify-between">
+                    <div className="w-full flex flex-wrap gap-y-10 justify-between">
                         {data?.map(item => (
                             <Product key={item.id} param={item} />
                         ))}
