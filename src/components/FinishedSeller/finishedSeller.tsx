@@ -89,7 +89,7 @@ export const FinishedSeller: React.FC<IPropsFinished> = ({
                     </div>
                     {zipCodeNotFound ? (
                         <>
-                            <div className="flex justify-around mt-10">
+                            <div className="flex justify-around mt-10 flex-wrap">
                                 <div className="flex flex-col">
                                     <input
                                         placeholder="Cidade"
@@ -135,7 +135,7 @@ export const FinishedSeller: React.FC<IPropsFinished> = ({
                                     )}
                                 </div>
                             </div>
-                            <div className="flex justify-around mt-10">
+                            <div className="flex justify-around mt-10 flex-wrap">
                                 <div className="flex flex-col">
                                     <input
                                         placeholder="Rua"
@@ -181,7 +181,7 @@ export const FinishedSeller: React.FC<IPropsFinished> = ({
                                     )}
                                 </div>
                             </div>
-                            <div className="flex justify-around mt-10">
+                            <div className="flex justify-around mt-10 flex-wrap">
                                 <div className="flex flex-col">
                                     <input
                                         placeholder="Número da casa"
