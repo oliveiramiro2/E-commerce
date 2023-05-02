@@ -50,7 +50,7 @@ export const ContainCart: React.FC<{
                 </button>
             </div>
             <div className="bg-white border flex items-center justify-between border-gray-300 ml-6 mr-6 mb-2 pl-1 rounded-md">
-                <div className="flex items-center m-5 ml-6">
+                <div className="flex items-center m-5 ml-6 flex-wrap gap-y-5">
                     <img
                         alt="produto"
                         src={data.images[0]}
