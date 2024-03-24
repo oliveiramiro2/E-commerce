@@ -81,9 +81,9 @@ export const LoginAndRegister: React.FC<{
                                 : "Não possui uma conta? Faça seu registro"}
                         </button>
                     )}
-                    
+
                     <button
-                        type="button"
+                        type="submit"
                         className={`self-center rounded-lg p-2 pl-8 pr-8 mt-2 bg-pallet-purple text-pallet-white font-semibold tracking-wide shadow-lg shadow-gray-400 hover:bg-[#bf3eee] hover:transition-colors ${oswald.className}`}
                         onClick={handleSubmit(
                             data =>
