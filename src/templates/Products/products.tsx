@@ -110,6 +110,7 @@ export const ProductsTemplate: React.FC = () => {
                     <div>
                         <input
                             type="text"
+                            defaultValue={pagination}
                             value={inputPagination}
                             className={`w-14 text-center outline-none border-2 border-pallet-orange p-1 pl-1 rounded-lg ${tiro.className}`}
                             onChange={e =>

@@ -15,10 +15,12 @@ export const usePagination = () => {
         handlePagination: (more: boolean) => {
             if (more) {
                 setPagination(pagination + 1);
+                setInputPagination(pagination + 1);
                 return;
             }
             if (!more && pagination !== 1) {
                 setPagination(pagination - 1);
+                setInputPagination(pagination - 1);
             }
         },
     };
